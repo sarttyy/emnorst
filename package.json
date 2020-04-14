@@ -1,0 +1,19 @@
+{
+  "name": "reiyayakko-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reiyayakko/reiyayakko-core.git"
+  },
+  "author": "reiyayakko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reiyayakko/reiyayakko-core/issues"
+  },
+  "homepage": "https://github.com/reiyayakko/reiyayakko-core#readme"
+}
