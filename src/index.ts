@@ -1,2 +1,0 @@
-
-// #reiyayakko core index
