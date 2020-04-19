@@ -1,0 +1,11 @@
+{
+	"folders": [{
+		"path": "."
+	}],
+	"settings": {
+		// ESlint extension
+		"eslint.nodePath": "C:\\Users\\ka2obushi\\Documents\\GitHub\\reiyayakko-core\\node_modules",
+		"eslint.alwaysShowStatus": true,
+		"eslint.enable": true,
+	}
+}

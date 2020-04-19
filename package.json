@@ -1,0 +1,29 @@
+{
+  "name": "reiyayakko-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/reiyayakko.umd.js",
+  "scripts": {
+    "tsc_watch": "tsc --watch",
+    "rollup_build": "rollup -c rollup.config.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reiyayakko/reiyayakko-core.git"
+  },
+  "author": "reiyayakko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reiyayakko/reiyayakko-core/issues"
+  },
+  "homepage": "https://github.com/reiyayakko/reiyayakko-core#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "rollup": "^2.6.1",
+    "rollup-plugin-istanbul": "^2.0.1",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "typescript": "^3.8.3"
+  }
+}
