@@ -1,49 +1,69 @@
 
 export * from "./is";
-export const gurop = (array, func)=>{
-    result = new Map();
-    for(const value of array){
-        const key = func(value)
-        const values = result.get(key) || [];
-        values.push(value);
-        result.set(key, values);
-    }
-    return result;
-};
-export const equals = (...values)=>{
-    // SameValueZero
-    let prev = values.shift();
-    return values.every(value=>(
-        Number.isNaN(prev)?Number.isNaN(prev=value):prev===(prev=value)
-    ));
-};
+export * from "./loop";
+export * from "./equals";
+export * from "./generator";
+import * as is from "./is";
+// TEMP:
+// export class ArrayLike extends Array {
+//     constructor(){
+//         super();
+//         console.log(this);
+//     }
+// }
+// export class Temp {
+//     constructor(){
+//         this.gen = this.gen.bind(this);
+//         return this.gen;
+//     }
+//     gen(){
+//         console.log(this);
+//         return this.gen;
+//     }
+// }
+// export class Memo {
+//     constructor(func){
+//         this.function = func;
+//         this.existing = new Map();
+//     }
+//     execute(args){
+//         if(this.existing.has(args))
+//             return this.existing.get(args);
+//         const result = execute(this.function, args);
+//         this.existing.set(args, result);
+//         return result;
+//     }
+// }
+// String instruction
+export const execute = (func, args)=>func.apply(null, args);
 export const typeOf = object=>(
     Object.prototype.toString.call(object).slice(8, -1)
 );
-/*
-FIXME: typeof
-export const typeof = object=>(
-    modules.typeOf(object).toLowerCase()
-);
-TODO: require
-*/
+// TODO: require
 export const substitute = (value, substitute)=>(
-    modules.isNullorUndefined(value)
+    is.isNull(value)
         ? substitute
         : value
 );
-export const loop = (func, level, arg)=>{
-    for(;level--;)arg = func(arg);
-    return arg;
-};
-export const zip = function* (...arrays){
-    const max = arrays.reduce((length, array)=>(
-        Math.max(length, array.length)
-    ), 0);
-    for(let i=0;max>i;i++){
-        yield arrays.reduce((iarrays, array)=>{
-            iarrays.push(array[i]);
-            return iarrays;
-        }, []);
+export const tryCall = (value, args, that=null)=>(
+    typeof value === "function"
+        ? value.apply(that, args)
+        : value
+);
+// export const and = (...arrays)=>{}
+// export const xor = (...arrays)=>{}
+export const debounce = (func, wait)=>{
+    let id;
+    return function(){
+        clearTimeout(id);
+        id = setTimeout(func.apply, wait, this, arguments);
     }
+};
+export const uniq = array=>{
+    const existings = [];
+    return array.filter(value=>{
+        const existing = existings.includes(value);
+        if(!existing)existings.push(value);
+        return !existing;
+    });
 };

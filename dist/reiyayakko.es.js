@@ -1,12 +1,13 @@
-const isNull = value=>value === null;
-const isUndefined = value=>value === void 0;
-const isNullorUndefined = value=>(
-    isNull(value) || isUndefined(value)
+const isUndefined = value=>(
+    value === void 0
+);
+const isNull = value=>(
+    value === null || isUndefined(value)
 );
 const isRegExp = obj=>(
     modules.typeof(obj) === "regexp"
 );
-const isObject = value=>{
+const isObject = obj=>{
     const type = typeof obj;
     return type === "function" || type === "object" && obj !== null;
 };
@@ -15,6 +16,13 @@ const isEmpty = value=>{
         return value.length === 0;
     if(typeof value === "object")
         return modules.allKeys(value).length === 0;
+    return false;
+};
+const isNegative = value=>{
+    if(typeof value === "number")
+        return value < 0;
+    if(typeof value === "boolean")
+        return !value;
     return false;
 };
 
@@ -28,33 +36,48 @@ const gurop = (array, func)=>{
     }
     return result;
 };
+// export const partition = (array, func)=>{};
+// INFO: findのマッチした数版
+const count = (array, func)=>{
+    let number = 0;
+    for(const value of array)
+        number += Boolean(func(value));
+    return number;
+};
+const previous = (level, func, arg)=>{
+    for(;level--;)
+        arg = func(arg);
+    return arg;
+};
+const inorder = (arg, ...funcs)=>{
+    for(const func of funcs)
+        arg = func(arg);
+    return arg;
+};
+// TODO: iterate - 何でもループ"できるようにする"やつ
+const iterate = function* (value){
+    if(value[Symbol.iterator])
+        yield* value;
+};
+
 const equals = (...values)=>{
     // SameValueZero
     let prev = values.shift();
     return values.every(value=>(
-        Number.isNaN(prev)?Number.isNaN(prev=value):prev===(prev=value)
+        Number.isNaN(prev)
+            ? Number.isNaN(prev=value)
+            : prev===(prev=value)
     ));
 };
-const typeOf = object=>(
-    Object.prototype.toString.call(object).slice(8, -1)
+
+const last = (array, index=1)=>(
+    array[array.length - index]
 );
-/*
-FIXME: typeof
-export const typeof = object=>(
-    modules.typeOf(object).toLowerCase()
-);
-TODO: require
-*/
-const substitute = (value, substitute)=>(
-    modules.isNullorUndefined(value)
-        ? substitute
-        : value
-);
-const loop = (func, level, arg)=>{
-    for(;level--;)arg = func(arg);
-    return arg;
-};
 const zip = function* (...arrays){
+    if(typeof last(arrays) === "function"){
+        const func = arrays.pop();
+        arrays = arrays.map(func);
+    }
     const max = arrays.reduce((length, array)=>(
         Math.max(length, array.length)
     ), 0);
@@ -65,21 +88,102 @@ const zip = function* (...arrays){
         }, []);
     }
 };
+const through = function* (start, end, increment){
+    increment = Math.abs(increment || 1);
+    if(start > end)increment = -increment;
+    while(Math.abs(start - end) >= Math.abs(increment)){
+        yield start;
+        start += increment;
+    }
+    yield start;
+};
+
+// TEMP:
+// export class ArrayLike extends Array {
+//     constructor(){
+//         super();
+//         console.log(this);
+//     }
+// }
+// export class Temp {
+//     constructor(){
+//         this.gen = this.gen.bind(this);
+//         return this.gen;
+//     }
+//     gen(){
+//         console.log(this);
+//         return this.gen;
+//     }
+// }
+// export class Memo {
+//     constructor(func){
+//         this.function = func;
+//         this.existing = new Map();
+//     }
+//     execute(args){
+//         if(this.existing.has(args))
+//             return this.existing.get(args);
+//         const result = execute(this.function, args);
+//         this.existing.set(args, result);
+//         return result;
+//     }
+// }
+// String instruction
+const execute = (func, args)=>func.apply(null, args);
+const typeOf = object=>(
+    Object.prototype.toString.call(object).slice(8, -1)
+);
+// TODO: require
+const substitute = (value, substitute)=>(
+    isNull(value)
+        ? substitute
+        : value
+);
+const tryCall = (value, args, that=null)=>(
+    typeof value === "function"
+        ? value.apply(that, args)
+        : value
+);
+// export const and = (...arrays)=>{}
+// export const xor = (...arrays)=>{}
+const debounce = (func, wait)=>{
+    let id;
+    return function(){
+        clearTimeout(id);
+        id = setTimeout(func.apply, wait, this, arguments);
+    }
+};
+const uniq = array=>{
+    const existings = [];
+    return array.filter(value=>{
+        const existing = existings.includes(value);
+        if(!existing)existings.push(value);
+        return !existing;
+    });
+};
 
 var index = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    gurop: gurop,
-    equals: equals,
+    execute: execute,
     typeOf: typeOf,
     substitute: substitute,
-    loop: loop,
-    zip: zip,
-    isNull: isNull,
+    tryCall: tryCall,
+    debounce: debounce,
+    uniq: uniq,
     isUndefined: isUndefined,
-    isNullorUndefined: isNullorUndefined,
+    isNull: isNull,
     isRegExp: isRegExp,
     isObject: isObject,
-    isEmpty: isEmpty
+    isEmpty: isEmpty,
+    isNegative: isNegative,
+    gurop: gurop,
+    count: count,
+    previous: previous,
+    inorder: inorder,
+    iterate: iterate,
+    equals: equals,
+    zip: zip,
+    through: through
 });
 
 const has = (object, propName)=>(
@@ -210,6 +314,220 @@ var index$1 = /*#__PURE__*/Object.freeze({
     watchStop: watchStop
 });
 
+/**
+ * 数値を整数・少数表記に変換する。
+ * 内部的には、指数表記の文字列をパースし、小数表記に変換している。
+ *
+ * @param {number|string} number 変換したい数値、または数値形式の文字列。
+ *     数値型であればNaNやInfinityも指定できるが、そのまま文字列化して返される。
+ * @return {string} 小数表記の数値文字列
+ * @throws 適切な形式の数値、または文字列が与えられなかった場合に発生する。
+ *
+ * Note: この関数は、JavaScriptで正確な数値演算を行うために使う**べきではない**。
+ *       この関数でなければ変換できない数値は、JavaScriptの内部データの時点で誤差が発生しており、正確な演算は期待できない。
+ *       また、この関数によって変換された数値が厳密に正しい事も保証しない。
+ *       この関数は、JavaScriptで生成した数値を「見やすく表示する」ためにのみ使用するべきである。
+ * Note: この関数の設計が正しければ（つまり、バグが無ければ）、エラーが発生するのは誤った形式の文字列を与えられた場合のみとなる。
+ *       逆に言えば、数値のプリミティブ型が与えられた場合は、いかなる場合でもエラーは発生しないはずである。
+ *       もし、数値が与えられた場合にもエラーが発生してしまった場合は、この関数のバグを修正する必要がある。
+ */
+const Num2FracStr$1 = number => {
+  /*
+   * 引数の値を文字列化
+   */
+  const numStr = String(number);
+
+  /*
+   * 正規表現でマッチング
+   */
+  const match = numStr.match(/^([+-]?)0*([1-9][0-9]*|)(?:\.([0-9]*[1-9]|)0*)?(?:[eE]([+-]?[0-9]+))?$/);
+
+  /*
+   * 引数の型が適切な形式ではない場合…
+   */
+  if (!match) {
+    if (typeof number == "number") {
+      /*
+       * 引数の型が数値であれば、文字列化した値をそのまま返す
+       */
+      return numStr;
+    } else {
+      /*
+       * 引数の型が数値でなければ、エラーにする
+       */
+      throw new Error(`Invalid Number: "${numStr}"`);
+    }
+  }
+
+  /** @type {string} 数の符号 */
+  const sign = (match[1] === "-" ? "-" : "");
+  /** @type {string} 仮数部の整数部 */
+  const mantissa_int = match[2];
+  /** @type {string} 仮数部の少数部 */
+  const mantissa_frac = (match[3] ? match[3] : "");
+  /** @type {number} 指数部 */
+  const exponent = Number(match[4]);
+
+  let returnValue = "";
+
+  if (exponent) {
+    /*
+     * exponentがundefinedではなく（正規表現で指数部がマッチしていて）、
+     * かつ、0ではない場合、指数表記として処理を開始する
+     *
+     * Note: 指数部が0の場合、ここで処理する意味は無いので少数表記として処理する。
+     *       よって、指数部が0以外の場合にここで処理する。
+     * Note: undefinedは数値化されるとNaNになり、false相当となる。
+     *       一方、0の場合もfalse相当となる。
+     *       ので、↑の条件文はコレで合っている。
+     */
+
+    /** @type {string} */
+    const mantissa_str = mantissa_int + mantissa_frac;
+    /** @type {number} */
+    const mantissa_len = mantissa_str.length;
+
+    if (0 < mantissa_len) {
+      /** @type {number} */
+      const mantissa_int_len = mantissa_int.length + exponent;
+  
+      /*
+      12.145e+7  121450000             ;  mantissa_str: "12145"  mantissa_int_len: 9   ;  小数部が存在しない数値
+      12.145e+6   12145000             ;  mantissa_str: "12145"  mantissa_int_len: 8   ;  小数部が存在しない数値
+      12.145e+5    1214500             ;  mantissa_str: "12145"  mantissa_int_len: 7   ;  小数部が存在しない数値
+      12.145e+4     121450             ;  mantissa_str: "12145"  mantissa_int_len: 6   ;  小数部が存在しない数値
+      12.145e+3      12145             ;  mantissa_str: "12145"  mantissa_int_len: 5   ;  小数部が存在しない数値
+      12.145e+2       1214.5           ;  mantissa_str: "12145"  mantissa_int_len: 4   ;  小数部が存在し、かつ、1より大きい数値
+      12.145e+1        121.45          ;  mantissa_str: "12145"  mantissa_int_len: 3   ;  小数部が存在し、かつ、1より大きい数値
+      12.145e0          12.145         ;  mantissa_str: "12145"  mantissa_int_len: 2   ;  小数部が存在し、かつ、1より大きい数値
+      12.145e-1          1.2145        ;  mantissa_str: "12145"  mantissa_int_len: 1   ;  小数部が存在し、かつ、1より大きい数値
+      12.145e-2          0.12145       ;  mantissa_str: "12145"  mantissa_int_len: 0   ;  小数部が存在し、かつ、1未満の数値
+      12.145e-3          0.012145      ;  mantissa_str: "12145"  mantissa_int_len: -1  ;  小数部が存在し、かつ、1未満の数値
+      12.145e-4          0.0012145     ;  mantissa_str: "12145"  mantissa_int_len: -2  ;  小数部が存在し、かつ、1未満の数値
+      12.145e-5          0.00012145    ;  mantissa_str: "12145"  mantissa_int_len: -3  ;  小数部が存在し、かつ、1未満の数値
+      12.145e-6          0.000012145   ;  mantissa_str: "12145"  mantissa_int_len: -4  ;  小数部が存在し、かつ、1未満の数値
+      12.145e-7          0.0000012145  ;  mantissa_str: "12145"  mantissa_int_len: -5  ;  小数部が存在し、かつ、1未満の数値
+      */
+
+      if (mantissa_len <= mantissa_int_len) {
+        /*
+         * 小数部が存在しない数値（ex: 0, 12, 176, 1214500）の場合の処理
+         */
+        returnValue = mantissa_str.padEnd(mantissa_int_len, "0");
+
+      } else if (0 < mantissa_int_len) {
+        /*
+         * 小数部が存在し、かつ、1より大きい数値（ex: 1.26, 1.0009, 121.45）の場合の処理
+         */
+        returnValue = mantissa_str.slice(0, mantissa_int_len) + "." + mantissa_str.slice(mantissa_int_len);
+
+      } else {
+        /*
+         * 小数部が存在し、かつ、1未満の数値（ex: 0.26, 0.20098, 0.0012145）の場合の処理
+         */
+        returnValue = "0." + "0".repeat(-mantissa_int_len) + mantissa_str;
+      }
+    }
+
+  } else if (mantissa_frac) {
+    /*
+     * 少数表記の場合
+     */
+    returnValue = (mantissa_int || "0") + "." + mantissa_frac;
+
+  } else if (mantissa_int) {
+    /*
+     * 整数表記の場合
+     */
+    returnValue = mantissa_int;
+  }
+
+  return (returnValue) ? sign + (
+    returnValue
+      /* 先頭の余計なゼロを削除 */
+      .replace(/^(?:0(?!\.|$))+/, "")
+      /* 末尾の余計なゼロを削除 */
+      .replace(/(?:\.0+|(\.[0-9]*[1-9])0+)$/, "$1")
+  ) : "0";
+};
+
+const Num = number=>{
+    const [integer, decimal] = String(number).split(".");
+    return {integer, decimal, negative};
+};
+class BigFloat {
+    constructor(number){
+        const [integer, decimal] = Num2FracStr(number).split(".");
+        this.integer = integer || "";
+        this.decimal = decimal || "";
+        this.negative = false;
+    }
+    toString(){
+        const number = this.integer + (this.decimal && "." + this.decimal);
+        return (this.negative ? "-" : "+").concat(number);
+    }
+    _typeCheck(valuue){
+        return Number.isNaN(valuue)
+            || (
+                typeof valuue !== "string"
+                && !Number.isFinite(valuue)
+            )
+    }
+    add(number){
+        if(this._typeCheck(number))return this;
+        const bigfloat = number instanceof BigFloat
+            ? number : new BigFloat(number);
+        let carry = false;
+        const integerLength = Math.max(bigfloat.integer.length, this.integer.length);
+        const decimalLength = Math.max(bigfloat.decimal.length, this.decimal.length);
+        const number1 = [
+            ...this.integer.padStart(integerLength, "0"),
+            ...[...this.decimal.padEnd(decimalLength, "0")].reverse()
+        ];
+        const number2 = [
+            ...bigfloat.integer.padStart(integerLength, "0"),
+            ...[...bigfloat.decimal.padEnd(decimalLength, "0")].reverse()
+        ];
+        console.log({number1, number2, integerLength, decimalLength});
+        const num = [...rei.utility.zip(number1, number2)].reduceRight((total, [dec1, dec2])=>{
+            let subtotal = Number(dec1) + Number(dec2) + carry;
+            carry = subtotal >= 10;
+            if(carry)subtotal = Number(subtotal) - 10;
+            return String(subtotal).concat(total);
+        }, "");
+        console.log(carry);
+        this.integer = (carry ? "1" : "") + (decimalLength ? num.slice(0, -decimalLength) : num);
+        this.decimal = decimalLength ? num.slice(-decimalLength) : "";
+        return this;
+    }
+    sub(number){
+        if(this._typeCheck(number))return this;
+        const bigfloat = new BigFloat(number);
+        return this;
+    }
+    mul(...numbers){
+        for(const number of numbers){
+            if(this._typeCheck(number))continue;
+        }
+        return this;
+    }
+    div(...numbers){
+        for(const number of numbers){
+            if(this._typeCheck(number))continue;
+        }
+        return this;
+    }
+    sur(number){
+        return this;
+    }
+    static eval(formula){
+        for(const character of formula){
+            if(character === "\s")
+                continue;
+        }
+    }
+}
+
 const abs = x=>(
     x < 0 ? -x : number.toNumber(x)
 );
@@ -223,8 +541,13 @@ const max = (...args)=>(
         max < value ? max : value
     ), -Infinity)
 );
+// TODO: sin
+// TODO: cos
+// TODO: tan
 const diff = (n1, n2)=>abs(n1-n2);
 const factorial = num=>{
+    if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
+        return num;
     for(let i = num;i > 2;num *= --i);
     return num ? num : ++num;
 };
@@ -247,9 +570,13 @@ const isPrime = number=>{
         if(number % i === 0)return false;
     return true;
 };
-// TODO: 素数ジェネレーター
-const prime = number=>new Promise((resolve, reject)=>{
-    // INFO: 素因数分解
+const prime = function* (frequency=Infinity){
+    yield 2;
+    for(let i = 3;frequency--;i += 2)
+        if(isPrime(i))yield i;
+        else frequency++;
+};
+const primeFactorization = number=>new Promise((resolve, reject)=>{
     if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number"){
         reject(new Error("Only the numerical value can be factorized"));
         return;
@@ -267,6 +594,7 @@ const prime = number=>new Promise((resolve, reject)=>{
     if(number > 1)result.push(number);
     resolve(result);
 });
+// export class Complex {}
 /*
 import package_rei from "../package";
 package_rei.addModule("number", ()=>class Number {
@@ -296,7 +624,7 @@ package_rei.addModule("math.hyper", ({modules})=>(a, n, b=a)=>{
         stack.execute();
     }
 });
-// 最小勾配公約
+// TODO: 公倍数, 公約数
 package_rei.addModule("math.ack", ({modules: {math}})=>(x, y, z)=>{
     if(math.min(x, y, z) < 0)
         throw new Error("Negative argument cannot be specified for Ackermann function");
@@ -324,29 +652,12 @@ var index$2 = /*#__PURE__*/Object.freeze({
     fibonacci$: fibonacci$,
     fibonacci: fibonacci,
     isPrime: isPrime,
-    prime: prime
+    prime: prime,
+    primeFactorization: primeFactorization,
+    NumToStr: Num2FracStr$1,
+    Num: Num,
+    BigFloat: BigFloat
 });
 
-/*!
- * reiyayakko-core
- * Copyright 2020 reiyayakko
- */
-
-/*
-export const Reiyayakko = function Reiyayakko(){
-    "use strict";
-    if(this === void 0){
-        // function
-        return modules.execute.reiyayakko(arguments);
-    }
-    // constructor
-    modules.init.execute.apply(this, arguments);
-};
-export const R = Reiyayakko;
-*/
-const env = {
-    version: "1.0.0",
-};
-
-export { env, index$2 as math, index$1 as object, index as utility };
+export { index$2 as math, index$1 as object, index as utility };
 //# sourceMappingURL=reiyayakko.es.js.map
