@@ -12,8 +12,13 @@ export const max = (...args)=>(
         max < value ? max : value
     ), -Infinity)
 );
+// TODO: sin
+// TODO: cos
+// TODO: tan
 export const diff = (n1, n2)=>abs(n1-n2);
 export const factorial = num=>{
+    if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
+        return num;
     for(let i = num;i > 2;num *= --i);
     return num ? num : ++num;
 };
@@ -36,9 +41,13 @@ export const isPrime = number=>{
         if(number % i === 0)return false;
     return true;
 };
-// TODO: 素数ジェネレーター
-export const prime = number=>new Promise((resolve, reject)=>{
-    // INFO: 素因数分解
+export const prime = function* (frequency=Infinity){
+    yield 2;
+    for(let i = 3;frequency--;i += 2)
+        if(isPrime(i))yield i;
+        else frequency++;
+};
+export const primeFactorization = number=>new Promise((resolve, reject)=>{
     if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number"){
         reject(new Error("Only the numerical value can be factorized"));
         return;
@@ -56,6 +65,8 @@ export const prime = number=>new Promise((resolve, reject)=>{
     if(number > 1)result.push(number);
     resolve(result);
 });
+export * from "./bigfloat"
+// export class Complex {}
 /*
 import package_rei from "../package";
 package_rei.addModule("number", ()=>class Number {
@@ -85,7 +96,7 @@ package_rei.addModule("math.hyper", ({modules})=>(a, n, b=a)=>{
         stack.execute();
     }
 });
-// 最小勾配公約
+// TODO: 公倍数, 公約数
 package_rei.addModule("math.ack", ({modules: {math}})=>(x, y, z)=>{
     if(math.min(x, y, z) < 0)
         throw new Error("Negative argument cannot be specified for Ackermann function");
