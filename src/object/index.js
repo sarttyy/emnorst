@@ -1,4 +1,5 @@
 
+export * from "./clone/index";
 export const has = (object, propName)=>(
     Object.hasOwnProperty.call(object, propName)
 );
@@ -33,32 +34,45 @@ export const watchStop = (obj, propName)=>{
         value: obj[propName]
     });
 };
-/*
-reiyayakkoPackage.addModule({
-    name: "object.structure",
-    variable(variable){
-        variable.apply = (base, apply, name, nameTo=name)=>{
-            if(typeof apply[name] === "object")
-                variable.modules.structure(base[nameTo], apply[name]);
-            else
-                base[nameTo] = apply[name];
-        };
+export const spread = (target, ...sources)=>{
+    switch(typeof target){
+    case "object":
+        if(Array.isArray(target))
+            return target.concat(...sources);
+        return Object.assign(target, ...sources);
+    case "function":
+        return target.apply({}, sources.flat());
+    default:
+        return target;
     }
-}, ({modules, apply})=>(baseObj={}, applyObj={})=>{
-    for(const propName of modules.object.allKeys(applyObj)){
-        if(typeof propName === "string"){
-            const propNames = propName.split(".");
-            const deepestPropName = propNames.pop();
-            let obj = baseObj;
-            for(const name of propNames)
-                obj = (obj[name] = {});
-            apply(obj, applyObj, propName, deepestPropName);
-        }else{
-            apply(baseObj, applyObj, propName);
-        }
+};
+
+export const property = (obj, propKey)=>{
+    if(typeof propKey === "string")
+        propKey = propKey.split(".");
+    else if(typeof propKey === "symbol")
+        propKey = [propKey];
+    else if(Array.isArray(propKey))
+        propKey = propKey.flatMap(key=>(
+            typeof key==="string" ? key.split(".") : key
+        ));
+    return propKey.reduce((object, key)=>{
+        if(!has(object, key))object[key] = {};
+        return object[key];
+    }, obj);
+};
+
+export const structure = (baseObj={}, applyObj={})=>{
+    for(const propName of allKeys(applyObj)){
+        const applyProp = applyObj[propName];
+        if(typeof applyProp === "object")
+            structure(baseObj[propName], applyProp);
+        else baseObj[propName] = applyProp;
     }
     return baseObj;
-});
+};
+
+/*
 reiyayakkoPackage.addModule("object.Map", ({modules})=>class ObjectMap {
     constructor(map){
         this.map = [];

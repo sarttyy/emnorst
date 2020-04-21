@@ -33,7 +33,7 @@
     };
 
     const gurop = (array, func)=>{
-        result = new Map();
+        const result = new Map();
         for(const value of array){
             const key = func(value);
             const values = result.get(key) || [];
@@ -45,25 +45,36 @@
     // export const partition = (array, func)=>{};
     // INFO: findのマッチした数版
     const count = (array, func)=>{
-        let number = 0;
+        let match = 0;
         for(const value of array)
-            number += Boolean(func(value));
-        return number;
+            match += Boolean(func(value));
+        return match;
     };
+
     const previous = (level, func, arg)=>{
         for(;level--;)
             arg = func(arg);
         return arg;
     };
-    const inorder = (arg, ...funcs)=>{
+
+    const inOrder = (arg, ...funcs)=>{
         for(const func of funcs)
             arg = func(arg);
         return arg;
     };
+
     // TODO: iterate - 何でもループ"できるようにする"やつ
     const iterate = function* (value){
         if(value[Symbol.iterator])
             yield* value;
+    };
+
+    const forOf = (iterator, func, that)=>{
+        for(const value of iterator){
+            const flag = func.call(that, value);
+            if(!isUndefined(flag))return flag;
+        }
+        return void 0;
     };
 
     const equals = (...values)=>{
@@ -185,12 +196,109 @@
         gurop: gurop,
         count: count,
         previous: previous,
-        inorder: inorder,
+        inOrder: inOrder,
         iterate: iterate,
+        forOf: forOf,
         equals: equals,
         zip: zip,
         through: through
     });
+
+    const copyObject = (modules, object, cloneObject)=>{
+        const propKeys = modules.getAllKeys(object);
+        const prototype = Object.getPrototypeOf(object);
+        object = propKeys.reduce((propertiesObject, propKey) => {
+            const prop = Object.getOwnPropertyDescriptor(object, propKey);
+            if (prop.hasOwnProperty("value"))
+                prop.value = modules.cloneMod(prop.value, cloneObject);
+            Object.defineProperty(propertiesObject, propKey, prop);
+            return propertiesObject;
+        }, Object.create(prototype));
+        return object;
+    };
+    const copy = cloneObject=>{
+        console.log(`type: '${cloneObject.type}'`, [cloneObject.value]);
+        let object = cloneObject.value;
+        // primitive type, function
+        if(typeof object !== "object")
+            return cloneObject;
+        switch(cloneObject.type){
+        case "object": { // {}, new Object, new Foo etc...
+            object = copyObject(modules, object, cloneObject);
+            break;
+        }
+        case "array": // [], new Array
+            object = object.map(value=>modules.cloneMod(value, cloneObject));
+            break;
+        case "number": // new Number
+            return new Number(object);
+        case "string": // new String
+            return new String(object);
+        case "boolean": // new Boolean
+            return new Boolean(object);
+        case "bigint": // Object(BigInt())
+            return object.valueOf();
+        case "regexp": // /regexp/, new RegExp
+            return new RegExp(object);
+        case "null": // null
+            object = null;
+            break;
+        case "date": return new Date(object);
+        case "map": {
+            const map = new Map();
+            for(const [key, value] of object)
+                map.set(key, modules.clone(value));
+            return map;
+        }
+        case "weakmap": {
+            const map = new WeakMap();
+            for(const [key, value] of object)
+                map.set(key, modules.clone(value));
+            return map;
+        }
+        case "set": return new Set(object);
+        case "weakset": return new WeakSet(object);
+        default:
+            return null;
+        }
+        cloneObject.object = object;
+        return cloneObject;
+    };
+
+    class CloneObject {
+        constructor(cloneObject, props = {}){
+            this.value = cloneObject;
+            this.existingObjects = props.existingObjects || new WeakSet();
+            this.isDone = false;
+        }
+        done(){
+            this.isDone = true;
+            return this.value;
+        }
+        get isExisting(){
+            return this.existingObjects.has(this.value);
+        }
+        get type(){
+            return modules.typeof(this.value);
+        }
+    }
+
+    const undertake = (object, props)=>{
+        object = new CloneObject(object, props);
+        if(object.isExisting)
+            return object.done();
+        console.groupCollapsed(`type: '${object.type}'`, object.value);
+        object.existingObjects.push(object.value);
+        const cloneObject = copy(object);
+        cloneObject.existingObjects.push(cloneObject.value);
+        console.log(cloneObject.existingObjects);
+        console.groupEnd();
+        return cloneObject.done();
+    };
+
+    const clone = (object, depth=0)=>(
+        undertake(object, depth)
+    );
 
     const has = (object, propName)=>(
         Object.hasOwnProperty.call(object, propName)
@@ -226,32 +334,45 @@
             value: obj[propName]
         });
     };
-    /*
-    reiyayakkoPackage.addModule({
-        name: "object.structure",
-        variable(variable){
-            variable.apply = (base, apply, name, nameTo=name)=>{
-                if(typeof apply[name] === "object")
-                    variable.modules.structure(base[nameTo], apply[name]);
-                else
-                    base[nameTo] = apply[name];
-            };
+    const spread = (target, ...sources)=>{
+        switch(typeof target){
+        case "object":
+            if(Array.isArray(target))
+                return target.concat(...sources);
+            return Object.assign(target, ...sources);
+        case "function":
+            return target.apply({}, sources.flat());
+        default:
+            return target;
         }
-    }, ({modules, apply})=>(baseObj={}, applyObj={})=>{
-        for(const propName of modules.object.allKeys(applyObj)){
-            if(typeof propName === "string"){
-                const propNames = propName.split(".");
-                const deepestPropName = propNames.pop();
-                let obj = baseObj;
-                for(const name of propNames)
-                    obj = (obj[name] = {});
-                apply(obj, applyObj, propName, deepestPropName);
-            }else{
-                apply(baseObj, applyObj, propName);
-            }
+    };
+
+    const property = (obj, propKey)=>{
+        if(typeof propKey === "string")
+            propKey = propKey.split(".");
+        else if(typeof propKey === "symbol")
+            propKey = [propKey];
+        else if(Array.isArray(propKey))
+            propKey = propKey.flatMap(key=>(
+                typeof key==="string" ? key.split(".") : key
+            ));
+        return propKey.reduce((object, key)=>{
+            if(!has(object, key))object[key] = {};
+            return object[key];
+        }, obj);
+    };
+
+    const structure = (baseObj={}, applyObj={})=>{
+        for(const propName of allKeys(applyObj)){
+            const applyProp = applyObj[propName];
+            if(typeof applyProp === "object")
+                structure(baseObj[propName], applyProp);
+            else baseObj[propName] = applyProp;
         }
         return baseObj;
-    });
+    };
+
+    /*
     reiyayakkoPackage.addModule("object.Map", ({modules})=>class ObjectMap {
         constructor(map){
             this.map = [];
@@ -317,7 +438,11 @@
         has: has,
         allKeys: allKeys,
         watch: watch,
-        watchStop: watchStop
+        watchStop: watchStop,
+        spread: spread,
+        property: property,
+        structure: structure,
+        clone: clone
     });
 
     /**
