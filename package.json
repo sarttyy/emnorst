@@ -5,7 +5,8 @@
   "main": "dist/reiyayakko.umd.js",
   "scripts": {
     "tsc_watch": "tsc --watch",
-    "rollup_build": "rollup -c rollup.config.js -w"
+    "rollup_watch": "rollup -c rollup.config.js -w",
+    "rollup_build": "rollup -c rollup.config.js --environment INCLUDE_DEPS,BUILD:production"
   },
   "repository": {
     "type": "git",

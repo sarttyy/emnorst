@@ -1,6 +1,6 @@
 
 import istanbul from 'rollup-plugin-istanbul';
-import terser from 'rollup-plugin-terser';
+import {terser} from 'rollup-plugin-terser';
 
 const config = {
   input: './src/index.js',
@@ -22,7 +22,7 @@ const config = {
   plugins: []
 };
 
-if(process.env !== 'production'){
+if(process.env.BUILD !== 'production'){
   // dev
   config.output.map(output=>{
     output.sourcemap = true;
@@ -30,6 +30,13 @@ if(process.env !== 'production'){
   });
 }else{
   // production
+  config.output.map(output=>{
+    output.file = output.file.split('.');
+    output.file.splice(-1, 0, "min");
+    output.file = output.file.join('.');
+    console.log(output.file)
+    return output;
+  });
   config.plugins.push(terser());
 }
 
