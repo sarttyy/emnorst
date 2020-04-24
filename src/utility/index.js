@@ -1,9 +1,10 @@
 
 export * from "./is";
 export * from "./loop";
-export * from "./equals";
-export * from "./generator";
-import * as is from "./is";
+export * from "./utility";
+export * from "./range";
+export * from "./zip";
+import {forIndex} from "./loop";
 // TEMP:
 // export class ArrayLike extends Array {
 //     constructor(){
@@ -35,35 +36,62 @@ import * as is from "./is";
 //     }
 // }
 // String instruction
-export const execute = (func, args)=>func.apply(null, args);
-export const typeOf = object=>(
-    Object.prototype.toString.call(object).slice(8, -1)
-);
-// TODO: require
-export const substitute = (value, substitute)=>(
-    is.isNull(value)
-        ? substitute
-        : value
-);
-export const tryCall = (value, args, that=null)=>(
-    typeof value === "function"
-        ? value.apply(that, args)
-        : value
-);
-// export const and = (...arrays)=>{}
-// export const xor = (...arrays)=>{}
-export const debounce = (func, wait)=>{
-    let id;
-    return function(){
-        clearTimeout(id);
-        id = setTimeout(func.apply, wait, this, arguments);
+
+
+// eslint-disable-next-line
+export const argument = function(){ return arguments; };
+
+/**
+ * 拡張版分割代入
+ *
+ * @param {object} array
+ * @param {*} classifying
+ * @returns
+ */
+export const restSplit = (array, beforeItem, afterItem=0)=>{
+    const restEndIndex = array.length - afterItem;
+    const rest = array.slice(beforeItem, restEndIndex);
+    array.splice(beforeItem, restEndIndex - beforeItem, rest);
+    return array;
+};
+// const [key, name="the name", ...rest, param{3}] = ArrayLike();
+// [difault, ...]
+// const {key, key: name, ...rest} = ObjectLike();
+// {key: null || name || [name, difault], ...}
+
+export const memoize = (func, effective=Infinity)=>{
+    const newFunc = function(){
+        const prevResult = forOf(newFunc.memo, (fragment, result)=>{
+            if(deepEquals(fragment))
+                return result;
+            return void 0;
+        });
+        if(isUndefined(prevResult))
+            return prevResult;
+        // eslint-disable-next-line prefer-rest-params
+        const result = func.apply(this, arguments);
+        newFunc.memo.set(arguments, result);
+        return result;
+    };
+    if(Array.isArray(effective)){
+        newFunc.memo = new Array(effective.length);
+        forIndex(effective.length, i=>{
+            newFunc.memo[i] = new Map(effective[i]);
+        });
+    }else{
+        const length = substitute([effective,1], v=>!Number.isFinite(v));
+        newFunc.memo = new Array(length);
+        forIndex(length, i=>{
+            newFunc.memo[i] = new Map();
+        });
     }
+    return newFunc;
 };
-export const uniq = array=>{
-    const existings = [];
-    return array.filter(value=>{
-        const existing = existings.includes(value);
-        if(!existing)existings.push(value);
-        return !existing;
-    });
-};
+
+export class MemoMap {
+    constructor(initValue){
+        this.map = new Map(initValue);
+    }
+}
+
+// MEMO: ifs スタック

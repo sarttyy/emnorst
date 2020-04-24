@@ -1,15 +1,15 @@
 
 import {isArrayLike, isNumber} from "./is";
 
-export const zip = (objects, mapFunc, getKeys=Object.keys)=>{
-    if(mapFunc)objects = objects.map(mapFunc);
+export const zip = (objects, getKeys=Object.keys)=>{
     const keys = getKeys(objects);
     const rootIsArray = isArrayLike(objects);
-    const isArray = keys.every(key=>isArrayLike(objects[key]));
+    const isArray = keys.every(key=>(
+        isArrayLike(objects[key])
+        && getKeys(objects[key]).every(isNumber)
+    ));
     return keys.reduce((ziped, key)=>{
-        const k = getKeys(objects[key]);
-        // k.every(isNumber);
-        k.forEach(name=>{
+        getKeys(objects[key]).forEach(name=>{
             if(!ziped[name])ziped[name] = rootIsArray ? [] : {};
             ziped[name][key] = objects[key][name];
         });
