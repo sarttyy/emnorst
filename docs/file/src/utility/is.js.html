@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utility/is.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,60 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/is.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+import {typeOf} from &quot;./index&quot;;
+import * as object from &quot;../object/temp&quot;;
+
+export const isUndefined = value=&gt;(
+    value === void 0
+);
+
+export const isNull = value=&gt;(
+    value === null || isUndefined(value)
+);
+
+export const isRegExp = obj=&gt;(
+    typeOf(obj) === &quot;RegExp&quot;
+);
+
+export const isObject = obj=&gt;(
+    typeof obj === &quot;object&quot; &amp;&amp; obj !== null
+);
+
+export const isObjectLike = obj=&gt;(
+    typeof obj === &quot;function&quot; || isObject(obj)
+);
+
+export const isArrayLike = obj=&gt;{
+    if(!isObject(obj))return false;
+    if(Array.isArray(obj) || typeOf(obj) === &quot;Arguments&quot; || obj.length === 0)
+        return true;
+    return false;
+};
+
+export const isEmpty = value=&gt;{
+    if(typeOf(value) === &quot;String&quot; || isArrayLike(value))
+        return value.length === 0;
+    if(typeOf(value) === &quot;Object&quot;)
+        return object.allKeys(value).length === 0;
+    return false;
+};
+
+export const isNumber = value=&gt;{
+    const type = typeOf(value) === &quot;Number&quot;;
+    return type || /[+-]?\d+(\.)?/.test(value);
+};
+
+export const isNegative = value=&gt;{
+    if(typeOf(value) === &quot;Number&quot;)
+        return value &lt; 0;
+    if(typeOf(value) === &quot;Boolean&quot;)
+        return !value;
+    return false;
+};
+</code></pre>
+
 </div>
 
 <footer class="footer">

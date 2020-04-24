@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utility/old.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,108 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/old.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+/* eslint-disable @typescript-eslint/camelcase */
+import __reiyayakko_package__ from &quot;../package&quot;;
+/*
+    #Reiyayakko.clocker
+    &gt;Rei.clocker
+*/
+__reiyayakko_package__.addModule({
+    name: &quot;clocker&quot;,
+    variable: {
+        clockerId: Symbol(&quot;clockerId&quot;),
+        clockUp: Symbol(&quot;clockUp&quot;),
+    }
+}, ({clockUp, clockerId, modules})=&gt;Object.seal({
+    interval: 100,
+    count: 0,
+    [clockerId]: null,
+    [clockUp](eventName){
+        modules.event.execute(eventName, this.count++);
+    },
+    start(interval=100, eventName=&quot;ClockerCountUp&quot;){
+        this.stop();
+        this.interval = interval;
+        this[clockerId] = setInterval(this[clockUp].bind(this), this.interval, eventName);
+    },
+    stop(){
+        if(typeof this[clockerId] !== &quot;number&quot;)return;
+        clearInterval(this[clockerId]);
+        this[clockerId] = null;
+    }
+}));
+__reiyayakko_package__.addModule(&quot;Stack&quot;, ()=&gt;class Stack {
+    constructor(maxStackSize=10000){
+        this.maxStackSize = maxStackSize;
+        this.stack = [];
+    }
+    push(func, args){
+        if(this.stack.length &lt; this.maxStackSize)
+            this.stack.push([func, args]);
+    }
+    execute(){
+        while(this.stack.length){
+            const [func, args] = this.stack.pop();
+            func.apply(this, args);
+        }
+    }
+});
+__reiyayakko_package__.addModule(&quot;workthread&quot;, ({modules})=&gt;(aURL, options)=&gt;{
+    if(self.Worker){
+        const worker = new Worker(aURL, options);
+        const symbol = Symbol(&quot;worker&quot;);
+        worker.onerror = event=&gt;{
+            modules.event.execute(&quot;workerError&quot;, event, worker);
+        };
+        worker.onmessage = event=&gt;{
+            const massage = JSON.parse(event.data);
+            modules.event.execute(&quot;workerReceive&quot;, massage, worker);
+        };
+        const workerSend = modules.event.register(&quot;workerSend&quot;, action=&gt;{
+            const massage = JSON.stringify(action);
+            worker.postMessage(massage);
+        });
+        const workerDelete = modules.event.register(&quot;workerDelete&quot;, ()=&gt;{
+            worker.terminate();
+            modules.event.remove(&quot;workerSend&quot;, workerSend);
+            modules.event.remove(&quot;workerDelete&quot;, workerDelete);
+        });
+        return worker;
+    }
+    console.error(&quot;WebWorker cannot be used.&quot;);
+    return null;
+});
+__reiyayakko_package__.addModule(&quot;stackTrace&quot;, ()=&gt;()=&gt;{
+    const stacks = new Error().stack.substr(13).trim();
+    const __stacks__ = {
+        stacks,
+        prevStacks: stacks.replace(/.+?(?=\n)/,&quot;&quot;),
+        stacksArray: stacks.split(/\sat\s/).map(stack=&gt;{
+            stack = stack.trim().split(&quot;:&quot;);
+            const column = stack.pop(), line = stack.pop();
+            return {
+                stack: stack.join(&quot;:&quot;),
+                line,
+                column
+            };
+        }),
+    };
+    return __stacks__;
+});
+__reiyayakko_package__.addModule(&quot;case.test&quot;, ()=&gt;(regExp, text)=&gt;regExp.test(text)?text:NaN);
+__reiyayakko_package__.addModule(&quot;element&quot;, ()=&gt;selector=&gt;{
+    if(!selector)return null;
+    const element = document.createElement(/^\w+/.exec(selector)||&quot;div&quot;);
+    const id = /(?&lt;=#)\w+/.exec(selector);
+    if(id)[element.id] = id;
+    const className = selector.match(/(?&lt;=\.)\w+/g);
+    if(className)element.classList.add(...className);
+    return element;
+});
+</code></pre>
+
 </div>
 
 <footer class="footer">

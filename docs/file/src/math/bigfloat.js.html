@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/math/bigfloat.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,91 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/math/bigfloat.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+export {Num2FracStr as NumToStr} from &quot;../lib/Num2DecStr&quot;;
+
+// NOTE: &#x6709;&#x52B9;&#x6841;&#x6570;
+export const Num = number=&gt;{
+    if(typeof number === &quot;number&quot;);
+    const [integer, decimal] = String(number).split(&quot;.&quot;);
+    return {integer, decimal, negative};
+};
+export class BigFloat {
+    constructor(number){
+        const [integer, decimal] = Num2FracStr(number).split(&quot;.&quot;);
+        this.integer = integer || &quot;&quot;;
+        this.decimal = decimal || &quot;&quot;;
+        this.negative = false;
+    }
+    toString(){
+        const number = this.integer + (this.decimal &amp;&amp; &quot;.&quot; + this.decimal);
+        return (this.negative ? &quot;-&quot; : &quot;+&quot;).concat(number);
+    }
+    _typeCheck(valuue){
+        return Number.isNaN(valuue)
+            || (
+                typeof valuue !== &quot;string&quot;
+                &amp;&amp; !Number.isFinite(valuue)
+            )
+    }
+    add(number){
+        if(this._typeCheck(number))return this;
+        const bigfloat = number instanceof BigFloat
+            ? number : new BigFloat(number);
+        let carry = false;
+        const integerLength = Math.max(bigfloat.integer.length, this.integer.length);
+        const decimalLength = Math.max(bigfloat.decimal.length, this.decimal.length);
+        const number1 = [
+            ...this.integer.padStart(integerLength, &quot;0&quot;),
+            ...[...this.decimal.padEnd(decimalLength, &quot;0&quot;)].reverse()
+        ];
+        const number2 = [
+            ...bigfloat.integer.padStart(integerLength, &quot;0&quot;),
+            ...[...bigfloat.decimal.padEnd(decimalLength, &quot;0&quot;)].reverse()
+        ];
+        console.log({number1, number2, integerLength, decimalLength})
+        const num = [...rei.utility.zip(number1, number2)].reduceRight((total, [dec1, dec2])=&gt;{
+            let subtotal = Number(dec1) + Number(dec2) + carry;
+            carry = subtotal &gt;= 10;
+            if(carry)subtotal = Number(subtotal) - 10;
+            return String(subtotal).concat(total);
+        }, &quot;&quot;);
+        console.log(carry)
+        this.integer = (carry ? &quot;1&quot; : &quot;&quot;) + (decimalLength ? num.slice(0, -decimalLength) : num);
+        this.decimal = decimalLength ? num.slice(-decimalLength) : &quot;&quot;;
+        return this;
+    }
+    sub(number){
+        if(this._typeCheck(number))return this;
+        const bigfloat = new BigFloat(number);
+        let carry = false;
+        return this;
+    }
+    mul(...numbers){
+        for(const number of numbers){
+            if(this._typeCheck(number))continue;
+        }
+        return this;
+    }
+    div(...numbers){
+        for(const number of numbers){
+            if(this._typeCheck(number))continue;
+        }
+        return this;
+    }
+    sur(number){
+        return this;
+    }
+    static eval(formula){
+        for(const character of formula){
+            if(character === &quot;\s&quot;)
+                continue;
+        }
+    }
+}
+</code></pre>
+
 </div>
 
 <footer class="footer">

@@ -1,0 +1,49 @@
+[
+  {
+    "name": "restSplit",
+    "filePath": "src/utility/index.js",
+    "lines": [
+      {
+        "lineNumber": 43,
+        "line": "/**\r"
+      },
+      {
+        "lineNumber": 44,
+        "line": " * 拡張版分割代入\r"
+      },
+      {
+        "lineNumber": 45,
+        "line": " *\r"
+      },
+      {
+        "lineNumber": 46,
+        "line": " * @param {object} array\r"
+      },
+      {
+        "lineNumber": 47,
+        "line": " * @param {*} classifying\r"
+      },
+      {
+        "lineNumber": 48,
+        "line": " * @returns\r"
+      },
+      {
+        "lineNumber": 49,
+        "line": " */\r"
+      },
+      {
+        "lineNumber": 50,
+        "line": "export const restSplit = (array, beforeItem, afterItem=0)=>{\r"
+      }
+    ],
+    "codeParams": [
+      "array",
+      "beforeItem",
+      "afterItem"
+    ],
+    "docParams": [
+      "array",
+      "classifying"
+    ]
+  }
+]

@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/object/clone/clone.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,70 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/object/clone/clone.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+const copyObject = (modules, object, cloneObject)=&gt;{
+    const propKeys = modules.getAllKeys(object);
+    const prototype = Object.getPrototypeOf(object);
+    object = propKeys.reduce((propertiesObject, propKey) =&gt; {
+        const prop = Object.getOwnPropertyDescriptor(object, propKey);
+        if (prop.hasOwnProperty(&quot;value&quot;))
+            prop.value = modules.cloneMod(prop.value, cloneObject);
+        Object.defineProperty(propertiesObject, propKey, prop);
+        return propertiesObject;
+    }, Object.create(prototype));
+    return object;
+};
+export const copy = cloneObject=&gt;{
+    console.log(`type: &apos;${cloneObject.type}&apos;`, [cloneObject.value]);
+    let object = cloneObject.value;
+    // primitive type, function
+    if(typeof object !== &quot;object&quot;)
+        return cloneObject;
+    switch(cloneObject.type){
+    case &quot;object&quot;: { // {}, new Object, new Foo etc...
+        object = copyObject(modules, object, cloneObject);
+        break;
+    }
+    case &quot;array&quot;: // [], new Array
+        object = object.map(value=&gt;modules.cloneMod(value, cloneObject));
+        break;
+    case &quot;number&quot;: // new Number
+        return new Number(object);
+    case &quot;string&quot;: // new String
+        return new String(object);
+    case &quot;boolean&quot;: // new Boolean
+        return new Boolean(object);
+    case &quot;bigint&quot;: // Object(BigInt())
+        return object.valueOf();
+    case &quot;regexp&quot;: // /regexp/, new RegExp
+        return new RegExp(object);
+    case &quot;null&quot;: // null
+        object = null;
+        break;
+    case &quot;date&quot;: return new Date(object);
+    case &quot;map&quot;: {
+        const map = new Map();
+        for(const [key, value] of object)
+            map.set(key, modules.clone(value));
+        return map;
+    }
+    case &quot;weakmap&quot;: {
+        const map = new WeakMap();
+        for(const [key, value] of object)
+            map.set(key, modules.clone(value));
+        return map;
+    }
+    case &quot;set&quot;: return new Set(object);
+    case &quot;weakset&quot;: return new WeakSet(object);
+    default:
+        return null;
+    }
+    cloneObject.object = object;
+    return cloneObject;
+};
+</code></pre>
+
 </div>
 
 <footer class="footer">

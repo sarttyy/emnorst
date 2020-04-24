@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utility/index.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,106 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+export * from &quot;./is&quot;;
+export * from &quot;./loop&quot;;
+export * from &quot;./utility&quot;;
+export * from &quot;./range&quot;;
+export * from &quot;./zip&quot;;
+import {forIndex} from &quot;./loop&quot;;
+// TEMP:
+// export class ArrayLike extends Array {
+//     constructor(){
+//         super();
+//         console.log(this);
+//     }
+// }
+// export class Temp {
+//     constructor(){
+//         this.gen = this.gen.bind(this);
+//         return this.gen;
+//     }
+//     gen(){
+//         console.log(this);
+//         return this.gen;
+//     }
+// }
+// export class Memo {
+//     constructor(func){
+//         this.function = func;
+//         this.existing = new Map();
+//     }
+//     execute(args){
+//         if(this.existing.has(args))
+//             return this.existing.get(args);
+//         const result = execute(this.function, args);
+//         this.existing.set(args, result);
+//         return result;
+//     }
+// }
+// String instruction
+
+
+// eslint-disable-next-line
+export const argument = function(){ return arguments; };
+
+/**
+ * &#x62E1;&#x5F35;&#x7248;&#x5206;&#x5272;&#x4EE3;&#x5165;
+ *
+ * @param {object} array
+ * @param {*} classifying
+ * @returns
+ */
+export const restSplit = (array, beforeItem, afterItem=0)=&gt;{
+    const restEndIndex = array.length - afterItem;
+    const rest = array.slice(beforeItem, restEndIndex);
+    array.splice(beforeItem, restEndIndex - beforeItem, rest);
+    return array;
+};
+// const [key, name=&quot;the name&quot;, ...rest, param{3}] = ArrayLike();
+// [difault, ...]
+// const {key, key: name, ...rest} = ObjectLike();
+// {key: null || name || [name, difault], ...}
+
+export const memoize = (func, effective=Infinity)=&gt;{
+    const newFunc = function(){
+        const prevResult = forOf(newFunc.memo, (fragment, result)=&gt;{
+            if(deepEquals(fragment))
+                return result;
+            return void 0;
+        });
+        if(isUndefined(prevResult))
+            return prevResult;
+        // eslint-disable-next-line prefer-rest-params
+        const result = func.apply(this, arguments);
+        newFunc.memo.set(arguments, result);
+        return result;
+    };
+    if(Array.isArray(effective)){
+        newFunc.memo = new Array(effective.length);
+        forIndex(effective.length, i=&gt;{
+            newFunc.memo[i] = new Map(effective[i]);
+        });
+    }else{
+        const length = substitute([effective,1], v=&gt;!Number.isFinite(v));
+        newFunc.memo = new Array(length);
+        forIndex(length, i=&gt;{
+            newFunc.memo[i] = new Map();
+        });
+    }
+    return newFunc;
+};
+
+export class MemoMap {
+    constructor(initValue){
+        this.map = new Map(initValue);
+    }
+}
+
+// MEMO: ifs &#x30B9;&#x30BF;&#x30C3;&#x30AF;
+</code></pre>
+
 </div>
 
 <footer class="footer">

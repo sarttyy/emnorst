@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utility/array.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,53 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/array.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+import {isArrayLike} from &quot;./is&quot;;
+
+const own = value=&gt;value;
+
+export const gurop = (array, func=own)=&gt;{
+    const gurops = {};
+    forOf(array, value=&gt;{
+        const temp = func(value);
+        let key;
+        if(isArrayLike(temp))
+            [key, value=value] = temp;
+        else key = temp;
+        if(!gurops[key])gurops[key] = [];
+        gurops[key].push(value);
+    });
+    return gurops;
+};
+// export const partition = (array, func)=&gt;{};
+// INFO: find&#x306E;&#x30DE;&#x30C3;&#x30C1;&#x3057;&#x305F;&#x6570;&#x7248;
+export const count = (array, func)=&gt;{
+    let match = 0;
+    for(const value of array)
+        match += Boolean(func(value));
+    return match;
+};
+
+export const generate = (generator, func, that)=&gt;{
+    let done;
+    do{
+        const result = generator.next();
+        ({done} = result);
+        func.call(that, result.value);
+    }while(!done);
+};
+export const generator = ()=&gt;{};
+
+export const reduce = (array, func, defaultValue, that)=&gt;{
+    // {value: undefined, done: false}
+};
+
+// export const map = (array, func)=&gt;{
+//     array.flatMap(value=&gt;func([value]));
+// };
+</code></pre>
+
 </div>
 
 <footer class="footer">

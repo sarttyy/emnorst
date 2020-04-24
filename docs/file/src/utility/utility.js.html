@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utility/utility.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -92,9 +92,71 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://github.com/reiyayakko/reiyayakko-core/wiki">https://github.com/reiyayakko/reiyayakko-core/wiki</a></p>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/utility.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+import {isNull} from &quot;./is&quot;;
+
+export const equals = (...values)=&gt;{
+    // SameValueZero
+    let prev = values.shift();
+    return values.every(value=&gt;(
+        Number.isNaN(prev)
+            ? Number.isNaN(prev=value)
+            : prev===(prev=value)
+    ));
+};
+
+export const typeOf = object=&gt;(
+    Object.prototype.toString.call(object).slice(8, -1)
+);
+
+// TODO: require
+
+export const tryCall = (value, args, that)=&gt;(
+    typeof value === &quot;function&quot;
+        ? value.apply(that, args)
+        : value
+);
+
+export const substitute = (values, checkFunk=isNull)=&gt;(
+    values.reduce((value, subValue)=&gt;(
+        checkFunk(value) ? subValue : value
+    ), values.shift())
+);
+
+export const typeCheck = (value, types, sub, typeGetter=typeOf)=&gt;{
+    const type = typeGetter(value);
+    if(types.includes(type))
+        return value;
+    return tryCall(sub, [type]);
+};
+
+export const debounce = (func, wait)=&gt;{
+    let id;
+    return function(){
+        clearTimeout(id);
+        // eslint-disable-next-line
+        id = setTimeout(func.apply, wait, this, arguments);
+    };
+};
+
+export const prop = (props, defaultProps, subFunc)=&gt;(
+    Object.entries(props).reduce((props_, [prop, key])=&gt;{
+        props_[key] = substitute([prop, defaultProps[key]], subFunc);
+        return props_;
+    })
+);
+
+export const uniq = array=&gt;{
+    const existings = [];
+    return array.filter(value=&gt;{
+        const existing = existings.includes(value);
+        if(!existing)existings.push(value);
+        return !existing;
+    });
+};
+</code></pre>
+
 </div>
 
 <footer class="footer">
