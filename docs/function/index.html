@@ -13,7 +13,7 @@
 
 <header>
   <a href="./">Home</a>
-  
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
@@ -62,15 +62,26 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-argument">argument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-memoize">memoize</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-restSplit">restSplit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArguments">isArguments</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArrayLike">isArrayLike</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isBoolean">isBoolean</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isEmpty">isEmpty</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isError">isError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isFunction">isFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isMap">isMap</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNegative">isNegative</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNull">isNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNumber">isNumber</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObject">isObject</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObjectLike">isObjectLike</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isRegExp">isRegExp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSet">isSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isString">isString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSymbol">isSymbol</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isThrowError">isThrowError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isUndefined">isUndefined</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakMap">isWeakMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakSet">isWeakSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-doWhile">doWhile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIn">forIn</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIndex">forIndex</a></span></span></li>
@@ -79,11 +90,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iterate">iterate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-previous">previous</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-range">range</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callorElse">callorElse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounce">debounce</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equals">equals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-prop">prop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-substitute">substitute</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tryCall">tryCall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeCheck">typeCheck</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeOf">typeOf</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uniq">uniq</a></span></span></li>
@@ -226,6 +237,34 @@
           
           
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-argument">argument</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-callorElse">callorElse</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>, args: <span>*</span>, that: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -505,13 +544,15 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-doWhile">doWhile</a></span></span><span class="code" data-ice="signature">(func: <span>*</span>, that: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-doWhile">doWhile</a></span></span><span class="code" data-ice="signature">(func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, that: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>MEMO: &#x30EB;&#x30FC;&#x30D7;&#x6761;&#x4EF6;&#x3068;return&#x3092;&#x3069;&#x3046;&#x306B;&#x304B;&#x3057;&#x3066;&#x5F15;&#x304D;&#x5265;&#x304C;&#x3057;&#x305F;&#x3044;&#x3002;
+MEMO: do&#x53D6;&#x308A;&#x305F;&#x3044;&#x3002;flag&#x521D;&#x671F;&#x5024;&#x8FFD;&#x52A0;&#x3002;</p>
+</div>
       </div>
     </td>
     <td>
@@ -677,35 +718,7 @@
         </p>
       </div>
       <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-forIndex">forIndex</a></span></span><span class="code" data-ice="signature">(maxIndex: <span>*</span>, func: <span>*</span>, that: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
+        <div class="deprecated" data-ice="deprecated">this function was deprecated.</div>
         
         
       </div>
@@ -729,13 +742,43 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-forOf">forOf</a></span></span><span class="code" data-ice="signature">(iterator: <span>*</span>, func: <span>*</span>, that: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-forIndex">forIndex</a></span></span><span class="code" data-ice="signature">(maxIndex: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, that: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Call the callback function for each number from 0 to maxIndex.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-forOf">forOf</a></span></span><span class="code" data-ice="signature">(iterator: <span>Iterable</span>, func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, that: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Receives an Iterable object and calls a callback function for each value.</p>
+</div>
       </div>
     </td>
     <td>
@@ -869,7 +912,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isArrayLike">isArrayLike</a></span></span><span class="code" data-ice="signature">(obj: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isArguments">isArguments</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -897,7 +940,37 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isEmpty">isEmpty</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isArrayLike">isArrayLike</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Array.isArray&#x304B;isArguments&#x304C;true&#x304B;&#x3069;&#x3046;&#x304B;
+Alpha: &#x5024;&#x304C;ArrayLike&#x304B;&#x3069;&#x3046;&#x304B;</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isBoolean">isBoolean</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -925,7 +998,36 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isNegative">isNegative</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isEmpty">isEmpty</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Alpha:</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isError">isError</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -953,7 +1055,91 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isNull">isNull</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isFunction">isFunction</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isMap">isMap</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isNegative">isNegative</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isNull">isNull</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1009,7 +1195,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isObject">isObject</a></span></span><span class="code" data-ice="signature">(obj: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isObject">isObject</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1037,7 +1223,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isObjectLike">isObjectLike</a></span></span><span class="code" data-ice="signature">(obj: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isObjectLike">isObjectLike</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1065,7 +1251,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isRegExp">isRegExp</a></span></span><span class="code" data-ice="signature">(obj: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isRegExp">isRegExp</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1093,7 +1279,176 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isUndefined">isUndefined</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isSet">isSet</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isString">isString</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isSymbol">isSymbol</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isThrowError">isThrowError</a></span></span><span class="code" data-ice="signature">(func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, args: ...<span>any</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Verify whether an error occurs when you execute it by passing the argument &quot;args&quot; to &quot;func&quot;.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isUndefined">isUndefined</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isWeakMap">isWeakMap</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-isWeakSet">isWeakSet</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1317,13 +1672,16 @@
           
           
           <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-range">range</a></span></span><span class="code" data-ice="signature">(start: <span>*</span>, end: <span>*</span>, increment: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-range">range</a></span></span><span class="code" data-ice="signature">(start: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, end: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, step: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>start&#x304B;&#x3089;end&#x307E;&#x3067;&#x306E;increment&#x3054;&#x3068;&#x306E;&#x6570;&#x306E;&#x30B8;&#x30A7;&#x30CD;&#x30EC;&#x30FC;&#x30BF;&#x30FC;&#x3002;
+&#x4F59;&#x308A;&#x4F7F;&#x3046;&#x6A5F;&#x4F1A;&#x306F;&#x306A;&#x3055;&#x305D;&#x3046;&#x3060;&#x304C;&#x3001;&#x5C11;&#x6570;&#x3082;&#x6307;&#x5B9A;&#x53EF;&#x80FD;&#x3002;
+for-of&#x6587;&#x3067;&#x4F7F;&#x3046;&#x5834;&#x5408;&#x4EE3;&#x66FF;&#x3068;&#x3057;&#x3066;<span><a href="function/index.html#static-function-forIndex">forIndex</a></span>&#x304C;&#x4F7F;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+</div>
       </div>
     </td>
     <td>
@@ -1431,34 +1789,6 @@
           
           
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-substitute">substitute</a></span></span><span class="code" data-ice="signature">(values: <span>*</span>, checkFunk: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-tryCall">tryCall</a></span></span><span class="code" data-ice="signature">(value: <span>*</span>, args: <span>*</span>, that: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -2054,6 +2384,77 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-callorElse">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">callorElse</span><span class="code" data-ice="signature">(value: <span>*</span>, args: <span>*</span>, that: <span>*</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber21">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {callorElse} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber21">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">args</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">that</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-clone">
     <span class="access" data-ice="access">public</span>
     
@@ -2356,11 +2757,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber40">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {debounce} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber39">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {debounce} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber40">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -2689,18 +3090,20 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">doWhile</span><span class="code" data-ice="signature">(func: <span>*</span>, that: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">doWhile</span><span class="code" data-ice="signature">(func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, that: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber59">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber90">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {doWhile} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber59">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {doWhile} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber90">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>MEMO: &#x30EB;&#x30FC;&#x30D7;&#x6761;&#x4EF6;&#x3068;return&#x3092;&#x3069;&#x3046;&#x306B;&#x304B;&#x3057;&#x3066;&#x5F15;&#x304D;&#x5265;&#x304C;&#x3057;&#x305F;&#x3044;&#x3002;
+MEMO: do&#x53D6;&#x308A;&#x305F;&#x3044;&#x3002;flag&#x521D;&#x671F;&#x5024;&#x8FFD;&#x52A0;&#x3002;</p>
+</div>
 
   
 
@@ -2714,15 +3117,17 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">func</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Callback function that continues to run as long as it returns undefined</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">that</td>
       <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>Specify this of the callback function</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3101,12 +3506,12 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {forIn} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber51">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
-  
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {forIn} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber76">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
+  <div class="deprecated" data-ice="deprecated">this function was deprecated.</div>
   
   
 
@@ -3135,7 +3540,7 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">that</td>
       <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -3180,18 +3585,20 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">forIndex</span><span class="code" data-ice="signature">(maxIndex: <span>*</span>, func: <span>*</span>, that: <span>*</span>)</span>
+    <span class="code" data-ice="name">forIndex</span><span class="code" data-ice="signature">(maxIndex: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, that: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {forIndex} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber43">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {forIndex} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber62">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Call the callback function for each number from 0 to maxIndex.
+0&#x304B;&#x3089;maxIndex&#x307E;&#x3067;&#x306E;&#x6570;&#x5024;&#x3054;&#x3068;&#x306B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+</div>
 
   
 
@@ -3205,21 +3612,26 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">maxIndex</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Repeats this number of times</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">func</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Callback function that is executed maxIndex times
+When a value other than undefined is returned,
+the loop is terminated and the value is returned.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">that</td>
       <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>Specify this of the callback function</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3251,18 +3663,20 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">forOf</span><span class="code" data-ice="signature">(iterator: <span>*</span>, func: <span>*</span>, that: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">forOf</span><span class="code" data-ice="signature">(iterator: <span>Iterable</span>, func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, that: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/loop.js.html#lineNumber44">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {forOf} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber35">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {forOf} from &apos;<span><a href="file/src/utility/loop.js.html#lineNumber44">reiyayakko-core/src/utility/loop.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Receives an Iterable object and calls a callback function for each value.
+Iterable&#x306A;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x3066;&#x5024;&#x3054;&#x3068;&#x306B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+</div>
 
   
 
@@ -3276,21 +3690,26 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">iterator</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span>Iterable</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>An Iterable object used for the loop</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">func</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>A callback function that is executed for each value of the Iterable object
+When a value other than undefined is returned,
+the loop is terminated and the value is returned.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">that</td>
       <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>Specify this of the callback function</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3596,22 +4015,22 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-isArrayLike">
+  <h3 data-ice="anchor" id="static-function-isArguments">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">isArrayLike</span><span class="code" data-ice="signature">(obj: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">isArguments</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isArrayLike} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber25">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isArguments} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber89">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -3627,10 +4046,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">obj</td>
+      <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3642,8 +4062,157 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Arguments</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isArrayLike">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isArrayLike</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber99">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isArrayLike} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber99">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Array.isArray&#x304B;isArguments&#x304C;true&#x304B;&#x3069;&#x3046;&#x304B;
+Alpha: &#x5024;&#x304C;ArrayLike&#x304B;&#x3069;&#x3046;&#x304B;</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether the value is ArrayLike</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isBoolean">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isBoolean</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber25">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isBoolean} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber25">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Boolean</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3674,15 +4243,89 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isEmpty</span><span class="code" data-ice="signature">(value: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">isEmpty</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber111">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isEmpty} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber32">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isEmpty} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber111">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Alpha:</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether the property does not exist</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isError">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isError</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber131">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isError} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber131">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -3701,7 +4344,8 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3713,8 +4357,155 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Error</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isFunction">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isFunction</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber65">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isFunction} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber65">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Function</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isMap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isMap</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber139">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isMap} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber139">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Map</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3745,15 +4536,15 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isNegative</span><span class="code" data-ice="signature">(value: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">isNegative</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isNegative} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber45">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isNegative} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber49">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -3772,7 +4563,8 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3784,8 +4576,9 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether it is a negative number</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3816,15 +4609,15 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isNull</span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
+    <span class="code" data-ice="name">isNull</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber9">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber17">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isNull} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber9">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isNull} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber17">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -3843,14 +4636,28 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Null or Undefined</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -3879,11 +4686,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber40">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber41">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isNumber} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber40">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isNumber} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber41">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -3902,7 +4709,8 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3915,7 +4723,8 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Number</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -3946,15 +4755,15 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isObject</span><span class="code" data-ice="signature">(obj: <span>*</span>)</span>
+    <span class="code" data-ice="name">isObject</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber73">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isObject} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber17">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isObject} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber73">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -3970,17 +4779,31 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">obj</td>
+      <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether typeof is an object and is not Null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -4005,15 +4828,15 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isObjectLike</span><span class="code" data-ice="signature">(obj: <span>*</span>)</span>
+    <span class="code" data-ice="name">isObjectLike</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber81">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isObjectLike} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber21">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isObjectLike} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber81">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -4029,17 +4852,31 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">obj</td>
+      <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether properties can be edited</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -4064,15 +4901,15 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isRegExp</span><span class="code" data-ice="signature">(obj: <span>*</span>)</span>
+    <span class="code" data-ice="name">isRegExp</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber123">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isRegExp} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber13">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isRegExp} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber123">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -4088,17 +4925,332 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">obj</td>
+      <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is RegExp</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isSet">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isSet</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber155">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isSet} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber155">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Set</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isString">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isString</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber33">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isString} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber33">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is String</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isSymbol">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isSymbol</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber57">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isSymbol} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber57">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Symbol</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isThrowError">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isThrowError</span><span class="code" data-ice="signature">(func: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, args: ...<span>any</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber174">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isThrowError} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber174">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Verify whether an error occurs when you execute it by passing the argument &quot;args&quot; to &quot;func&quot;.
+&quot;func&quot;&#x306B;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&quot;args&quot;&#x3092;&#x6E21;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3057;&#x305F;&#x5834;&#x5408;&#x306B;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x304B;&#x691C;&#x8A3C;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">func</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Function that verifies if an error occurs</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">args</td>
+      <td data-ice="type" class="code">...<span>any</span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>Argument that verifies whether an error has occurred</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether an error has occurred</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -4123,15 +5275,15 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     
-    <span class="code" data-ice="name">isUndefined</span><span class="code" data-ice="signature">(value: <span>*</span>)</span>
+    <span class="code" data-ice="name">isUndefined</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber9">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isUndefined} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber5">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isUndefined} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber9">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -4150,14 +5302,174 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is Undefined</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isWeakMap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isWeakMap</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber147">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isWeakMap} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber147">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is WeakMap</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-isWeakSet">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isWeakSet</span><span class="code" data-ice="signature">(value: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/utility/is.js.html#lineNumber163">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {isWeakSet} from &apos;<span><a href="file/src/utility/is.js.html#lineNumber163">reiyayakko-core/src/utility/is.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">value</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The value to be compared</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Whether <span><a href="function/index.html#static-function-typeOf">typeOf</a></span> is WeakSet</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -4583,11 +5895,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {prop} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber48">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {prop} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber49">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -4650,18 +5962,21 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     
     <span data-ice="generator">*</span>
-    <span class="code" data-ice="name">range</span><span class="code" data-ice="signature">(start: <span>*</span>, end: <span>*</span>, increment: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">range</span><span class="code" data-ice="signature">(start: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, end: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, step: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/range.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/range.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {range} from &apos;<span><a href="file/src/utility/range.js.html#lineNumber4">reiyayakko-core/src/utility/range.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {range} from &apos;<span><a href="file/src/utility/range.js.html#lineNumber24">reiyayakko-core/src/utility/range.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>start&#x304B;&#x3089;end&#x307E;&#x3067;&#x306E;increment&#x3054;&#x3068;&#x306E;&#x6570;&#x306E;&#x30B8;&#x30A7;&#x30CD;&#x30EC;&#x30FC;&#x30BF;&#x30FC;&#x3002;
+&#x4F59;&#x308A;&#x4F7F;&#x3046;&#x6A5F;&#x4F1A;&#x306F;&#x306A;&#x3055;&#x305D;&#x3046;&#x3060;&#x304C;&#x3001;&#x5C11;&#x6570;&#x3082;&#x6307;&#x5B9A;&#x53EF;&#x80FD;&#x3002;
+for-of&#x6587;&#x3067;&#x4F7F;&#x3046;&#x5834;&#x5408;&#x4EE3;&#x66FF;&#x3068;&#x3057;&#x3066;<span><a href="function/index.html#static-function-forIndex">forIndex</a></span>&#x304C;&#x4F7F;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+</div>
 
   
 
@@ -4675,50 +5990,55 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">start</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>&#x521D;&#x671F;&#x5024;&#x3002;<code>end</code>&#x304C;&#x6307;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x304B;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;0&#x304B;&#x3089;&#x3053;&#x306E;&#x6570;&#x307E;&#x3067;&#x306E;&#x9023;&#x7248;&#x3068;&#x306A;&#x308B;&#x3002;
+&#x3064;&#x307E;&#x308A;&#x3001;<code>range(end)</code>&#x306F;<code>range(0, end)</code>&#x3068;&#x7B49;&#x4FA1;&#x3002;</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">end</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>&#x51FA;&#x529B;&#x3059;&#x308B;&#x6570;&#x5B57;&#x306E;&#x4E0A;&#x9650;/&#x4E0B;&#x9650;&#x3002;</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">increment</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="name" class="code" data-depth="0">step</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 1</li></ul></td>
+      <td data-ice="description"><p>&#x4E00;&#x5EA6;&#x306B;&#x5897;&#x3084;&#x3059;/&#x6E1B;&#x3089;&#x3059;&#x6570;&#x3002;
+start &gt; end &#x306E;&#x5834;&#x5408;&#x3067;&#x3082;&#x8CA0;&#x306E;&#x5024;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x306F;&#x306A;&#x3044;&#x3002;</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">console.log([...range(-4)]);
+// [0, -1, -2, -3, -4]
+
+console.log([...range(1, 10, 2)]);
+// [1, 3, 5, 7, 9]</code></pre>
+    </div>
 </div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 
@@ -4951,11 +6271,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber26">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber27">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {substitute} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber26">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {substitute} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber27">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -5006,77 +6326,6 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-tryCall">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">tryCall</span><span class="code" data-ice="signature">(value: <span>*</span>, args: <span>*</span>, that: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber20">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {tryCall} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber20">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">value</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">args</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">that</td>
-      <td data-ice="type" class="code"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-typeCheck">
     <span class="access" data-ice="access">public</span>
     
@@ -5088,11 +6337,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {typeCheck} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber32">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {typeCheck} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber33">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -5314,11 +6563,11 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber55">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utility/utility.js.html#lineNumber56">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {uniq} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber55">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {uniq} from &apos;<span><a href="file/src/utility/utility.js.html#lineNumber56">reiyayakko-core/src/utility/utility.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -5494,8 +6743,8 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {zip} from &apos;<span><a href="file/src/utility/zip.js.html#lineNumber20">reiyayakko-core/src/utility/zip.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Flip objects at depth 0 and 1.
-    &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x6DF1;&#x3055;0&#x3068;1&#x3067;&#x53CD;&#x8EE2;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+  <div data-ice="description"><p>Flip objects at depth 0 and 1.<br>
+&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x6DF1;&#x3055;0&#x3068;1&#x3067;&#x53CD;&#x8EE2;&#x3057;&#x307E;&#x3059;&#x3002;</p>
 </div>
 
   
@@ -5512,7 +6761,7 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="name" class="code" data-depth="0">objects</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The target object. The child properties of this object must also be objects.
+      <td data-ice="description"><p>The target object. The child properties of this object must also be objects.<br>
 &#x30BF;&#x30FC;&#x30B2;&#x30C3;&#x30C8;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3002; &#x3053;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x5B50;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3082;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
 </td>
     </tr>
@@ -5521,8 +6770,8 @@ Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: Object.keys</li></ul></td>
-      <td data-ice="description"><p>A function that returns the keys of the object as an array.
-&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30AD;&#x30FC;&#x3092;&#x914D;&#x5217;&#x3068;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3002;
+      <td data-ice="description"><p>A function that returns the keys of the object as an array.<br>
+&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30AD;&#x30FC;&#x3092;&#x914D;&#x5217;&#x3068;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3002;<br>
 Example:</p>
 <ul>
 <li>rei.object.allKeys</li>

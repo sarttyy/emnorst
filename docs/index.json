@@ -2358,7 +2358,7 @@
     "__docId__": 129,
     "kind": "file",
     "name": "src/utility/is.js",
-    "content": "\r\nimport {typeOf} from \"./index\";\r\nimport * as object from \"../object/temp\";\r\n\r\nexport const isUndefined = value=>(\r\n    value === void 0\r\n);\r\n\r\nexport const isNull = value=>(\r\n    value === null || isUndefined(value)\r\n);\r\n\r\nexport const isRegExp = obj=>(\r\n    typeOf(obj) === \"RegExp\"\r\n);\r\n\r\nexport const isObject = obj=>(\r\n    typeof obj === \"object\" && obj !== null\r\n);\r\n\r\nexport const isObjectLike = obj=>(\r\n    typeof obj === \"function\" || isObject(obj)\r\n);\r\n\r\nexport const isArrayLike = obj=>{\r\n    if(!isObject(obj))return false;\r\n    if(Array.isArray(obj) || typeOf(obj) === \"Arguments\" || obj.length === 0)\r\n        return true;\r\n    return false;\r\n};\r\n\r\nexport const isEmpty = value=>{\r\n    if(typeOf(value) === \"String\" || isArrayLike(value))\r\n        return value.length === 0;\r\n    if(typeOf(value) === \"Object\")\r\n        return object.allKeys(value).length === 0;\r\n    return false;\r\n};\r\n\r\nexport const isNumber = value=>{\r\n    const type = typeOf(value) === \"Number\";\r\n    return type || /[+-]?\\d+(\\.)?/.test(value);\r\n};\r\n\r\nexport const isNegative = value=>{\r\n    if(typeOf(value) === \"Number\")\r\n        return value < 0;\r\n    if(typeOf(value) === \"Boolean\")\r\n        return !value;\r\n    return false;\r\n};\r\n",
+    "content": "\r\nimport {typeOf} from \"./index\";\r\nimport {allKeys} from \"../object/temp\";\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Undefined\r\n */\r\nexport const isUndefined = value=>(\r\n    value === void 0\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Null or Undefined\r\n */\r\nexport const isNull = value=>(\r\n    value === null || isUndefined(value)\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Boolean\r\n */\r\nexport const isBoolean = value=>(\r\n    typeOf(value) === \"Boolean\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is String\r\n */\r\nexport const isString = value=>(\r\n    typeOf(value) === \"String\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Number\r\n */\r\nexport const isNumber = value=>(\r\n    typeOf(value) === \"Number\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether it is a negative number\r\n */\r\nexport const isNegative = value=>(\r\n    isNumber(value) && value < 0\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Symbol\r\n */\r\nexport const isSymbol = value=>(\r\n    typeOf(value) === \"Symbol\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Function\r\n */\r\nexport const isFunction = value=>(\r\n    typeOf(value) === \"Function\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether typeof is an object and is not Null\r\n */\r\nexport const isObject = value=>(\r\n    typeof value === \"object\" && value !== null\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether properties can be edited\r\n */\r\nexport const isObjectLike = value=>(\r\n    isFunction(value) || isObject(value)\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Arguments\r\n */\r\nexport const isArguments = value=>(\r\n    typeOf(value) === \"Arguments\"\r\n);\r\n\r\n/**\r\n * Array.isArrayかisArgumentsがtrueかどうか\r\n * Alpha: 値がArrayLikeかどうか\r\n * @param {*} value The value to be compared\r\n * @return Whether the value is ArrayLike\r\n */\r\nexport const isArrayLike = value=>{\r\n    if(!isObject(value))return false;\r\n    if(Array.isArray(value) || isArguments(value) || value.length === 0)\r\n        return true;\r\n    return false;\r\n};\r\n\r\n/**\r\n * Alpha:\r\n * @param {*} value The value to be compared\r\n * @return Whether the property does not exist\r\n */\r\nexport const isEmpty = value=>{\r\n    if(typeOf(value) === \"String\" || isArrayLike(value))\r\n        return value.length === 0;\r\n    if(typeOf(value) === \"Object\")\r\n        return allKeys(value).length === 0;\r\n    return false;\r\n};\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is RegExp\r\n */\r\nexport const isRegExp = value=>(\r\n    typeOf(value) === \"RegExp\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Error\r\n */\r\nexport const isError = value=>(\r\n    typeOf(value) === \"Error\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Map\r\n */\r\nexport const isMap = value=>(\r\n    typeOf(value) === \"Map\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is WeakMap\r\n */\r\nexport const isWeakMap = value=>(\r\n    typeOf(value) === \"WeakMap\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Set\r\n */\r\nexport const isSet = value=>(\r\n    typeOf(value) === \"Set\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is WeakSet\r\n */\r\nexport const isWeakSet = value=>(\r\n    typeOf(value) === \"WeakSet\"\r\n);\r\n\r\n/**\r\n * Verify whether an error occurs when you execute it by passing the argument \"args\" to \"func\".\r\n * \"func\"に引数として\"args\"を渡して実行した場合にエラーが発生するか検証します。\r\n * @param {Function} func Function that verifies if an error occurs\r\n * @param  {...any} [args] Argument that verifies whether an error has occurred\r\n * @return Whether an error has occurred\r\n */\r\nexport const isThrowError = (func, ...args)=>{\r\n    try{\r\n        func.apply(this, args);\r\n        return false;\r\n    }catch(err){ return true; }\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/is.js",
     "access": "public",
@@ -2378,18 +2378,28 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/is.js",
     "importStyle": "{isUndefined}",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 9,
     "params": [
       {
-        "name": "value",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Undefined"
+    }
   },
   {
     "__docId__": 131,
@@ -2404,159 +2414,103 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/is.js",
     "importStyle": "{isNull}",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 17,
     "params": [
       {
-        "name": "value",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Null or Undefined"
+    }
   },
   {
     "__docId__": 132,
     "kind": "function",
-    "name": "isRegExp",
+    "name": "isBoolean",
     "memberof": "src/utility/is.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isRegExp",
+    "longname": "src/utility/is.js~isBoolean",
     "access": "public",
     "export": true,
     "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isRegExp}",
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
+    "importStyle": "{isBoolean}",
+    "description": "",
+    "lineNumber": 25,
     "params": [
       {
-        "name": "obj",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Boolean"
+    }
   },
   {
     "__docId__": 133,
     "kind": "function",
-    "name": "isObject",
+    "name": "isString",
     "memberof": "src/utility/is.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isObject",
+    "longname": "src/utility/is.js~isString",
     "access": "public",
     "export": true,
     "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isObject}",
-    "description": null,
-    "lineNumber": 17,
-    "undocument": true,
+    "importStyle": "{isString}",
+    "description": "",
+    "lineNumber": 33,
     "params": [
       {
-        "name": "obj",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
       }
     ],
-    "return": null
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is String"
+    }
   },
   {
     "__docId__": 134,
-    "kind": "function",
-    "name": "isObjectLike",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isObjectLike",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isObjectLike}",
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "params": [
-      {
-        "name": "obj",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 135,
-    "kind": "function",
-    "name": "isArrayLike",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isArrayLike",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isArrayLike}",
-    "description": null,
-    "lineNumber": 25,
-    "undocument": true,
-    "params": [
-      {
-        "name": "obj",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "boolean"
-      ]
-    }
-  },
-  {
-    "__docId__": 136,
-    "kind": "function",
-    "name": "isEmpty",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isEmpty",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isEmpty}",
-    "description": null,
-    "lineNumber": 32,
-    "undocument": true,
-    "params": [
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "boolean"
-      ]
-    }
-  },
-  {
-    "__docId__": 137,
     "kind": "function",
     "name": "isNumber",
     "memberof": "src/utility/is.js",
@@ -2568,25 +2522,31 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/is.js",
     "importStyle": "{isNumber}",
-    "description": null,
-    "lineNumber": 40,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 41,
     "params": [
       {
-        "name": "value",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
         "*"
-      ]
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Number"
     }
   },
   {
-    "__docId__": 138,
+    "__docId__": 135,
     "kind": "function",
     "name": "isNegative",
     "memberof": "src/utility/is.js",
@@ -2598,28 +2558,548 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/is.js",
     "importStyle": "{isNegative}",
-    "description": null,
-    "lineNumber": 45,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 49,
     "params": [
       {
-        "name": "value",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "boolean"
-      ]
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether it is a negative number"
+    }
+  },
+  {
+    "__docId__": 136,
+    "kind": "function",
+    "name": "isSymbol",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isSymbol",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isSymbol}",
+    "description": "",
+    "lineNumber": 57,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Symbol"
+    }
+  },
+  {
+    "__docId__": 137,
+    "kind": "function",
+    "name": "isFunction",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isFunction",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isFunction}",
+    "description": "",
+    "lineNumber": 65,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Function"
+    }
+  },
+  {
+    "__docId__": 138,
+    "kind": "function",
+    "name": "isObject",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isObject",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isObject}",
+    "description": "",
+    "lineNumber": 73,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether typeof is an object and is not Null"
     }
   },
   {
     "__docId__": 139,
+    "kind": "function",
+    "name": "isObjectLike",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isObjectLike",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isObjectLike}",
+    "description": "",
+    "lineNumber": 81,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether properties can be edited"
+    }
+  },
+  {
+    "__docId__": 140,
+    "kind": "function",
+    "name": "isArguments",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isArguments",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isArguments}",
+    "description": "",
+    "lineNumber": 89,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Arguments"
+    }
+  },
+  {
+    "__docId__": 141,
+    "kind": "function",
+    "name": "isArrayLike",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isArrayLike",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isArrayLike}",
+    "description": "Array.isArrayかisArgumentsがtrueかどうか\nAlpha: 値がArrayLikeかどうか",
+    "lineNumber": 99,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether the value is ArrayLike"
+    }
+  },
+  {
+    "__docId__": 142,
+    "kind": "function",
+    "name": "isEmpty",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isEmpty",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isEmpty}",
+    "description": "Alpha:",
+    "lineNumber": 111,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether the property does not exist"
+    }
+  },
+  {
+    "__docId__": 143,
+    "kind": "function",
+    "name": "isRegExp",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isRegExp",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isRegExp}",
+    "description": "",
+    "lineNumber": 123,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is RegExp"
+    }
+  },
+  {
+    "__docId__": 144,
+    "kind": "function",
+    "name": "isError",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isError",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isError}",
+    "description": "",
+    "lineNumber": 131,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Error"
+    }
+  },
+  {
+    "__docId__": 145,
+    "kind": "function",
+    "name": "isMap",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isMap",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isMap}",
+    "description": "",
+    "lineNumber": 139,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Map"
+    }
+  },
+  {
+    "__docId__": 146,
+    "kind": "function",
+    "name": "isWeakMap",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isWeakMap",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isWeakMap}",
+    "description": "",
+    "lineNumber": 147,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is WeakMap"
+    }
+  },
+  {
+    "__docId__": 147,
+    "kind": "function",
+    "name": "isSet",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isSet",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isSet}",
+    "description": "",
+    "lineNumber": 155,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Set"
+    }
+  },
+  {
+    "__docId__": 148,
+    "kind": "function",
+    "name": "isWeakSet",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isWeakSet",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isWeakSet}",
+    "description": "",
+    "lineNumber": 163,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is WeakSet"
+    }
+  },
+  {
+    "__docId__": 149,
+    "kind": "function",
+    "name": "isThrowError",
+    "memberof": "src/utility/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is.js~isThrowError",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importStyle": "{isThrowError}",
+    "description": "Verify whether an error occurs when you execute it by passing the argument \"args\" to \"func\".\n\"func\"に引数として\"args\"を渡して実行した場合にエラーが発生するか検証します。",
+    "lineNumber": 174,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "func",
+        "description": "Function that verifies if an error occurs"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "...any"
+        ],
+        "spread": true,
+        "optional": true,
+        "name": "args",
+        "description": "Argument that verifies whether an error has occurred"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether an error has occurred"
+    }
+  },
+  {
+    "__docId__": 150,
     "kind": "file",
     "name": "src/utility/loop.js",
-    "content": "\r\nimport {isUndefined} from \"./is\";\r\nimport {range} from \"./range\";\r\n\r\nconst propGetter = value=>value;\r\n\r\nexport const previous = (level, func, arg)=>{\r\n    for(;level--;)arg = func(arg);\r\n    return arg;\r\n};\r\n\r\nexport const inOrder = (arg, ...orders)=>{\r\n    for(const func of orders)\r\n        arg = func(arg);\r\n    return arg;\r\n};\r\n\r\n// TODO: iterate - 何でもループ\"できるようにする\"やつ\r\nexport const iterate = function* (value){\r\n    if(value[Symbol.iterator])\r\n        yield* value;\r\n    (function(){\r\n        return {\r\n            next(){\r\n                return {\r\n                    value: void 0,\r\n                    done: false\r\n                };\r\n            }\r\n        };\r\n    }).call(value);\r\n};\r\n\r\n\r\nexport const forOf = (iterator, func, that)=>{\r\n    for(const value of iterator){\r\n        const flag = func.call(that, value);\r\n        if(!isUndefined(flag))return flag;\r\n    }\r\n    return void 0;\r\n};\r\n\r\nexport const forIndex = (maxIndex, func, that)=>(\r\n    forOf(range(--maxIndex), index=>{\r\n        const flag = func.call(that, index);\r\n        if(!isUndefined(flag))return flag;\r\n        return void 0;\r\n    })\r\n);\r\n\r\nexport const forIn = (object, func, that)=>{\r\n    if(typeof object === \"object\")\r\n        object = Object.entries(object);\r\n    return forIndex(object.length, index=>(\r\n        func.call(that, object[index])\r\n    ));\r\n};\r\n\r\nexport const doWhile = (func, that)=>{\r\n    let flag;\r\n    do flag = func.call(that);\r\n    while(isUndefined(flag));\r\n    return flag;\r\n};\r\n",
+    "content": "\r\nimport {isUndefined} from \"./is\";\r\nimport {range} from \"./range\";\r\n\r\nconst propGetter = value=>value;\r\n\r\nexport const previous = (level, func, arg)=>{\r\n    for(;level--;)arg = func(arg);\r\n    return arg;\r\n};\r\n\r\nexport const inOrder = (arg, ...orders)=>{\r\n    for(const func of orders)\r\n        arg = func(arg);\r\n    return arg;\r\n};\r\n\r\n// TODO: iterate - 何でもループ\"できるようにする\"やつ\r\nexport const iterate = function* (value){\r\n    if(value[Symbol.iterator])\r\n        yield* value;\r\n    (function(){\r\n        return {\r\n            next(){\r\n                return {\r\n                    value: void 0,\r\n                    done: false\r\n                };\r\n            }\r\n        };\r\n    }).call(value);\r\n};\r\n\r\n/**\r\n * Receives an Iterable object and calls a callback function for each value.\r\n * Iterableなオブジェクトを受け取って値ごとにコールバック関数を呼び出します。\r\n * @param {Iterable} iterator An Iterable object used for the loop\r\n * @param {Function} func\r\n * A callback function that is executed for each value of the Iterable object\r\n * When a value other than undefined is returned,\r\n * the loop is terminated and the value is returned.\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const forOf = (iterator, func, that)=>{\r\n    for(const value of iterator){\r\n        const flag = func.call(that, value);\r\n        if(!isUndefined(flag))return flag;\r\n    }\r\n    return void 0;\r\n};\r\n\r\n/**\r\n * Call the callback function for each number from 0 to maxIndex.\r\n * 0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。\r\n * @param {Number} maxIndex Repeats this number of times\r\n * @param {Function} func\r\n * Callback function that is executed maxIndex times\r\n * When a value other than undefined is returned,\r\n * the loop is terminated and the value is returned.\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const forIndex = (maxIndex, func, that)=>(\r\n    forOf(range(--maxIndex), index=>{\r\n        const flag = func.call(that, index);\r\n        if(!isUndefined(flag))return flag;\r\n        return void 0;\r\n    })\r\n);\r\n\r\n/**\r\n * @deprecated\r\n * @param {*} object\r\n * @param {*} func\r\n * @param {*} [that]\r\n */\r\nexport const forIn = (object, func, that)=>{\r\n    if(typeof object === \"object\")\r\n        object = Object.entries(object);\r\n    return forIndex(object.length, index=>(\r\n        func.call(that, object[index])\r\n    ));\r\n};\r\n\r\n/**\r\n * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。\r\n * MEMO: do取りたい。flag初期値追加。\r\n * @param {Function} func Callback function that continues to run as long as it returns undefined\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const doWhile = (func, that)=>{\r\n    let flag;\r\n    do flag = func.call(that);\r\n    while(isUndefined(flag));\r\n    return flag;\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/loop.js",
     "access": "public",
@@ -2627,7 +3107,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 140,
+    "__docId__": 151,
     "kind": "function",
     "name": "propGetter",
     "memberof": "src/utility/loop.js",
@@ -2654,7 +3134,7 @@
     "ignore": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 152,
     "kind": "function",
     "name": "previous",
     "memberof": "src/utility/loop.js",
@@ -2696,7 +3176,7 @@
     }
   },
   {
-    "__docId__": 142,
+    "__docId__": 153,
     "kind": "function",
     "name": "inOrder",
     "memberof": "src/utility/loop.js",
@@ -2733,7 +3213,7 @@
     }
   },
   {
-    "__docId__": 143,
+    "__docId__": 154,
     "kind": "function",
     "name": "iterate",
     "memberof": "src/utility/loop.js",
@@ -2759,7 +3239,7 @@
     "return": null
   },
   {
-    "__docId__": 144,
+    "__docId__": 155,
     "kind": "function",
     "name": "forOf",
     "memberof": "src/utility/loop.js",
@@ -2771,27 +3251,38 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/loop.js",
     "importStyle": "{forOf}",
-    "description": null,
-    "lineNumber": 35,
-    "undocument": true,
+    "description": "Receives an Iterable object and calls a callback function for each value.\nIterableなオブジェクトを受け取って値ごとにコールバック関数を呼び出します。",
+    "lineNumber": 44,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Iterable"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "iterator",
-        "types": [
-          "*"
-        ]
+        "description": "An Iterable object used for the loop"
       },
       {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "func",
-        "types": [
-          "*"
-        ]
+        "description": "A callback function that is executed for each value of the Iterable object\nWhen a value other than undefined is returned,\nthe loop is terminated and the value is returned."
       },
       {
-        "name": "that",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "that",
+        "description": "Specify this of the callback function"
       }
     ],
     "return": {
@@ -2801,7 +3292,7 @@
     }
   },
   {
-    "__docId__": 145,
+    "__docId__": 156,
     "kind": "function",
     "name": "forIndex",
     "memberof": "src/utility/loop.js",
@@ -2813,33 +3304,44 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/loop.js",
     "importStyle": "{forIndex}",
-    "description": null,
-    "lineNumber": 43,
-    "undocument": true,
+    "description": "Call the callback function for each number from 0 to maxIndex.\n0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。",
+    "lineNumber": 62,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "maxIndex",
-        "types": [
-          "*"
-        ]
+        "description": "Repeats this number of times"
       },
       {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "func",
-        "types": [
-          "*"
-        ]
+        "description": "Callback function that is executed maxIndex times\nWhen a value other than undefined is returned,\nthe loop is terminated and the value is returned."
       },
       {
-        "name": "that",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "that",
+        "description": "Specify this of the callback function"
       }
     ],
     "return": null
   },
   {
-    "__docId__": 146,
+    "__docId__": 157,
     "kind": "function",
     "name": "forIn",
     "memberof": "src/utility/loop.js",
@@ -2851,27 +3353,39 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/loop.js",
     "importStyle": "{forIn}",
-    "description": null,
-    "lineNumber": 51,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 76,
+    "deprecated": true,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "object",
-        "types": [
-          "*"
-        ]
+        "description": ""
       },
       {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "func",
-        "types": [
-          "*"
-        ]
+        "description": ""
       },
       {
-        "name": "that",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "that",
+        "description": ""
       }
     ],
     "return": {
@@ -2881,7 +3395,7 @@
     }
   },
   {
-    "__docId__": 147,
+    "__docId__": 158,
     "kind": "function",
     "name": "doWhile",
     "memberof": "src/utility/loop.js",
@@ -2893,21 +3407,28 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/loop.js",
     "importStyle": "{doWhile}",
-    "description": null,
-    "lineNumber": 59,
-    "undocument": true,
+    "description": "MEMO: ループ条件とreturnをどうにかして引き剥がしたい。\nMEMO: do取りたい。flag初期値追加。",
+    "lineNumber": 90,
     "params": [
       {
-        "name": "func",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "func",
+        "description": "Callback function that continues to run as long as it returns undefined"
       },
       {
-        "name": "that",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "that",
+        "description": "Specify this of the callback function"
       }
     ],
     "return": {
@@ -2917,7 +3438,7 @@
     }
   },
   {
-    "__docId__": 148,
+    "__docId__": 159,
     "kind": "file",
     "name": "src/utility/old.js",
     "content": "\r\n/* eslint-disable @typescript-eslint/camelcase */\r\nimport __reiyayakko_package__ from \"../package\";\r\n/*\r\n    #Reiyayakko.clocker\r\n    >Rei.clocker\r\n*/\r\n__reiyayakko_package__.addModule({\r\n    name: \"clocker\",\r\n    variable: {\r\n        clockerId: Symbol(\"clockerId\"),\r\n        clockUp: Symbol(\"clockUp\"),\r\n    }\r\n}, ({clockUp, clockerId, modules})=>Object.seal({\r\n    interval: 100,\r\n    count: 0,\r\n    [clockerId]: null,\r\n    [clockUp](eventName){\r\n        modules.event.execute(eventName, this.count++);\r\n    },\r\n    start(interval=100, eventName=\"ClockerCountUp\"){\r\n        this.stop();\r\n        this.interval = interval;\r\n        this[clockerId] = setInterval(this[clockUp].bind(this), this.interval, eventName);\r\n    },\r\n    stop(){\r\n        if(typeof this[clockerId] !== \"number\")return;\r\n        clearInterval(this[clockerId]);\r\n        this[clockerId] = null;\r\n    }\r\n}));\r\n__reiyayakko_package__.addModule(\"Stack\", ()=>class Stack {\r\n    constructor(maxStackSize=10000){\r\n        this.maxStackSize = maxStackSize;\r\n        this.stack = [];\r\n    }\r\n    push(func, args){\r\n        if(this.stack.length < this.maxStackSize)\r\n            this.stack.push([func, args]);\r\n    }\r\n    execute(){\r\n        while(this.stack.length){\r\n            const [func, args] = this.stack.pop();\r\n            func.apply(this, args);\r\n        }\r\n    }\r\n});\r\n__reiyayakko_package__.addModule(\"workthread\", ({modules})=>(aURL, options)=>{\r\n    if(self.Worker){\r\n        const worker = new Worker(aURL, options);\r\n        const symbol = Symbol(\"worker\");\r\n        worker.onerror = event=>{\r\n            modules.event.execute(\"workerError\", event, worker);\r\n        };\r\n        worker.onmessage = event=>{\r\n            const massage = JSON.parse(event.data);\r\n            modules.event.execute(\"workerReceive\", massage, worker);\r\n        };\r\n        const workerSend = modules.event.register(\"workerSend\", action=>{\r\n            const massage = JSON.stringify(action);\r\n            worker.postMessage(massage);\r\n        });\r\n        const workerDelete = modules.event.register(\"workerDelete\", ()=>{\r\n            worker.terminate();\r\n            modules.event.remove(\"workerSend\", workerSend);\r\n            modules.event.remove(\"workerDelete\", workerDelete);\r\n        });\r\n        return worker;\r\n    }\r\n    console.error(\"WebWorker cannot be used.\");\r\n    return null;\r\n});\r\n__reiyayakko_package__.addModule(\"stackTrace\", ()=>()=>{\r\n    const stacks = new Error().stack.substr(13).trim();\r\n    const __stacks__ = {\r\n        stacks,\r\n        prevStacks: stacks.replace(/.+?(?=\\n)/,\"\"),\r\n        stacksArray: stacks.split(/\\sat\\s/).map(stack=>{\r\n            stack = stack.trim().split(\":\");\r\n            const column = stack.pop(), line = stack.pop();\r\n            return {\r\n                stack: stack.join(\":\"),\r\n                line,\r\n                column\r\n            };\r\n        }),\r\n    };\r\n    return __stacks__;\r\n});\r\n__reiyayakko_package__.addModule(\"case.test\", ()=>(regExp, text)=>regExp.test(text)?text:NaN);\r\n__reiyayakko_package__.addModule(\"element\", ()=>selector=>{\r\n    if(!selector)return null;\r\n    const element = document.createElement(/^\\w+/.exec(selector)||\"div\");\r\n    const id = /(?<=#)\\w+/.exec(selector);\r\n    if(id)[element.id] = id;\r\n    const className = selector.match(/(?<=\\.)\\w+/g);\r\n    if(className)element.classList.add(...className);\r\n    return element;\r\n});\r\n",
@@ -2928,10 +3449,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 149,
+    "__docId__": 160,
     "kind": "file",
     "name": "src/utility/range.js",
-    "content": "\r\nimport {isUndefined} from \"./is\";\r\n\r\nexport const range = function* (start, end, increment){\r\n    if(isUndefined(end))\r\n        return range(0, start);\r\n    increment = Math.abs(increment || 1);\r\n    if(start > end)increment = -increment;\r\n    while(Math.abs(end - start) >= Math.abs(increment)){\r\n        yield start;\r\n        start += increment;\r\n    }\r\n    yield start;\r\n    return void 0;\r\n};\r\n",
+    "content": "\r\nimport {isUndefined} from \"./is\";\r\n\r\n/**\r\n * startからendまでのincrementごとの数のジェネレーター。\r\n * 余り使う機会はなさそうだが、少数も指定可能。\r\n * for-of文で使う場合代替として{@link forIndex}が使用できます。\r\n *\r\n * @param {Number} start\r\n * 初期値。`end`が指定されていなかった場合は0からこの数までの連版となる。\r\n * つまり、`range(end)`は`range(0, end)`と等価。\r\n * @param {Number} [end]\r\n * 出力する数字の上限/下限。\r\n * @param {Number} [step=1]\r\n * 一度に増やす/減らす数。\r\n * start > end の場合でも負の値を指定する必要はない。\r\n * @example\r\n * console.log([...range(-4)]);\r\n * // [0, -1, -2, -3, -4]\r\n *\r\n * console.log([...range(1, 10, 2)]);\r\n * // [1, 3, 5, 7, 9]\r\n */\r\nexport const range = function* (start, end, step=1){\r\n    if(isUndefined(end)){\r\n        yield* range(0, start);\r\n        return;\r\n    }\r\n    step = Math.abs(step);\r\n    if(start > end)step = -step;\r\n    while(Math.abs(end - start) >= Math.abs(step)){\r\n        yield start;\r\n        start += step;\r\n    }\r\n    yield start;\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/range.js",
     "access": "public",
@@ -2939,7 +3460,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 150,
+    "__docId__": 161,
     "kind": "function",
     "name": "range",
     "memberof": "src/utility/range.js",
@@ -2951,40 +3472,52 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/range.js",
     "importStyle": "{range}",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "startからendまでのincrementごとの数のジェネレーター。\n余り使う機会はなさそうだが、少数も指定可能。\nfor-of文で使う場合代替として{@link forIndex}が使用できます。",
+    "examples": [
+      "console.log([...range(-4)]);\n// [0, -1, -2, -3, -4]\n\nconsole.log([...range(1, 10, 2)]);\n// [1, 3, 5, 7, 9]"
+    ],
+    "lineNumber": 24,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "start",
-        "types": [
-          "*"
-        ]
+        "description": "初期値。`end`が指定されていなかった場合は0からこの数までの連版となる。\nつまり、`range(end)`は`range(0, end)`と等価。"
       },
       {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
         "name": "end",
-        "types": [
-          "*"
-        ]
+        "description": "出力する数字の上限/下限。"
       },
       {
-        "name": "increment",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1",
+        "defaultRaw": 1,
+        "name": "step",
+        "description": "一度に増やす/減らす数。\nstart > end の場合でも負の値を指定する必要はない。"
       }
     ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
+    "return": null
   },
   {
-    "__docId__": 151,
+    "__docId__": 162,
     "kind": "file",
     "name": "src/utility/utility.js",
-    "content": "\r\nimport {isNull} from \"./is\";\r\n\r\nexport const equals = (...values)=>{\r\n    // SameValueZero\r\n    let prev = values.shift();\r\n    return values.every(value=>(\r\n        Number.isNaN(prev)\r\n            ? Number.isNaN(prev=value)\r\n            : prev===(prev=value)\r\n    ));\r\n};\r\n\r\nexport const typeOf = object=>(\r\n    Object.prototype.toString.call(object).slice(8, -1)\r\n);\r\n\r\n// TODO: require\r\n\r\nexport const tryCall = (value, args, that)=>(\r\n    typeof value === \"function\"\r\n        ? value.apply(that, args)\r\n        : value\r\n);\r\n\r\nexport const substitute = (values, checkFunk=isNull)=>(\r\n    values.reduce((value, subValue)=>(\r\n        checkFunk(value) ? subValue : value\r\n    ), values.shift())\r\n);\r\n\r\nexport const typeCheck = (value, types, sub, typeGetter=typeOf)=>{\r\n    const type = typeGetter(value);\r\n    if(types.includes(type))\r\n        return value;\r\n    return tryCall(sub, [type]);\r\n};\r\n\r\nexport const debounce = (func, wait)=>{\r\n    let id;\r\n    return function(){\r\n        clearTimeout(id);\r\n        // eslint-disable-next-line\r\n        id = setTimeout(func.apply, wait, this, arguments);\r\n    };\r\n};\r\n\r\nexport const prop = (props, defaultProps, subFunc)=>(\r\n    Object.entries(props).reduce((props_, [prop, key])=>{\r\n        props_[key] = substitute([prop, defaultProps[key]], subFunc);\r\n        return props_;\r\n    })\r\n);\r\n\r\nexport const uniq = array=>{\r\n    const existings = [];\r\n    return array.filter(value=>{\r\n        const existing = existings.includes(value);\r\n        if(!existing)existings.push(value);\r\n        return !existing;\r\n    });\r\n};\r\n",
+    "content": "\r\nimport {isNull} from \"./is\";\r\n\r\nexport const equals = (...values)=>{\r\n    // SameValueZero\r\n    let prev = values.shift();\r\n    return values.every(value=>(\r\n        Number.isNaN(prev)\r\n            ? Number.isNaN(prev=value)\r\n            : prev===(prev=value)\r\n    ));\r\n};\r\n\r\nexport const typeOf = object=>(\r\n    Object.prototype.toString.call(object).slice(8, -1)\r\n);\r\n\r\n// TODO: require\r\n\r\n// NOTE: 元tryCall\r\nexport const callorElse = (value, args, that)=>(\r\n    typeof value === \"function\"\r\n        ? value.apply(that, args)\r\n        : value\r\n);\r\n\r\nexport const substitute = (values, checkFunk=isNull)=>(\r\n    values.reduce((value, subValue)=>(\r\n        checkFunk(value) ? subValue : value\r\n    ), values.shift())\r\n);\r\n\r\nexport const typeCheck = (value, types, sub, typeGetter=typeOf)=>{\r\n    const type = typeGetter(value);\r\n    if(types.includes(type))\r\n        return value;\r\n    return callorElse(sub, [type]);\r\n};\r\n\r\nexport const debounce = (func, wait)=>{\r\n    let id;\r\n    return function(){\r\n        clearTimeout(id);\r\n        // eslint-disable-next-line\r\n        id = setTimeout(func.apply, wait, this, arguments);\r\n    };\r\n};\r\n\r\nexport const prop = (props, defaultProps, subFunc)=>(\r\n    Object.entries(props).reduce((props_, [prop, key])=>{\r\n        props_[key] = substitute([prop, defaultProps[key]], subFunc);\r\n        return props_;\r\n    })\r\n);\r\n\r\nexport const uniq = array=>{\r\n    const existings = [];\r\n    return array.filter(value=>{\r\n        const existing = existings.includes(value);\r\n        if(!existing)existings.push(value);\r\n        return !existing;\r\n    });\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/utility.js",
     "access": "public",
@@ -2992,7 +3525,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 152,
+    "__docId__": 163,
     "kind": "function",
     "name": "equals",
     "memberof": "src/utility/utility.js",
@@ -3023,7 +3556,7 @@
     }
   },
   {
-    "__docId__": 153,
+    "__docId__": 164,
     "kind": "function",
     "name": "typeOf",
     "memberof": "src/utility/utility.js",
@@ -3049,20 +3582,20 @@
     "return": null
   },
   {
-    "__docId__": 154,
+    "__docId__": 165,
     "kind": "function",
-    "name": "tryCall",
+    "name": "callorElse",
     "memberof": "src/utility/utility.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/utility.js~tryCall",
+    "longname": "src/utility/utility.js~callorElse",
     "access": "public",
     "export": true,
     "importPath": "reiyayakko-core/src/utility/utility.js",
-    "importStyle": "{tryCall}",
+    "importStyle": "{callorElse}",
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 21,
     "undocument": true,
     "params": [
       {
@@ -3087,7 +3620,7 @@
     "return": null
   },
   {
-    "__docId__": 155,
+    "__docId__": 166,
     "kind": "function",
     "name": "substitute",
     "memberof": "src/utility/utility.js",
@@ -3100,7 +3633,7 @@
     "importPath": "reiyayakko-core/src/utility/utility.js",
     "importStyle": "{substitute}",
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 27,
     "undocument": true,
     "params": [
       {
@@ -3122,7 +3655,7 @@
     "return": null
   },
   {
-    "__docId__": 156,
+    "__docId__": 167,
     "kind": "function",
     "name": "typeCheck",
     "memberof": "src/utility/utility.js",
@@ -3135,7 +3668,7 @@
     "importPath": "reiyayakko-core/src/utility/utility.js",
     "importStyle": "{typeCheck}",
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 33,
     "undocument": true,
     "params": [
       {
@@ -3173,7 +3706,7 @@
     }
   },
   {
-    "__docId__": 157,
+    "__docId__": 168,
     "kind": "function",
     "name": "debounce",
     "memberof": "src/utility/utility.js",
@@ -3186,7 +3719,7 @@
     "importPath": "reiyayakko-core/src/utility/utility.js",
     "importStyle": "{debounce}",
     "description": null,
-    "lineNumber": 39,
+    "lineNumber": 40,
     "undocument": true,
     "params": [
       {
@@ -3209,7 +3742,7 @@
     }
   },
   {
-    "__docId__": 158,
+    "__docId__": 169,
     "kind": "function",
     "name": "prop",
     "memberof": "src/utility/utility.js",
@@ -3222,7 +3755,7 @@
     "importPath": "reiyayakko-core/src/utility/utility.js",
     "importStyle": "{prop}",
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 49,
     "undocument": true,
     "params": [
       {
@@ -3247,7 +3780,7 @@
     "return": null
   },
   {
-    "__docId__": 159,
+    "__docId__": 170,
     "kind": "function",
     "name": "uniq",
     "memberof": "src/utility/utility.js",
@@ -3260,7 +3793,7 @@
     "importPath": "reiyayakko-core/src/utility/utility.js",
     "importStyle": "{uniq}",
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 56,
     "undocument": true,
     "params": [
       {
@@ -3277,10 +3810,10 @@
     }
   },
   {
-    "__docId__": 160,
+    "__docId__": 171,
     "kind": "file",
     "name": "src/utility/zip.js",
-    "content": "\r\nimport {isArrayLike, isNumber} from \"./is\";\r\n\r\n/**\r\n * Flip objects at depth 0 and 1.\r\n *     オブジェクトを深さ0と1で反転します。\r\n *\r\n * @param {*} objects\r\n * The target object. The child properties of this object must also be objects.\r\n * ターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。\r\n * @param {*} [getKeys=Object.keys]\r\n * A function that returns the keys of the object as an array.\r\n * オブジェクトのキーを配列として返す関数。\r\n * Example:\r\n * - rei.object.allKeys\r\n * @returns\r\n * An object whose depth is inverted by 0 and 1.<br/>\r\n * 深度が0と1で反転したオブジェクト。\r\n */\r\nexport const zip = (objects, getKeys=Object.keys)=>{\r\n    const keys = getKeys(objects);\r\n    const rootIsArray = isArrayLike(objects);\r\n    const isArray = keys.every(key=>(\r\n        isArrayLike(objects[key])\r\n        && getKeys(objects[key]).every(isNumber)\r\n    ));\r\n    return keys.reduce((ziped, key)=>{\r\n        getKeys(objects[key]).forEach(name=>{\r\n            if(!ziped[name])ziped[name] = rootIsArray ? [] : {};\r\n            ziped[name][key] = objects[key][name];\r\n        });\r\n        return ziped;\r\n    }, isArray ? [] : {});\r\n};\r\n",
+    "content": "\r\nimport {isArrayLike, isNumber} from \"./is\";\r\n\r\n/**\r\n * Flip objects at depth 0 and 1.<br>\r\n * オブジェクトを深さ0と1で反転します。\r\n *\r\n * @param {*} objects\r\n * The target object. The child properties of this object must also be objects.<br>\r\n * ターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。\r\n * @param {*} [getKeys=Object.keys]\r\n * A function that returns the keys of the object as an array.<br>\r\n * オブジェクトのキーを配列として返す関数。<br>\r\n * Example:\r\n * - rei.object.allKeys\r\n * @returns\r\n * An object whose depth is inverted by 0 and 1.<br>\r\n * 深度が0と1で反転したオブジェクト。\r\n */\r\nexport const zip = (objects, getKeys=Object.keys)=>{\r\n    const keys = getKeys(objects);\r\n    const rootIsArray = isArrayLike(objects);\r\n    const isArray = keys.every(key=>(\r\n        isArrayLike(objects[key])\r\n        && getKeys(objects[key]).every(isNumber)\r\n    ));\r\n    return keys.reduce((ziped, key)=>{\r\n        getKeys(objects[key]).forEach(name=>{\r\n            if(!ziped[name])ziped[name] = rootIsArray ? [] : {};\r\n            ziped[name][key] = objects[key][name];\r\n        });\r\n        return ziped;\r\n    }, isArray ? [] : {});\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/zip.js",
     "access": "public",
@@ -3288,7 +3821,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 161,
+    "__docId__": 172,
     "kind": "function",
     "name": "zip",
     "memberof": "src/utility/zip.js",
@@ -3300,12 +3833,12 @@
     "export": true,
     "importPath": "reiyayakko-core/src/utility/zip.js",
     "importStyle": "{zip}",
-    "description": "Flip objects at depth 0 and 1.\n    オブジェクトを深さ0と1で反転します。",
+    "description": "Flip objects at depth 0 and 1.<br>\nオブジェクトを深さ0と1で反転します。",
     "lineNumber": 20,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "An object whose depth is inverted by 0 and 1.<br/>\n深度が0と1で反転したオブジェクト。"
+        "tagValue": "An object whose depth is inverted by 0 and 1.<br>\n深度が0と1で反転したオブジェクト。"
       }
     ],
     "params": [
@@ -3317,7 +3850,7 @@
         "spread": false,
         "optional": false,
         "name": "objects",
-        "description": "The target object. The child properties of this object must also be objects.\nターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。"
+        "description": "The target object. The child properties of this object must also be objects.<br>\nターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。"
       },
       {
         "nullable": null,
@@ -3329,7 +3862,7 @@
         "defaultValue": "Object.keys",
         "defaultRaw": "Object.keys",
         "name": "getKeys",
-        "description": "A function that returns the keys of the object as an array.\nオブジェクトのキーを配列として返す関数。\nExample:\n- rei.object.allKeys"
+        "description": "A function that returns the keys of the object as an array.<br>\nオブジェクトのキーを配列として返す関数。<br>\nExample:\n- rei.object.allKeys"
       }
     ],
     "return": {
@@ -3338,12 +3871,12 @@
         "*"
       ],
       "spread": false,
-      "description": "An object whose depth is inverted by 0 and 1.<br/>\n深度が0と1で反転したオブジェクト。"
+      "description": "An object whose depth is inverted by 0 and 1.<br>\n深度が0と1で反転したオブジェクト。"
     }
   },
   {
     "kind": "index",
-    "content": "# reiyayakko-core\r\n\r\nThis is a utility library\r\n\r\nwiki: <https://github.com/reiyayakko/reiyayakko-core/wiki>\r\n",
+    "content": "# reiyayakko-core\r\n\r\nThis is a utility library\r\n\r\nwiki: <https://reiyayakko.github.io/reiyayakko-core>\r\n",
     "longname": "C:\\Users\\ka2obushi\\Documents\\GitHub\\reiyayakko-core\\README.md",
     "name": "./README.md",
     "static": true,
@@ -3354,6 +3887,22 @@
     "content": "{\r\n  \"name\": \"reiyayakko-core\",\r\n  \"version\": \"1.0.0\",\r\n  \"description\": \"\",\r\n  \"main\": \"dist/reiyayakko.umd.js\",\r\n  \"scripts\": {\r\n    \"docs\": \"esdoc\",\r\n    \"rollup_watch\": \"rollup -c rollup.config.js -w\",\r\n    \"rollup_build\": \"rollup -c rollup.config.js --environment INCLUDE_DEPS,BUILD:production\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/reiyayakko/reiyayakko-core.git\"\r\n  },\r\n  \"author\": \"reiyayakko\",\r\n  \"license\": \"MIT\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/reiyayakko/reiyayakko-core/issues\"\r\n  },\r\n  \"homepage\": \"https://github.com/reiyayakko/reiyayakko-core#readme\",\r\n  \"devDependencies\": {\r\n    \"@babel/core\": \"^7.9.0\",\r\n    \"@babel/preset-env\": \"^7.9.5\",\r\n    \"@babel/preset-es2015\": \"^7.0.0-beta.53\",\r\n    \"babel-plugin-external-helpers\": \"^6.22.0\",\r\n    \"babel-preset-es2015\": \"^6.24.1\",\r\n    \"babel-preset-es2015-rollup\": \"^3.0.0\",\r\n    \"babelrc-rollup\": \"^3.0.0\",\r\n    \"buble\": \"^0.20.0\",\r\n    \"esdoc\": \"^1.1.0\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"eslint\": \"^6.8.0\",\r\n    \"rollup\": \"^2.6.1\",\r\n    \"rollup-plugin-babel\": \"^4.4.0\",\r\n    \"rollup-plugin-buble\": \"^0.19.8\",\r\n    \"rollup-plugin-istanbul\": \"^2.0.1\",\r\n    \"rollup-plugin-terser\": \"^5.3.0\",\r\n    \"rollup-plugin-typescript2\": \"^0.27.0\",\r\n    \"rollup-plugin-uglify\": \"^6.0.4\",\r\n    \"typescript\": \"^3.8.3\"\r\n  }\r\n}\r\n",
     "longname": "C:\\Users\\ka2obushi\\Documents\\GitHub\\reiyayakko-core\\package.json",
     "name": "package.json",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manualIndex",
+    "globalIndex": false,
+    "content": null,
+    "longname": "",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manual",
+    "longname": "C:\\Users\\ka2obushi\\Documents\\GitHub\\reiyayakko-core\\manual\\index.md",
+    "name": "./manual/index.md",
+    "content": "",
     "static": true,
     "access": "public"
   }

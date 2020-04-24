@@ -8,7 +8,7 @@
     // ],
     // "parser": "@typescript-eslint/parser",
     "extends": [
-        "eslint:recommended",
+        "eslint:recommended"//,
         // "plugin:@typescript-eslint/recommended",
         // "plugin:@typescript-eslint/eslint-recommended"
     ],
@@ -83,7 +83,6 @@
         "no-implicit-coercion"         : ["off"],
         "no-implicit-globals"          : ["off"],
         "no-implied-eval"              : ["error"],
-        "no-invalid-this"              : "error",
         "no-iterator"                  : "error",
         "no-lone-blocks"               : "error",
         "no-loop-func"                 : "error",
@@ -110,7 +109,7 @@
         "no-sequences"                 : ["warn"],
         "no-throw-literal"             : "error",
         "no-unmodified-loop-condition" : "error",
-        "no-unused-expressions"        : ["error"],
+        "no-unused-expressions"        : ["error", {"allowShortCircuit": true}],
         "no-unused-labels"             : "error",
         "no-useless-call"              : "error",
         "no-useless-concat"            : "error",
@@ -259,7 +258,6 @@
         "prefer-destructuring"    : ["warn"],
         "prefer-numeric-literals" : ["off"],
         "prefer-rest-params"      : "error",
-        "prefer-spread"           : "error",
         "prefer-template"         : "warn",
         "require-yield"           : "error",
         "rest-spread-spacing"     : ["error", "never"],

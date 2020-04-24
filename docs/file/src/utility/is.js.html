@@ -13,7 +13,7 @@
 
 <header>
   <a href="./">Home</a>
-  
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
@@ -62,15 +62,26 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-argument">argument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-memoize">memoize</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-restSplit">restSplit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArguments">isArguments</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArrayLike">isArrayLike</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isBoolean">isBoolean</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isEmpty">isEmpty</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isError">isError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isFunction">isFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isMap">isMap</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNegative">isNegative</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNull">isNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNumber">isNumber</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObject">isObject</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObjectLike">isObjectLike</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isRegExp">isRegExp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSet">isSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isString">isString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSymbol">isSymbol</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isThrowError">isThrowError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isUndefined">isUndefined</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakMap">isWeakMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakSet">isWeakSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-doWhile">doWhile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIn">forIn</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIndex">forIndex</a></span></span></li>
@@ -79,11 +90,11 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iterate">iterate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-previous">previous</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-range">range</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callorElse">callorElse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounce">debounce</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equals">equals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-prop">prop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-substitute">substitute</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tryCall">tryCall</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeCheck">typeCheck</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeOf">typeOf</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uniq">uniq</a></span></span></li>
@@ -95,54 +106,182 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/utility/is.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
 import {typeOf} from &quot;./index&quot;;
-import * as object from &quot;../object/temp&quot;;
+import {allKeys} from &quot;../object/temp&quot;;
 
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Undefined
+ */
 export const isUndefined = value=&gt;(
     value === void 0
 );
 
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Null or Undefined
+ */
 export const isNull = value=&gt;(
     value === null || isUndefined(value)
 );
 
-export const isRegExp = obj=&gt;(
-    typeOf(obj) === &quot;RegExp&quot;
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Boolean
+ */
+export const isBoolean = value=&gt;(
+    typeOf(value) === &quot;Boolean&quot;
 );
 
-export const isObject = obj=&gt;(
-    typeof obj === &quot;object&quot; &amp;&amp; obj !== null
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is String
+ */
+export const isString = value=&gt;(
+    typeOf(value) === &quot;String&quot;
 );
 
-export const isObjectLike = obj=&gt;(
-    typeof obj === &quot;function&quot; || isObject(obj)
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Number
+ */
+export const isNumber = value=&gt;(
+    typeOf(value) === &quot;Number&quot;
 );
 
-export const isArrayLike = obj=&gt;{
-    if(!isObject(obj))return false;
-    if(Array.isArray(obj) || typeOf(obj) === &quot;Arguments&quot; || obj.length === 0)
+/**
+ * @param {*} value The value to be compared
+ * @return Whether it is a negative number
+ */
+export const isNegative = value=&gt;(
+    isNumber(value) &amp;&amp; value &lt; 0
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Symbol
+ */
+export const isSymbol = value=&gt;(
+    typeOf(value) === &quot;Symbol&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Function
+ */
+export const isFunction = value=&gt;(
+    typeOf(value) === &quot;Function&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether typeof is an object and is not Null
+ */
+export const isObject = value=&gt;(
+    typeof value === &quot;object&quot; &amp;&amp; value !== null
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether properties can be edited
+ */
+export const isObjectLike = value=&gt;(
+    isFunction(value) || isObject(value)
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Arguments
+ */
+export const isArguments = value=&gt;(
+    typeOf(value) === &quot;Arguments&quot;
+);
+
+/**
+ * Array.isArray&#x304B;isArguments&#x304C;true&#x304B;&#x3069;&#x3046;&#x304B;
+ * Alpha: &#x5024;&#x304C;ArrayLike&#x304B;&#x3069;&#x3046;&#x304B;
+ * @param {*} value The value to be compared
+ * @return Whether the value is ArrayLike
+ */
+export const isArrayLike = value=&gt;{
+    if(!isObject(value))return false;
+    if(Array.isArray(value) || isArguments(value) || value.length === 0)
         return true;
     return false;
 };
 
+/**
+ * Alpha:
+ * @param {*} value The value to be compared
+ * @return Whether the property does not exist
+ */
 export const isEmpty = value=&gt;{
     if(typeOf(value) === &quot;String&quot; || isArrayLike(value))
         return value.length === 0;
     if(typeOf(value) === &quot;Object&quot;)
-        return object.allKeys(value).length === 0;
+        return allKeys(value).length === 0;
     return false;
 };
 
-export const isNumber = value=&gt;{
-    const type = typeOf(value) === &quot;Number&quot;;
-    return type || /[+-]?\d+(\.)?/.test(value);
-};
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is RegExp
+ */
+export const isRegExp = value=&gt;(
+    typeOf(value) === &quot;RegExp&quot;
+);
 
-export const isNegative = value=&gt;{
-    if(typeOf(value) === &quot;Number&quot;)
-        return value &lt; 0;
-    if(typeOf(value) === &quot;Boolean&quot;)
-        return !value;
-    return false;
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Error
+ */
+export const isError = value=&gt;(
+    typeOf(value) === &quot;Error&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Map
+ */
+export const isMap = value=&gt;(
+    typeOf(value) === &quot;Map&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is WeakMap
+ */
+export const isWeakMap = value=&gt;(
+    typeOf(value) === &quot;WeakMap&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Set
+ */
+export const isSet = value=&gt;(
+    typeOf(value) === &quot;Set&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is WeakSet
+ */
+export const isWeakSet = value=&gt;(
+    typeOf(value) === &quot;WeakSet&quot;
+);
+
+/**
+ * Verify whether an error occurs when you execute it by passing the argument &quot;args&quot; to &quot;func&quot;.
+ * &quot;func&quot;&#x306B;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&quot;args&quot;&#x3092;&#x6E21;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3057;&#x305F;&#x5834;&#x5408;&#x306B;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x304B;&#x691C;&#x8A3C;&#x3057;&#x307E;&#x3059;&#x3002;
+ * @param {Function} func Function that verifies if an error occurs
+ * @param  {...any} [args] Argument that verifies whether an error has occurred
+ * @return Whether an error has occurred
+ */
+export const isThrowError = (func, ...args)=&gt;{
+    try{
+        func.apply(this, args);
+        return false;
+    }catch(err){ return true; }
 };
 </code></pre>
 
