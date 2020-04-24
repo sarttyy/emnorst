@@ -1,6 +1,7 @@
 
 export {Num2FracStr as NumToStr} from "../lib/Num2DecStr";
 
+// NOTE: 有効桁数
 export const Num = number=>{
     if(typeof number === "number");
     const [integer, decimal] = String(number).split(".");
