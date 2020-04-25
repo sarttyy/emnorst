@@ -1,8 +1,15 @@
 {
-  "coverage": "31.46%",
-  "expectCount": 89,
-  "actualCount": 28,
+  "coverage": "45.97%",
+  "expectCount": 87,
+  "actualCount": 40,
   "files": {
+    "src/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        8
+      ]
+    },
     "src/lib/Num2DecStr.js": {
       "expectCount": 1,
       "actualCount": 1,
@@ -29,19 +36,9 @@
       ]
     },
     "src/math/calculation.js": {
-      "expectCount": 9,
-      "actualCount": 0,
-      "undocumentLines": [
-        2,
-        5,
-        6,
-        7,
-        8,
-        15,
-        21,
-        33,
-        35
-      ]
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
     },
     "src/object/clone/clone.js": {
       "expectCount": 2,
@@ -100,16 +97,26 @@
         38
       ]
     },
+    "src/utility/condition.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
     "src/utility/index.js": {
       "expectCount": 6,
       "actualCount": 1,
       "undocumentLines": [
-        42,
-        62,
-        91,
-        92,
-        93
+        45,
+        65,
+        94,
+        95,
+        96
       ]
+    },
+    "src/utility/is/number.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
     },
     "src/utility/is/type.js": {
       "expectCount": 16,
@@ -117,8 +124,8 @@
       "undocumentLines": []
     },
     "src/utility/is/util.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 3,
+      "actualCount": 3,
       "undocumentLines": []
     },
     "src/utility/loop/for.js": {
@@ -127,32 +134,41 @@
       "undocumentLines": []
     },
     "src/utility/loop/index.js": {
-      "expectCount": 5,
-      "actualCount": 1,
+      "expectCount": 2,
+      "actualCount": 0,
       "undocumentLines": [
         6,
-        8,
-        13,
-        20
+        9
       ]
+    },
+    "src/utility/loop/order.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/utility/loop/while.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/utility/range.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/utility/typeof.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/utility/utility.js": {
-      "expectCount": 8,
+      "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
         4,
         14,
-        21,
-        27,
-        33,
-        40,
-        49,
-        56
+        26,
+        35
       ]
     },
     "src/utility/zip.js": {

@@ -4,35 +4,35 @@
     "filePath": "src/utility/index.js",
     "lines": [
       {
-        "lineNumber": 43,
+        "lineNumber": 46,
         "line": "/**\r"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 47,
         "line": " * 拡張版分割代入\r"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 48,
         "line": " *\r"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 49,
         "line": " * @param {object} array\r"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 50,
         "line": " * @param {*} classifying\r"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 51,
         "line": " * @returns\r"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 52,
         "line": " */\r"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 53,
         "line": "export const restSplit = (array, beforeItem, afterItem=0)=>{\r"
       }
     ],

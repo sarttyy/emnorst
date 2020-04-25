@@ -1,4 +1,54 @@
 /**
+ * デフォルトで`Object.prototype.toString.call`の返り値として考えられるすべてのパターンです。
+ * たぶん。
+ *
+ * @typedef {"Null"|
+ * "Undefined"|
+ * "Number"|
+ * "String"|
+ * "Boolean"|
+ * "Symbol"|
+ * "Function"|
+ * "Object"|
+ * "Array"|
+ * "Arguments"|
+ * "RegExp"|
+ * "Date"|
+ * "Math"|
+ * "JSON"|
+ * "Error"|
+ * "Promise"|
+ * "Map"|
+ * "Set"|
+ * "WeakMap"|
+ * "WeakSet"|
+ * "GeneratorFunction"|
+ * "Generator"|
+ * "Int8Array"|
+ * "Uint8Array"|
+ * "Uint8ClampedArray"|
+ * "Int16Array"|
+ * "Uint16Array"|
+ * "Int32Array"|
+ * "Uint32Array"|
+ * "Float32Array"|
+ * "Float64Array"|
+ * "ArrayBuffer"|
+ * "DataView"}
+ * ObjectToStringTypes
+ */
+
+/**
+ * You can add the type by changing the "Symbol.toStringTag" property of the object.
+ * オブジェクトの"Symbol.toStringTag"プロパティーを変更することで、型を追加できます。
+ * @param {*} value An object that determines the type
+ * @return {ObjectToStringTypes & String} object type
+ */
+const typeOf$1 = value=>(
+    Object.prototype.toString.call(value).slice(8, -1)
+);
+
+/**
  * @param {*} value The value to be compared
  * @return Whether {@link typeOf} is Undefined
  */
@@ -126,6 +176,28 @@ const isWeakSet = value=>(
     typeOf$1(value) === "WeakSet"
 );
 
+/**
+ * @param {Number} number The value to be compared
+ * @return Whether it is a negative number
+ */
+const isNegative = number=>(
+    isNumber(number) && number < 0
+);
+
+/**
+ * @param {Number} number The value to be compared
+ * @return Whether it is a prime number
+ */
+const isPrime = number=>{
+    if(number === 2)
+        return true;
+    if(isNaN(number) || !Number.isFinite(number) || number < 2 || number % 2 === 0)
+        return false;
+    for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
+        if(number % i === 0)return false;
+    return true;
+};
+
 const has = Object.prototype.hasOwnProperty.call;
 
 const last = (array, index=1)=>(
@@ -221,14 +293,6 @@ const watchStop = (obj, propName)=>{
 };
 
 /**
- * @param {*} value The value to be compared
- * @return Whether it is a negative number
- */
-const isNegative = value=>(
-    isNumber(value) && value < 0
-);
-
-/**
  * Array.isArrayかisArgumentsがtrueかどうか
  * Alpha: 値がArrayLikeかどうか
  * @param {*} value The value to be compared
@@ -270,7 +334,6 @@ const isThrowError = (func, ...args)=>{
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。
- * 余り使う機会はなさそうだが、少数も指定可能。
  * for-of文で使う場合代替として{@link forIndex}が使用できます。
  *
  * @param {Number} start
@@ -352,11 +415,43 @@ const forIn = (object, func, that)=>{
     ));
 };
 
+/**
+ * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。
+ * MEMO: do取りたい。flag初期値追加。
+ * @param {Function} func Callback function that continues to run as long as it returns undefined
+ * @param {*} [that] Specify this of the callback function
+ */
+const doWhile = (func, that)=>{
+    let flag;
+    do flag = func.call(that);
+    while(isUndefined$1(flag));
+    return flag;
+};
+
+/**
+ * Executes the function specified by func level times.<br>
+ * funcで指定された関数をlevel回実行します。
+ *
+ * @param {Number} level Number of loops
+ * @param {Function} func Repeated callback function<br>
+ *     The return value of the previous callback function is passed as an argument
+ * @param {*} [arg] Arguments passed to the first callback function
+ * @return Return value of the last callback function
+ */
 const previous = (level, func, arg)=>{
     for(;level--;)arg = func(arg);
     return arg;
 };
 
+/**
+ * Execute the functions specified in the order from left to right.<br>
+ * オーダーで指定された関数を左から順番に実行します。
+ *
+ * @param {*} arg Arguments passed to the first callback function
+ * @param {...Function} orders Repeated callback function.<br>
+ *     The return value of the previous callback function is passed as an argument
+ * @return Return value of the last callback function
+ */
 const inOrder = (arg, ...orders)=>{
     for(const func of orders)
         arg = func(arg);
@@ -379,18 +474,66 @@ const iterate = function* (value){
     }).call(value);
 };
 
+// TODO: コールバック関数のthisを指定できる高階関数のthatの指定の仕方を変更。
+// 高階関数自体のthisを継承する。
+// f(that) => f.call(that)
+
+// NOTE: tryCall
 /**
- * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。
- * MEMO: do取りたい。flag初期値追加。
- * @param {Function} func Callback function that continues to run as long as it returns undefined
- * @param {*} [that] Specify this of the callback function
+ * Executes the function if the value is a function, otherwise returns the value
+ *
+ * @param {*} value The value to be executed if it was a function
+ * @param {*[]} [args] Argument when the value is a function
+ * @param {*} [that] this when the value is a function
+ * @return {*} The return value of the function if the value is a function, otherwise the value
  */
-const doWhile = (func, that)=>{
-    let flag;
-    do flag = func.call(that);
-    while(isUndefined$1(flag));
-    return flag;
+const callorElse = (value, args, that)=>(
+    isFunction(value)
+        ? value.apply(that, args)
+        : value
+);
+
+/**
+ * Returns the first found value. If not found, it returns the last value.
+ * \n値の中で最初に見つかった値を返します。見つからない場合、最後の値を返します。
+ *
+ * @param {*[]} values Value and alternate value. Higher priority to the left
+ * @param {Function} evalFunc
+ * A function that evaluates a value. Returning a true value is considered an invalid value.
+ * 値を評価する関数。trulyな値を返すと無効な値とみなされる
+ */
+const substitute$1 = (values, evalFunc=isNull)=>(
+    values.reduce((value, subValue)=>(
+        evalFunc(value) ? subValue : value
+    ), values.shift())
+);
+
+/**
+ * Beta:
+ * @param {*} value
+ * @param {*} types
+ * @param {*} sub
+ * @param {*} typeGetter
+ */
+const typeCheck = (value, types, sub, typeGetter=typeOf$1)=>{
+    const type = typeGetter(value);
+    if(types.includes(type))
+        return value;
+    return callorElse(sub, [type]);
 };
+
+/**
+ * Beta:
+ * @param {*} props
+ * @param {*} defaultProps
+ * @param {*} subFunc
+ */
+const prop = (props, defaultProps, subFunc)=>(
+    Object.entries(props).reduce((props_, [prop, key])=>{
+        props_[key] = substitute$1([prop, defaultProps[key]], subFunc);
+        return props_;
+    })
+);
 
 const equals = (...values)=>{
     // SameValueZero
@@ -402,30 +545,16 @@ const equals = (...values)=>{
     ));
 };
 
-const typeOf$1 = object=>(
-    Object.prototype.toString.call(object).slice(8, -1)
-);
-
-// TODO: require
-
-// NOTE: 元tryCall
-const callorElse = (value, args, that)=>(
-    typeof value === "function"
-        ? value.apply(that, args)
-        : value
-);
-
-const substitute$1 = (values, checkFunk=isNull)=>(
-    values.reduce((value, subValue)=>(
-        checkFunk(value) ? subValue : value
-    ), values.shift())
-);
-
-const typeCheck = (value, types, sub, typeGetter=typeOf$1)=>{
-    const type = typeGetter(value);
-    if(types.includes(type))
+const toPrimitive = value=>{
+    if(!isObject(value))
         return value;
-    return callorElse(sub, [type]);
+    if("valueOf" in value)
+        return value.valueOf();
+    if("toString" in value)
+        return value.toString();
+    if(Symbol && Symbol.toPrimitive in value)
+        return value[Symbol.toPrimitive]("default");
+    return value;
 };
 
 const debounce = (func, wait)=>{
@@ -436,13 +565,6 @@ const debounce = (func, wait)=>{
         id = setTimeout(func.apply, wait, this, arguments);
     };
 };
-
-const prop = (props, defaultProps, subFunc)=>(
-    Object.entries(props).reduce((props_, [prop, key])=>{
-        props_[key] = substitute$1([prop, defaultProps[key]], subFunc);
-        return props_;
-    })
-);
 
 const uniq = array=>{
     const existings = [];
@@ -599,23 +721,25 @@ var index = /*#__PURE__*/Object.freeze({
     isSet: isSet,
     isWeakSet: isWeakSet,
     isNegative: isNegative,
+    isPrime: isPrime,
     isArrayLike: isArrayLike,
     isEmpty: isEmpty,
     isThrowError: isThrowError,
     forOf: forOf$1,
     forIndex: forIndex,
     forIn: forIn,
+    doWhile: doWhile,
     previous: previous,
     inOrder: inOrder,
     iterate: iterate,
-    doWhile: doWhile,
-    equals: equals,
     typeOf: typeOf$1,
     callorElse: callorElse,
     substitute: substitute$1,
     typeCheck: typeCheck,
-    debounce: debounce,
     prop: prop,
+    equals: equals,
+    toPrimitive: toPrimitive,
+    debounce: debounce,
     uniq: uniq,
     range: range,
     zip: zip
@@ -993,12 +1117,17 @@ class BigFloat {
     }
 }
 
-const add = (number1, number2)=>(
-    number1 + number2
-);
-const sub = (...numbers)=>{};
-const mul = (...numbers)=>{};
-const div = (...numbers)=>{};
+// export const add = (number1, number2)=>(
+//     number1 + number2
+// );
+// export const sub = (...numbers)=>{};
+// export const mul = (...numbers)=>{};
+// export const div = (...numbers)=>{};
+
+/**
+ * 引数の絶対値を返す。
+ * @param {Number} number
+ */
 const abs = number=>(
     number < 0 ||
     Object.is(-0, number) ||
@@ -1006,17 +1135,36 @@ const abs = number=>(
         ? -number : Number(number)
 );
 
+/**
+ * 引数の中で一番小さい値を返す。
+ * @param  {...Number} args
+ */
 const min = (...args)=>(
     args.reduce((minValue, value)=>(
         minValue < value ? minValue : value
     ), Infinity)
 );
 
+/**
+ * 引数の中で一番大きい値を返す。
+ * @param  {...Number} args
+ */
 const max = (...args)=>(
     args.reduce((maxValue, value)=>(
         maxValue > value ? maxValue : value
     ), -Infinity)
 );
+
+/**
+ * 階上。
+ * @param {Number} num
+ */
+const factorial = num=>{
+    if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
+        return num;
+    for(let i = num;i > 2;num *= --i);
+    return num ? num : ++num;
+};
 
 // TODO: sin
 
@@ -1024,14 +1172,7 @@ const max = (...args)=>(
 
 // TODO: tan
 
-const diff = (n1, n2)=>abs(n1-n2);
-
-const factorial = num=>{
-    if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
-        return num;
-    for(let i = num;i > 2;num *= --i);
-    return num ? num : ++num;
-};
+// export const diff = (n1, n2)=>abs(n1-n2);
 
 // TODO: 複素数
 // export class Complex {}
@@ -1082,27 +1223,31 @@ package_rei.addModule("math.ack", ({modules: {math}})=>(x, y, z)=>{
 */
 
 const sqrt5 = Math.sqrt(5);
+/**
+ * N番目のフィボナッチ数を取得する。
+ * @param {Number} frequency N番目の指定
+ */
 const fibonacci$ = frequency=>{
     const x = Math.pow((1 + sqrt5) / 2, frequency);
     const y = Math.pow((1 - sqrt5) / 2, frequency);
     return Math.round((x - y) / sqrt5);
 };
 
+/**
+ * フィボナッチ数列のジェネレーター。
+ *
+ * @param {Number} frequency Maximum number of times fibonacci number is generated
+ */
 const fibonacci = function* (frequency=Infinity){
     for(let prev = 1n, fib = 0n;frequency--;)
         yield fib = prev + (prev = fib);
 };
 
-const isPrime = number=>{
-    if(number === 2)
-        return true;
-    if(Number.isNaN(number) || !Number.isFinite(number) || number < 2 || number % 2 === 0)
-        return false;
-    for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
-        if(number % i === 0)return false;
-    return true;
-};
-
+/**
+ * 素数のジェネレーター。
+ *
+ * @param {Number} frequency Maximum number of times prime number is generated
+ */
 const prime = function* (frequency=Infinity){
     yield 2;
     for(let i = 3;frequency--;i += 2)
@@ -1110,11 +1255,15 @@ const prime = function* (frequency=Infinity){
         else frequency++;
 };
 
-const primeFactorization = number=>new Promise((resolve, reject)=>{
-    if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number"){
-        reject(new Error("Only the numerical value can be factorized"));
-        return;
-    }
+/**
+ * 素因数分解。
+ *
+ * @param {Number} number Numbers to factor
+ * @return Array of prime factor of `number`
+ */
+const primeFactorization = number=>{
+    if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number")
+        return [];
     const result = [];
     while(number % 2 === 0){
         result.push(2);
@@ -1126,29 +1275,33 @@ const primeFactorization = number=>new Promise((resolve, reject)=>{
             number /= i;
         }
     if(number > 1)result.push(number);
-    resolve(result);
-});
+    return result;
+};
 
 var index$2 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     NumToStr: Num2FracStr$1,
     Num: Num,
     BigFloat: BigFloat,
-    add: add,
-    sub: sub,
-    mul: mul,
-    div: div,
     abs: abs,
     min: min,
     max: max,
-    diff: diff,
     factorial: factorial,
     fibonacci$: fibonacci$,
     fibonacci: fibonacci,
-    isPrime: isPrime,
     prime: prime,
     primeFactorization: primeFactorization
 });
 
-export { index$2 as math, index$1 as object, index as utility };
+// eslint-disable-next-line spaced-comment
+/*!
+ * reiyayakko-core
+ * Copyright 2020 reiyayakko
+ */
+
+const env = {
+    version: "1.0.0",
+};
+
+export { env, index$2 as math, index$1 as object, index as utility };
 //# sourceMappingURL=reiyayakko.es.js.map

@@ -36,21 +36,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/math/calculation.js~add",
-    "function/index.html#static-function-add",
-    "<span>add</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
-    "function"
-  ],
-  [
     "reiyayakko-core/src/utility/index.js~argument",
     "function/index.html#static-function-argument",
     "<span>argument</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/index.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/utility.js~callorelse",
+    "reiyayakko-core/src/utility/condition.js~callorelse",
     "function/index.html#static-function-callorElse",
-    "<span>callorElse</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "<span>callorElse</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/condition.js</span>",
     "function"
   ],
   [
@@ -84,22 +78,16 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/math/calculation.js~diff",
-    "function/index.html#static-function-diff",
-    "<span>diff</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/math/calculation.js~div",
-    "function/index.html#static-function-div",
-    "<span>div</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/utility/loop/index.js~dowhile",
+    "reiyayakko-core/src/utility/loop/while.js~dowhile",
     "function/index.html#static-function-doWhile",
-    "<span>doWhile</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
+    "<span>doWhile</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/while.js</span>",
     "function"
+  ],
+  [
+    "reiyayakko-core/src/index.js~env",
+    "variable/index.html#static-variable-env",
+    "<span>env</span> <span class=\"search-result-import-path\">reiyayakko-core/src/index.js</span>",
+    "variable"
   ],
   [
     "reiyayakko-core/src/utility/utility.js~equals",
@@ -150,9 +138,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop/index.js~inorder",
+    "reiyayakko-core/src/utility/loop/order.js~inorder",
     "function/index.html#static-function-inOrder",
-    "<span>inOrder</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
+    "<span>inOrder</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/order.js</span>",
     "function"
   ],
   [
@@ -198,9 +186,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is/util.js~isnegative",
+    "reiyayakko-core/src/utility/is/number.js~isnegative",
     "function/index.html#static-function-isNegative",
-    "<span>isNegative</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/util.js</span>",
+    "<span>isNegative</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
     "function"
   ],
   [
@@ -225,6 +213,12 @@ window.esdocSearchIndex = [
     "reiyayakko-core/src/utility/is/type.js~isobjectlike",
     "function/index.html#static-function-isObjectLike",
     "<span>isObjectLike</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/is/number.js~isprime",
+    "function/index.html#static-function-isPrime",
+    "<span>isPrime</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
     "function"
   ],
   [
@@ -300,21 +294,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/math/calculation.js~mul",
-    "function/index.html#static-function-mul",
-    "<span>mul</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/utility/loop/index.js~previous",
+    "reiyayakko-core/src/utility/loop/order.js~previous",
     "function/index.html#static-function-previous",
-    "<span>previous</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
+    "<span>previous</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/order.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/utility.js~prop",
+    "reiyayakko-core/src/utility/condition.js~prop",
     "function/index.html#static-function-prop",
-    "<span>prop</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "<span>prop</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/condition.js</span>",
     "function"
   ],
   [
@@ -336,27 +324,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/math/calculation.js~sub",
-    "function/index.html#static-function-sub",
-    "<span>sub</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/utility/utility.js~substitute",
+    "reiyayakko-core/src/utility/condition.js~substitute",
     "function/index.html#static-function-substitute",
-    "<span>substitute</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "<span>substitute</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/condition.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/utility.js~typecheck",
+    "reiyayakko-core/src/utility/utility.js~toprimitive",
+    "function/index.html#static-function-toPrimitive",
+    "<span>toPrimitive</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/condition.js~typecheck",
     "function/index.html#static-function-typeCheck",
-    "<span>typeCheck</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "<span>typeCheck</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/condition.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/utility.js~typeof",
+    "reiyayakko-core/src/utility/typeof.js~typeof",
     "function/index.html#static-function-typeOf",
-    "<span>typeOf</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "<span>typeOf</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/typeof.js</span>",
     "function"
   ],
   [
@@ -810,6 +798,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/utility/condition.js",
+    "file/src/utility/condition.js.html",
+    "src/utility/condition.js",
+    "file"
+  ],
+  [
     "src/utility/index.js",
     "file/src/utility/index.js.html",
     "src/utility/index.js",
@@ -831,6 +825,12 @@ window.esdocSearchIndex = [
     "src/utility/is/index.js",
     "file/src/utility/is/index.js.html",
     "src/utility/is/index.js",
+    "file"
+  ],
+  [
+    "src/utility/is/number.js",
+    "file/src/utility/is/number.js.html",
+    "src/utility/is/number.js",
     "file"
   ],
   [
@@ -858,6 +858,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/utility/loop/order.js",
+    "file/src/utility/loop/order.js.html",
+    "src/utility/loop/order.js",
+    "file"
+  ],
+  [
+    "src/utility/loop/while.js",
+    "file/src/utility/loop/while.js.html",
+    "src/utility/loop/while.js",
+    "file"
+  ],
+  [
     "src/utility/old.js",
     "file/src/utility/old.js.html",
     "src/utility/old.js",
@@ -868,6 +880,18 @@ window.esdocSearchIndex = [
     "file/src/utility/range.js.html",
     "src/utility/range.js",
     "file"
+  ],
+  [
+    "src/utility/typeof.js",
+    "file/src/utility/typeof.js.html",
+    "src/utility/typeof.js",
+    "file"
+  ],
+  [
+    "src/utility/typeof.js~objecttostringtypes",
+    "typedef/index.html#static-typedef-ObjectToStringTypes",
+    "src/utility/typeof.js~ObjectToStringTypes",
+    "typedef"
   ],
   [
     "src/utility/utility.js",

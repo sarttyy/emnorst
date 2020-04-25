@@ -1,5 +1,5 @@
 
-import {typeOf} from "../index";
+import {typeOf} from "../typeof";
 
 /**
  * @param {*} value The value to be compared

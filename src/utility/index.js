@@ -1,9 +1,12 @@
 
 export * from "./is/index";
 export * from "./loop/index";
+export * from "./typeof";
+export * from "./condition";
 export * from "./utility";
 export * from "./range";
 export * from "./zip";
+
 import {forIndex} from "./loop/index";
 // TEMP:
 // export class ArrayLike extends Array {

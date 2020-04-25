@@ -1,15 +1,7 @@
 
-import {typeOf} from "../index";
+import {typeOf} from "../typeof";
 import {allKeys} from "../../object/temp";
-import {isNumber, isObject, isArguments} from "./type";
-
-/**
- * @param {*} value The value to be compared
- * @return Whether it is a negative number
- */
-export const isNegative = value=>(
-    isNumber(value) && value < 0
-);
+import {isObject, isArguments} from "./type";
 
 /**
  * Array.isArrayかisArgumentsがtrueかどうか

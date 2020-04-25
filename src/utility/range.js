@@ -3,7 +3,6 @@ import {isUndefined} from "./is/index";
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。
- * 余り使う機会はなさそうだが、少数も指定可能。
  * for-of文で使う場合代替として{@link forIndex}が使用できます。
  *
  * @param {Number} start
