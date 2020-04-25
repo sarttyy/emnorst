@@ -1,3 +1,5 @@
 # reiyayakko-core
 
-wiki: https://github.com/reiyayakko/reiyayakko-core/wiki
+This is a utility library
+
+wiki: <https://reiyayakko.github.io/reiyayakko-core>

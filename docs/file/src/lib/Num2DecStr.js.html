@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/lib/Num2DecStr.js | reiyayakko-core</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/reiyayakko/reiyayakko-core"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#command">command</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-define">define</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-execute">execute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#command-execute">command/execute</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-command">command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-evaluate">evaluate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wasm">wasm</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Num2FracStr">Num2FracStr</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#math">math</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/math/bigfloat.js~BigFloat.html">BigFloat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Num">Num</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-add">add</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-diff">diff</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-div">div</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-factorial">factorial</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-max">max</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-min">min</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mul">mul</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sub">sub</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#object">object</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_">_</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEquals">deepEquals</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#object-clone">object/clone</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copy">copy</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-undertake">undertake</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utility">utility</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utility/index.js~MemoMap.html">MemoMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generate">generate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generator">generator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-gurop">gurop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reduce">reduce</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-argument">argument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-memoize">memoize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-restSplit">restSplit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArguments">isArguments</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArrayLike">isArrayLike</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isBoolean">isBoolean</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isEmpty">isEmpty</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isError">isError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isFunction">isFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isMap">isMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNegative">isNegative</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNull">isNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNumber">isNumber</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObject">isObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObjectLike">isObjectLike</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isRegExp">isRegExp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSet">isSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isString">isString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSymbol">isSymbol</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isThrowError">isThrowError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isUndefined">isUndefined</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakMap">isWeakMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakSet">isWeakSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-doWhile">doWhile</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIn">forIn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIndex">forIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forOf">forOf</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inOrder">inOrder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iterate">iterate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-previous">previous</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-range">range</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callorElse">callorElse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounce">debounce</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equals">equals</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-prop">prop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-substitute">substitute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeCheck">typeCheck</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeOf">typeOf</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uniq">uniq</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-zip">zip</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/lib/Num2DecStr.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * &#x6570;&#x5024;&#x3092;&#x6574;&#x6570;&#x30FB;&#x5C11;&#x6570;&#x8868;&#x8A18;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3002;
+ * &#x5185;&#x90E8;&#x7684;&#x306B;&#x306F;&#x3001;&#x6307;&#x6570;&#x8868;&#x8A18;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3001;&#x5C0F;&#x6570;&#x8868;&#x8A18;&#x306B;&#x5909;&#x63DB;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;
+ *
+ * @param {number|string} number &#x5909;&#x63DB;&#x3057;&#x305F;&#x3044;&#x6570;&#x5024;&#x3001;&#x307E;&#x305F;&#x306F;&#x6570;&#x5024;&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3002;
+ *     &#x6570;&#x5024;&#x578B;&#x3067;&#x3042;&#x308C;&#x3070;NaN&#x3084;Infinity&#x3082;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x308B;&#x304C;&#x3001;&#x305D;&#x306E;&#x307E;&#x307E;&#x6587;&#x5B57;&#x5217;&#x5316;&#x3057;&#x3066;&#x8FD4;&#x3055;&#x308C;&#x308B;&#x3002;
+ * @return {string} &#x5C0F;&#x6570;&#x8868;&#x8A18;&#x306E;&#x6570;&#x5024;&#x6587;&#x5B57;&#x5217;
+ * @throws &#x9069;&#x5207;&#x306A;&#x5F62;&#x5F0F;&#x306E;&#x6570;&#x5024;&#x3001;&#x307E;&#x305F;&#x306F;&#x6587;&#x5B57;&#x5217;&#x304C;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x306A;&#x304B;&#x3063;&#x305F;&#x5834;&#x5408;&#x306B;&#x767A;&#x751F;&#x3059;&#x308B;&#x3002;
+ *
+ * Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306F;&#x3001;JavaScript&#x3067;&#x6B63;&#x78BA;&#x306A;&#x6570;&#x5024;&#x6F14;&#x7B97;&#x3092;&#x884C;&#x3046;&#x305F;&#x3081;&#x306B;&#x4F7F;&#x3046;**&#x3079;&#x304D;&#x3067;&#x306F;&#x306A;&#x3044;**&#x3002;
+ *       &#x3053;&#x306E;&#x95A2;&#x6570;&#x3067;&#x306A;&#x3051;&#x308C;&#x3070;&#x5909;&#x63DB;&#x3067;&#x304D;&#x306A;&#x3044;&#x6570;&#x5024;&#x306F;&#x3001;JavaScript&#x306E;&#x5185;&#x90E8;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x6642;&#x70B9;&#x3067;&#x8AA4;&#x5DEE;&#x304C;&#x767A;&#x751F;&#x3057;&#x3066;&#x304A;&#x308A;&#x3001;&#x6B63;&#x78BA;&#x306A;&#x6F14;&#x7B97;&#x306F;&#x671F;&#x5F85;&#x3067;&#x304D;&#x306A;&#x3044;&#x3002;
+ *       &#x307E;&#x305F;&#x3001;&#x3053;&#x306E;&#x95A2;&#x6570;&#x306B;&#x3088;&#x3063;&#x3066;&#x5909;&#x63DB;&#x3055;&#x308C;&#x305F;&#x6570;&#x5024;&#x304C;&#x53B3;&#x5BC6;&#x306B;&#x6B63;&#x3057;&#x3044;&#x4E8B;&#x3082;&#x4FDD;&#x8A3C;&#x3057;&#x306A;&#x3044;&#x3002;
+ *       &#x3053;&#x306E;&#x95A2;&#x6570;&#x306F;&#x3001;JavaScript&#x3067;&#x751F;&#x6210;&#x3057;&#x305F;&#x6570;&#x5024;&#x3092;&#x300C;&#x898B;&#x3084;&#x3059;&#x304F;&#x8868;&#x793A;&#x3059;&#x308B;&#x300D;&#x305F;&#x3081;&#x306B;&#x306E;&#x307F;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x3079;&#x304D;&#x3067;&#x3042;&#x308B;&#x3002;
+ * Note: &#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x8A2D;&#x8A08;&#x304C;&#x6B63;&#x3057;&#x3051;&#x308C;&#x3070;&#xFF08;&#x3064;&#x307E;&#x308A;&#x3001;&#x30D0;&#x30B0;&#x304C;&#x7121;&#x3051;&#x308C;&#x3070;&#xFF09;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x306E;&#x306F;&#x8AA4;&#x3063;&#x305F;&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3092;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x5834;&#x5408;&#x306E;&#x307F;&#x3068;&#x306A;&#x308B;&#x3002;
+ *       &#x9006;&#x306B;&#x8A00;&#x3048;&#x3070;&#x3001;&#x6570;&#x5024;&#x306E;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x304C;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x3044;&#x304B;&#x306A;&#x308B;&#x5834;&#x5408;&#x3067;&#x3082;&#x30A8;&#x30E9;&#x30FC;&#x306F;&#x767A;&#x751F;&#x3057;&#x306A;&#x3044;&#x306F;&#x305A;&#x3067;&#x3042;&#x308B;&#x3002;
+ *       &#x3082;&#x3057;&#x3001;&#x6570;&#x5024;&#x304C;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x5834;&#x5408;&#x306B;&#x3082;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x3066;&#x3057;&#x307E;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x3053;&#x306E;&#x95A2;&#x6570;&#x306E;&#x30D0;&#x30B0;&#x3092;&#x4FEE;&#x6B63;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x3002;
+ */
+export const Num2FracStr = number =&gt; {
+  /*
+   * &#x5F15;&#x6570;&#x306E;&#x5024;&#x3092;&#x6587;&#x5B57;&#x5217;&#x5316;
+   */
+  const numStr = String(number);
+
+  /*
+   * &#x6B63;&#x898F;&#x8868;&#x73FE;&#x3067;&#x30DE;&#x30C3;&#x30C1;&#x30F3;&#x30B0;
+   */
+  const match = numStr.match(/^([+-]?)0*([1-9][0-9]*|)(?:\.([0-9]*[1-9]|)0*)?(?:[eE]([+-]?[0-9]+))?$/);
+
+  /*
+   * &#x5F15;&#x6570;&#x306E;&#x578B;&#x304C;&#x9069;&#x5207;&#x306A;&#x5F62;&#x5F0F;&#x3067;&#x306F;&#x306A;&#x3044;&#x5834;&#x5408;&#x2026;
+   */
+  if (!match) {
+    if (typeof number == &quot;number&quot;) {
+      /*
+       * &#x5F15;&#x6570;&#x306E;&#x578B;&#x304C;&#x6570;&#x5024;&#x3067;&#x3042;&#x308C;&#x3070;&#x3001;&#x6587;&#x5B57;&#x5217;&#x5316;&#x3057;&#x305F;&#x5024;&#x3092;&#x305D;&#x306E;&#x307E;&#x307E;&#x8FD4;&#x3059;
+       */
+      return numStr;
+    } else {
+      /*
+       * &#x5F15;&#x6570;&#x306E;&#x578B;&#x304C;&#x6570;&#x5024;&#x3067;&#x306A;&#x3051;&#x308C;&#x3070;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x3059;&#x308B;
+       */
+      throw new Error(`Invalid Number: &quot;${numStr}&quot;`);
+    }
+  }
+
+  /** @type {string} &#x6570;&#x306E;&#x7B26;&#x53F7; */
+  const sign = (match[1] === &quot;-&quot; ? &quot;-&quot; : &quot;&quot;);
+  /** @type {string} &#x4EEE;&#x6570;&#x90E8;&#x306E;&#x6574;&#x6570;&#x90E8; */
+  const mantissa_int = match[2];
+  /** @type {string} &#x4EEE;&#x6570;&#x90E8;&#x306E;&#x5C11;&#x6570;&#x90E8; */
+  const mantissa_frac = (match[3] ? match[3] : &quot;&quot;);
+  /** @type {number} &#x6307;&#x6570;&#x90E8; */
+  const exponent = Number(match[4]);
+
+  let returnValue = &quot;&quot;;
+
+  if (exponent) {
+    /*
+     * exponent&#x304C;undefined&#x3067;&#x306F;&#x306A;&#x304F;&#xFF08;&#x6B63;&#x898F;&#x8868;&#x73FE;&#x3067;&#x6307;&#x6570;&#x90E8;&#x304C;&#x30DE;&#x30C3;&#x30C1;&#x3057;&#x3066;&#x3044;&#x3066;&#xFF09;&#x3001;
+     * &#x304B;&#x3064;&#x3001;0&#x3067;&#x306F;&#x306A;&#x3044;&#x5834;&#x5408;&#x3001;&#x6307;&#x6570;&#x8868;&#x8A18;&#x3068;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B;
+     *
+     * Note: &#x6307;&#x6570;&#x90E8;&#x304C;0&#x306E;&#x5834;&#x5408;&#x3001;&#x3053;&#x3053;&#x3067;&#x51E6;&#x7406;&#x3059;&#x308B;&#x610F;&#x5473;&#x306F;&#x7121;&#x3044;&#x306E;&#x3067;&#x5C11;&#x6570;&#x8868;&#x8A18;&#x3068;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3059;&#x308B;&#x3002;
+     *       &#x3088;&#x3063;&#x3066;&#x3001;&#x6307;&#x6570;&#x90E8;&#x304C;0&#x4EE5;&#x5916;&#x306E;&#x5834;&#x5408;&#x306B;&#x3053;&#x3053;&#x3067;&#x51E6;&#x7406;&#x3059;&#x308B;&#x3002;
+     * Note: undefined&#x306F;&#x6570;&#x5024;&#x5316;&#x3055;&#x308C;&#x308B;&#x3068;NaN&#x306B;&#x306A;&#x308A;&#x3001;false&#x76F8;&#x5F53;&#x3068;&#x306A;&#x308B;&#x3002;
+     *       &#x4E00;&#x65B9;&#x3001;0&#x306E;&#x5834;&#x5408;&#x3082;false&#x76F8;&#x5F53;&#x3068;&#x306A;&#x308B;&#x3002;
+     *       &#x306E;&#x3067;&#x3001;&#x2191;&#x306E;&#x6761;&#x4EF6;&#x6587;&#x306F;&#x30B3;&#x30EC;&#x3067;&#x5408;&#x3063;&#x3066;&#x3044;&#x308B;&#x3002;
+     */
+
+    /** @type {string} */
+    const mantissa_str = mantissa_int + mantissa_frac;
+    /** @type {number} */
+    const mantissa_len = mantissa_str.length;
+
+    if (0 &lt; mantissa_len) {
+      /** @type {number} */
+      const mantissa_int_len = mantissa_int.length + exponent;
+  
+      /*
+      12.145e+7  121450000             ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 9   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x6570;&#x5024;
+      12.145e+6   12145000             ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 8   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x6570;&#x5024;
+      12.145e+5    1214500             ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 7   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x6570;&#x5024;
+      12.145e+4     121450             ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 6   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x6570;&#x5024;
+      12.145e+3      12145             ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 5   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x6570;&#x5024;
+      12.145e+2       1214.5           ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 4   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x6570;&#x5024;
+      12.145e+1        121.45          ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 3   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x6570;&#x5024;
+      12.145e0          12.145         ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 2   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x6570;&#x5024;
+      12.145e-1          1.2145        ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 1   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x6570;&#x5024;
+      12.145e-2          0.12145       ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: 0   ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;
+      12.145e-3          0.012145      ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: -1  ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;
+      12.145e-4          0.0012145     ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: -2  ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;
+      12.145e-5          0.00012145    ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: -3  ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;
+      12.145e-6          0.000012145   ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: -4  ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;
+      12.145e-7          0.0000012145  ;  mantissa_str: &quot;12145&quot;  mantissa_int_len: -5  ;  &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;
+      */
+
+      if (mantissa_len &lt;= mantissa_int_len) {
+        /*
+         * &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x6570;&#x5024;&#xFF08;ex: 0, 12, 176, 1214500&#xFF09;&#x306E;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;
+         */
+        returnValue = mantissa_str.padEnd(mantissa_int_len, &quot;0&quot;);
+
+      } else if (0 &lt; mantissa_int_len) {
+        /*
+         * &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x6570;&#x5024;&#xFF08;ex: 1.26, 1.0009, 121.45&#xFF09;&#x306E;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;
+         */
+        returnValue = mantissa_str.slice(0, mantissa_int_len) + &quot;.&quot; + mantissa_str.slice(mantissa_int_len);
+
+      } else {
+        /*
+         * &#x5C0F;&#x6570;&#x90E8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3001;&#x304B;&#x3064;&#x3001;1&#x672A;&#x6E80;&#x306E;&#x6570;&#x5024;&#xFF08;ex: 0.26, 0.20098, 0.0012145&#xFF09;&#x306E;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;
+         */
+        returnValue = &quot;0.&quot; + &quot;0&quot;.repeat(-mantissa_int_len) + mantissa_str;
+      }
+    }
+
+  } else if (mantissa_frac) {
+    /*
+     * &#x5C11;&#x6570;&#x8868;&#x8A18;&#x306E;&#x5834;&#x5408;
+     */
+    returnValue = (mantissa_int || &quot;0&quot;) + &quot;.&quot; + mantissa_frac;
+
+  } else if (mantissa_int) {
+    /*
+     * &#x6574;&#x6570;&#x8868;&#x8A18;&#x306E;&#x5834;&#x5408;
+     */
+    returnValue = mantissa_int;
+  }
+
+  return (returnValue) ? sign + (
+    returnValue
+      /* &#x5148;&#x982D;&#x306E;&#x4F59;&#x8A08;&#x306A;&#x30BC;&#x30ED;&#x3092;&#x524A;&#x9664; */
+      .replace(/^(?:0(?!\.|$))+/, &quot;&quot;)
+      /* &#x672B;&#x5C3E;&#x306E;&#x4F59;&#x8A08;&#x306A;&#x30BC;&#x30ED;&#x3092;&#x524A;&#x9664; */
+      .replace(/(?:\.0+|(\.[0-9]*[1-9])0+)$/, &quot;$1&quot;)
+  ) : &quot;0&quot;;
+};
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

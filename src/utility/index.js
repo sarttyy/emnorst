@@ -1,49 +1,97 @@
 
-export * from "./is";
-export const gurop = (array, func)=>{
-    result = new Map();
-    for(const value of array){
-        const key = func(value)
-        const values = result.get(key) || [];
-        values.push(value);
-        result.set(key, values);
+export * from "./is/index";
+export * from "./loop/index";
+export * from "./utility";
+export * from "./range";
+export * from "./zip";
+import {forIndex} from "./loop/index";
+// TEMP:
+// export class ArrayLike extends Array {
+//     constructor(){
+//         super();
+//         console.log(this);
+//     }
+// }
+// export class Temp {
+//     constructor(){
+//         this.gen = this.gen.bind(this);
+//         return this.gen;
+//     }
+//     gen(){
+//         console.log(this);
+//         return this.gen;
+//     }
+// }
+// export class Memo {
+//     constructor(func){
+//         this.function = func;
+//         this.existing = new Map();
+//     }
+//     execute(args){
+//         if(this.existing.has(args))
+//             return this.existing.get(args);
+//         const result = execute(this.function, args);
+//         this.existing.set(args, result);
+//         return result;
+//     }
+// }
+// String instruction
+
+
+// eslint-disable-next-line
+export const argument = function(){ return arguments; };
+
+/**
+ * 拡張版分割代入
+ *
+ * @param {object} array
+ * @param {*} classifying
+ * @returns
+ */
+export const restSplit = (array, beforeItem, afterItem=0)=>{
+    const restEndIndex = array.length - afterItem;
+    const rest = array.slice(beforeItem, restEndIndex);
+    array.splice(beforeItem, restEndIndex - beforeItem, rest);
+    return array;
+};
+// const [key, name="the name", ...rest, param{3}] = ArrayLike();
+// [difault, ...]
+// const {key, key: name, ...rest} = ObjectLike();
+// {key: null || name || [name, difault], ...}
+
+export const memoize = (func, effective=Infinity)=>{
+    const newFunc = function(){
+        const prevResult = forOf(newFunc.memo, (fragment, result)=>{
+            if(deepEquals(fragment))
+                return result;
+            return void 0;
+        });
+        if(isUndefined(prevResult))
+            return prevResult;
+        // eslint-disable-next-line prefer-rest-params
+        const result = func.apply(this, arguments);
+        newFunc.memo.set(arguments, result);
+        return result;
+    };
+    if(Array.isArray(effective)){
+        newFunc.memo = new Array(effective.length);
+        forIndex(effective.length, i=>{
+            newFunc.memo[i] = new Map(effective[i]);
+        });
+    }else{
+        const length = substitute([effective,1], v=>!Number.isFinite(v));
+        newFunc.memo = new Array(length);
+        forIndex(length, i=>{
+            newFunc.memo[i] = new Map();
+        });
     }
-    return result;
+    return newFunc;
 };
-export const equals = (...values)=>{
-    // SameValueZero
-    let prev = values.shift();
-    return values.every(value=>(
-        Number.isNaN(prev)?Number.isNaN(prev=value):prev===(prev=value)
-    ));
-};
-export const typeOf = object=>(
-    Object.prototype.toString.call(object).slice(8, -1)
-);
-/*
-FIXME: typeof
-export const typeof = object=>(
-    modules.typeOf(object).toLowerCase()
-);
-TODO: require
-*/
-export const substitute = (value, substitute)=>(
-    modules.isNullorUndefined(value)
-        ? substitute
-        : value
-);
-export const loop = (func, level, arg)=>{
-    for(;level--;)arg = func(arg);
-    return arg;
-};
-export const zip = function* (...arrays){
-    const max = arrays.reduce((length, array)=>(
-        Math.max(length, array.length)
-    ), 0);
-    for(let i=0;max>i;i++){
-        yield arrays.reduce((iarrays, array)=>{
-            iarrays.push(array[i]);
-            return iarrays;
-        }, []);
+
+export class MemoMap {
+    constructor(initValue){
+        this.map = new Map(initValue);
     }
-};
+}
+
+// MEMO: ifs スタック
