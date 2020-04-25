@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/math/calculation.js | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/utility/is/type.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -96,95 +96,137 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/math/calculation.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/is/type.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
-export const add = (number1, number2)=&gt;(
-    number1 + number2
-);
-export const sub = (...numbers)=&gt;{};
-export const mul = (...numbers)=&gt;{};
-export const div = (...numbers)=&gt;{};
-export const abs = number=&gt;(
-    number &lt; 0 ||
-    Object.is(-0, number) ||
-    Object.is(BigInt(-0), number)
-        ? -number : Number(number)
+import {typeOf} from &quot;../index&quot;;
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Undefined
+ */
+export const isUndefined = value=&gt;(
+    value === void 0
 );
 
-export const min = (...args)=&gt;(
-    args.reduce((minValue, value)=&gt;(
-        minValue &lt; value ? minValue : value
-    ), Infinity)
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Null or Undefined
+ */
+export const isNull = value=&gt;(
+    value === null || isUndefined(value)
 );
 
-export const max = (...args)=&gt;(
-    args.reduce((maxValue, value)=&gt;(
-        maxValue &gt; value ? maxValue : value
-    ), -Infinity)
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Boolean
+ */
+export const isBoolean = value=&gt;(
+    typeOf(value) === &quot;Boolean&quot;
 );
 
-// TODO: sin
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is String
+ */
+export const isString = value=&gt;(
+    typeOf(value) === &quot;String&quot;
+);
 
-// TODO: cos
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Number
+ */
+export const isNumber = value=&gt;(
+    typeOf(value) === &quot;Number&quot;
+);
 
-// TODO: tan
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Symbol
+ */
+export const isSymbol = value=&gt;(
+    typeOf(value) === &quot;Symbol&quot;
+);
 
-export const diff = (n1, n2)=&gt;abs(n1-n2);
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Function
+ */
+export const isFunction = value=&gt;(
+    typeOf(value) === &quot;Function&quot;
+);
 
-export const factorial = num=&gt;{
-    if(Number.isNaN(num) || (!Number.isFinite(num) &amp;&amp; typeof num !== &quot;bigint&quot;) || typeof num !== &quot;number&quot; &amp;&amp; typeof num !== &quot;bigint&quot;)
-        return num;
-    for(let i = num;i &gt; 2;num *= --i);
-    return num ? num : ++num;
-};
+/**
+ * @param {*} value The value to be compared
+ * @return Whether typeof is an object and is not Null
+ */
+export const isObject = value=&gt;(
+    typeof value === &quot;object&quot; &amp;&amp; value !== null
+);
 
-// TODO: &#x8907;&#x7D20;&#x6570;
-// export class Complex {}
+/**
+ * @param {*} value The value to be compared
+ * @return Whether properties can be edited
+ */
+export const isObjectLike = value=&gt;(
+    isFunction(value) || isObject(value)
+);
 
-// TODO: &#x30CF;&#x30A4;&#x30D1;&#x30FC;&#x6F14;&#x7B97;
-/*
-package_rei.addModule(&quot;math._hyper&quot;, ({modules})=&gt;(a, n, b=a)=&gt;{
-    switch(n){
-    case 0: return ++b;
-    case 1: return a + b;
-    case 2: return a * b;
-    case 3: return a ** b;
-    default: {
-        if(b === 0)return 1;
-        let prev = a;
-        for(;--b;)
-            prev = modules.math.hyper(a, --n, prev);
-        return prev;
-    }
-    }
-});
-package_rei.addModule(&quot;math.hyper&quot;, ({modules})=&gt;(a, n, b=a)=&gt;{
-    const stack = new modules.Stack();
-    while(1){
-        stack.push(modules.math._hyper);
-        stack.execute();
-    }
-});
-*/
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Arguments
+ */
+export const isArguments = value=&gt;(
+    typeOf(value) === &quot;Arguments&quot;
+);
 
-// TODO: &#x516C;&#x500D;&#x6570;, &#x516C;&#x7D04;&#x6570;
-/*
-package_rei.addModule(&quot;math.ack&quot;, ({modules: {math}})=&gt;(x, y, z)=&gt;{
-    if(math.min(x, y, z) &lt; 0)
-        throw new Error(&quot;Negative argument cannot be specified for Ackermann function&quot;);
-    if(x === 0)return ++y;
-    if(y === 0)return math.ack(--x, 1);
-    return math.ack(--x, math.ack(x, --y));
-}).addModule(&quot;math.Chain&quot;, ()=&gt;class Chain {
-    constructor() {
-        this.chain = [];
-    }
-    chain(num){
-        this.chain.push(num);
-    }
-    sum(){}
-});
-*/
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is RegExp
+ */
+export const isRegExp = value=&gt;(
+    typeOf(value) === &quot;RegExp&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Error
+ */
+export const isError = value=&gt;(
+    typeOf(value) === &quot;Error&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Map
+ */
+export const isMap = value=&gt;(
+    typeOf(value) === &quot;Map&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is WeakMap
+ */
+export const isWeakMap = value=&gt;(
+    typeOf(value) === &quot;WeakMap&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is Set
+ */
+export const isSet = value=&gt;(
+    typeOf(value) === &quot;Set&quot;
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is WeakSet
+ */
+export const isWeakSet = value=&gt;(
+    typeOf(value) === &quot;WeakSet&quot;
+);
 </code></pre>
 
 </div>

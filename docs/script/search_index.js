@@ -60,12 +60,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/command/execute/index.js~command",
-    "function/index.html#static-function-command",
-    "<span>command</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/execute/index.js</span>",
-    "function"
-  ],
-  [
     "reiyayakko-core/src/object/clone/clone.js~copy",
     "function/index.html#static-function-copy",
     "<span>copy</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/clone/clone.js</span>",
@@ -90,12 +84,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/command/index.js~define",
-    "function/index.html#static-function-define",
-    "<span>define</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/index.js</span>",
-    "function"
-  ],
-  [
     "reiyayakko-core/src/math/calculation.js~diff",
     "function/index.html#static-function-diff",
     "<span>diff</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
@@ -108,9 +96,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~dowhile",
+    "reiyayakko-core/src/utility/loop/index.js~dowhile",
     "function/index.html#static-function-doWhile",
-    "<span>doWhile</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>doWhile</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
     "function"
   ],
   [
@@ -120,45 +108,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/command/execute/index.js~evaluate",
-    "function/index.html#static-function-evaluate",
-    "<span>evaluate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/execute/index.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/command/index.js~evaluate",
-    "function/index.html#static-function-evaluate",
-    "<span>evaluate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/index.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/command/index.js~execute",
-    "function/index.html#static-function-execute",
-    "<span>execute</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/index.js</span>",
-    "function"
-  ],
-  [
     "reiyayakko-core/src/math/calculation.js~factorial",
     "function/index.html#static-function-factorial",
     "<span>factorial</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~forin",
+    "reiyayakko-core/src/utility/loop/for.js~forin",
     "function/index.html#static-function-forIn",
-    "<span>forIn</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>forIn</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/for.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~forindex",
+    "reiyayakko-core/src/utility/loop/for.js~forindex",
     "function/index.html#static-function-forIndex",
-    "<span>forIndex</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>forIndex</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/for.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~forof",
+    "reiyayakko-core/src/utility/loop/for.js~forof",
     "function/index.html#static-function-forOf",
-    "<span>forOf</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>forOf</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/for.js</span>",
     "function"
   ],
   [
@@ -180,135 +150,135 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~inorder",
+    "reiyayakko-core/src/utility/loop/index.js~inorder",
     "function/index.html#static-function-inOrder",
-    "<span>inOrder</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>inOrder</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isarguments",
+    "reiyayakko-core/src/utility/is/type.js~isarguments",
     "function/index.html#static-function-isArguments",
-    "<span>isArguments</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isArguments</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isarraylike",
+    "reiyayakko-core/src/utility/is/util.js~isarraylike",
     "function/index.html#static-function-isArrayLike",
-    "<span>isArrayLike</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isArrayLike</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/util.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isboolean",
+    "reiyayakko-core/src/utility/is/type.js~isboolean",
     "function/index.html#static-function-isBoolean",
-    "<span>isBoolean</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isBoolean</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isempty",
+    "reiyayakko-core/src/utility/is/util.js~isempty",
     "function/index.html#static-function-isEmpty",
-    "<span>isEmpty</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isEmpty</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/util.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~iserror",
+    "reiyayakko-core/src/utility/is/type.js~iserror",
     "function/index.html#static-function-isError",
-    "<span>isError</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isError</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isfunction",
+    "reiyayakko-core/src/utility/is/type.js~isfunction",
     "function/index.html#static-function-isFunction",
-    "<span>isFunction</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isFunction</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~ismap",
+    "reiyayakko-core/src/utility/is/type.js~ismap",
     "function/index.html#static-function-isMap",
-    "<span>isMap</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isMap</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isnegative",
+    "reiyayakko-core/src/utility/is/util.js~isnegative",
     "function/index.html#static-function-isNegative",
-    "<span>isNegative</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isNegative</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/util.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isnull",
+    "reiyayakko-core/src/utility/is/type.js~isnull",
     "function/index.html#static-function-isNull",
-    "<span>isNull</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isNull</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isnumber",
+    "reiyayakko-core/src/utility/is/type.js~isnumber",
     "function/index.html#static-function-isNumber",
-    "<span>isNumber</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isNumber</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isobject",
+    "reiyayakko-core/src/utility/is/type.js~isobject",
     "function/index.html#static-function-isObject",
-    "<span>isObject</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isObject</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isobjectlike",
+    "reiyayakko-core/src/utility/is/type.js~isobjectlike",
     "function/index.html#static-function-isObjectLike",
-    "<span>isObjectLike</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isObjectLike</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isregexp",
+    "reiyayakko-core/src/utility/is/type.js~isregexp",
     "function/index.html#static-function-isRegExp",
-    "<span>isRegExp</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isRegExp</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isset",
+    "reiyayakko-core/src/utility/is/type.js~isset",
     "function/index.html#static-function-isSet",
-    "<span>isSet</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isSet</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isstring",
+    "reiyayakko-core/src/utility/is/type.js~isstring",
     "function/index.html#static-function-isString",
-    "<span>isString</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isString</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~issymbol",
+    "reiyayakko-core/src/utility/is/type.js~issymbol",
     "function/index.html#static-function-isSymbol",
-    "<span>isSymbol</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isSymbol</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isthrowerror",
+    "reiyayakko-core/src/utility/is/util.js~isthrowerror",
     "function/index.html#static-function-isThrowError",
-    "<span>isThrowError</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isThrowError</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/util.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isundefined",
+    "reiyayakko-core/src/utility/is/type.js~isundefined",
     "function/index.html#static-function-isUndefined",
-    "<span>isUndefined</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isUndefined</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isweakmap",
+    "reiyayakko-core/src/utility/is/type.js~isweakmap",
     "function/index.html#static-function-isWeakMap",
-    "<span>isWeakMap</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isWeakMap</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/is.js~isweakset",
+    "reiyayakko-core/src/utility/is/type.js~isweakset",
     "function/index.html#static-function-isWeakSet",
-    "<span>isWeakSet</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is.js</span>",
+    "<span>isWeakSet</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~iterate",
+    "reiyayakko-core/src/utility/loop/index.js~iterate",
     "function/index.html#static-function-iterate",
-    "<span>iterate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>iterate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
     "function"
   ],
   [
@@ -336,9 +306,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop.js~previous",
+    "reiyayakko-core/src/utility/loop/index.js~previous",
     "function/index.html#static-function-previous",
-    "<span>previous</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop.js</span>",
+    "<span>previous</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
     "function"
   ],
   [
@@ -399,18 +369,6 @@ window.esdocSearchIndex = [
     "reiyayakko-core/src/utility/utility.js~uniq",
     "function/index.html#static-function-uniq",
     "<span>uniq</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/command/index.js~use",
-    "function/index.html#static-function-use",
-    "<span>use</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/index.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/command/execute/wasm.js~wasm",
-    "function/index.html#static-function-wasm",
-    "<span>wasm</span> <span class=\"search-result-import-path\">reiyayakko-core/src/command/execute/wasm.js</span>",
     "function"
   ],
   [
@@ -702,36 +660,6 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/rip/event.js",
-    "file/src/RIP/event.js.html",
-    "src/RIP/event.js",
-    "file"
-  ],
-  [
-    "src/rip/stack.js",
-    "file/src/RIP/stack.js.html",
-    "src/RIP/stack.js",
-    "file"
-  ],
-  [
-    "src/command/execute/index.js",
-    "file/src/command/execute/index.js.html",
-    "src/command/execute/index.js",
-    "file"
-  ],
-  [
-    "src/command/execute/wasm.js",
-    "file/src/command/execute/wasm.js.html",
-    "src/command/execute/wasm.js",
-    "file"
-  ],
-  [
-    "src/command/index.js",
-    "file/src/command/index.js.html",
-    "src/command/index.js",
-    "file"
-  ],
-  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
@@ -900,15 +828,33 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/utility/is.js",
-    "file/src/utility/is.js.html",
-    "src/utility/is.js",
+    "src/utility/is/index.js",
+    "file/src/utility/is/index.js.html",
+    "src/utility/is/index.js",
     "file"
   ],
   [
-    "src/utility/loop.js",
-    "file/src/utility/loop.js.html",
-    "src/utility/loop.js",
+    "src/utility/is/type.js",
+    "file/src/utility/is/type.js.html",
+    "src/utility/is/type.js",
+    "file"
+  ],
+  [
+    "src/utility/is/util.js",
+    "file/src/utility/is/util.js.html",
+    "src/utility/is/util.js",
+    "file"
+  ],
+  [
+    "src/utility/loop/for.js",
+    "file/src/utility/loop/for.js.html",
+    "src/utility/loop/for.js",
+    "file"
+  ],
+  [
+    "src/utility/loop/index.js",
+    "file/src/utility/loop/index.js.html",
+    "src/utility/loop/index.js",
     "file"
   ],
   [

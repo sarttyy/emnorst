@@ -566,255 +566,6 @@
   {
     "__docId__": 48,
     "kind": "file",
-    "name": "src/command/execute/index.js",
-    "content": "\r\nexport const command = (instruction, prop)=>{\r\n    return JSON.stringify({\r\n        type: \"command\",\r\n        instruction,\r\n        arguments: prop.args\r\n    });\r\n};\r\nexport const evaluate = order=>{\r\n    order = JSON.parse(order);\r\n    switch(order.type){\r\n    case \"command\": {\r\n        break;\r\n    }\r\n    }\r\n};\r\n",
-    "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/command/execute/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 49,
-    "kind": "function",
-    "name": "command",
-    "memberof": "src/command/execute/index.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/execute/index.js~command",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/execute/index.js",
-    "importStyle": "{command}",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "instruction",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "prop",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 50,
-    "kind": "function",
-    "name": "evaluate",
-    "memberof": "src/command/execute/index.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/execute/index.js~evaluate",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/execute/index.js",
-    "importStyle": "{evaluate}",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "params": [
-      {
-        "name": "order",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 51,
-    "kind": "file",
-    "name": "src/command/execute/wasm.js",
-    "content": "\r\n\r\nexport const wasm = ()=>{\r\n    fetch('../main.wasm')\r\n    .then((response)=>response.arrayBuffer())\r\n    .then((bytes)=>WebAssembly.instantiate(bytes, {}))\r\n}\r\n",
-    "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/command/execute/wasm.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 52,
-    "kind": "function",
-    "name": "wasm",
-    "memberof": "src/command/execute/wasm.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/execute/wasm.js~wasm",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/execute/wasm.js",
-    "importStyle": "{wasm}",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [],
-    "return": null
-  },
-  {
-    "__docId__": 53,
-    "kind": "file",
-    "name": "src/command/index.js",
-    "content": "\r\nexport const evaluate = formula=>{\r\n    const order = [...formula].reduce((props, character)=>{\r\n        props.flags.continual\r\n    }, {flags: {}});\r\n    return JSON.stringify({\r\n        type: \"command\",\r\n        command,\r\n        instruction,\r\n        arguments: prop.args\r\n    });\r\n};\r\nconst commands = Object.create(null);\r\nexport const execute = order=>{\r\n    const lisner = commands[order.command];\r\n    lisner.call(null, order.flags);\r\n};\r\nexport const define = (command, props)=>{\r\n    commands[command]\r\n};\r\nexport const use = expansion=>{};\r\n",
-    "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/command/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 54,
-    "kind": "function",
-    "name": "evaluate",
-    "memberof": "src/command/index.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/index.js~evaluate",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/index.js",
-    "importStyle": "{evaluate}",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "formula",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 55,
-    "kind": "variable",
-    "name": "commands",
-    "memberof": "src/command/index.js",
-    "static": true,
-    "longname": "src/command/index.js~commands",
-    "access": "public",
-    "export": false,
-    "importPath": "reiyayakko-core/src/command/index.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 56,
-    "kind": "function",
-    "name": "execute",
-    "memberof": "src/command/index.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/index.js~execute",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/index.js",
-    "importStyle": "{execute}",
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
-    "params": [
-      {
-        "name": "order",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 57,
-    "kind": "function",
-    "name": "define",
-    "memberof": "src/command/index.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/index.js~define",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/index.js",
-    "importStyle": "{define}",
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "params": [
-      {
-        "name": "command",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "props",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 58,
-    "kind": "function",
-    "name": "use",
-    "memberof": "src/command/index.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/command/index.js~use",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/command/index.js",
-    "importStyle": "{use}",
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "params": [
-      {
-        "name": "expansion",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 59,
-    "kind": "file",
     "name": "src/index.js",
     "content": "\r\n// eslint-disable-next-line spaced-comment\r\n/*!\r\n * reiyayakko-core\r\n * Copyright 2020 reiyayakko\r\n */\r\n\r\n/*\r\nexport const Reiyayakko = function Reiyayakko(){\r\n    \"use strict\";\r\n    if(this === void 0){\r\n        // function\r\n        return modules.execute.reiyayakko(arguments);\r\n    }\r\n    // constructor\r\n    modules.init.execute.apply(this, arguments);\r\n};\r\nexport const R = Reiyayakko;\r\n*/\r\n// export const env = {\r\n//     version: \"1.0.0\",\r\n// };\r\n// export * as command from \"./command/index.js\";\r\nimport * as utility from \"./utility/index.js\";\r\nimport * as object from \"./object/index.js\";\r\nimport * as math from \"./math/index.js\";\r\nexport {utility, object, math};\r\n",
     "static": true,
@@ -824,10 +575,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 60,
+    "__docId__": 49,
     "kind": "file",
     "name": "src/lib/Num2DecStr.js",
-    "content": "/**\n * 数値を整数・少数表記に変換する。\n * 内部的には、指数表記の文字列をパースし、小数表記に変換している。\n *\n * @param {number|string} number 変換したい数値、または数値形式の文字列。\n *     数値型であればNaNやInfinityも指定できるが、そのまま文字列化して返される。\n * @return {string} 小数表記の数値文字列\n * @throws 適切な形式の数値、または文字列が与えられなかった場合に発生する。\n *\n * Note: この関数は、JavaScriptで正確な数値演算を行うために使う**べきではない**。\n *       この関数でなければ変換できない数値は、JavaScriptの内部データの時点で誤差が発生しており、正確な演算は期待できない。\n *       また、この関数によって変換された数値が厳密に正しい事も保証しない。\n *       この関数は、JavaScriptで生成した数値を「見やすく表示する」ためにのみ使用するべきである。\n * Note: この関数の設計が正しければ（つまり、バグが無ければ）、エラーが発生するのは誤った形式の文字列を与えられた場合のみとなる。\n *       逆に言えば、数値のプリミティブ型が与えられた場合は、いかなる場合でもエラーは発生しないはずである。\n *       もし、数値が与えられた場合にもエラーが発生してしまった場合は、この関数のバグを修正する必要がある。\n */\nexport const Num2FracStr = number => {\n  /*\n   * 引数の値を文字列化\n   */\n  const numStr = String(number);\n\n  /*\n   * 正規表現でマッチング\n   */\n  const match = numStr.match(/^([+-]?)0*([1-9][0-9]*|)(?:\\.([0-9]*[1-9]|)0*)?(?:[eE]([+-]?[0-9]+))?$/);\n\n  /*\n   * 引数の型が適切な形式ではない場合…\n   */\n  if (!match) {\n    if (typeof number == \"number\") {\n      /*\n       * 引数の型が数値であれば、文字列化した値をそのまま返す\n       */\n      return numStr;\n    } else {\n      /*\n       * 引数の型が数値でなければ、エラーにする\n       */\n      throw new Error(`Invalid Number: \"${numStr}\"`);\n    }\n  }\n\n  /** @type {string} 数の符号 */\n  const sign = (match[1] === \"-\" ? \"-\" : \"\");\n  /** @type {string} 仮数部の整数部 */\n  const mantissa_int = match[2];\n  /** @type {string} 仮数部の少数部 */\n  const mantissa_frac = (match[3] ? match[3] : \"\");\n  /** @type {number} 指数部 */\n  const exponent = Number(match[4]);\n\n  let returnValue = \"\";\n\n  if (exponent) {\n    /*\n     * exponentがundefinedではなく（正規表現で指数部がマッチしていて）、\n     * かつ、0ではない場合、指数表記として処理を開始する\n     *\n     * Note: 指数部が0の場合、ここで処理する意味は無いので少数表記として処理する。\n     *       よって、指数部が0以外の場合にここで処理する。\n     * Note: undefinedは数値化されるとNaNになり、false相当となる。\n     *       一方、0の場合もfalse相当となる。\n     *       ので、↑の条件文はコレで合っている。\n     */\n\n    /** @type {string} */\n    const mantissa_str = mantissa_int + mantissa_frac;\n    /** @type {number} */\n    const mantissa_len = mantissa_str.length;\n\n    if (0 < mantissa_len) {\n      /** @type {number} */\n      const mantissa_int_len = mantissa_int.length + exponent;\n  \n      /*\n      12.145e+7  121450000             ;  mantissa_str: \"12145\"  mantissa_int_len: 9   ;  小数部が存在しない数値\n      12.145e+6   12145000             ;  mantissa_str: \"12145\"  mantissa_int_len: 8   ;  小数部が存在しない数値\n      12.145e+5    1214500             ;  mantissa_str: \"12145\"  mantissa_int_len: 7   ;  小数部が存在しない数値\n      12.145e+4     121450             ;  mantissa_str: \"12145\"  mantissa_int_len: 6   ;  小数部が存在しない数値\n      12.145e+3      12145             ;  mantissa_str: \"12145\"  mantissa_int_len: 5   ;  小数部が存在しない数値\n      12.145e+2       1214.5           ;  mantissa_str: \"12145\"  mantissa_int_len: 4   ;  小数部が存在し、かつ、1より大きい数値\n      12.145e+1        121.45          ;  mantissa_str: \"12145\"  mantissa_int_len: 3   ;  小数部が存在し、かつ、1より大きい数値\n      12.145e0          12.145         ;  mantissa_str: \"12145\"  mantissa_int_len: 2   ;  小数部が存在し、かつ、1より大きい数値\n      12.145e-1          1.2145        ;  mantissa_str: \"12145\"  mantissa_int_len: 1   ;  小数部が存在し、かつ、1より大きい数値\n      12.145e-2          0.12145       ;  mantissa_str: \"12145\"  mantissa_int_len: 0   ;  小数部が存在し、かつ、1未満の数値\n      12.145e-3          0.012145      ;  mantissa_str: \"12145\"  mantissa_int_len: -1  ;  小数部が存在し、かつ、1未満の数値\n      12.145e-4          0.0012145     ;  mantissa_str: \"12145\"  mantissa_int_len: -2  ;  小数部が存在し、かつ、1未満の数値\n      12.145e-5          0.00012145    ;  mantissa_str: \"12145\"  mantissa_int_len: -3  ;  小数部が存在し、かつ、1未満の数値\n      12.145e-6          0.000012145   ;  mantissa_str: \"12145\"  mantissa_int_len: -4  ;  小数部が存在し、かつ、1未満の数値\n      12.145e-7          0.0000012145  ;  mantissa_str: \"12145\"  mantissa_int_len: -5  ;  小数部が存在し、かつ、1未満の数値\n      */\n\n      if (mantissa_len <= mantissa_int_len) {\n        /*\n         * 小数部が存在しない数値（ex: 0, 12, 176, 1214500）の場合の処理\n         */\n        returnValue = mantissa_str.padEnd(mantissa_int_len, \"0\");\n\n      } else if (0 < mantissa_int_len) {\n        /*\n         * 小数部が存在し、かつ、1より大きい数値（ex: 1.26, 1.0009, 121.45）の場合の処理\n         */\n        returnValue = mantissa_str.slice(0, mantissa_int_len) + \".\" + mantissa_str.slice(mantissa_int_len);\n\n      } else {\n        /*\n         * 小数部が存在し、かつ、1未満の数値（ex: 0.26, 0.20098, 0.0012145）の場合の処理\n         */\n        returnValue = \"0.\" + \"0\".repeat(-mantissa_int_len) + mantissa_str;\n      }\n    }\n\n  } else if (mantissa_frac) {\n    /*\n     * 少数表記の場合\n     */\n    returnValue = (mantissa_int || \"0\") + \".\" + mantissa_frac;\n\n  } else if (mantissa_int) {\n    /*\n     * 整数表記の場合\n     */\n    returnValue = mantissa_int;\n  }\n\n  return (returnValue) ? sign + (\n    returnValue\n      /* 先頭の余計なゼロを削除 */\n      .replace(/^(?:0(?!\\.|$))+/, \"\")\n      /* 末尾の余計なゼロを削除 */\n      .replace(/(?:\\.0+|(\\.[0-9]*[1-9])0+)$/, \"$1\")\n  ) : \"0\";\n};\n\n",
+    "content": "/**\r\n * 数値を整数・少数表記に変換する。\r\n * 内部的には、指数表記の文字列をパースし、小数表記に変換している。\r\n *\r\n * @param {number|string} number 変換したい数値、または数値形式の文字列。\r\n *     数値型であればNaNやInfinityも指定できるが、そのまま文字列化して返される。\r\n * @return {string} 小数表記の数値文字列\r\n * @throws 適切な形式の数値、または文字列が与えられなかった場合に発生する。\r\n *\r\n * Note: この関数は、JavaScriptで正確な数値演算を行うために使う**べきではない**。\r\n *       この関数でなければ変換できない数値は、JavaScriptの内部データの時点で誤差が発生しており、正確な演算は期待できない。\r\n *       また、この関数によって変換された数値が厳密に正しい事も保証しない。\r\n *       この関数は、JavaScriptで生成した数値を「見やすく表示する」ためにのみ使用するべきである。\r\n * Note: この関数の設計が正しければ（つまり、バグが無ければ）、エラーが発生するのは誤った形式の文字列を与えられた場合のみとなる。\r\n *       逆に言えば、数値のプリミティブ型が与えられた場合は、いかなる場合でもエラーは発生しないはずである。\r\n *       もし、数値が与えられた場合にもエラーが発生してしまった場合は、この関数のバグを修正する必要がある。\r\n */\r\nexport const Num2FracStr = number => {\r\n  /*\r\n   * 引数の値を文字列化\r\n   */\r\n  const numStr = String(number);\r\n\r\n  /*\r\n   * 正規表現でマッチング\r\n   */\r\n  const match = numStr.match(/^([+-]?)0*([1-9][0-9]*|)(?:\\.([0-9]*[1-9]|)0*)?(?:[eE]([+-]?[0-9]+))?$/);\r\n\r\n  /*\r\n   * 引数の型が適切な形式ではない場合…\r\n   */\r\n  if (!match) {\r\n    if (typeof number == \"number\") {\r\n      /*\r\n       * 引数の型が数値であれば、文字列化した値をそのまま返す\r\n       */\r\n      return numStr;\r\n    } else {\r\n      /*\r\n       * 引数の型が数値でなければ、エラーにする\r\n       */\r\n      throw new Error(`Invalid Number: \"${numStr}\"`);\r\n    }\r\n  }\r\n\r\n  /** @type {string} 数の符号 */\r\n  const sign = (match[1] === \"-\" ? \"-\" : \"\");\r\n  /** @type {string} 仮数部の整数部 */\r\n  const mantissa_int = match[2];\r\n  /** @type {string} 仮数部の少数部 */\r\n  const mantissa_frac = (match[3] ? match[3] : \"\");\r\n  /** @type {number} 指数部 */\r\n  const exponent = Number(match[4]);\r\n\r\n  let returnValue = \"\";\r\n\r\n  if (exponent) {\r\n    /*\r\n     * exponentがundefinedではなく（正規表現で指数部がマッチしていて）、\r\n     * かつ、0ではない場合、指数表記として処理を開始する\r\n     *\r\n     * Note: 指数部が0の場合、ここで処理する意味は無いので少数表記として処理する。\r\n     *       よって、指数部が0以外の場合にここで処理する。\r\n     * Note: undefinedは数値化されるとNaNになり、false相当となる。\r\n     *       一方、0の場合もfalse相当となる。\r\n     *       ので、↑の条件文はコレで合っている。\r\n     */\r\n\r\n    /** @type {string} */\r\n    const mantissa_str = mantissa_int + mantissa_frac;\r\n    /** @type {number} */\r\n    const mantissa_len = mantissa_str.length;\r\n\r\n    if (0 < mantissa_len) {\r\n      /** @type {number} */\r\n      const mantissa_int_len = mantissa_int.length + exponent;\r\n  \r\n      /*\r\n      12.145e+7  121450000             ;  mantissa_str: \"12145\"  mantissa_int_len: 9   ;  小数部が存在しない数値\r\n      12.145e+6   12145000             ;  mantissa_str: \"12145\"  mantissa_int_len: 8   ;  小数部が存在しない数値\r\n      12.145e+5    1214500             ;  mantissa_str: \"12145\"  mantissa_int_len: 7   ;  小数部が存在しない数値\r\n      12.145e+4     121450             ;  mantissa_str: \"12145\"  mantissa_int_len: 6   ;  小数部が存在しない数値\r\n      12.145e+3      12145             ;  mantissa_str: \"12145\"  mantissa_int_len: 5   ;  小数部が存在しない数値\r\n      12.145e+2       1214.5           ;  mantissa_str: \"12145\"  mantissa_int_len: 4   ;  小数部が存在し、かつ、1より大きい数値\r\n      12.145e+1        121.45          ;  mantissa_str: \"12145\"  mantissa_int_len: 3   ;  小数部が存在し、かつ、1より大きい数値\r\n      12.145e0          12.145         ;  mantissa_str: \"12145\"  mantissa_int_len: 2   ;  小数部が存在し、かつ、1より大きい数値\r\n      12.145e-1          1.2145        ;  mantissa_str: \"12145\"  mantissa_int_len: 1   ;  小数部が存在し、かつ、1より大きい数値\r\n      12.145e-2          0.12145       ;  mantissa_str: \"12145\"  mantissa_int_len: 0   ;  小数部が存在し、かつ、1未満の数値\r\n      12.145e-3          0.012145      ;  mantissa_str: \"12145\"  mantissa_int_len: -1  ;  小数部が存在し、かつ、1未満の数値\r\n      12.145e-4          0.0012145     ;  mantissa_str: \"12145\"  mantissa_int_len: -2  ;  小数部が存在し、かつ、1未満の数値\r\n      12.145e-5          0.00012145    ;  mantissa_str: \"12145\"  mantissa_int_len: -3  ;  小数部が存在し、かつ、1未満の数値\r\n      12.145e-6          0.000012145   ;  mantissa_str: \"12145\"  mantissa_int_len: -4  ;  小数部が存在し、かつ、1未満の数値\r\n      12.145e-7          0.0000012145  ;  mantissa_str: \"12145\"  mantissa_int_len: -5  ;  小数部が存在し、かつ、1未満の数値\r\n      */\r\n\r\n      if (mantissa_len <= mantissa_int_len) {\r\n        /*\r\n         * 小数部が存在しない数値（ex: 0, 12, 176, 1214500）の場合の処理\r\n         */\r\n        returnValue = mantissa_str.padEnd(mantissa_int_len, \"0\");\r\n\r\n      } else if (0 < mantissa_int_len) {\r\n        /*\r\n         * 小数部が存在し、かつ、1より大きい数値（ex: 1.26, 1.0009, 121.45）の場合の処理\r\n         */\r\n        returnValue = mantissa_str.slice(0, mantissa_int_len) + \".\" + mantissa_str.slice(mantissa_int_len);\r\n\r\n      } else {\r\n        /*\r\n         * 小数部が存在し、かつ、1未満の数値（ex: 0.26, 0.20098, 0.0012145）の場合の処理\r\n         */\r\n        returnValue = \"0.\" + \"0\".repeat(-mantissa_int_len) + mantissa_str;\r\n      }\r\n    }\r\n\r\n  } else if (mantissa_frac) {\r\n    /*\r\n     * 少数表記の場合\r\n     */\r\n    returnValue = (mantissa_int || \"0\") + \".\" + mantissa_frac;\r\n\r\n  } else if (mantissa_int) {\r\n    /*\r\n     * 整数表記の場合\r\n     */\r\n    returnValue = mantissa_int;\r\n  }\r\n\r\n  return (returnValue) ? sign + (\r\n    returnValue\r\n      /* 先頭の余計なゼロを削除 */\r\n      .replace(/^(?:0(?!\\.|$))+/, \"\")\r\n      /* 末尾の余計なゼロを削除 */\r\n      .replace(/(?:\\.0+|(\\.[0-9]*[1-9])0+)$/, \"$1\")\r\n  ) : \"0\";\r\n};\r\n\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/lib/Num2DecStr.js",
     "access": "public",
@@ -835,7 +586,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 61,
+    "__docId__": 50,
     "kind": "function",
     "name": "Num2FracStr",
     "memberof": "src/lib/Num2DecStr.js",
@@ -880,7 +631,7 @@
     ]
   },
   {
-    "__docId__": 62,
+    "__docId__": 51,
     "kind": "file",
     "name": "src/math/bigfloat.js",
     "content": "\r\nexport {Num2FracStr as NumToStr} from \"../lib/Num2DecStr\";\r\n\r\n// NOTE: 有効桁数\r\nexport const Num = number=>{\r\n    if(typeof number === \"number\");\r\n    const [integer, decimal] = String(number).split(\".\");\r\n    return {integer, decimal, negative};\r\n};\r\nexport class BigFloat {\r\n    constructor(number){\r\n        const [integer, decimal] = Num2FracStr(number).split(\".\");\r\n        this.integer = integer || \"\";\r\n        this.decimal = decimal || \"\";\r\n        this.negative = false;\r\n    }\r\n    toString(){\r\n        const number = this.integer + (this.decimal && \".\" + this.decimal);\r\n        return (this.negative ? \"-\" : \"+\").concat(number);\r\n    }\r\n    _typeCheck(valuue){\r\n        return Number.isNaN(valuue)\r\n            || (\r\n                typeof valuue !== \"string\"\r\n                && !Number.isFinite(valuue)\r\n            )\r\n    }\r\n    add(number){\r\n        if(this._typeCheck(number))return this;\r\n        const bigfloat = number instanceof BigFloat\r\n            ? number : new BigFloat(number);\r\n        let carry = false;\r\n        const integerLength = Math.max(bigfloat.integer.length, this.integer.length);\r\n        const decimalLength = Math.max(bigfloat.decimal.length, this.decimal.length);\r\n        const number1 = [\r\n            ...this.integer.padStart(integerLength, \"0\"),\r\n            ...[...this.decimal.padEnd(decimalLength, \"0\")].reverse()\r\n        ];\r\n        const number2 = [\r\n            ...bigfloat.integer.padStart(integerLength, \"0\"),\r\n            ...[...bigfloat.decimal.padEnd(decimalLength, \"0\")].reverse()\r\n        ];\r\n        console.log({number1, number2, integerLength, decimalLength})\r\n        const num = [...rei.utility.zip(number1, number2)].reduceRight((total, [dec1, dec2])=>{\r\n            let subtotal = Number(dec1) + Number(dec2) + carry;\r\n            carry = subtotal >= 10;\r\n            if(carry)subtotal = Number(subtotal) - 10;\r\n            return String(subtotal).concat(total);\r\n        }, \"\");\r\n        console.log(carry)\r\n        this.integer = (carry ? \"1\" : \"\") + (decimalLength ? num.slice(0, -decimalLength) : num);\r\n        this.decimal = decimalLength ? num.slice(-decimalLength) : \"\";\r\n        return this;\r\n    }\r\n    sub(number){\r\n        if(this._typeCheck(number))return this;\r\n        const bigfloat = new BigFloat(number);\r\n        let carry = false;\r\n        return this;\r\n    }\r\n    mul(...numbers){\r\n        for(const number of numbers){\r\n            if(this._typeCheck(number))continue;\r\n        }\r\n        return this;\r\n    }\r\n    div(...numbers){\r\n        for(const number of numbers){\r\n            if(this._typeCheck(number))continue;\r\n        }\r\n        return this;\r\n    }\r\n    sur(number){\r\n        return this;\r\n    }\r\n    static eval(formula){\r\n        for(const character of formula){\r\n            if(character === \"\\s\")\r\n                continue;\r\n        }\r\n    }\r\n}\r\n",
@@ -891,7 +642,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 63,
+    "__docId__": 52,
     "kind": "function",
     "name": "Num",
     "memberof": "src/math/bigfloat.js",
@@ -921,7 +672,7 @@
     }
   },
   {
-    "__docId__": 64,
+    "__docId__": 53,
     "kind": "class",
     "name": "BigFloat",
     "memberof": "src/math/bigfloat.js",
@@ -937,7 +688,7 @@
     "interface": false
   },
   {
-    "__docId__": 65,
+    "__docId__": 54,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -951,7 +702,7 @@
     "undocument": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 55,
     "kind": "member",
     "name": "integer",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -968,7 +719,7 @@
     }
   },
   {
-    "__docId__": 67,
+    "__docId__": 56,
     "kind": "member",
     "name": "decimal",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -985,7 +736,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 57,
     "kind": "member",
     "name": "negative",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1002,7 +753,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 58,
     "kind": "method",
     "name": "toString",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1022,7 +773,7 @@
     }
   },
   {
-    "__docId__": 70,
+    "__docId__": 59,
     "kind": "method",
     "name": "_typeCheck",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1049,7 +800,7 @@
     }
   },
   {
-    "__docId__": 71,
+    "__docId__": 60,
     "kind": "method",
     "name": "add",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1076,7 +827,7 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 63,
     "kind": "method",
     "name": "sub",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1103,7 +854,7 @@
     }
   },
   {
-    "__docId__": 75,
+    "__docId__": 64,
     "kind": "method",
     "name": "mul",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1131,7 +882,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 65,
     "kind": "method",
     "name": "div",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1159,7 +910,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 66,
     "kind": "method",
     "name": "sur",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1186,7 +937,7 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 67,
     "kind": "method",
     "name": "eval",
     "memberof": "src/math/bigfloat.js~BigFloat",
@@ -1209,7 +960,7 @@
     "return": null
   },
   {
-    "__docId__": 79,
+    "__docId__": 68,
     "kind": "file",
     "name": "src/math/calculation.js",
     "content": "\r\nexport const add = (number1, number2)=>(\r\n    number1 + number2\r\n);\r\nexport const sub = (...numbers)=>{};\r\nexport const mul = (...numbers)=>{};\r\nexport const div = (...numbers)=>{};\r\nexport const abs = number=>(\r\n    number < 0 ||\r\n    Object.is(-0, number) ||\r\n    Object.is(BigInt(-0), number)\r\n        ? -number : Number(number)\r\n);\r\n\r\nexport const min = (...args)=>(\r\n    args.reduce((minValue, value)=>(\r\n        minValue < value ? minValue : value\r\n    ), Infinity)\r\n);\r\n\r\nexport const max = (...args)=>(\r\n    args.reduce((maxValue, value)=>(\r\n        maxValue > value ? maxValue : value\r\n    ), -Infinity)\r\n);\r\n\r\n// TODO: sin\r\n\r\n// TODO: cos\r\n\r\n// TODO: tan\r\n\r\nexport const diff = (n1, n2)=>abs(n1-n2);\r\n\r\nexport const factorial = num=>{\r\n    if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== \"bigint\") || typeof num !== \"number\" && typeof num !== \"bigint\")\r\n        return num;\r\n    for(let i = num;i > 2;num *= --i);\r\n    return num ? num : ++num;\r\n};\r\n\r\n// TODO: 複素数\r\n// export class Complex {}\r\n\r\n// TODO: ハイパー演算\r\n/*\r\npackage_rei.addModule(\"math._hyper\", ({modules})=>(a, n, b=a)=>{\r\n    switch(n){\r\n    case 0: return ++b;\r\n    case 1: return a + b;\r\n    case 2: return a * b;\r\n    case 3: return a ** b;\r\n    default: {\r\n        if(b === 0)return 1;\r\n        let prev = a;\r\n        for(;--b;)\r\n            prev = modules.math.hyper(a, --n, prev);\r\n        return prev;\r\n    }\r\n    }\r\n});\r\npackage_rei.addModule(\"math.hyper\", ({modules})=>(a, n, b=a)=>{\r\n    const stack = new modules.Stack();\r\n    while(1){\r\n        stack.push(modules.math._hyper);\r\n        stack.execute();\r\n    }\r\n});\r\n*/\r\n\r\n// TODO: 公倍数, 公約数\r\n/*\r\npackage_rei.addModule(\"math.ack\", ({modules: {math}})=>(x, y, z)=>{\r\n    if(math.min(x, y, z) < 0)\r\n        throw new Error(\"Negative argument cannot be specified for Ackermann function\");\r\n    if(x === 0)return ++y;\r\n    if(y === 0)return math.ack(--x, 1);\r\n    return math.ack(--x, math.ack(x, --y));\r\n}).addModule(\"math.Chain\", ()=>class Chain {\r\n    constructor() {\r\n        this.chain = [];\r\n    }\r\n    chain(num){\r\n        this.chain.push(num);\r\n    }\r\n    sum(){}\r\n});\r\n*/\r\n",
@@ -1220,7 +971,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 80,
+    "__docId__": 69,
     "kind": "function",
     "name": "add",
     "memberof": "src/math/calculation.js",
@@ -1252,7 +1003,7 @@
     "return": null
   },
   {
-    "__docId__": 81,
+    "__docId__": 70,
     "kind": "function",
     "name": "sub",
     "memberof": "src/math/calculation.js",
@@ -1279,7 +1030,7 @@
     "return": null
   },
   {
-    "__docId__": 82,
+    "__docId__": 71,
     "kind": "function",
     "name": "mul",
     "memberof": "src/math/calculation.js",
@@ -1306,7 +1057,7 @@
     "return": null
   },
   {
-    "__docId__": 83,
+    "__docId__": 72,
     "kind": "function",
     "name": "div",
     "memberof": "src/math/calculation.js",
@@ -1333,7 +1084,7 @@
     "return": null
   },
   {
-    "__docId__": 84,
+    "__docId__": 73,
     "kind": "function",
     "name": "abs",
     "memberof": "src/math/calculation.js",
@@ -1359,7 +1110,7 @@
     "return": null
   },
   {
-    "__docId__": 85,
+    "__docId__": 74,
     "kind": "function",
     "name": "min",
     "memberof": "src/math/calculation.js",
@@ -1386,7 +1137,7 @@
     "return": null
   },
   {
-    "__docId__": 86,
+    "__docId__": 75,
     "kind": "function",
     "name": "max",
     "memberof": "src/math/calculation.js",
@@ -1413,7 +1164,7 @@
     "return": null
   },
   {
-    "__docId__": 87,
+    "__docId__": 76,
     "kind": "function",
     "name": "diff",
     "memberof": "src/math/calculation.js",
@@ -1445,7 +1196,7 @@
     "return": null
   },
   {
-    "__docId__": 88,
+    "__docId__": 77,
     "kind": "function",
     "name": "factorial",
     "memberof": "src/math/calculation.js",
@@ -1475,7 +1226,7 @@
     }
   },
   {
-    "__docId__": 89,
+    "__docId__": 78,
     "kind": "file",
     "name": "src/math/index.js",
     "content": "\r\nexport * from \"./bigfloat\";\r\nexport * from \"./calculation\";\r\nexport * from \"./sequence\";\r\n",
@@ -1486,7 +1237,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 90,
+    "__docId__": 79,
     "kind": "file",
     "name": "src/object/clone/clone.js",
     "content": "\r\nconst copyObject = (modules, object, cloneObject)=>{\r\n    const propKeys = modules.getAllKeys(object);\r\n    const prototype = Object.getPrototypeOf(object);\r\n    object = propKeys.reduce((propertiesObject, propKey) => {\r\n        const prop = Object.getOwnPropertyDescriptor(object, propKey);\r\n        if (prop.hasOwnProperty(\"value\"))\r\n            prop.value = modules.cloneMod(prop.value, cloneObject);\r\n        Object.defineProperty(propertiesObject, propKey, prop);\r\n        return propertiesObject;\r\n    }, Object.create(prototype));\r\n    return object;\r\n};\r\nexport const copy = cloneObject=>{\r\n    console.log(`type: '${cloneObject.type}'`, [cloneObject.value]);\r\n    let object = cloneObject.value;\r\n    // primitive type, function\r\n    if(typeof object !== \"object\")\r\n        return cloneObject;\r\n    switch(cloneObject.type){\r\n    case \"object\": { // {}, new Object, new Foo etc...\r\n        object = copyObject(modules, object, cloneObject);\r\n        break;\r\n    }\r\n    case \"array\": // [], new Array\r\n        object = object.map(value=>modules.cloneMod(value, cloneObject));\r\n        break;\r\n    case \"number\": // new Number\r\n        return new Number(object);\r\n    case \"string\": // new String\r\n        return new String(object);\r\n    case \"boolean\": // new Boolean\r\n        return new Boolean(object);\r\n    case \"bigint\": // Object(BigInt())\r\n        return object.valueOf();\r\n    case \"regexp\": // /regexp/, new RegExp\r\n        return new RegExp(object);\r\n    case \"null\": // null\r\n        object = null;\r\n        break;\r\n    case \"date\": return new Date(object);\r\n    case \"map\": {\r\n        const map = new Map();\r\n        for(const [key, value] of object)\r\n            map.set(key, modules.clone(value));\r\n        return map;\r\n    }\r\n    case \"weakmap\": {\r\n        const map = new WeakMap();\r\n        for(const [key, value] of object)\r\n            map.set(key, modules.clone(value));\r\n        return map;\r\n    }\r\n    case \"set\": return new Set(object);\r\n    case \"weakset\": return new WeakSet(object);\r\n    default:\r\n        return null;\r\n    }\r\n    cloneObject.object = object;\r\n    return cloneObject;\r\n};\r\n",
@@ -1497,7 +1248,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 91,
+    "__docId__": 80,
     "kind": "function",
     "name": "copyObject",
     "memberof": "src/object/clone/clone.js",
@@ -1540,7 +1291,7 @@
     "ignore": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 81,
     "kind": "function",
     "name": "copy",
     "memberof": "src/object/clone/clone.js",
@@ -1570,7 +1321,7 @@
     }
   },
   {
-    "__docId__": 93,
+    "__docId__": 82,
     "kind": "file",
     "name": "src/object/clone/index.js",
     "content": "\r\nimport {undertake} from \"./recursive\";\r\n\r\nexport const clone = (object, depth=0)=>(\r\n    undertake(object, depth)\r\n);\r\n",
@@ -1581,7 +1332,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 94,
+    "__docId__": 83,
     "kind": "function",
     "name": "clone",
     "memberof": "src/object/clone/index.js",
@@ -1616,7 +1367,7 @@
     "return": null
   },
   {
-    "__docId__": 95,
+    "__docId__": 84,
     "kind": "file",
     "name": "src/object/clone/recursive.js",
     "content": "\r\nimport {copy} from \"./clone\";\r\n\r\nclass CloneObject {\r\n    constructor(cloneObject, props = {}){\r\n        this.value = cloneObject;\r\n        this.existingObjects = props.existingObjects || new WeakSet();\r\n        this.isDone = false;\r\n    }\r\n    done(){\r\n        this.isDone = true;\r\n        return this.value;\r\n    }\r\n    get isExisting(){\r\n        return this.existingObjects.has(this.value);\r\n    }\r\n    get type(){\r\n        return typeOf(this.value);\r\n    }\r\n}\r\n\r\nexport const undertake = (object, props)=>{\r\n    object = new CloneObject(object, props);\r\n    if(object.isExisting)\r\n        return object.done();\r\n    console.groupCollapsed(`type: '${object.type}'`, object.value);\r\n    object.existingObjects.push(object.value);\r\n    const cloneObject = copy(object);\r\n    cloneObject.existingObjects.push(cloneObject.value);\r\n    console.log(cloneObject.existingObjects);\r\n    console.groupEnd();\r\n    return cloneObject.done();\r\n};\r\n",
@@ -1627,7 +1378,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 96,
+    "__docId__": 85,
     "kind": "class",
     "name": "CloneObject",
     "memberof": "src/object/clone/recursive.js",
@@ -1644,7 +1395,7 @@
     "ignore": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 86,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1658,7 +1409,7 @@
     "undocument": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 87,
     "kind": "member",
     "name": "value",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1675,7 +1426,7 @@
     }
   },
   {
-    "__docId__": 99,
+    "__docId__": 88,
     "kind": "member",
     "name": "existingObjects",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1692,7 +1443,7 @@
     }
   },
   {
-    "__docId__": 100,
+    "__docId__": 89,
     "kind": "member",
     "name": "isDone",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1709,7 +1460,7 @@
     }
   },
   {
-    "__docId__": 101,
+    "__docId__": 90,
     "kind": "method",
     "name": "done",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1729,7 +1480,7 @@
     }
   },
   {
-    "__docId__": 103,
+    "__docId__": 92,
     "kind": "get",
     "name": "isExisting",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1748,7 +1499,7 @@
     }
   },
   {
-    "__docId__": 104,
+    "__docId__": 93,
     "kind": "get",
     "name": "type",
     "memberof": "src/object/clone/recursive.js~CloneObject",
@@ -1767,7 +1518,7 @@
     }
   },
   {
-    "__docId__": 105,
+    "__docId__": 94,
     "kind": "function",
     "name": "undertake",
     "memberof": "src/object/clone/recursive.js",
@@ -1803,7 +1554,7 @@
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 95,
     "kind": "file",
     "name": "src/object/clone.js",
     "content": "\r\nimport {deepBase} from \"./deepBase\";\r\nimport {substitute} from \"../utility/index\";\r\n\r\nexport const _ = (object, depth)=>{\r\n    const result = {};\r\n    let temp = result;\r\n    let temp2 = object;\r\n    deepBase(object, {\r\n        propFunc(o, propName){\r\n            temp[propName] = o[propName];\r\n        },\r\n        propStructure(o, propName){\r\n            temp[propName] = temp[propName] || {};\r\n            temp = temp[propName];\r\n        },\r\n        structureFunc(...r){\r\n            console.log(r);\r\n        },\r\n        depth: substitute([depth, Infinity])\r\n    });\r\n    return result;\r\n};\r\n",
@@ -1814,7 +1565,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 107,
+    "__docId__": 96,
     "kind": "function",
     "name": "_",
     "memberof": "src/object/clone.js",
@@ -1850,7 +1601,7 @@
     }
   },
   {
-    "__docId__": 108,
+    "__docId__": 97,
     "kind": "file",
     "name": "src/object/equals.js",
     "content": "\r\nimport * as utility from \"../utility/index\";\r\nconst deepEqual = ([value, other])=>{\r\n    const type = utility.typeOf(value);\r\n    if(type !== utility.typeOf(other))\r\n        return false;\r\n    if(typeof value === \"object\"){\r\n        const zip = utility.zip(utility.iterate(value), utility.iterate(other));\r\n        return zip.every(deepEqual);\r\n    }\r\n    return utility.equals(value, other);\r\n};\r\nexport const deepEquals = (...values)=>{\r\n    let prev = values.shift();\r\n    return values.every(value=>deepEqual([prev, prev=value]));\r\n};\r\n",
@@ -1861,7 +1612,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 109,
+    "__docId__": 98,
     "kind": "function",
     "name": "deepEqual",
     "memberof": "src/object/equals.js",
@@ -1897,7 +1648,7 @@
     "ignore": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 99,
     "kind": "function",
     "name": "deepEquals",
     "memberof": "src/object/equals.js",
@@ -1928,7 +1679,7 @@
     }
   },
   {
-    "__docId__": 111,
+    "__docId__": 100,
     "kind": "file",
     "name": "src/object/index.js",
     "content": "\r\nexport * from \"./clone/index\";\r\nexport * from \"./deepBase\";\r\nexport * from \"./clone\";\r\nexport * from \"./temp\";\r\n",
@@ -1939,7 +1690,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 112,
+    "__docId__": 101,
     "kind": "file",
     "name": "src/object/map.js",
     "content": "\r\n/*\r\nreiyayakkoPackage.addModule(\"object.Map\", ({modules})=>class ObjectMap {\r\n    constructor(map){\r\n        this.map = [];\r\n    }\r\n    static _find(key){\r\n        return ([entryKey])=>modules.equals(entryKey, key);\r\n    }\r\n    get size(){\r\n        return this.map.length;\r\n    }\r\n    get(key){\r\n        return this.map.find(modules.object.Map._find(key));\r\n    }\r\n    set(key, value){\r\n        const index = this.map.findIndex(modules.object.Map._find(key));\r\n        if(index === -1)\r\n            this.map.push([key, value]);\r\n        else\r\n            this.map[index] = [key, value];\r\n    }\r\n    has(key){\r\n        const index = this.map.findIndex(modules.object.Map._find(key));\r\n        return index !== -1;\r\n    }\r\n    delete(key){\r\n        const index = this.map.findIndex(modules.object.Map._find(key));\r\n        if(index === -1)\r\n            return false;\r\n        this.map.splice(index, 1);\r\n        return true;\r\n    }\r\n    clear(){\r\n        this.map = [];\r\n    }\r\n    entries(){\r\n        return this.map.map(entry=>entry);\r\n    }\r\n    forEach(){\r\n        this.map.forEach(...arguments);\r\n    }\r\n    keys(){\r\n        return this.map.map(([key])=>key);\r\n    }\r\n    values(){\r\n        return this.map.map(([,value])=>value);\r\n    }\r\n    [Symbol.iterator](){\r\n        const that = this;\r\n        return (function* (){\r\n            for(const entry of that.map)\r\n                yield entry;\r\n        })();\r\n    }\r\n});\r\nreiyayakkoPackage.addModule({\r\n    name: [\"object.Map.prototype\", Symbol.toStringTag],\r\n    enumerable: false,\r\n}, ()=>\"ObjectMap\");\r\n//*/\r\n",
@@ -1950,29 +1701,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 113,
-    "kind": "file",
-    "name": "src/RIP/event.js",
-    "content": "\r\nimport reiyayakkoPackage from \"none\";\r\n/*\r\n    #Reiyayakko.event@Listener\r\n    #Reiyayakko.event@Handler\r\n    export: false,\r\n    イベントハンドラークラス。\r\n*/\r\nreiyayakkoPackage.addModule({\r\n    name: \"Handler\",\r\n    hide: true,\r\n    variable: {cancel: Symbol(\"cancel\"), callcount: Symbol(\"callcount\")}\r\n}, ({cancel, callcount, modules})=>class Handler {\r\n    constructor(constructor){\r\n        this.onEvents = [];\r\n        this.listeners = Object.create(null);\r\n        if(typeof constructor === \"function\")\r\n            constructor(this);\r\n    }\r\n    on(on=[], arg){\r\n        if(typeof on === \"string\")\r\n            on = {[on]: arg};\r\n        if(modules.typeof(on) === \"object\")\r\n            on = Object.entries(on);\r\n        for(const [name, arg] of on)\r\n            this.onEvents.push([name, arg]);\r\n    }\r\n    do(on){\r\n        this.on(on);\r\n        const events = [];\r\n        while(this.onEvents.length){\r\n            const [name, arg] = this.onEvents.shift();\r\n            this.dispatch(name, arg);\r\n            events.push(name);\r\n        }\r\n        return events;\r\n    }\r\n    dispatch(name, arg){\r\n        const listeners = this.listeners[name];\r\n        if(!listeners)return;\r\n        this[cancel] = false;\r\n        listeners.set(callcount, listeners.get(callcount)+1);\r\n        for(const [symbol, func] of listeners){\r\n            if([callcount].includes(symbol))continue;\r\n            func(arg, this._cancel);\r\n            if(this[cancel])break;\r\n        }\r\n    }\r\n    _cancel(){ this[cancel] = true; }\r\n});\r\n/*\r\n    #Reiyayakko.event@EventHandler\r\n    イベントハンドラークラス。\r\n*/\r\nreiyayakkoPackage.addModule({\r\n    name: \"EventHandler\",\r\n    hide: true,\r\n    variable: {cancel: Symbol(\"cancel\"), callcount: Symbol(\"callcount\")}\r\n}, ({cancel, callcount})=>class EventHandler {\r\n    constructor(){\r\n        this.onEvents = [];\r\n        this.listeners = new Map();\r\n    }\r\n    /**\r\n     * イベントリスナーを追加する。\r\n     * @param {String|Symbol} name\r\n     * @param {Function} func\r\n     * @returns {Symbol} symbol\r\n     */\r\n    register(name, func){\r\n        if(!this.listeners.has(name))\r\n            this.listeners.set(name, new Map());\r\n        const listeners = this.listeners.get(name);\r\n        const symbol = Symbol(`${name}`);\r\n        listeners.set(symbol, func);\r\n        return symbol;\r\n    }\r\n    /**\r\n     * イベントリスナーを削除する。\r\n     * @param {String|Symbol} name\r\n     * @param {Symbol} symbol\r\n     */\r\n    remove(name, symbol){\r\n        if(!this.listeners.has(name))return;\r\n        const listeners = this.listeners.get(name);\r\n        listeners.delete(symbol);\r\n    }\r\n    /**\r\n     * イベントを発生させる。\r\n     *\r\n     */\r\n    raise(name, arg, _that){\r\n        if(!this.listeners.has(name))return;\r\n        const listeners = this.listeners.get(name);\r\n        this[cancel] = false;\r\n        listeners.callcount++;\r\n        for(const [symbol, func] of listeners){\r\n            if([callcount].includes(symbol))continue;\r\n            func.call(_that, arg, this._cancel);\r\n            if(this[cancel])break;\r\n        }\r\n    }\r\n    /**\r\n     * イベントを実行する。\r\n     *\r\n     */\r\n    execute(name, arg, props){\r\n        if(!this.listeners.has(name))return;\r\n        const listeners = this.listeners.get(name);\r\n        for(const [symbol, func] of listeners){\r\n            if([callcount].includes(symbol))continue;\r\n            func.call(props.that, arg, this._cancel);\r\n            if(this[cancel])break;\r\n        }\r\n    }\r\n});\r\n/*\r\n    #Reiyayakko.event\r\n    >Rei.event\r\n*/\r\nreiyayakkoPackage.addModule(\"event\", ({modules})=>new modules.EventHandler());\r\n/*\r\nreiyayakkoPackage.addModule(\"event\", ({modules})=>new modules.Handler(that=>{\r\n    self.addEventListener(\"DOMContentLoaded\", event=>{\r\n        that.dispatch(\"onloadDOM\", event);\r\n    }, {once: true});\r\n    that.registerListener(\"onloadDOM\", console.info);\r\n    self.addEventListener(\"load\", event=>{\r\n        that.dispatch(\"onload\", event);\r\n    }, {once: true});\r\n    that.registerListener(\"onload\", console.info);\r\n}));\r\n*/\r\n",
-    "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/RIP/event.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 114,
-    "kind": "file",
-    "name": "src/RIP/stack.js",
-    "content": "\r\nimport package_rei from \"./package\";\r\n\r\npackage_rei.addModule(\"stack\", ()=>class Stack {\r\n    constructor(){\r\n        this.stack = [];\r\n        this.promise = new Promise();\r\n    }\r\n    push(func, args){\r\n        this.stack.push([func, args]);\r\n    }\r\n    execute(){\r\n        const [func, args] = this.stack.shift();\r\n        func.apply({then: this.then}, args);\r\n    }\r\n    then(func, args){\r\n        this.promise.then(value=>(\r\n            func(value, args)\r\n        ));\r\n        return this;\r\n    }\r\n});\r\n",
-    "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/RIP/stack.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 115,
+    "__docId__": 102,
     "kind": "file",
     "name": "src/utility/array.js",
     "content": "\r\nimport {isArrayLike} from \"./is\";\r\n\r\nconst own = value=>value;\r\n\r\nexport const gurop = (array, func=own)=>{\r\n    const gurops = {};\r\n    forOf(array, value=>{\r\n        const temp = func(value);\r\n        let key;\r\n        if(isArrayLike(temp))\r\n            [key, value=value] = temp;\r\n        else key = temp;\r\n        if(!gurops[key])gurops[key] = [];\r\n        gurops[key].push(value);\r\n    });\r\n    return gurops;\r\n};\r\n// export const partition = (array, func)=>{};\r\n// INFO: findのマッチした数版\r\nexport const count = (array, func)=>{\r\n    let match = 0;\r\n    for(const value of array)\r\n        match += Boolean(func(value));\r\n    return match;\r\n};\r\n\r\nexport const generate = (generator, func, that)=>{\r\n    let done;\r\n    do{\r\n        const result = generator.next();\r\n        ({done} = result);\r\n        func.call(that, result.value);\r\n    }while(!done);\r\n};\r\nexport const generator = ()=>{};\r\n\r\nexport const reduce = (array, func, defaultValue, that)=>{\r\n    // {value: undefined, done: false}\r\n};\r\n\r\n// export const map = (array, func)=>{\r\n//     array.flatMap(value=>func([value]));\r\n// };\r\n",
@@ -1983,7 +1712,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 116,
+    "__docId__": 103,
     "kind": "function",
     "name": "own",
     "memberof": "src/utility/array.js",
@@ -2010,7 +1739,7 @@
     "ignore": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 104,
     "kind": "function",
     "name": "gurop",
     "memberof": "src/utility/array.js",
@@ -2049,7 +1778,7 @@
     }
   },
   {
-    "__docId__": 118,
+    "__docId__": 105,
     "kind": "function",
     "name": "count",
     "memberof": "src/utility/array.js",
@@ -2085,7 +1814,7 @@
     }
   },
   {
-    "__docId__": 119,
+    "__docId__": 106,
     "kind": "function",
     "name": "generate",
     "memberof": "src/utility/array.js",
@@ -2123,7 +1852,7 @@
     "return": null
   },
   {
-    "__docId__": 120,
+    "__docId__": 107,
     "kind": "function",
     "name": "generator",
     "memberof": "src/utility/array.js",
@@ -2142,7 +1871,7 @@
     "return": null
   },
   {
-    "__docId__": 121,
+    "__docId__": 108,
     "kind": "function",
     "name": "reduce",
     "memberof": "src/utility/array.js",
@@ -2186,10 +1915,10 @@
     "return": null
   },
   {
-    "__docId__": 122,
+    "__docId__": 109,
     "kind": "file",
     "name": "src/utility/index.js",
-    "content": "\r\nexport * from \"./is\";\r\nexport * from \"./loop\";\r\nexport * from \"./utility\";\r\nexport * from \"./range\";\r\nexport * from \"./zip\";\r\nimport {forIndex} from \"./loop\";\r\n// TEMP:\r\n// export class ArrayLike extends Array {\r\n//     constructor(){\r\n//         super();\r\n//         console.log(this);\r\n//     }\r\n// }\r\n// export class Temp {\r\n//     constructor(){\r\n//         this.gen = this.gen.bind(this);\r\n//         return this.gen;\r\n//     }\r\n//     gen(){\r\n//         console.log(this);\r\n//         return this.gen;\r\n//     }\r\n// }\r\n// export class Memo {\r\n//     constructor(func){\r\n//         this.function = func;\r\n//         this.existing = new Map();\r\n//     }\r\n//     execute(args){\r\n//         if(this.existing.has(args))\r\n//             return this.existing.get(args);\r\n//         const result = execute(this.function, args);\r\n//         this.existing.set(args, result);\r\n//         return result;\r\n//     }\r\n// }\r\n// String instruction\r\n\r\n\r\n// eslint-disable-next-line\r\nexport const argument = function(){ return arguments; };\r\n\r\n/**\r\n * 拡張版分割代入\r\n *\r\n * @param {object} array\r\n * @param {*} classifying\r\n * @returns\r\n */\r\nexport const restSplit = (array, beforeItem, afterItem=0)=>{\r\n    const restEndIndex = array.length - afterItem;\r\n    const rest = array.slice(beforeItem, restEndIndex);\r\n    array.splice(beforeItem, restEndIndex - beforeItem, rest);\r\n    return array;\r\n};\r\n// const [key, name=\"the name\", ...rest, param{3}] = ArrayLike();\r\n// [difault, ...]\r\n// const {key, key: name, ...rest} = ObjectLike();\r\n// {key: null || name || [name, difault], ...}\r\n\r\nexport const memoize = (func, effective=Infinity)=>{\r\n    const newFunc = function(){\r\n        const prevResult = forOf(newFunc.memo, (fragment, result)=>{\r\n            if(deepEquals(fragment))\r\n                return result;\r\n            return void 0;\r\n        });\r\n        if(isUndefined(prevResult))\r\n            return prevResult;\r\n        // eslint-disable-next-line prefer-rest-params\r\n        const result = func.apply(this, arguments);\r\n        newFunc.memo.set(arguments, result);\r\n        return result;\r\n    };\r\n    if(Array.isArray(effective)){\r\n        newFunc.memo = new Array(effective.length);\r\n        forIndex(effective.length, i=>{\r\n            newFunc.memo[i] = new Map(effective[i]);\r\n        });\r\n    }else{\r\n        const length = substitute([effective,1], v=>!Number.isFinite(v));\r\n        newFunc.memo = new Array(length);\r\n        forIndex(length, i=>{\r\n            newFunc.memo[i] = new Map();\r\n        });\r\n    }\r\n    return newFunc;\r\n};\r\n\r\nexport class MemoMap {\r\n    constructor(initValue){\r\n        this.map = new Map(initValue);\r\n    }\r\n}\r\n\r\n// MEMO: ifs スタック\r\n",
+    "content": "\r\nexport * from \"./is/index\";\r\nexport * from \"./loop/index\";\r\nexport * from \"./utility\";\r\nexport * from \"./range\";\r\nexport * from \"./zip\";\r\nimport {forIndex} from \"./loop/index\";\r\n// TEMP:\r\n// export class ArrayLike extends Array {\r\n//     constructor(){\r\n//         super();\r\n//         console.log(this);\r\n//     }\r\n// }\r\n// export class Temp {\r\n//     constructor(){\r\n//         this.gen = this.gen.bind(this);\r\n//         return this.gen;\r\n//     }\r\n//     gen(){\r\n//         console.log(this);\r\n//         return this.gen;\r\n//     }\r\n// }\r\n// export class Memo {\r\n//     constructor(func){\r\n//         this.function = func;\r\n//         this.existing = new Map();\r\n//     }\r\n//     execute(args){\r\n//         if(this.existing.has(args))\r\n//             return this.existing.get(args);\r\n//         const result = execute(this.function, args);\r\n//         this.existing.set(args, result);\r\n//         return result;\r\n//     }\r\n// }\r\n// String instruction\r\n\r\n\r\n// eslint-disable-next-line\r\nexport const argument = function(){ return arguments; };\r\n\r\n/**\r\n * 拡張版分割代入\r\n *\r\n * @param {object} array\r\n * @param {*} classifying\r\n * @returns\r\n */\r\nexport const restSplit = (array, beforeItem, afterItem=0)=>{\r\n    const restEndIndex = array.length - afterItem;\r\n    const rest = array.slice(beforeItem, restEndIndex);\r\n    array.splice(beforeItem, restEndIndex - beforeItem, rest);\r\n    return array;\r\n};\r\n// const [key, name=\"the name\", ...rest, param{3}] = ArrayLike();\r\n// [difault, ...]\r\n// const {key, key: name, ...rest} = ObjectLike();\r\n// {key: null || name || [name, difault], ...}\r\n\r\nexport const memoize = (func, effective=Infinity)=>{\r\n    const newFunc = function(){\r\n        const prevResult = forOf(newFunc.memo, (fragment, result)=>{\r\n            if(deepEquals(fragment))\r\n                return result;\r\n            return void 0;\r\n        });\r\n        if(isUndefined(prevResult))\r\n            return prevResult;\r\n        // eslint-disable-next-line prefer-rest-params\r\n        const result = func.apply(this, arguments);\r\n        newFunc.memo.set(arguments, result);\r\n        return result;\r\n    };\r\n    if(Array.isArray(effective)){\r\n        newFunc.memo = new Array(effective.length);\r\n        forIndex(effective.length, i=>{\r\n            newFunc.memo[i] = new Map(effective[i]);\r\n        });\r\n    }else{\r\n        const length = substitute([effective,1], v=>!Number.isFinite(v));\r\n        newFunc.memo = new Array(length);\r\n        forIndex(length, i=>{\r\n            newFunc.memo[i] = new Map();\r\n        });\r\n    }\r\n    return newFunc;\r\n};\r\n\r\nexport class MemoMap {\r\n    constructor(initValue){\r\n        this.map = new Map(initValue);\r\n    }\r\n}\r\n\r\n// MEMO: ifs スタック\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/index.js",
     "access": "public",
@@ -2197,7 +1926,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 123,
+    "__docId__": 110,
     "kind": "function",
     "name": "argument",
     "memberof": "src/utility/index.js",
@@ -2220,7 +1949,7 @@
     }
   },
   {
-    "__docId__": 124,
+    "__docId__": 111,
     "kind": "function",
     "name": "restSplit",
     "memberof": "src/utility/index.js",
@@ -2269,7 +1998,7 @@
     }
   },
   {
-    "__docId__": 125,
+    "__docId__": 112,
     "kind": "function",
     "name": "memoize",
     "memberof": "src/utility/index.js",
@@ -2308,7 +2037,7 @@
     }
   },
   {
-    "__docId__": 126,
+    "__docId__": 113,
     "kind": "class",
     "name": "MemoMap",
     "memberof": "src/utility/index.js",
@@ -2324,7 +2053,7 @@
     "interface": false
   },
   {
-    "__docId__": 127,
+    "__docId__": 114,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/utility/index.js~MemoMap",
@@ -2338,7 +2067,7 @@
     "undocument": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 115,
     "kind": "member",
     "name": "map",
     "memberof": "src/utility/index.js~MemoMap",
@@ -2355,31 +2084,42 @@
     }
   },
   {
-    "__docId__": 129,
+    "__docId__": 116,
     "kind": "file",
-    "name": "src/utility/is.js",
-    "content": "\r\nimport {typeOf} from \"./index\";\r\nimport {allKeys} from \"../object/temp\";\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Undefined\r\n */\r\nexport const isUndefined = value=>(\r\n    value === void 0\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Null or Undefined\r\n */\r\nexport const isNull = value=>(\r\n    value === null || isUndefined(value)\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Boolean\r\n */\r\nexport const isBoolean = value=>(\r\n    typeOf(value) === \"Boolean\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is String\r\n */\r\nexport const isString = value=>(\r\n    typeOf(value) === \"String\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Number\r\n */\r\nexport const isNumber = value=>(\r\n    typeOf(value) === \"Number\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether it is a negative number\r\n */\r\nexport const isNegative = value=>(\r\n    isNumber(value) && value < 0\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Symbol\r\n */\r\nexport const isSymbol = value=>(\r\n    typeOf(value) === \"Symbol\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Function\r\n */\r\nexport const isFunction = value=>(\r\n    typeOf(value) === \"Function\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether typeof is an object and is not Null\r\n */\r\nexport const isObject = value=>(\r\n    typeof value === \"object\" && value !== null\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether properties can be edited\r\n */\r\nexport const isObjectLike = value=>(\r\n    isFunction(value) || isObject(value)\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Arguments\r\n */\r\nexport const isArguments = value=>(\r\n    typeOf(value) === \"Arguments\"\r\n);\r\n\r\n/**\r\n * Array.isArrayかisArgumentsがtrueかどうか\r\n * Alpha: 値がArrayLikeかどうか\r\n * @param {*} value The value to be compared\r\n * @return Whether the value is ArrayLike\r\n */\r\nexport const isArrayLike = value=>{\r\n    if(!isObject(value))return false;\r\n    if(Array.isArray(value) || isArguments(value) || value.length === 0)\r\n        return true;\r\n    return false;\r\n};\r\n\r\n/**\r\n * Alpha:\r\n * @param {*} value The value to be compared\r\n * @return Whether the property does not exist\r\n */\r\nexport const isEmpty = value=>{\r\n    if(typeOf(value) === \"String\" || isArrayLike(value))\r\n        return value.length === 0;\r\n    if(typeOf(value) === \"Object\")\r\n        return allKeys(value).length === 0;\r\n    return false;\r\n};\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is RegExp\r\n */\r\nexport const isRegExp = value=>(\r\n    typeOf(value) === \"RegExp\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Error\r\n */\r\nexport const isError = value=>(\r\n    typeOf(value) === \"Error\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Map\r\n */\r\nexport const isMap = value=>(\r\n    typeOf(value) === \"Map\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is WeakMap\r\n */\r\nexport const isWeakMap = value=>(\r\n    typeOf(value) === \"WeakMap\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Set\r\n */\r\nexport const isSet = value=>(\r\n    typeOf(value) === \"Set\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is WeakSet\r\n */\r\nexport const isWeakSet = value=>(\r\n    typeOf(value) === \"WeakSet\"\r\n);\r\n\r\n/**\r\n * Verify whether an error occurs when you execute it by passing the argument \"args\" to \"func\".\r\n * \"func\"に引数として\"args\"を渡して実行した場合にエラーが発生するか検証します。\r\n * @param {Function} func Function that verifies if an error occurs\r\n * @param  {...any} [args] Argument that verifies whether an error has occurred\r\n * @return Whether an error has occurred\r\n */\r\nexport const isThrowError = (func, ...args)=>{\r\n    try{\r\n        func.apply(this, args);\r\n        return false;\r\n    }catch(err){ return true; }\r\n};\r\n",
+    "name": "src/utility/is/index.js",
+    "content": "\r\nexport * from \"./type\";\r\nexport * from \"./util\";\r\n",
     "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/is.js",
+    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/is/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 130,
+    "__docId__": 117,
+    "kind": "file",
+    "name": "src/utility/is/type.js",
+    "content": "\r\nimport {typeOf} from \"../index\";\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Undefined\r\n */\r\nexport const isUndefined = value=>(\r\n    value === void 0\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Null or Undefined\r\n */\r\nexport const isNull = value=>(\r\n    value === null || isUndefined(value)\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Boolean\r\n */\r\nexport const isBoolean = value=>(\r\n    typeOf(value) === \"Boolean\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is String\r\n */\r\nexport const isString = value=>(\r\n    typeOf(value) === \"String\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Number\r\n */\r\nexport const isNumber = value=>(\r\n    typeOf(value) === \"Number\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Symbol\r\n */\r\nexport const isSymbol = value=>(\r\n    typeOf(value) === \"Symbol\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Function\r\n */\r\nexport const isFunction = value=>(\r\n    typeOf(value) === \"Function\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether typeof is an object and is not Null\r\n */\r\nexport const isObject = value=>(\r\n    typeof value === \"object\" && value !== null\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether properties can be edited\r\n */\r\nexport const isObjectLike = value=>(\r\n    isFunction(value) || isObject(value)\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Arguments\r\n */\r\nexport const isArguments = value=>(\r\n    typeOf(value) === \"Arguments\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is RegExp\r\n */\r\nexport const isRegExp = value=>(\r\n    typeOf(value) === \"RegExp\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Error\r\n */\r\nexport const isError = value=>(\r\n    typeOf(value) === \"Error\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Map\r\n */\r\nexport const isMap = value=>(\r\n    typeOf(value) === \"Map\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is WeakMap\r\n */\r\nexport const isWeakMap = value=>(\r\n    typeOf(value) === \"WeakMap\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is Set\r\n */\r\nexport const isSet = value=>(\r\n    typeOf(value) === \"Set\"\r\n);\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether {@link typeOf} is WeakSet\r\n */\r\nexport const isWeakSet = value=>(\r\n    typeOf(value) === \"WeakSet\"\r\n);\r\n",
+    "static": true,
+    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/is/type.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 118,
     "kind": "function",
     "name": "isUndefined",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/type.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isUndefined",
+    "longname": "src/utility/is/type.js~isUndefined",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
     "importStyle": "{isUndefined}",
     "description": "",
-    "lineNumber": 9,
+    "lineNumber": 8,
     "params": [
       {
         "nullable": null,
@@ -2402,20 +2142,20 @@
     }
   },
   {
-    "__docId__": 131,
+    "__docId__": 119,
     "kind": "function",
     "name": "isNull",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/type.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isNull",
+    "longname": "src/utility/is/type.js~isNull",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
     "importStyle": "{isNull}",
     "description": "",
-    "lineNumber": 17,
+    "lineNumber": 16,
     "params": [
       {
         "nullable": null,
@@ -2438,20 +2178,20 @@
     }
   },
   {
-    "__docId__": 132,
+    "__docId__": 120,
     "kind": "function",
     "name": "isBoolean",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/type.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isBoolean",
+    "longname": "src/utility/is/type.js~isBoolean",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
     "importStyle": "{isBoolean}",
     "description": "",
-    "lineNumber": 25,
+    "lineNumber": 24,
     "params": [
       {
         "nullable": null,
@@ -2474,20 +2214,20 @@
     }
   },
   {
-    "__docId__": 133,
+    "__docId__": 121,
     "kind": "function",
     "name": "isString",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/type.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isString",
+    "longname": "src/utility/is/type.js~isString",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
     "importStyle": "{isString}",
     "description": "",
-    "lineNumber": 33,
+    "lineNumber": 32,
     "params": [
       {
         "nullable": null,
@@ -2510,20 +2250,20 @@
     }
   },
   {
-    "__docId__": 134,
+    "__docId__": 122,
     "kind": "function",
     "name": "isNumber",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/type.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isNumber",
+    "longname": "src/utility/is/type.js~isNumber",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
     "importStyle": "{isNumber}",
     "description": "",
-    "lineNumber": 41,
+    "lineNumber": 40,
     "params": [
       {
         "nullable": null,
@@ -2546,20 +2286,427 @@
     }
   },
   {
-    "__docId__": 135,
+    "__docId__": 123,
     "kind": "function",
-    "name": "isNegative",
-    "memberof": "src/utility/is.js",
+    "name": "isSymbol",
+    "memberof": "src/utility/is/type.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isNegative",
+    "longname": "src/utility/is/type.js~isSymbol",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isSymbol}",
+    "description": "",
+    "lineNumber": 48,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Symbol"
+    }
+  },
+  {
+    "__docId__": 124,
+    "kind": "function",
+    "name": "isFunction",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isFunction",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isFunction}",
+    "description": "",
+    "lineNumber": 56,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Function"
+    }
+  },
+  {
+    "__docId__": 125,
+    "kind": "function",
+    "name": "isObject",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isObject",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isObject}",
+    "description": "",
+    "lineNumber": 64,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether typeof is an object and is not Null"
+    }
+  },
+  {
+    "__docId__": 126,
+    "kind": "function",
+    "name": "isObjectLike",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isObjectLike",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isObjectLike}",
+    "description": "",
+    "lineNumber": 72,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether properties can be edited"
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "function",
+    "name": "isArguments",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isArguments",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isArguments}",
+    "description": "",
+    "lineNumber": 80,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Arguments"
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "function",
+    "name": "isRegExp",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isRegExp",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isRegExp}",
+    "description": "",
+    "lineNumber": 88,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is RegExp"
+    }
+  },
+  {
+    "__docId__": 129,
+    "kind": "function",
+    "name": "isError",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isError",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isError}",
+    "description": "",
+    "lineNumber": 96,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Error"
+    }
+  },
+  {
+    "__docId__": 130,
+    "kind": "function",
+    "name": "isMap",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isMap",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isMap}",
+    "description": "",
+    "lineNumber": 104,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Map"
+    }
+  },
+  {
+    "__docId__": 131,
+    "kind": "function",
+    "name": "isWeakMap",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isWeakMap",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isWeakMap}",
+    "description": "",
+    "lineNumber": 112,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is WeakMap"
+    }
+  },
+  {
+    "__docId__": 132,
+    "kind": "function",
+    "name": "isSet",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isSet",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isSet}",
+    "description": "",
+    "lineNumber": 120,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is Set"
+    }
+  },
+  {
+    "__docId__": 133,
+    "kind": "function",
+    "name": "isWeakSet",
+    "memberof": "src/utility/is/type.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/type.js~isWeakSet",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/type.js",
+    "importStyle": "{isWeakSet}",
+    "description": "",
+    "lineNumber": 128,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to be compared"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "Whether {@link typeOf} is WeakSet"
+    }
+  },
+  {
+    "__docId__": 134,
+    "kind": "file",
+    "name": "src/utility/is/util.js",
+    "content": "\r\nimport {typeOf} from \"../index\";\r\nimport {allKeys} from \"../../object/temp\";\r\nimport {isNumber, isObject, isArguments} from \"./type\";\r\n\r\n/**\r\n * @param {*} value The value to be compared\r\n * @return Whether it is a negative number\r\n */\r\nexport const isNegative = value=>(\r\n    isNumber(value) && value < 0\r\n);\r\n\r\n/**\r\n * Array.isArrayかisArgumentsがtrueかどうか\r\n * Alpha: 値がArrayLikeかどうか\r\n * @param {*} value The value to be compared\r\n * @return Whether the value is ArrayLike\r\n */\r\nexport const isArrayLike = value=>{\r\n    if(!isObject(value))return false;\r\n    if(Array.isArray(value) || isArguments(value) || value.length === 0)\r\n        return true;\r\n    return false;\r\n};\r\n\r\n/**\r\n * Alpha:\r\n * @param {*} value The value to be compared\r\n * @return Whether the property does not exist\r\n */\r\nexport const isEmpty = value=>{\r\n    if(typeOf(value) === \"String\" || isArrayLike(value))\r\n        return value.length === 0;\r\n    if(typeOf(value) === \"Object\")\r\n        return allKeys(value).length === 0;\r\n    return false;\r\n};\r\n\r\n/**\r\n * Verify whether an error occurs when you execute it by passing the argument \"args\" to \"func\".\r\n * \"func\"に引数として\"args\"を渡して実行した場合にエラーが発生するか検証します。\r\n * @param {Function} func Function that verifies if an error occurs\r\n * @param  {...any} [args] Argument that verifies whether an error has occurred\r\n * @return Whether an error has occurred\r\n */\r\nexport const isThrowError = (func, ...args)=>{\r\n    try{\r\n        func.apply(void 0, args);\r\n        return false;\r\n    }catch(err){ return true; }\r\n};\r\n",
+    "static": true,
+    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/is/util.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 135,
+    "kind": "function",
+    "name": "isNegative",
+    "memberof": "src/utility/is/util.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/is/util.js~isNegative",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/is/util.js",
     "importStyle": "{isNegative}",
     "description": "",
-    "lineNumber": 49,
+    "lineNumber": 10,
     "params": [
       {
         "nullable": null,
@@ -2584,198 +2731,18 @@
   {
     "__docId__": 136,
     "kind": "function",
-    "name": "isSymbol",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isSymbol",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isSymbol}",
-    "description": "",
-    "lineNumber": 57,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is Symbol"
-    }
-  },
-  {
-    "__docId__": 137,
-    "kind": "function",
-    "name": "isFunction",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isFunction",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isFunction}",
-    "description": "",
-    "lineNumber": 65,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is Function"
-    }
-  },
-  {
-    "__docId__": 138,
-    "kind": "function",
-    "name": "isObject",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isObject",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isObject}",
-    "description": "",
-    "lineNumber": 73,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether typeof is an object and is not Null"
-    }
-  },
-  {
-    "__docId__": 139,
-    "kind": "function",
-    "name": "isObjectLike",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isObjectLike",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isObjectLike}",
-    "description": "",
-    "lineNumber": 81,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether properties can be edited"
-    }
-  },
-  {
-    "__docId__": 140,
-    "kind": "function",
-    "name": "isArguments",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isArguments",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isArguments}",
-    "description": "",
-    "lineNumber": 89,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is Arguments"
-    }
-  },
-  {
-    "__docId__": 141,
-    "kind": "function",
     "name": "isArrayLike",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/util.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isArrayLike",
+    "longname": "src/utility/is/util.js~isArrayLike",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/util.js",
     "importStyle": "{isArrayLike}",
     "description": "Array.isArrayかisArgumentsがtrueかどうか\nAlpha: 値がArrayLikeかどうか",
-    "lineNumber": 99,
+    "lineNumber": 20,
     "params": [
       {
         "nullable": null,
@@ -2798,20 +2765,20 @@
     }
   },
   {
-    "__docId__": 142,
+    "__docId__": 137,
     "kind": "function",
     "name": "isEmpty",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/util.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isEmpty",
+    "longname": "src/utility/is/util.js~isEmpty",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/util.js",
     "importStyle": "{isEmpty}",
     "description": "Alpha:",
-    "lineNumber": 111,
+    "lineNumber": 32,
     "params": [
       {
         "nullable": null,
@@ -2834,236 +2801,20 @@
     }
   },
   {
-    "__docId__": 143,
-    "kind": "function",
-    "name": "isRegExp",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isRegExp",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isRegExp}",
-    "description": "",
-    "lineNumber": 123,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is RegExp"
-    }
-  },
-  {
-    "__docId__": 144,
-    "kind": "function",
-    "name": "isError",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isError",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isError}",
-    "description": "",
-    "lineNumber": 131,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is Error"
-    }
-  },
-  {
-    "__docId__": 145,
-    "kind": "function",
-    "name": "isMap",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isMap",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isMap}",
-    "description": "",
-    "lineNumber": 139,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is Map"
-    }
-  },
-  {
-    "__docId__": 146,
-    "kind": "function",
-    "name": "isWeakMap",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isWeakMap",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isWeakMap}",
-    "description": "",
-    "lineNumber": 147,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is WeakMap"
-    }
-  },
-  {
-    "__docId__": 147,
-    "kind": "function",
-    "name": "isSet",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isSet",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isSet}",
-    "description": "",
-    "lineNumber": 155,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is Set"
-    }
-  },
-  {
-    "__docId__": 148,
-    "kind": "function",
-    "name": "isWeakSet",
-    "memberof": "src/utility/is.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/is.js~isWeakSet",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
-    "importStyle": "{isWeakSet}",
-    "description": "",
-    "lineNumber": 163,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
-        "description": "The value to be compared"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "Whether {@link typeOf} is WeakSet"
-    }
-  },
-  {
-    "__docId__": 149,
+    "__docId__": 138,
     "kind": "function",
     "name": "isThrowError",
-    "memberof": "src/utility/is.js",
+    "memberof": "src/utility/is/util.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/is.js~isThrowError",
+    "longname": "src/utility/is/util.js~isThrowError",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/is.js",
+    "importPath": "reiyayakko-core/src/utility/is/util.js",
     "importStyle": "{isThrowError}",
     "description": "Verify whether an error occurs when you execute it by passing the argument \"args\" to \"func\".\n\"func\"に引数として\"args\"を渡して実行した場合にエラーが発生するか検証します。",
-    "lineNumber": 174,
+    "lineNumber": 47,
     "params": [
       {
         "nullable": null,
@@ -3096,163 +2847,31 @@
     }
   },
   {
-    "__docId__": 150,
+    "__docId__": 139,
     "kind": "file",
-    "name": "src/utility/loop.js",
-    "content": "\r\nimport {isUndefined} from \"./is\";\r\nimport {range} from \"./range\";\r\n\r\nconst propGetter = value=>value;\r\n\r\nexport const previous = (level, func, arg)=>{\r\n    for(;level--;)arg = func(arg);\r\n    return arg;\r\n};\r\n\r\nexport const inOrder = (arg, ...orders)=>{\r\n    for(const func of orders)\r\n        arg = func(arg);\r\n    return arg;\r\n};\r\n\r\n// TODO: iterate - 何でもループ\"できるようにする\"やつ\r\nexport const iterate = function* (value){\r\n    if(value[Symbol.iterator])\r\n        yield* value;\r\n    (function(){\r\n        return {\r\n            next(){\r\n                return {\r\n                    value: void 0,\r\n                    done: false\r\n                };\r\n            }\r\n        };\r\n    }).call(value);\r\n};\r\n\r\n/**\r\n * Receives an Iterable object and calls a callback function for each value.\r\n * Iterableなオブジェクトを受け取って値ごとにコールバック関数を呼び出します。\r\n * @param {Iterable} iterator An Iterable object used for the loop\r\n * @param {Function} func\r\n * A callback function that is executed for each value of the Iterable object\r\n * When a value other than undefined is returned,\r\n * the loop is terminated and the value is returned.\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const forOf = (iterator, func, that)=>{\r\n    for(const value of iterator){\r\n        const flag = func.call(that, value);\r\n        if(!isUndefined(flag))return flag;\r\n    }\r\n    return void 0;\r\n};\r\n\r\n/**\r\n * Call the callback function for each number from 0 to maxIndex.\r\n * 0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。\r\n * @param {Number} maxIndex Repeats this number of times\r\n * @param {Function} func\r\n * Callback function that is executed maxIndex times\r\n * When a value other than undefined is returned,\r\n * the loop is terminated and the value is returned.\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const forIndex = (maxIndex, func, that)=>(\r\n    forOf(range(--maxIndex), index=>{\r\n        const flag = func.call(that, index);\r\n        if(!isUndefined(flag))return flag;\r\n        return void 0;\r\n    })\r\n);\r\n\r\n/**\r\n * @deprecated\r\n * @param {*} object\r\n * @param {*} func\r\n * @param {*} [that]\r\n */\r\nexport const forIn = (object, func, that)=>{\r\n    if(typeof object === \"object\")\r\n        object = Object.entries(object);\r\n    return forIndex(object.length, index=>(\r\n        func.call(that, object[index])\r\n    ));\r\n};\r\n\r\n/**\r\n * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。\r\n * MEMO: do取りたい。flag初期値追加。\r\n * @param {Function} func Callback function that continues to run as long as it returns undefined\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const doWhile = (func, that)=>{\r\n    let flag;\r\n    do flag = func.call(that);\r\n    while(isUndefined(flag));\r\n    return flag;\r\n};\r\n",
+    "name": "src/utility/loop/for.js",
+    "content": "\r\nimport {isUndefined} from \"../is/index\";\r\nimport {range} from \"../range\";\r\n\r\n/**\r\n * Receives an Iterable object and calls a callback function for each value.\r\n * Iterableなオブジェクトを受け取って値ごとにコールバック関数を呼び出します。\r\n * @param {Iterable} iterator An Iterable object used for the loop\r\n * @param {Function} func\r\n * A callback function that is executed for each value of the Iterable object\r\n * When a value other than undefined is returned,\r\n * the loop is terminated and the value is returned.\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const forOf = (iterator, func, that)=>{\r\n    for(const value of iterator){\r\n        const flag = func.call(that, value);\r\n        if(!isUndefined(flag))return flag;\r\n    }\r\n    return void 0;\r\n};\r\n\r\n/**\r\n * Call the callback function for each number from 0 to maxIndex.\r\n * 0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。\r\n * @param {Number} maxIndex Repeats this number of times\r\n * @param {Function} func\r\n * Callback function that is executed maxIndex times\r\n * When a value other than undefined is returned,\r\n * the loop is terminated and the value is returned.\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const forIndex = (maxIndex, func, that)=>(\r\n    forOf(range(--maxIndex), index=>{\r\n        const flag = func.call(that, index);\r\n        if(!isUndefined(flag))return flag;\r\n        return void 0;\r\n    })\r\n);\r\n\r\n/**\r\n * @deprecated\r\n * @param {*} object\r\n * @param {*} func\r\n * @param {*} [that]\r\n */\r\nexport const forIn = (object, func, that)=>{\r\n    if(typeof object === \"object\")\r\n        object = Object.entries(object);\r\n    return forIndex(object.length, index=>(\r\n        func.call(that, object[index])\r\n    ));\r\n};\r\n",
     "static": true,
-    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/loop.js",
+    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/loop/for.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 151,
-    "kind": "function",
-    "name": "propGetter",
-    "memberof": "src/utility/loop.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/loop.js~propGetter",
-    "access": "public",
-    "export": false,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "params": [
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null,
-    "ignore": true
-  },
-  {
-    "__docId__": 152,
-    "kind": "function",
-    "name": "previous",
-    "memberof": "src/utility/loop.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/loop.js~previous",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
-    "importStyle": "{previous}",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "params": [
-      {
-        "name": "level",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "func",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "arg",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 153,
-    "kind": "function",
-    "name": "inOrder",
-    "memberof": "src/utility/loop.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/loop.js~inOrder",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
-    "importStyle": "{inOrder}",
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "params": [
-      {
-        "name": "arg",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "orders",
-        "types": [
-          "...*"
-        ],
-        "spread": true
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 154,
-    "kind": "function",
-    "name": "iterate",
-    "memberof": "src/utility/loop.js",
-    "generator": true,
-    "async": false,
-    "static": true,
-    "longname": "src/utility/loop.js~iterate",
-    "access": "public",
-    "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
-    "importStyle": "{iterate}",
-    "description": null,
-    "lineNumber": 19,
-    "undocument": true,
-    "params": [
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 155,
+    "__docId__": 140,
     "kind": "function",
     "name": "forOf",
-    "memberof": "src/utility/loop.js",
+    "memberof": "src/utility/loop/for.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/loop.js~forOf",
+    "longname": "src/utility/loop/for.js~forOf",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
+    "importPath": "reiyayakko-core/src/utility/loop/for.js",
     "importStyle": "{forOf}",
     "description": "Receives an Iterable object and calls a callback function for each value.\nIterableなオブジェクトを受け取って値ごとにコールバック関数を呼び出します。",
-    "lineNumber": 44,
+    "lineNumber": 15,
     "params": [
       {
         "nullable": null,
@@ -3292,20 +2911,20 @@
     }
   },
   {
-    "__docId__": 156,
+    "__docId__": 141,
     "kind": "function",
     "name": "forIndex",
-    "memberof": "src/utility/loop.js",
+    "memberof": "src/utility/loop/for.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/loop.js~forIndex",
+    "longname": "src/utility/loop/for.js~forIndex",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
+    "importPath": "reiyayakko-core/src/utility/loop/for.js",
     "importStyle": "{forIndex}",
     "description": "Call the callback function for each number from 0 to maxIndex.\n0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。",
-    "lineNumber": 62,
+    "lineNumber": 33,
     "params": [
       {
         "nullable": null,
@@ -3341,20 +2960,20 @@
     "return": null
   },
   {
-    "__docId__": 157,
+    "__docId__": 142,
     "kind": "function",
     "name": "forIn",
-    "memberof": "src/utility/loop.js",
+    "memberof": "src/utility/loop/for.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/loop.js~forIn",
+    "longname": "src/utility/loop/for.js~forIn",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
+    "importPath": "reiyayakko-core/src/utility/loop/for.js",
     "importStyle": "{forIn}",
     "description": "",
-    "lineNumber": 76,
+    "lineNumber": 47,
     "deprecated": true,
     "params": [
       {
@@ -3395,20 +3014,163 @@
     }
   },
   {
-    "__docId__": 158,
+    "__docId__": 143,
+    "kind": "file",
+    "name": "src/utility/loop/index.js",
+    "content": "\r\nexport * from \"./for\";\r\n\r\nimport {isUndefined} from \"../is/index\";\r\n\r\nconst propGetter = key=>obj=>obj[key];\r\n\r\nexport const previous = (level, func, arg)=>{\r\n    for(;level--;)arg = func(arg);\r\n    return arg;\r\n};\r\n\r\nexport const inOrder = (arg, ...orders)=>{\r\n    for(const func of orders)\r\n        arg = func(arg);\r\n    return arg;\r\n};\r\n\r\n// TODO: iterate - 何でもループ\"できるようにする\"やつ\r\nexport const iterate = function* (value){\r\n    if(value[Symbol.iterator])\r\n        yield* value;\r\n    (function(){\r\n        return {\r\n            next(){\r\n                return {\r\n                    value: void 0,\r\n                    done: false\r\n                };\r\n            }\r\n        };\r\n    }).call(value);\r\n};\r\n\r\n/**\r\n * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。\r\n * MEMO: do取りたい。flag初期値追加。\r\n * @param {Function} func Callback function that continues to run as long as it returns undefined\r\n * @param {*} [that] Specify this of the callback function\r\n */\r\nexport const doWhile = (func, that)=>{\r\n    let flag;\r\n    do flag = func.call(that);\r\n    while(isUndefined(flag));\r\n    return flag;\r\n};\r\n",
+    "static": true,
+    "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/loop/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 144,
     "kind": "function",
-    "name": "doWhile",
-    "memberof": "src/utility/loop.js",
+    "name": "propGetter",
+    "memberof": "src/utility/loop/index.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/utility/loop.js~doWhile",
+    "longname": "src/utility/loop/index.js~propGetter",
+    "access": "public",
+    "export": false,
+    "importPath": "reiyayakko-core/src/utility/loop/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 145,
+    "kind": "function",
+    "name": "previous",
+    "memberof": "src/utility/loop/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/loop/index.js~previous",
     "access": "public",
     "export": true,
-    "importPath": "reiyayakko-core/src/utility/loop.js",
+    "importPath": "reiyayakko-core/src/utility/loop/index.js",
+    "importStyle": "{previous}",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [
+      {
+        "name": "level",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "func",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "arg",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 146,
+    "kind": "function",
+    "name": "inOrder",
+    "memberof": "src/utility/loop/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/loop/index.js~inOrder",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/loop/index.js",
+    "importStyle": "{inOrder}",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "arg",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "orders",
+        "types": [
+          "...*"
+        ],
+        "spread": true
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 147,
+    "kind": "function",
+    "name": "iterate",
+    "memberof": "src/utility/loop/index.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/loop/index.js~iterate",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/loop/index.js",
+    "importStyle": "{iterate}",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 148,
+    "kind": "function",
+    "name": "doWhile",
+    "memberof": "src/utility/loop/index.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utility/loop/index.js~doWhile",
+    "access": "public",
+    "export": true,
+    "importPath": "reiyayakko-core/src/utility/loop/index.js",
     "importStyle": "{doWhile}",
     "description": "MEMO: ループ条件とreturnをどうにかして引き剥がしたい。\nMEMO: do取りたい。flag初期値追加。",
-    "lineNumber": 90,
+    "lineNumber": 41,
     "params": [
       {
         "nullable": null,
@@ -3438,7 +3200,7 @@
     }
   },
   {
-    "__docId__": 159,
+    "__docId__": 149,
     "kind": "file",
     "name": "src/utility/old.js",
     "content": "\r\n/* eslint-disable @typescript-eslint/camelcase */\r\nimport __reiyayakko_package__ from \"../package\";\r\n/*\r\n    #Reiyayakko.clocker\r\n    >Rei.clocker\r\n*/\r\n__reiyayakko_package__.addModule({\r\n    name: \"clocker\",\r\n    variable: {\r\n        clockerId: Symbol(\"clockerId\"),\r\n        clockUp: Symbol(\"clockUp\"),\r\n    }\r\n}, ({clockUp, clockerId, modules})=>Object.seal({\r\n    interval: 100,\r\n    count: 0,\r\n    [clockerId]: null,\r\n    [clockUp](eventName){\r\n        modules.event.execute(eventName, this.count++);\r\n    },\r\n    start(interval=100, eventName=\"ClockerCountUp\"){\r\n        this.stop();\r\n        this.interval = interval;\r\n        this[clockerId] = setInterval(this[clockUp].bind(this), this.interval, eventName);\r\n    },\r\n    stop(){\r\n        if(typeof this[clockerId] !== \"number\")return;\r\n        clearInterval(this[clockerId]);\r\n        this[clockerId] = null;\r\n    }\r\n}));\r\n__reiyayakko_package__.addModule(\"Stack\", ()=>class Stack {\r\n    constructor(maxStackSize=10000){\r\n        this.maxStackSize = maxStackSize;\r\n        this.stack = [];\r\n    }\r\n    push(func, args){\r\n        if(this.stack.length < this.maxStackSize)\r\n            this.stack.push([func, args]);\r\n    }\r\n    execute(){\r\n        while(this.stack.length){\r\n            const [func, args] = this.stack.pop();\r\n            func.apply(this, args);\r\n        }\r\n    }\r\n});\r\n__reiyayakko_package__.addModule(\"workthread\", ({modules})=>(aURL, options)=>{\r\n    if(self.Worker){\r\n        const worker = new Worker(aURL, options);\r\n        const symbol = Symbol(\"worker\");\r\n        worker.onerror = event=>{\r\n            modules.event.execute(\"workerError\", event, worker);\r\n        };\r\n        worker.onmessage = event=>{\r\n            const massage = JSON.parse(event.data);\r\n            modules.event.execute(\"workerReceive\", massage, worker);\r\n        };\r\n        const workerSend = modules.event.register(\"workerSend\", action=>{\r\n            const massage = JSON.stringify(action);\r\n            worker.postMessage(massage);\r\n        });\r\n        const workerDelete = modules.event.register(\"workerDelete\", ()=>{\r\n            worker.terminate();\r\n            modules.event.remove(\"workerSend\", workerSend);\r\n            modules.event.remove(\"workerDelete\", workerDelete);\r\n        });\r\n        return worker;\r\n    }\r\n    console.error(\"WebWorker cannot be used.\");\r\n    return null;\r\n});\r\n__reiyayakko_package__.addModule(\"stackTrace\", ()=>()=>{\r\n    const stacks = new Error().stack.substr(13).trim();\r\n    const __stacks__ = {\r\n        stacks,\r\n        prevStacks: stacks.replace(/.+?(?=\\n)/,\"\"),\r\n        stacksArray: stacks.split(/\\sat\\s/).map(stack=>{\r\n            stack = stack.trim().split(\":\");\r\n            const column = stack.pop(), line = stack.pop();\r\n            return {\r\n                stack: stack.join(\":\"),\r\n                line,\r\n                column\r\n            };\r\n        }),\r\n    };\r\n    return __stacks__;\r\n});\r\n__reiyayakko_package__.addModule(\"case.test\", ()=>(regExp, text)=>regExp.test(text)?text:NaN);\r\n__reiyayakko_package__.addModule(\"element\", ()=>selector=>{\r\n    if(!selector)return null;\r\n    const element = document.createElement(/^\\w+/.exec(selector)||\"div\");\r\n    const id = /(?<=#)\\w+/.exec(selector);\r\n    if(id)[element.id] = id;\r\n    const className = selector.match(/(?<=\\.)\\w+/g);\r\n    if(className)element.classList.add(...className);\r\n    return element;\r\n});\r\n",
@@ -3449,10 +3211,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 160,
+    "__docId__": 150,
     "kind": "file",
     "name": "src/utility/range.js",
-    "content": "\r\nimport {isUndefined} from \"./is\";\r\n\r\n/**\r\n * startからendまでのincrementごとの数のジェネレーター。\r\n * 余り使う機会はなさそうだが、少数も指定可能。\r\n * for-of文で使う場合代替として{@link forIndex}が使用できます。\r\n *\r\n * @param {Number} start\r\n * 初期値。`end`が指定されていなかった場合は0からこの数までの連版となる。\r\n * つまり、`range(end)`は`range(0, end)`と等価。\r\n * @param {Number} [end]\r\n * 出力する数字の上限/下限。\r\n * @param {Number} [step=1]\r\n * 一度に増やす/減らす数。\r\n * start > end の場合でも負の値を指定する必要はない。\r\n * @example\r\n * console.log([...range(-4)]);\r\n * // [0, -1, -2, -3, -4]\r\n *\r\n * console.log([...range(1, 10, 2)]);\r\n * // [1, 3, 5, 7, 9]\r\n */\r\nexport const range = function* (start, end, step=1){\r\n    if(isUndefined(end)){\r\n        yield* range(0, start);\r\n        return;\r\n    }\r\n    step = Math.abs(step);\r\n    if(start > end)step = -step;\r\n    while(Math.abs(end - start) >= Math.abs(step)){\r\n        yield start;\r\n        start += step;\r\n    }\r\n    yield start;\r\n};\r\n",
+    "content": "\r\nimport {isUndefined} from \"./is/index\";\r\n\r\n/**\r\n * startからendまでのincrementごとの数のジェネレーター。\r\n * 余り使う機会はなさそうだが、少数も指定可能。\r\n * for-of文で使う場合代替として{@link forIndex}が使用できます。\r\n *\r\n * @param {Number} start\r\n * 初期値。`end`が指定されていなかった場合は0からこの数までの連版となる。\r\n * つまり、`range(end)`は`range(0, end)`と等価。\r\n * @param {Number} [end]\r\n * 出力する数字の上限/下限。\r\n * @param {Number} [step=1]\r\n * 一度に増やす/減らす数。\r\n * start > end の場合でも負の値を指定する必要はない。\r\n * @example\r\n * console.log([...range(-4)]);\r\n * // [0, -1, -2, -3, -4]\r\n *\r\n * console.log([...range(1, 10, 2)]);\r\n * // [1, 3, 5, 7, 9]\r\n */\r\nexport const range = function* (start, end, step=1){\r\n    if(isUndefined(end)){\r\n        yield* range(0, start);\r\n        return;\r\n    }\r\n    step = Math.abs(step);\r\n    if(start > end)step = -step;\r\n    while(Math.abs(end - start) >= Math.abs(step)){\r\n        yield start;\r\n        start += step;\r\n    }\r\n    yield start;\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/range.js",
     "access": "public",
@@ -3460,7 +3222,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 161,
+    "__docId__": 151,
     "kind": "function",
     "name": "range",
     "memberof": "src/utility/range.js",
@@ -3514,10 +3276,10 @@
     "return": null
   },
   {
-    "__docId__": 162,
+    "__docId__": 152,
     "kind": "file",
     "name": "src/utility/utility.js",
-    "content": "\r\nimport {isNull} from \"./is\";\r\n\r\nexport const equals = (...values)=>{\r\n    // SameValueZero\r\n    let prev = values.shift();\r\n    return values.every(value=>(\r\n        Number.isNaN(prev)\r\n            ? Number.isNaN(prev=value)\r\n            : prev===(prev=value)\r\n    ));\r\n};\r\n\r\nexport const typeOf = object=>(\r\n    Object.prototype.toString.call(object).slice(8, -1)\r\n);\r\n\r\n// TODO: require\r\n\r\n// NOTE: 元tryCall\r\nexport const callorElse = (value, args, that)=>(\r\n    typeof value === \"function\"\r\n        ? value.apply(that, args)\r\n        : value\r\n);\r\n\r\nexport const substitute = (values, checkFunk=isNull)=>(\r\n    values.reduce((value, subValue)=>(\r\n        checkFunk(value) ? subValue : value\r\n    ), values.shift())\r\n);\r\n\r\nexport const typeCheck = (value, types, sub, typeGetter=typeOf)=>{\r\n    const type = typeGetter(value);\r\n    if(types.includes(type))\r\n        return value;\r\n    return callorElse(sub, [type]);\r\n};\r\n\r\nexport const debounce = (func, wait)=>{\r\n    let id;\r\n    return function(){\r\n        clearTimeout(id);\r\n        // eslint-disable-next-line\r\n        id = setTimeout(func.apply, wait, this, arguments);\r\n    };\r\n};\r\n\r\nexport const prop = (props, defaultProps, subFunc)=>(\r\n    Object.entries(props).reduce((props_, [prop, key])=>{\r\n        props_[key] = substitute([prop, defaultProps[key]], subFunc);\r\n        return props_;\r\n    })\r\n);\r\n\r\nexport const uniq = array=>{\r\n    const existings = [];\r\n    return array.filter(value=>{\r\n        const existing = existings.includes(value);\r\n        if(!existing)existings.push(value);\r\n        return !existing;\r\n    });\r\n};\r\n",
+    "content": "\r\nimport {isNull} from \"./is/index\";\r\n\r\nexport const equals = (...values)=>{\r\n    // SameValueZero\r\n    let prev = values.shift();\r\n    return values.every(value=>(\r\n        Number.isNaN(prev)\r\n            ? Number.isNaN(prev=value)\r\n            : prev===(prev=value)\r\n    ));\r\n};\r\n\r\nexport const typeOf = object=>(\r\n    Object.prototype.toString.call(object).slice(8, -1)\r\n);\r\n\r\n// TODO: require\r\n\r\n// NOTE: 元tryCall\r\nexport const callorElse = (value, args, that)=>(\r\n    typeof value === \"function\"\r\n        ? value.apply(that, args)\r\n        : value\r\n);\r\n\r\nexport const substitute = (values, checkFunk=isNull)=>(\r\n    values.reduce((value, subValue)=>(\r\n        checkFunk(value) ? subValue : value\r\n    ), values.shift())\r\n);\r\n\r\nexport const typeCheck = (value, types, sub, typeGetter=typeOf)=>{\r\n    const type = typeGetter(value);\r\n    if(types.includes(type))\r\n        return value;\r\n    return callorElse(sub, [type]);\r\n};\r\n\r\nexport const debounce = (func, wait)=>{\r\n    let id;\r\n    return function(){\r\n        clearTimeout(id);\r\n        // eslint-disable-next-line\r\n        id = setTimeout(func.apply, wait, this, arguments);\r\n    };\r\n};\r\n\r\nexport const prop = (props, defaultProps, subFunc)=>(\r\n    Object.entries(props).reduce((props_, [prop, key])=>{\r\n        props_[key] = substitute([prop, defaultProps[key]], subFunc);\r\n        return props_;\r\n    })\r\n);\r\n\r\nexport const uniq = array=>{\r\n    const existings = [];\r\n    return array.filter(value=>{\r\n        const existing = existings.includes(value);\r\n        if(!existing)existings.push(value);\r\n        return !existing;\r\n    });\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/utility.js",
     "access": "public",
@@ -3525,7 +3287,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 163,
+    "__docId__": 153,
     "kind": "function",
     "name": "equals",
     "memberof": "src/utility/utility.js",
@@ -3556,7 +3318,7 @@
     }
   },
   {
-    "__docId__": 164,
+    "__docId__": 154,
     "kind": "function",
     "name": "typeOf",
     "memberof": "src/utility/utility.js",
@@ -3582,7 +3344,7 @@
     "return": null
   },
   {
-    "__docId__": 165,
+    "__docId__": 155,
     "kind": "function",
     "name": "callorElse",
     "memberof": "src/utility/utility.js",
@@ -3620,7 +3382,7 @@
     "return": null
   },
   {
-    "__docId__": 166,
+    "__docId__": 156,
     "kind": "function",
     "name": "substitute",
     "memberof": "src/utility/utility.js",
@@ -3655,7 +3417,7 @@
     "return": null
   },
   {
-    "__docId__": 167,
+    "__docId__": 157,
     "kind": "function",
     "name": "typeCheck",
     "memberof": "src/utility/utility.js",
@@ -3706,7 +3468,7 @@
     }
   },
   {
-    "__docId__": 168,
+    "__docId__": 158,
     "kind": "function",
     "name": "debounce",
     "memberof": "src/utility/utility.js",
@@ -3742,7 +3504,7 @@
     }
   },
   {
-    "__docId__": 169,
+    "__docId__": 159,
     "kind": "function",
     "name": "prop",
     "memberof": "src/utility/utility.js",
@@ -3780,7 +3542,7 @@
     "return": null
   },
   {
-    "__docId__": 170,
+    "__docId__": 160,
     "kind": "function",
     "name": "uniq",
     "memberof": "src/utility/utility.js",
@@ -3810,10 +3572,10 @@
     }
   },
   {
-    "__docId__": 171,
+    "__docId__": 161,
     "kind": "file",
     "name": "src/utility/zip.js",
-    "content": "\r\nimport {isArrayLike, isNumber} from \"./is\";\r\n\r\n/**\r\n * Flip objects at depth 0 and 1.<br>\r\n * オブジェクトを深さ0と1で反転します。\r\n *\r\n * @param {*} objects\r\n * The target object. The child properties of this object must also be objects.<br>\r\n * ターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。\r\n * @param {*} [getKeys=Object.keys]\r\n * A function that returns the keys of the object as an array.<br>\r\n * オブジェクトのキーを配列として返す関数。<br>\r\n * Example:\r\n * - rei.object.allKeys\r\n * @returns\r\n * An object whose depth is inverted by 0 and 1.<br>\r\n * 深度が0と1で反転したオブジェクト。\r\n */\r\nexport const zip = (objects, getKeys=Object.keys)=>{\r\n    const keys = getKeys(objects);\r\n    const rootIsArray = isArrayLike(objects);\r\n    const isArray = keys.every(key=>(\r\n        isArrayLike(objects[key])\r\n        && getKeys(objects[key]).every(isNumber)\r\n    ));\r\n    return keys.reduce((ziped, key)=>{\r\n        getKeys(objects[key]).forEach(name=>{\r\n            if(!ziped[name])ziped[name] = rootIsArray ? [] : {};\r\n            ziped[name][key] = objects[key][name];\r\n        });\r\n        return ziped;\r\n    }, isArray ? [] : {});\r\n};\r\n",
+    "content": "\r\nimport {isArrayLike, isNumber} from \"./is/index\";\r\n\r\n/**\r\n * Flip objects at depth 0 and 1.<br>\r\n * オブジェクトを深さ0と1で反転します。\r\n *\r\n * @param {*} objects\r\n * The target object. The child properties of this object must also be objects.<br>\r\n * ターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。\r\n * @param {*} [getKeys=Object.keys]\r\n * A function that returns the keys of the object as an array.<br>\r\n * オブジェクトのキーを配列として返す関数。<br>\r\n * Example:\r\n * - rei.object.allKeys\r\n * @returns\r\n * An object whose depth is inverted by 0 and 1.<br>\r\n * 深度が0と1で反転したオブジェクト。\r\n */\r\nexport const zip = (objects, getKeys=Object.keys)=>{\r\n    const keys = getKeys(objects);\r\n    const rootIsArray = isArrayLike(objects);\r\n    const isArray = keys.every(key=>(\r\n        isArrayLike(objects[key])\r\n        && getKeys(objects[key]).every(isNumber)\r\n    ));\r\n    return keys.reduce((ziped, key)=>{\r\n        getKeys(objects[key]).forEach(name=>{\r\n            if(!ziped[name])ziped[name] = rootIsArray ? [] : {};\r\n            ziped[name][key] = objects[key][name];\r\n        });\r\n        return ziped;\r\n    }, isArray ? [] : {});\r\n};\r\n",
     "static": true,
     "longname": "C:/Users/ka2obushi/Documents/GitHub/reiyayakko-core/src/utility/zip.js",
     "access": "public",
@@ -3821,7 +3583,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 172,
+    "__docId__": 162,
     "kind": "function",
     "name": "zip",
     "memberof": "src/utility/zip.js",

@@ -1,34 +1,8 @@
 {
-  "coverage": "28.86%",
-  "expectCount": 97,
+  "coverage": "31.46%",
+  "expectCount": 89,
   "actualCount": 28,
   "files": {
-    "src/command/execute/index.js": {
-      "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        2,
-        9
-      ]
-    },
-    "src/command/execute/wasm.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "src/command/index.js": {
-      "expectCount": 5,
-      "actualCount": 0,
-      "undocumentLines": [
-        2,
-        13,
-        14,
-        18,
-        21
-      ]
-    },
     "src/lib/Num2DecStr.js": {
       "expectCount": 1,
       "actualCount": 1,
@@ -137,19 +111,29 @@
         93
       ]
     },
-    "src/utility/is.js": {
-      "expectCount": 20,
-      "actualCount": 20,
+    "src/utility/is/type.js": {
+      "expectCount": 16,
+      "actualCount": 16,
       "undocumentLines": []
     },
-    "src/utility/loop.js": {
-      "expectCount": 8,
+    "src/utility/is/util.js": {
+      "expectCount": 4,
       "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/utility/loop/for.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/utility/loop/index.js": {
+      "expectCount": 5,
+      "actualCount": 1,
       "undocumentLines": [
-        5,
-        7,
-        12,
-        19
+        6,
+        8,
+        13,
+        20
       ]
     },
     "src/utility/range.js": {
