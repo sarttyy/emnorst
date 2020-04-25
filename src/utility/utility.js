@@ -1,5 +1,5 @@
 
-import {isNull} from "./is";
+import {isNull} from "./is/index";
 
 export const equals = (...values)=>{
     // SameValueZero
@@ -17,7 +17,8 @@ export const typeOf = object=>(
 
 // TODO: require
 
-export const tryCall = (value, args, that)=>(
+// NOTE: 元tryCall
+export const callorElse = (value, args, that)=>(
     typeof value === "function"
         ? value.apply(that, args)
         : value
@@ -33,7 +34,7 @@ export const typeCheck = (value, types, sub, typeGetter=typeOf)=>{
     const type = typeGetter(value);
     if(types.includes(type))
         return value;
-    return tryCall(sub, [type]);
+    return callorElse(sub, [type]);
 };
 
 export const debounce = (func, wait)=>{

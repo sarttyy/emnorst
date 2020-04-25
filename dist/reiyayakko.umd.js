@@ -4,61 +4,367 @@
     (global = global || self, factory(global.rei = {}));
 }(this, (function (exports) { 'use strict';
 
-    const isUndefined = value=>(
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Undefined
+     */
+    const isUndefined$1 = value=>(
         value === void 0
     );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Null or Undefined
+     */
     const isNull = value=>(
-        value === null || isUndefined(value)
+        value === null || isUndefined$1(value)
     );
-    const isRegExp = obj=>(
-        modules.typeof(obj) === "regexp"
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Boolean
+     */
+    const isBoolean = value=>(
+        typeOf$1(value) === "Boolean"
     );
-    const isObject = obj=>{
-        const type = typeof obj;
-        return type === "function" || type === "object" && obj !== null;
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is String
+     */
+    const isString = value=>(
+        typeOf$1(value) === "String"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Number
+     */
+    const isNumber = value=>(
+        typeOf$1(value) === "Number"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Symbol
+     */
+    const isSymbol = value=>(
+        typeOf$1(value) === "Symbol"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Function
+     */
+    const isFunction = value=>(
+        typeOf$1(value) === "Function"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether typeof is an object and is not Null
+     */
+    const isObject = value=>(
+        typeof value === "object" && value !== null
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether properties can be edited
+     */
+    const isObjectLike = value=>(
+        isFunction(value) || isObject(value)
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Arguments
+     */
+    const isArguments = value=>(
+        typeOf$1(value) === "Arguments"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is RegExp
+     */
+    const isRegExp = value=>(
+        typeOf$1(value) === "RegExp"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Error
+     */
+    const isError = value=>(
+        typeOf$1(value) === "Error"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Map
+     */
+    const isMap = value=>(
+        typeOf$1(value) === "Map"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is WeakMap
+     */
+    const isWeakMap = value=>(
+        typeOf$1(value) === "WeakMap"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is Set
+     */
+    const isSet = value=>(
+        typeOf$1(value) === "Set"
+    );
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether {@link typeOf} is WeakSet
+     */
+    const isWeakSet = value=>(
+        typeOf$1(value) === "WeakSet"
+    );
+
+    const has = Object.prototype.hasOwnProperty.call;
+
+    const last = (array, index=1)=>(
+        array[array.length - index]
+    );
+
+    const first = (array, index=1)=>(
+        array[index - 1]
+    );
+
+    const spread = (target, ...sources)=>{
+        switch(typeof target){
+        case "object":
+            if(Array.isArray(target))
+                return target.concat(...sources);
+            return Object.assign(target, ...sources);
+        case "function":
+            return target.apply({}, sources.flat());
+        default:
+            return target;
+        }
     };
-    const isEmpty = value=>{
-        if(typeof value === "string" || Array.isArray(value))
-            return value.length === 0;
-        if(typeof value === "object")
-            return modules.allKeys(value).length === 0;
-        return false;
+
+    // TODO: キーがかぶらないように合成
+    const attach = (object, name)=>{};
+
+    const allKeys = (...objects)=>{
+        const keys = [];
+        for(const object of objects){
+            keys.push(Object.getOwnPropertyNames(object));
+            keys.push(Object.getOwnPropertySymbols(object));
+        }
+        return keys.flat();
     };
-    const isNegative = value=>{
-        if(typeof value === "number")
-            return value < 0;
-        if(typeof value === "boolean")
-            return !value;
+
+    const property = (obj, propKey)=>{
+        if(typeof propKey === "string")
+            propKey = propKey.split(".");
+        else if(typeof propKey === "symbol")
+            propKey = [propKey];
+        else if(Array.isArray(propKey))
+            propKey = propKey.flatMap(key=>(
+                typeof key==="string" ? key.split(".") : key
+            ));
+        return propKey.reduce((object, key)=>{
+            if(!has(object, key))object[key] = {};
+            return object[key];
+        }, obj);
+    };
+
+    const structure = (baseObj={}, applyObj={})=>{
+        for(const propName of allKeys(applyObj)){
+            const applyProp = applyObj[propName];
+            if(typeof applyProp === "object")
+                structure(baseObj[propName], applyProp);
+            else baseObj[propName] = applyProp;
+        }
+        return baseObj;
+    };
+
+    const and = (...object)=>{
+        deep([object]);
+        object.reduce();
+    };
+    const xor = (...arrays)=>{};
+
+    const watchMap = new WeakMap();
+    const watch = (obj, propName, func)=>{
+        const descriptors = watchMap.has(obj)
+            ? watchMap.get(obj) : {};
+        const descriptor = Object.getOwnPropertyDescriptor(obj, propName);
+        if(!descriptor.hasOwnProperty("value"))
+            return;
+        descriptors[propName] = descriptor;
+        watchMap.set(obj, descriptors);
+        let value = obj[propName];
+        Object.defineProperty(obj, propName, {
+            get: ()=>value,
+            set: newValue=>{
+                func(value, value = newValue);
+            },
+            enumerable: true,
+            configurable: true
+        });
+    };
+
+    const watchStop = (obj, propName)=>{
+        const descriptor = watchMap.get(obj)[propName];
+        Object.defineProperty(obj, propName, {
+            ...descriptor,
+            value: obj[propName]
+        });
+    };
+
+    /**
+     * @param {*} value The value to be compared
+     * @return Whether it is a negative number
+     */
+    const isNegative = value=>(
+        isNumber(value) && value < 0
+    );
+
+    /**
+     * Array.isArrayかisArgumentsがtrueかどうか
+     * Alpha: 値がArrayLikeかどうか
+     * @param {*} value The value to be compared
+     * @return Whether the value is ArrayLike
+     */
+    const isArrayLike = value=>{
+        if(!isObject(value))return false;
+        if(Array.isArray(value) || isArguments(value) || value.length === 0)
+            return true;
         return false;
     };
 
-    const gurop = (array, func)=>{
-        const result = new Map();
-        for(const value of array){
-            const key = func(value);
-            const values = result.get(key) || [];
-            values.push(value);
-            result.set(key, values);
-        }
-        return result;
+    /**
+     * Alpha:
+     * @param {*} value The value to be compared
+     * @return Whether the property does not exist
+     */
+    const isEmpty = value=>{
+        if(typeOf$1(value) === "String" || isArrayLike(value))
+            return value.length === 0;
+        if(typeOf$1(value) === "Object")
+            return allKeys(value).length === 0;
+        return false;
     };
-    // export const partition = (array, func)=>{};
-    // INFO: findのマッチした数版
-    const count = (array, func)=>{
-        let match = 0;
-        for(const value of array)
-            match += Boolean(func(value));
-        return match;
+
+    /**
+     * Verify whether an error occurs when you execute it by passing the argument "args" to "func".
+     * "func"に引数として"args"を渡して実行した場合にエラーが発生するか検証します。
+     * @param {Function} func Function that verifies if an error occurs
+     * @param  {...any} [args] Argument that verifies whether an error has occurred
+     * @return Whether an error has occurred
+     */
+    const isThrowError = (func, ...args)=>{
+        try{
+            func.apply(void 0, args);
+            return false;
+        }catch(err){ return true; }
+    };
+
+    /**
+     * startからendまでのincrementごとの数のジェネレーター。
+     * 余り使う機会はなさそうだが、少数も指定可能。
+     * for-of文で使う場合代替として{@link forIndex}が使用できます。
+     *
+     * @param {Number} start
+     * 初期値。`end`が指定されていなかった場合は0からこの数までの連版となる。
+     * つまり、`range(end)`は`range(0, end)`と等価。
+     * @param {Number} [end]
+     * 出力する数字の上限/下限。
+     * @param {Number} [step=1]
+     * 一度に増やす/減らす数。
+     * start > end の場合でも負の値を指定する必要はない。
+     * @example
+     * console.log([...range(-4)]);
+     * // [0, -1, -2, -3, -4]
+     *
+     * console.log([...range(1, 10, 2)]);
+     * // [1, 3, 5, 7, 9]
+     */
+    const range = function* (start, end, step=1){
+        if(isUndefined$1(end)){
+            yield* range(0, start);
+            return;
+        }
+        step = Math.abs(step);
+        if(start > end)step = -step;
+        while(Math.abs(end - start) >= Math.abs(step)){
+            yield start;
+            start += step;
+        }
+        yield start;
+    };
+
+    /**
+     * Receives an Iterable object and calls a callback function for each value.
+     * Iterableなオブジェクトを受け取って値ごとにコールバック関数を呼び出します。
+     * @param {Iterable} iterator An Iterable object used for the loop
+     * @param {Function} func
+     * A callback function that is executed for each value of the Iterable object
+     * When a value other than undefined is returned,
+     * the loop is terminated and the value is returned.
+     * @param {*} [that] Specify this of the callback function
+     */
+    const forOf$1 = (iterator, func, that)=>{
+        for(const value of iterator){
+            const flag = func.call(that, value);
+            if(!isUndefined$1(flag))return flag;
+        }
+        return void 0;
+    };
+
+    /**
+     * Call the callback function for each number from 0 to maxIndex.
+     * 0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。
+     * @param {Number} maxIndex Repeats this number of times
+     * @param {Function} func
+     * Callback function that is executed maxIndex times
+     * When a value other than undefined is returned,
+     * the loop is terminated and the value is returned.
+     * @param {*} [that] Specify this of the callback function
+     */
+    const forIndex = (maxIndex, func, that)=>(
+        forOf$1(range(--maxIndex), index=>{
+            const flag = func.call(that, index);
+            if(!isUndefined$1(flag))return flag;
+            return void 0;
+        })
+    );
+
+    /**
+     * @deprecated
+     * @param {*} object
+     * @param {*} func
+     * @param {*} [that]
+     */
+    const forIn = (object, func, that)=>{
+        if(typeof object === "object")
+            object = Object.entries(object);
+        return forIndex(object.length, index=>(
+            func.call(that, object[index])
+        ));
     };
 
     const previous = (level, func, arg)=>{
-        for(;level--;)
-            arg = func(arg);
+        for(;level--;)arg = func(arg);
         return arg;
     };
 
-    const inOrder = (arg, ...funcs)=>{
-        for(const func of funcs)
+    const inOrder = (arg, ...orders)=>{
+        for(const func of orders)
             arg = func(arg);
         return arg;
     };
@@ -67,14 +373,29 @@
     const iterate = function* (value){
         if(value[Symbol.iterator])
             yield* value;
+        (function(){
+            return {
+                next(){
+                    return {
+                        value: void 0,
+                        done: false
+                    };
+                }
+            };
+        }).call(value);
     };
 
-    const forOf = (iterator, func, that)=>{
-        for(const value of iterator){
-            const flag = func.call(that, value);
-            if(!isUndefined(flag))return flag;
-        }
-        return void 0;
+    /**
+     * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。
+     * MEMO: do取りたい。flag初期値追加。
+     * @param {Function} func Callback function that continues to run as long as it returns undefined
+     * @param {*} [that] Specify this of the callback function
+     */
+    const doWhile = (func, that)=>{
+        let flag;
+        do flag = func.call(that);
+        while(isUndefined$1(flag));
+        return flag;
     };
 
     const equals = (...values)=>{
@@ -87,32 +408,87 @@
         ));
     };
 
-    const last = (array, index=1)=>(
-        array[array.length - index]
+    const typeOf$1 = object=>(
+        Object.prototype.toString.call(object).slice(8, -1)
     );
-    const zip = function* (...arrays){
-        if(typeof last(arrays) === "function"){
-            const func = arrays.pop();
-            arrays = arrays.map(func);
-        }
-        const max = arrays.reduce((length, array)=>(
-            Math.max(length, array.length)
-        ), 0);
-        for(let i=0;max>i;i++){
-            yield arrays.reduce((iarrays, array)=>{
-                iarrays.push(array[i]);
-                return iarrays;
-            }, []);
-        }
+
+    // TODO: require
+
+    // NOTE: 元tryCall
+    const callorElse = (value, args, that)=>(
+        typeof value === "function"
+            ? value.apply(that, args)
+            : value
+    );
+
+    const substitute$1 = (values, checkFunk=isNull)=>(
+        values.reduce((value, subValue)=>(
+            checkFunk(value) ? subValue : value
+        ), values.shift())
+    );
+
+    const typeCheck = (value, types, sub, typeGetter=typeOf$1)=>{
+        const type = typeGetter(value);
+        if(types.includes(type))
+            return value;
+        return callorElse(sub, [type]);
     };
-    const through = function* (start, end, increment){
-        increment = Math.abs(increment || 1);
-        if(start > end)increment = -increment;
-        while(Math.abs(start - end) >= Math.abs(increment)){
-            yield start;
-            start += increment;
-        }
-        yield start;
+
+    const debounce = (func, wait)=>{
+        let id;
+        return function(){
+            clearTimeout(id);
+            // eslint-disable-next-line
+            id = setTimeout(func.apply, wait, this, arguments);
+        };
+    };
+
+    const prop = (props, defaultProps, subFunc)=>(
+        Object.entries(props).reduce((props_, [prop, key])=>{
+            props_[key] = substitute$1([prop, defaultProps[key]], subFunc);
+            return props_;
+        })
+    );
+
+    const uniq = array=>{
+        const existings = [];
+        return array.filter(value=>{
+            const existing = existings.includes(value);
+            if(!existing)existings.push(value);
+            return !existing;
+        });
+    };
+
+    /**
+     * Flip objects at depth 0 and 1.<br>
+     * オブジェクトを深さ0と1で反転します。
+     *
+     * @param {*} objects
+     * The target object. The child properties of this object must also be objects.<br>
+     * ターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。
+     * @param {*} [getKeys=Object.keys]
+     * A function that returns the keys of the object as an array.<br>
+     * オブジェクトのキーを配列として返す関数。<br>
+     * Example:
+     * - rei.object.allKeys
+     * @returns
+     * An object whose depth is inverted by 0 and 1.<br>
+     * 深度が0と1で反転したオブジェクト。
+     */
+    const zip = (objects, getKeys=Object.keys)=>{
+        const keys = getKeys(objects);
+        const rootIsArray = isArrayLike(objects);
+        const isArray = keys.every(key=>(
+            isArrayLike(objects[key])
+            && getKeys(objects[key]).every(isNumber)
+        ));
+        return keys.reduce((ziped, key)=>{
+            getKeys(objects[key]).forEach(name=>{
+                if(!ziped[name])ziped[name] = rootIsArray ? [] : {};
+                ziped[name][key] = objects[key][name];
+            });
+            return ziped;
+        }, isArray ? [] : {});
     };
 
     // TEMP:
@@ -146,62 +522,109 @@
     //     }
     // }
     // String instruction
-    const execute = (func, args)=>func.apply(null, args);
-    const typeOf = object=>(
-        Object.prototype.toString.call(object).slice(8, -1)
-    );
-    // TODO: require
-    const substitute = (value, substitute)=>(
-        isNull(value)
-            ? substitute
-            : value
-    );
-    const tryCall = (value, args, that=null)=>(
-        typeof value === "function"
-            ? value.apply(that, args)
-            : value
-    );
-    // export const and = (...arrays)=>{}
-    // export const xor = (...arrays)=>{}
-    const debounce = (func, wait)=>{
-        let id;
-        return function(){
-            clearTimeout(id);
-            id = setTimeout(func.apply, wait, this, arguments);
+
+
+    // eslint-disable-next-line
+    const argument = function(){ return arguments; };
+
+    /**
+     * 拡張版分割代入
+     *
+     * @param {object} array
+     * @param {*} classifying
+     * @returns
+     */
+    const restSplit = (array, beforeItem, afterItem=0)=>{
+        const restEndIndex = array.length - afterItem;
+        const rest = array.slice(beforeItem, restEndIndex);
+        array.splice(beforeItem, restEndIndex - beforeItem, rest);
+        return array;
+    };
+    // const [key, name="the name", ...rest, param{3}] = ArrayLike();
+    // [difault, ...]
+    // const {key, key: name, ...rest} = ObjectLike();
+    // {key: null || name || [name, difault], ...}
+
+    const memoize = (func, effective=Infinity)=>{
+        const newFunc = function(){
+            const prevResult = forOf(newFunc.memo, (fragment, result)=>{
+                if(deepEquals(fragment))
+                    return result;
+                return void 0;
+            });
+            if(isUndefined(prevResult))
+                return prevResult;
+            // eslint-disable-next-line prefer-rest-params
+            const result = func.apply(this, arguments);
+            newFunc.memo.set(arguments, result);
+            return result;
+        };
+        if(Array.isArray(effective)){
+            newFunc.memo = new Array(effective.length);
+            forIndex(effective.length, i=>{
+                newFunc.memo[i] = new Map(effective[i]);
+            });
+        }else {
+            const length = substitute([effective,1], v=>!Number.isFinite(v));
+            newFunc.memo = new Array(length);
+            forIndex(length, i=>{
+                newFunc.memo[i] = new Map();
+            });
         }
+        return newFunc;
     };
-    const uniq = array=>{
-        const existings = [];
-        return array.filter(value=>{
-            const existing = existings.includes(value);
-            if(!existing)existings.push(value);
-            return !existing;
-        });
-    };
+
+    class MemoMap {
+        constructor(initValue){
+            this.map = new Map(initValue);
+        }
+    }
+
+    // MEMO: ifs スタック
 
     var index = /*#__PURE__*/Object.freeze({
         __proto__: null,
-        execute: execute,
-        typeOf: typeOf,
-        substitute: substitute,
-        tryCall: tryCall,
-        debounce: debounce,
-        uniq: uniq,
-        isUndefined: isUndefined,
+        argument: argument,
+        restSplit: restSplit,
+        memoize: memoize,
+        MemoMap: MemoMap,
+        isUndefined: isUndefined$1,
         isNull: isNull,
-        isRegExp: isRegExp,
+        isBoolean: isBoolean,
+        isString: isString,
+        isNumber: isNumber,
+        isSymbol: isSymbol,
+        isFunction: isFunction,
         isObject: isObject,
-        isEmpty: isEmpty,
+        isObjectLike: isObjectLike,
+        isArguments: isArguments,
+        isRegExp: isRegExp,
+        isError: isError,
+        isMap: isMap,
+        isWeakMap: isWeakMap,
+        isSet: isSet,
+        isWeakSet: isWeakSet,
         isNegative: isNegative,
-        gurop: gurop,
-        count: count,
+        isArrayLike: isArrayLike,
+        isEmpty: isEmpty,
+        isThrowError: isThrowError,
+        forOf: forOf$1,
+        forIndex: forIndex,
+        forIn: forIn,
         previous: previous,
         inOrder: inOrder,
         iterate: iterate,
-        forOf: forOf,
+        doWhile: doWhile,
         equals: equals,
-        zip: zip,
-        through: through
+        typeOf: typeOf$1,
+        callorElse: callorElse,
+        substitute: substitute$1,
+        typeCheck: typeCheck,
+        debounce: debounce,
+        prop: prop,
+        uniq: uniq,
+        range: range,
+        zip: zip
     });
 
     const copyObject = (modules, object, cloneObject)=>{
@@ -279,7 +702,7 @@
             return this.existingObjects.has(this.value);
         }
         get type(){
-            return modules.typeof(this.value);
+            return typeOf(this.value);
         }
     }
 
@@ -300,149 +723,65 @@
         undertake(object, depth)
     );
 
-    const has = (object, propName)=>(
-        Object.hasOwnProperty.call(object, propName)
-    );
-    const allKeys = object=>{
-        const propNames = Object.getOwnPropertyNames(object);
-        const symbols = Object.getOwnPropertySymbols(object);
-        return [...propNames, ...symbols];
+    // INFO: 汎用Deep関数
+    const deepBase = (object, props={})=>{
+        const {
+            keys=allKeys,
+            depth=0,
+            maxDepth=Infinity,
+            existing=new WeakSet()
+        } = props;
+        callorElse(props.structureFunc, [object]);
+        for(const propName of keys(object)){
+            if(isObjectLike(object[propName])){
+                callorElse(props.propStructure, [object, propName]);
+                deepBase(object[propName], {
+                    ...props,
+                    depth: depth+1,
+                    maxDepth,
+                    existing,
+                });
+            }else
+                callorElse(props.propFunc, [object, propName]);
+        }
     };
-    const watchMap = new WeakMap();
-    const watch = (obj, propName, func)=>{
-        const descriptors = watchMap.has(obj)
-            ? watchMap.get(obj) : {};
-        const descriptor = Object.getOwnPropertyDescriptor(obj, propName);
-        if(!descriptor.hasOwnProperty("value"))
-            return;
-        descriptors[propName] = descriptor;
-        watchMap.set(obj, descriptors);
-        let value = obj[propName];
-        Object.defineProperty(obj, propName, {
-            get: ()=>value,
-            set: newValue=>{
-                func(value, value = newValue);
+
+    const _ = (object, depth)=>{
+        const result = {};
+        let temp = result;
+        deepBase(object, {
+            propFunc(o, propName){
+                temp[propName] = o[propName];
             },
-            enumerable: true,
-            configurable: true
+            propStructure(o, propName){
+                temp[propName] = temp[propName] || {};
+                temp = temp[propName];
+            },
+            structureFunc(...r){
+                console.log(r);
+            },
+            depth: substitute$1([depth, Infinity])
         });
+        return result;
     };
-    const watchStop = (obj, propName)=>{
-        const descriptor = watchMap.get(obj)[propName];
-        Object.defineProperty(obj, propName, {
-            ...descriptor,
-            value: obj[propName]
-        });
-    };
-    const spread = (target, ...sources)=>{
-        switch(typeof target){
-        case "object":
-            if(Array.isArray(target))
-                return target.concat(...sources);
-            return Object.assign(target, ...sources);
-        case "function":
-            return target.apply({}, sources.flat());
-        default:
-            return target;
-        }
-    };
-
-    const property = (obj, propKey)=>{
-        if(typeof propKey === "string")
-            propKey = propKey.split(".");
-        else if(typeof propKey === "symbol")
-            propKey = [propKey];
-        else if(Array.isArray(propKey))
-            propKey = propKey.flatMap(key=>(
-                typeof key==="string" ? key.split(".") : key
-            ));
-        return propKey.reduce((object, key)=>{
-            if(!has(object, key))object[key] = {};
-            return object[key];
-        }, obj);
-    };
-
-    const structure = (baseObj={}, applyObj={})=>{
-        for(const propName of allKeys(applyObj)){
-            const applyProp = applyObj[propName];
-            if(typeof applyProp === "object")
-                structure(baseObj[propName], applyProp);
-            else baseObj[propName] = applyProp;
-        }
-        return baseObj;
-    };
-
-    /*
-    reiyayakkoPackage.addModule("object.Map", ({modules})=>class ObjectMap {
-        constructor(map){
-            this.map = [];
-        }
-        static _find(key){
-            return ([entryKey])=>modules.equals(entryKey, key);
-        }
-        get size(){
-            return this.map.length;
-        }
-        get(key){
-            return this.map.find(modules.object.Map._find(key));
-        }
-        set(key, value){
-            const index = this.map.findIndex(modules.object.Map._find(key));
-            if(index === -1)
-                this.map.push([key, value]);
-            else
-                this.map[index] = [key, value];
-        }
-        has(key){
-            const index = this.map.findIndex(modules.object.Map._find(key));
-            return index !== -1;
-        }
-        delete(key){
-            const index = this.map.findIndex(modules.object.Map._find(key));
-            if(index === -1)
-                return false;
-            this.map.splice(index, 1);
-            return true;
-        }
-        clear(){
-            this.map = [];
-        }
-        entries(){
-            return this.map.map(entry=>entry);
-        }
-        forEach(){
-            this.map.forEach(...arguments);
-        }
-        keys(){
-            return this.map.map(([key])=>key);
-        }
-        values(){
-            return this.map.map(([,value])=>value);
-        }
-        [Symbol.iterator](){
-            const that = this;
-            return (function* (){
-                for(const entry of that.map)
-                    yield entry;
-            })();
-        }
-    });
-    reiyayakkoPackage.addModule({
-        name: ["object.Map.prototype", Symbol.toStringTag],
-        enumerable: false,
-    }, ()=>"ObjectMap");
-    //*/
 
     var index$1 = /*#__PURE__*/Object.freeze({
         __proto__: null,
+        clone: clone,
+        deepBase: deepBase,
+        _: _,
         has: has,
-        allKeys: allKeys,
-        watch: watch,
-        watchStop: watchStop,
+        last: last,
+        first: first,
         spread: spread,
+        attach: attach,
+        allKeys: allKeys,
         property: property,
         structure: structure,
-        clone: clone
+        and: and,
+        xor: xor,
+        watch: watch,
+        watchStop: watchStop
     });
 
     /**
@@ -582,6 +921,7 @@
       ) : "0";
     };
 
+    // NOTE: 有効桁数
     const Num = number=>{
         const [integer, decimal] = String(number).split(".");
         return {integer, decimal, negative};
@@ -659,80 +999,51 @@
         }
     }
 
-    const abs = x=>(
-        x < 0 ? -x : number.toNumber(x)
+    const add = (number1, number2)=>(
+        number1 + number2
     );
+    const sub = (...numbers)=>{};
+    const mul = (...numbers)=>{};
+    const div = (...numbers)=>{};
+    const abs = number=>(
+        number < 0 ||
+        Object.is(-0, number) ||
+        Object.is(BigInt(-0), number)
+            ? -number : Number(number)
+    );
+
     const min = (...args)=>(
-        args.reduce((min, value)=>(
-            min < value ? min : value
+        args.reduce((minValue, value)=>(
+            minValue < value ? minValue : value
         ), Infinity)
     );
+
     const max = (...args)=>(
-        args.reduce((max, value)=>(
-            max < value ? max : value
+        args.reduce((maxValue, value)=>(
+            maxValue > value ? maxValue : value
         ), -Infinity)
     );
+
     // TODO: sin
+
     // TODO: cos
+
     // TODO: tan
+
     const diff = (n1, n2)=>abs(n1-n2);
+
     const factorial = num=>{
         if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
             return num;
         for(let i = num;i > 2;num *= --i);
         return num ? num : ++num;
     };
-    const sqrt5 = Math.sqrt(5);
-    const fibonacci$ = frequency=>{
-        const x = Math.pow((1 + sqrt5) / 2, frequency);
-        const y = Math.pow((1 - sqrt5) / 2, frequency);
-        return Math.round((x - y) / sqrt5);
-    };
-    const fibonacci = function* (frequency=Infinity){
-        for(let prev = 1n, fib = 0n;frequency--;)
-            yield fib = prev + (prev = fib);
-    };
-    const isPrime = number=>{
-        if(number === 2)
-            return true;
-        if(Number.isNaN(number) || !Number.isFinite(number) || number < 2 || number % 2 === 0)
-            return false;
-        for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
-            if(number % i === 0)return false;
-        return true;
-    };
-    const prime = function* (frequency=Infinity){
-        yield 2;
-        for(let i = 3;frequency--;i += 2)
-            if(isPrime(i))yield i;
-            else frequency++;
-    };
-    const primeFactorization = number=>new Promise((resolve, reject)=>{
-        if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number"){
-            reject(new Error("Only the numerical value can be factorized"));
-            return;
-        }
-        const result = [];
-        while(number % 2 === 0){
-            result.push(2);
-            number /= 2;
-        }
-        for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
-            while(number % i === 0){
-                result.push(i);
-                number /= i;
-            }
-        if(number > 1)result.push(number);
-        resolve(result);
-    });
+
+    // TODO: 複素数
     // export class Complex {}
+
+    // TODO: ハイパー演算
     /*
-    import package_rei from "../package";
-    package_rei.addModule("number", ()=>class Number {
-        static toNumber(number){
-            return -(-number);
-        }
-    });
     package_rei.addModule("math._hyper", ({modules})=>(a, n, b=a)=>{
         switch(n){
         case 0: return ++b;
@@ -755,7 +1066,10 @@
             stack.execute();
         }
     });
+    */
+
     // TODO: 公倍数, 公約数
+    /*
     package_rei.addModule("math.ack", ({modules: {math}})=>(x, y, z)=>{
         if(math.min(x, y, z) < 0)
             throw new Error("Negative argument cannot be specified for Ackermann function");
@@ -773,8 +1087,63 @@
     });
     */
 
+    const sqrt5 = Math.sqrt(5);
+    const fibonacci$ = frequency=>{
+        const x = Math.pow((1 + sqrt5) / 2, frequency);
+        const y = Math.pow((1 - sqrt5) / 2, frequency);
+        return Math.round((x - y) / sqrt5);
+    };
+
+    const fibonacci = function* (frequency=Infinity){
+        for(let prev = 1n, fib = 0n;frequency--;)
+            yield fib = prev + (prev = fib);
+    };
+
+    const isPrime = number=>{
+        if(number === 2)
+            return true;
+        if(Number.isNaN(number) || !Number.isFinite(number) || number < 2 || number % 2 === 0)
+            return false;
+        for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
+            if(number % i === 0)return false;
+        return true;
+    };
+
+    const prime = function* (frequency=Infinity){
+        yield 2;
+        for(let i = 3;frequency--;i += 2)
+            if(isPrime(i))yield i;
+            else frequency++;
+    };
+
+    const primeFactorization = number=>new Promise((resolve, reject)=>{
+        if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number"){
+            reject(new Error("Only the numerical value can be factorized"));
+            return;
+        }
+        const result = [];
+        while(number % 2 === 0){
+            result.push(2);
+            number /= 2;
+        }
+        for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
+            while(number % i === 0){
+                result.push(i);
+                number /= i;
+            }
+        if(number > 1)result.push(number);
+        resolve(result);
+    });
+
     var index$2 = /*#__PURE__*/Object.freeze({
         __proto__: null,
+        NumToStr: Num2FracStr$1,
+        Num: Num,
+        BigFloat: BigFloat,
+        add: add,
+        sub: sub,
+        mul: mul,
+        div: div,
         abs: abs,
         min: min,
         max: max,
@@ -784,10 +1153,7 @@
         fibonacci: fibonacci,
         isPrime: isPrime,
         prime: prime,
-        primeFactorization: primeFactorization,
-        NumToStr: Num2FracStr$1,
-        Num: Num,
-        BigFloat: BigFloat
+        primeFactorization: primeFactorization
     });
 
     exports.math = index$2;
