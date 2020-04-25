@@ -1,35 +1,6 @@
 
-import {isUndefined} from "./is";
-import {range} from "./range";
-
-const propGetter = value=>value;
-
-export const previous = (level, func, arg)=>{
-    for(;level--;)arg = func(arg);
-    return arg;
-};
-
-export const inOrder = (arg, ...orders)=>{
-    for(const func of orders)
-        arg = func(arg);
-    return arg;
-};
-
-// TODO: iterate - 何でもループ"できるようにする"やつ
-export const iterate = function* (value){
-    if(value[Symbol.iterator])
-        yield* value;
-    (function(){
-        return {
-            next(){
-                return {
-                    value: void 0,
-                    done: false
-                };
-            }
-        };
-    }).call(value);
-};
+import {isUndefined} from "../is/index";
+import {range} from "../range";
 
 /**
  * Receives an Iterable object and calls a callback function for each value.
@@ -79,17 +50,4 @@ export const forIn = (object, func, that)=>{
     return forIndex(object.length, index=>(
         func.call(that, object[index])
     ));
-};
-
-/**
- * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。
- * MEMO: do取りたい。flag初期値追加。
- * @param {Function} func Callback function that continues to run as long as it returns undefined
- * @param {*} [that] Specify this of the callback function
- */
-export const doWhile = (func, that)=>{
-    let flag;
-    do flag = func.call(that);
-    while(isUndefined(flag));
-    return flag;
 };

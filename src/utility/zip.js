@@ -1,5 +1,5 @@
 
-import {isArrayLike, isNumber} from "./is";
+import {isArrayLike, isNumber} from "./is/index";
 
 /**
  * Flip objects at depth 0 and 1.<br>

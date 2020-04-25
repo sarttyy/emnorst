@@ -1,10 +1,10 @@
 
-export * from "./is";
-export * from "./loop";
+export * from "./is/index";
+export * from "./loop/index";
 export * from "./utility";
 export * from "./range";
 export * from "./zip";
-import {forIndex} from "./loop";
+import {forIndex} from "./loop/index";
 // TEMP:
 // export class ArrayLike extends Array {
 //     constructor(){

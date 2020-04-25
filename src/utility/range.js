@@ -1,5 +1,5 @@
 
-import {isUndefined} from "./is";
+import {isUndefined} from "./is/index";
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。
