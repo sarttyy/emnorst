@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/math/calculation.js | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/utility/loop/index.js | reiyayakko-core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -96,95 +96,53 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/math/calculation.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/utility/loop/index.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
-export const add = (number1, number2)=&gt;(
-    number1 + number2
-);
-export const sub = (...numbers)=&gt;{};
-export const mul = (...numbers)=&gt;{};
-export const div = (...numbers)=&gt;{};
-export const abs = number=&gt;(
-    number &lt; 0 ||
-    Object.is(-0, number) ||
-    Object.is(BigInt(-0), number)
-        ? -number : Number(number)
-);
+export * from &quot;./for&quot;;
 
-export const min = (...args)=&gt;(
-    args.reduce((minValue, value)=&gt;(
-        minValue &lt; value ? minValue : value
-    ), Infinity)
-);
+import {isUndefined} from &quot;../is/index&quot;;
 
-export const max = (...args)=&gt;(
-    args.reduce((maxValue, value)=&gt;(
-        maxValue &gt; value ? maxValue : value
-    ), -Infinity)
-);
+const propGetter = key=&gt;obj=&gt;obj[key];
 
-// TODO: sin
-
-// TODO: cos
-
-// TODO: tan
-
-export const diff = (n1, n2)=&gt;abs(n1-n2);
-
-export const factorial = num=&gt;{
-    if(Number.isNaN(num) || (!Number.isFinite(num) &amp;&amp; typeof num !== &quot;bigint&quot;) || typeof num !== &quot;number&quot; &amp;&amp; typeof num !== &quot;bigint&quot;)
-        return num;
-    for(let i = num;i &gt; 2;num *= --i);
-    return num ? num : ++num;
+export const previous = (level, func, arg)=&gt;{
+    for(;level--;)arg = func(arg);
+    return arg;
 };
 
-// TODO: &#x8907;&#x7D20;&#x6570;
-// export class Complex {}
+export const inOrder = (arg, ...orders)=&gt;{
+    for(const func of orders)
+        arg = func(arg);
+    return arg;
+};
 
-// TODO: &#x30CF;&#x30A4;&#x30D1;&#x30FC;&#x6F14;&#x7B97;
-/*
-package_rei.addModule(&quot;math._hyper&quot;, ({modules})=&gt;(a, n, b=a)=&gt;{
-    switch(n){
-    case 0: return ++b;
-    case 1: return a + b;
-    case 2: return a * b;
-    case 3: return a ** b;
-    default: {
-        if(b === 0)return 1;
-        let prev = a;
-        for(;--b;)
-            prev = modules.math.hyper(a, --n, prev);
-        return prev;
-    }
-    }
-});
-package_rei.addModule(&quot;math.hyper&quot;, ({modules})=&gt;(a, n, b=a)=&gt;{
-    const stack = new modules.Stack();
-    while(1){
-        stack.push(modules.math._hyper);
-        stack.execute();
-    }
-});
-*/
+// TODO: iterate - &#x4F55;&#x3067;&#x3082;&#x30EB;&#x30FC;&#x30D7;&quot;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&quot;&#x3084;&#x3064;
+export const iterate = function* (value){
+    if(value[Symbol.iterator])
+        yield* value;
+    (function(){
+        return {
+            next(){
+                return {
+                    value: void 0,
+                    done: false
+                };
+            }
+        };
+    }).call(value);
+};
 
-// TODO: &#x516C;&#x500D;&#x6570;, &#x516C;&#x7D04;&#x6570;
-/*
-package_rei.addModule(&quot;math.ack&quot;, ({modules: {math}})=&gt;(x, y, z)=&gt;{
-    if(math.min(x, y, z) &lt; 0)
-        throw new Error(&quot;Negative argument cannot be specified for Ackermann function&quot;);
-    if(x === 0)return ++y;
-    if(y === 0)return math.ack(--x, 1);
-    return math.ack(--x, math.ack(x, --y));
-}).addModule(&quot;math.Chain&quot;, ()=&gt;class Chain {
-    constructor() {
-        this.chain = [];
-    }
-    chain(num){
-        this.chain.push(num);
-    }
-    sum(){}
-});
-*/
+/**
+ * MEMO: &#x30EB;&#x30FC;&#x30D7;&#x6761;&#x4EF6;&#x3068;return&#x3092;&#x3069;&#x3046;&#x306B;&#x304B;&#x3057;&#x3066;&#x5F15;&#x304D;&#x5265;&#x304C;&#x3057;&#x305F;&#x3044;&#x3002;
+ * MEMO: do&#x53D6;&#x308A;&#x305F;&#x3044;&#x3002;flag&#x521D;&#x671F;&#x5024;&#x8FFD;&#x52A0;&#x3002;
+ * @param {Function} func Callback function that continues to run as long as it returns undefined
+ * @param {*} [that] Specify this of the callback function
+ */
+export const doWhile = (func, that)=&gt;{
+    let flag;
+    do flag = func.call(that);
+    while(isUndefined(flag));
+    return flag;
+};
 </code></pre>
 
 </div>
