@@ -3,6 +3,7 @@ export * from "./is/index";
 export * from "./loop/index";
 export * from "./typeof";
 export * from "./condition";
+export * from "./getIndex";
 export * from "./utility";
 export * from "./range";
 export * from "./zip";
@@ -43,24 +44,6 @@ import {forIndex} from "./loop/index";
 
 // eslint-disable-next-line
 export const argument = function(){ return arguments; };
-
-/**
- * 拡張版分割代入
- *
- * @param {object} array
- * @param {*} classifying
- * @returns
- */
-export const restSplit = (array, beforeItem, afterItem=0)=>{
-    const restEndIndex = array.length - afterItem;
-    const rest = array.slice(beforeItem, restEndIndex);
-    array.splice(beforeItem, restEndIndex - beforeItem, rest);
-    return array;
-};
-// const [key, name="the name", ...rest, param{3}] = ArrayLike();
-// [difault, ...]
-// const {key, key: name, ...rest} = ObjectLike();
-// {key: null || name || [name, difault], ...}
 
 export const memoize = (func, effective=Infinity)=>{
     const newFunc = function(){

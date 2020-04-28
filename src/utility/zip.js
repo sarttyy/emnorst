@@ -1,5 +1,5 @@
 
-import {isArrayLike, isNumber} from "./is/index";
+import {isArrayLike} from "./is/index";
 
 /**
  * Flip objects at depth 0 and 1.<br>
@@ -22,7 +22,7 @@ export const zip = (objects, getKeys=Object.keys)=>{
     const rootIsArray = isArrayLike(objects);
     const isArray = keys.every(key=>(
         isArrayLike(objects[key])
-        && getKeys(objects[key]).every(isNumber)
+        && getKeys(objects[key]).every(_=>/\d/.test(_))
     ));
     return keys.reduce((ziped, key)=>{
         getKeys(objects[key]).forEach(name=>{
