@@ -1,7 +1,17 @@
 
 import {typeOf} from "../typeof";
 import {allKeys} from "../../object/temp";
-import {isObject, isArguments} from "./type";
+import {isObject, isArguments, isFunction} from "./type";
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether the value is iterable
+ */
+export const isIterable = value=>(
+    isObject(value)
+    && isFunction(value[Symbol.iterator])
+    && isObject(value[Symbol.iterator]())
+);
 
 /**
  * Array.isArrayかisArgumentsがtrueかどうか
