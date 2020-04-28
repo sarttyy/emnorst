@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/reiyayakko.umd.js",
   "scripts": {
-    "docs": "esdoc",
+    "postbuild:rollup": "esdoc",
     "rollup_watch": "rollup -c rollup.config.js -w",
-    "rollup_build": "rollup -c rollup.config.js --environment INCLUDE_DEPS,BUILD:production"
+    "build:rollup": "rollup -c rollup.config.js --environment INCLUDE_DEPS,BUILD:production"
   },
   "repository": {
     "type": "git",
