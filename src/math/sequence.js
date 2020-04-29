@@ -1,6 +1,17 @@
 
 import {isPrime} from "../utility/is/number";
 
+// TODO: xorshift
+// const seedRandom = seed=>{
+//     let x = seed * seed;
+//     x ^= (x << 13);
+//     x -= seed;
+//     x ^= (x >> 17);
+//     x += seed;
+//     x ^= (x << 5);
+//     return (x * x - seed) / seed;
+// };
+
 const sqrt5 = Math.sqrt(5);
 /**
  * N番目のフィボナッチ数を取得する。
@@ -16,9 +27,11 @@ export const fibonacci$ = frequency=>{
  * フィボナッチ数列のジェネレーター。
  *
  * @param {Number} frequency Maximum number of times fibonacci number is generated
+ * @param {Number} seed
  */
-export const fibonacci = function* (frequency=Infinity){
-    for(let prev = 1n, fib = 0n;frequency--;)
+export const fibonacci = function* (frequency=Infinity, seed=1){
+    // eslint-disable-next-line no-undef
+    for(let prev = BigInt(seed), fib = 0n;frequency--;)
         yield fib = prev + (prev = fib);
 };
 
@@ -39,6 +52,9 @@ export const prime = function* (frequency=Infinity){
  *
  * @param {Number} number Numbers to factor
  * @return Array of prime factor of `number`
+ * @example
+ * primeFactorization(200560490130);
+ * // => [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
  */
 export const primeFactorization = number=>{
     if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number")
