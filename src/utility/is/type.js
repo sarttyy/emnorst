@@ -128,3 +128,12 @@ export const isSet = value=>(
 export const isWeakSet = value=>(
     typeOf(value) === "WeakSet"
 );
+
+/**
+ * @param {*} value The value to be compared
+ * @return Whether {@link typeOf} is TypedArray
+ */
+export const isTypedArray = value=>(
+    /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/
+        .test(typeOf(value))
+);

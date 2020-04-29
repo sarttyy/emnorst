@@ -1,7 +1,6 @@
 
 import {isNull, isFunction} from "./is/index";
 import {typeOf} from "./typeof";
-import {last} from "../object/temp";
 
 // TODO: コールバック関数のthisを指定できる高階関数のthatの指定の仕方を変更。
 // 高階関数自体のthisを継承する。

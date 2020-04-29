@@ -1,13 +1,6 @@
 
 export const has = Object.prototype.hasOwnProperty.call;
 
-export const last = (array, index=1)=>(
-    array[array.length - index]
-);
-
-export const first = (array, index=1)=>(
-    array[index - 1]
-);
 
 export const spread = (target, ...sources)=>{
     switch(typeof target){

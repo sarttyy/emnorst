@@ -1,6 +1,8 @@
 
 import {isObject} from "./is/index";
 
+// TODO: format
+
 export const equals = (...values)=>{
     // SameValueZero
     let prev = values.shift();
