@@ -1,5 +1,5 @@
 
-import {isNegative} from "./is/index";
+import {isNull, isNegative} from "./is/index";
 /**
  * 最後から数えて`index`番目の要素を取得します。
  *
@@ -21,16 +21,42 @@ export const first = (orign, index=1)=>(
 );
 
 /**
+ * @private
+ * @param {ArrayLike} orign
+ * @param {Number} index
+ */
+const getIndex = (orign, index=0)=>(
+    isNegative(index)
+        ? orign.length + index - 1
+        : index
+);
+
+/**
+ *
+ * @param {String|Array} orign 元の要素
+ * @param {Number} start 切り取り開始位置
+ * @param {Number} cutCount 切り取る長さ
+ * @param {Array} insertItems 挿入する要素
+ */
+export const splice = (orign, start, cutCount=0, ...insertItems)=>{
+    start = getIndex(orign, start);
+    const before = orign.slice(0, start);
+    const after = orign.slice(cutCount + start);
+    return before.concat(...insertItems, after);
+};
+
+/**
  * indexが正の数なら最初から、負の数なら最後から数えて`index`番目の要素を取得します。
  *
  * @param {String|Array} orign 元の要素
  * @param {Number} index
+ * @param {*} insert
  */
-export const getIndex = (orign, index=1)=>(
-    isNegative(index)
-        ? orign[orign.length + index]
-        : orign[index - 1]
-);
+export const index = (orign, index=0, insert=null)=>{
+    if(isNull(insert))
+        return orign[getIndex(orign, index)];
+    return splice(orign, index, 1, insert);
+};
 
 /**
  *
@@ -42,19 +68,6 @@ export const iterableIndex = (iterable, index)=>{
     // if(isNegative(index))index += orign.length;
     for(;--index;)iterator.next();
     return iterator.next().value;
-};
-
-/**
- *
- * @param {String|Array} orign 元の要素
- * @param {Number} start 切り取り開始位置
- * @param {Number} cutCount 切り取る長さ
- * @param {Array} insertItems 挿入する要素
- */
-export const splice = (orign, start, cutCount=0, ...insertItems)=>{
-    const before = orign.slice(0, start);
-    const after = orign.slice(cutCount + start);
-    return before.concat(...insertItems, after);
 };
 
 /**

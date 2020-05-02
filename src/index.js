@@ -3,10 +3,11 @@
 /*!
  * reiyayakko-core
  * Copyright 2020 reiyayakko
+ * License MIT
  */
 
 export const env = {
-    version: "1.0.0",
+    version: "1.1.1",
 };
 
 // export * as command from "./command/index.js";

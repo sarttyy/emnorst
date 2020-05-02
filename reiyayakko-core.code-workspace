@@ -4,8 +4,11 @@
 	}],
 	"settings": {
 		// ESlint extension
-		"eslint.nodePath": "C:\\Users\\ka2obushi\\Documents\\GitHub\\reiyayakko-core\\node_modules",
-		"eslint.alwaysShowStatus": true,
-		"eslint.enable": true,
+		// "eslint.nodePath": "C:\\Users\\ka2obushi\\Documents\\GitHub\\reiyayakko-core\\node_modules",
+		// "eslint.alwaysShowStatus": true,
+		// "eslint.enable": true,
+		"todo-tree.filtering.includeGlobs": [
+			"**/src/**/*.js"
+		],
 	}
 }

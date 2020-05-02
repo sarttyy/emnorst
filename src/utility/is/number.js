@@ -7,6 +7,7 @@ import {isNumber} from "./type";
  */
 export const isNegative = number=>(
     isNumber(number) && number < 0
+    || Object.is(-0, number)
 );
 
 /**
