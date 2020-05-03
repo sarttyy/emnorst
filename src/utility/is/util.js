@@ -1,11 +1,10 @@
 
-import {typeOf} from "../typeof";
-import {allKeys} from "../../object/temp";
-import {isObject, isArguments, isFunction} from "./type";
+import { typeOf } from "../typeof";
+import { isArguments, isFunction, isNumber, isObject, isString } from "./type";
 
 /**
  * @param {*} value The value to be compared
- * @return Whether the value is iterable
+ * @return {Boolean} Whether the value is iterable
  */
 export const isIterable = value=>(
     isObject(value)
@@ -15,13 +14,13 @@ export const isIterable = value=>(
 
 /**
  * Array.isArrayかisArgumentsがtrueかどうか
- * Alpha: 値がArrayLikeかどうか
+ * 値がArrayLikeかどうか
  * @param {*} value The value to be compared
- * @return Whether the value is ArrayLike
+ * @return {Boolean} Whether the value is ArrayLike
  */
 export const isArrayLike = value=>{
     if(!isObject(value))return false;
-    if(Array.isArray(value) || isArguments(value) || value.length === 0)
+    if(Array.isArray(value) || isArguments(value) || isNumber(value.length))
         return true;
     return false;
 };
@@ -29,13 +28,13 @@ export const isArrayLike = value=>{
 /**
  * Alpha:
  * @param {*} value The value to be compared
- * @return Whether the property does not exist
+ * @return {Boolean} Whether the property does not exist
  */
 export const isEmpty = value=>{
-    if(typeOf(value) === "String" || isArrayLike(value))
+    if(isString(value) || isArrayLike(value))
         return value.length === 0;
     if(typeOf(value) === "Object")
-        return allKeys(value).length === 0;
+        return Object.keys(value).length === 0;
     return false;
 };
 
@@ -44,7 +43,7 @@ export const isEmpty = value=>{
  * "func"に引数として"args"を渡して実行した場合にエラーが発生するか検証します。
  * @param {Function} func Function that verifies if an error occurs
  * @param  {...any} [args] Argument that verifies whether an error has occurred
- * @return Whether an error has occurred
+ * @return {Boolean} Whether an error has occurred
  */
 export const isThrowError = (func, ...args)=>{
     try{

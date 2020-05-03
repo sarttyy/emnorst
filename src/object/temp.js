@@ -1,7 +1,4 @@
 
-export const has = Object.prototype.hasOwnProperty.call;
-
-
 export const spread = (target, ...sources)=>{
     switch(typeof target){
     case "object":
@@ -18,39 +15,7 @@ export const spread = (target, ...sources)=>{
 // TODO: キーがかぶらないように合成
 export const attach = (object, name)=>{};
 
-export const allKeys = (...objects)=>{
-    const keys = [];
-    for(const object of objects){
-        keys.push(Object.getOwnPropertyNames(object));
-        keys.push(Object.getOwnPropertySymbols(object));
-    }
-    return keys.flat();
-};
-
-export const property = (obj, propKey)=>{
-    if(typeof propKey === "string")
-        propKey = propKey.split(".");
-    else if(typeof propKey === "symbol")
-        propKey = [propKey];
-    else if(Array.isArray(propKey))
-        propKey = propKey.flatMap(key=>(
-            typeof key==="string" ? key.split(".") : key
-        ));
-    return propKey.reduce((object, key)=>{
-        if(!has(object, key))object[key] = {};
-        return object[key];
-    }, obj);
-};
-
-export const structure = (baseObj={}, applyObj={})=>{
-    for(const propName of allKeys(applyObj)){
-        const applyProp = applyObj[propName];
-        if(typeof applyProp === "object")
-            structure(baseObj[propName], applyProp);
-        else baseObj[propName] = applyProp;
-    }
-    return baseObj;
-};
+export * from "./property";
 
 export const and = (...object)=>{
     deep([object]);

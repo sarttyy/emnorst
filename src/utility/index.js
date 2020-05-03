@@ -1,14 +1,17 @@
 
+export * from "./array";
+export * from "./condition";
+export * from "./equals";
+export * from "./getIndex";
 export * from "./is/index";
 export * from "./loop/index";
-export * from "./typeof";
-export * from "./condition";
-export * from "./getIndex";
-export * from "./utility";
 export * from "./range";
+export * from "./thinning";
+export * from "./typeof";
+export * from "./utility";
 export * from "./zip";
 
-import {forIndex} from "./loop/index";
+import { forIndex } from "./loop/index";
 // TEMP:
 // export class ArrayLike extends Array {
 //     constructor(){
