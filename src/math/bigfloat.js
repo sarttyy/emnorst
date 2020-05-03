@@ -1,10 +1,9 @@
 
 // @ts-check
 
-import {Num2FracStr as num2FracStr} from "../lib/Num2DecStr";
-import {first, last, index, splice} from "../utility/getIndex";
-import {zip, forOf, isNegative, forIndex} from "../utility/index";
-import {isString, isNumber} from "../utility/is/index";
+import { first, splice } from "../utility/getIndex";
+import { forIndex, forOf, isNegative, zip, substitute } from "../utility/index";
+import { isInfinity, isNull } from "../utility/is/index";
 
 /**
  * @typedef {Number|String|BigFloat} NumberTypes
@@ -31,8 +30,8 @@ export class BigFloat {
          * @type {Object}
          */
         this.digits = {
-            integer: 100,
-            decimal: 16,
+            integer: 1000,
+            decimal: 100,
             valid: 16
         };
     }
@@ -58,6 +57,11 @@ export class BigFloat {
      * @memberof BigFloat
      */
     setNumber(number){
+        if(Number.isNaN(number) || isInfinity(number)){
+            this.exception = number;
+            number = (Math.sign(number) || "").toString().slice(0, 1);
+        }else // IDEA: 無限、循環小数等
+            this.exception = null;
         number = String(number);
         const [fst] = number;
         // 正負符号
@@ -97,12 +101,17 @@ export class BigFloat {
         return this;
     }
     toString(){
-        return this.sign.concat(
-            this.integer || "0",
-            this.decimal
-                ? `.${this.decimal}`
-                : ""
-        );
+        return (!isNull(this.exception)
+            ? String(this.exception)
+            : this.sign.concat(
+                this.integer || "0",
+                this.decimal
+                    ? `.${this.decimal}`
+                    : ""
+            ));
+    }
+    valueOf(){
+        return substitute([this.exception, this.toString()]);
     }
     /**
      * メソッド版add
@@ -267,6 +276,8 @@ export class BigFloat {
     static multiplication(target, mulNum){
         target = new BigFloat(target);
         mulNum = new BigFloat(mulNum);
+        if(target === 0 || mulNum === 0)
+            return new BigFloat();
         const targetNumbers = target.getNumber();
         const mulNumbers = mulNum.getNumber();
         const sumValue = mulNumbers.reduceRight((total, mulNumber)=>{
@@ -283,6 +294,7 @@ export class BigFloat {
         result.isPositive = target.isPositive === mulNum.isPositive;
         return result.format();
     }
+    power(){}
     /**
      * TODO:
      * @static
@@ -295,6 +307,13 @@ export class BigFloat {
     static division(target, divNum, validDigit=32){
         target = new BigFloat(target);
         divNum = new BigFloat(divNum);
+        if(divNum === Infinity)
+            return new BigFloat();
+        if(divNum === -Infinity);
+        if(BigFloat.equals(divNum, 0))
+            return new BigFloat(NaN);
+        if(BigFloat.equals(target, 0))
+            return new BigFloat();
         const sumValue = null;
         const result = new BigFloat();
         result.setNumber(sumValue);
