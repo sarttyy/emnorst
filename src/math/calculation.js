@@ -48,6 +48,30 @@ export const factorial = num=>{
     return num ? num : ++num;
 };
 
+/**
+ * 平均値
+ * @param  {...Number} numbers
+ */
+export const average = (...numbers)=>{
+    const total = numbers.reduce((subTotal, number)=>(subTotal + number), 0);
+    return total / numbers.length;
+};
+
+/**
+ * 中央値
+ * @param  {...Number} numbers
+ */
+export const median = (...numbers)=>{
+    numbers.sort();
+    const center = (numbers.length + 1) / 2;
+    if(Number.isInteger(center))
+        return numbers[center];
+    return average(
+        numbers[Math.floor(center)],
+        numbers[Math.ceil(center)]
+    );
+};
+
 // TODO: sin
 
 // TODO: cos
