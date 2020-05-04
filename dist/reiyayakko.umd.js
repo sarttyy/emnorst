@@ -5,6 +5,19 @@
 }(this, (function (exports) { 'use strict';
 
     /**
+     * 
+     * @typedef {"Int8Array"|
+     * "Uint8Array"|
+     * "Uint8ClampedArray"|
+     * "Int16Array"|
+     * "Uint16Array"|
+     * "Int32Array"|
+     * "Uint32Array"|
+     * "Float32Array"|
+     * "Float64Array"} TypedArray
+     */
+
+    /**
      * デフォルトで`Object.prototype.toString.call`の返り値として考えられるすべてのパターンです。
      * たぶん。
      *
@@ -30,15 +43,7 @@
      * "WeakSet"|
      * "GeneratorFunction"|
      * "Generator"|
-     * "Int8Array"|
-     * "Uint8Array"|
-     * "Uint8ClampedArray"|
-     * "Int16Array"|
-     * "Uint16Array"|
-     * "Int32Array"|
-     * "Uint32Array"|
-     * "Float32Array"|
-     * "Float64Array"|
+     * TypedArray|
      * "ArrayBuffer"|
      * "DataView"}
      * ObjectToStringTypes
@@ -50,277 +55,264 @@
      * @param {*} value An object that determines the type
      * @return {ObjectToStringTypes & String} object type
      */
-    const typeOf$1 = value=>(
+    var typeOf = function (value){ return (
         Object.prototype.toString.call(value).slice(8, -1)
-    );
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Undefined
+     * @return {Boolean} Whether {@link typeOf} is Undefined
      */
-    const isUndefined$1 = value=>(
+    var isUndefined$1 = function (value){ return (
         value === void 0
-    );
+    ); };
 
     /**
+     * MEMO: nully的な単語があった希ガス。
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Null or Undefined
+     * @return {Boolean} Whether {@link typeOf} is Null or Undefined
      */
-    const isNull = value=>(
+    var isNull = function (value){ return (
         value === null || isUndefined$1(value)
-    );
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Boolean
+     * @return {Boolean} Whether {@link typeOf} is Boolean
      */
-    const isBoolean = value=>(
-        typeOf$1(value) === "Boolean"
-    );
+    var isBoolean = function (value){ return (
+        typeOf(value) === "Boolean"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is String
+     * @return {Boolean} Whether {@link typeOf} is String
      */
-    const isString = value=>(
-        typeOf$1(value) === "String"
-    );
+    var isString = function (value){ return (
+        typeOf(value) === "String"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Number
+     * @return {Boolean} Whether {@link typeOf} is Number
      */
-    const isNumber = value=>(
-        typeOf$1(value) === "Number"
-    );
+    var isNumber = function (value){ return (
+        typeOf(value) === "Number"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Symbol
+     * @return {Boolean} Whether {@link typeOf} is Symbol
      */
-    const isSymbol = value=>(
-        typeOf$1(value) === "Symbol"
-    );
+    var isSymbol = function (value){ return (
+        typeOf(value) === "Symbol"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Function
+     * @return {Boolean} Whether {@link typeOf} is Function
      */
-    const isFunction = value=>(
-        typeOf$1(value) === "Function"
-    );
+    var isFunction = function (value){ return (
+        typeOf(value) === "Function"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether typeof is an object and is not Null
+     * @return {Boolean} Whether typeof is an object and is not Null
      */
-    const isObject = value=>(
+    var isObject = function (value){ return (
         typeof value === "object" && value !== null
-    );
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether properties can be edited
+     * @return {Boolean} Whether properties can be edited
      */
-    const isObjectLike = value=>(
+    var isObjectLike = function (value){ return (
         isFunction(value) || isObject(value)
-    );
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Arguments
+     * @return {Boolean} Whether {@link typeOf} is Arguments
      */
-    const isArguments = value=>(
-        typeOf$1(value) === "Arguments"
-    );
+    var isArguments = function (value){ return (
+        typeOf(value) === "Arguments"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is RegExp
+     * @return {Boolean} Whether {@link typeOf} is RegExp
      */
-    const isRegExp = value=>(
-        typeOf$1(value) === "RegExp"
-    );
+    var isRegExp = function (value){ return (
+        typeOf(value) === "RegExp"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Error
+     * @return {Boolean} Whether {@link typeOf} is Error
      */
-    const isError = value=>(
-        typeOf$1(value) === "Error"
-    );
+    var isError = function (value){ return (
+        typeOf(value) === "Error"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Map
+     * @return {Boolean} Whether {@link typeOf} is Map
      */
-    const isMap = value=>(
-        typeOf$1(value) === "Map"
-    );
+    var isMap = function (value){ return (
+        typeOf(value) === "Map"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is WeakMap
+     * @return {Boolean} Whether {@link typeOf} is WeakMap
      */
-    const isWeakMap = value=>(
-        typeOf$1(value) === "WeakMap"
-    );
+    var isWeakMap = function (value){ return (
+        typeOf(value) === "WeakMap"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is Set
+     * @return {Boolean} Whether {@link typeOf} is Set
      */
-    const isSet = value=>(
-        typeOf$1(value) === "Set"
-    );
+    var isSet = function (value){ return (
+        typeOf(value) === "Set"
+    ); };
 
     /**
      * @param {*} value The value to be compared
-     * @return Whether {@link typeOf} is WeakSet
+     * @return {Boolean} Whether {@link typeOf} is WeakSet
      */
-    const isWeakSet = value=>(
-        typeOf$1(value) === "WeakSet"
-    );
+    var isWeakSet = function (value){ return (
+        typeOf(value) === "WeakSet"
+    ); };
 
     /**
-     * @param {Number} number The value to be compared
-     * @return Whether it is a negative number
+     * @param {*} value The value to be compared
+     * @return {Boolean} Whether {@link typeOf} is TypedArray
      */
-    const isNegative = number=>(
+    var isTypedArray = function (value){ return (
+        /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/
+            .test(typeOf(value))
+    ); };
+
+    /**
+     * Determines if it is a negative number.
+     *
+     * 負の数かどうかを判定します。
+     * @param {*} number
+     * @return {Boolean}
+     */
+    var isNegative = function (number){ return (
         isNumber(number) && number < 0
-    );
+        || Object.is(-0, number)
+    ); };
 
     /**
-     * @param {Number} number The value to be compared
-     * @return Whether it is a prime number
+     * Determines if it is a positive number.
+     *
+     * 正の数かどうかを判定します。
+     * @param {*} number
+     * @return {Boolean}
      */
-    const isPrime = number=>{
+    var isPositive = function (number){ return (
+        isNumber(number) && number > 0
+        || Object.is(0, number)
+    ); };
+
+    /**
+     * Determines if infinity.
+     *
+     * 無限かどうかを判定します。
+     * @param {*} number
+     * @return {Boolean}
+     */
+    var isInfinity = function (number){ return (
+        number === Infinity || number === -Infinity
+    ); };
+
+    /**
+     * Determines if it is a prime number.
+     *
+     * 素数かどうかを判定します。
+     * @param {*} number
+     * @return {Boolean}
+     */
+    var isPrime = function (number){
         if(number === 2)
-            return true;
-        if(isNaN(number) || !Number.isFinite(number) || number < 2 || number % 2 === 0)
-            return false;
-        for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
-            if(number % i === 0)return false;
+            { return true; }
+        if(
+            isNaN(number)
+            || isInfinity(number)
+            || !Number.isInteger(number)
+            || number < 2
+            || number % 2 === 0
+        ){ return false; }
+        for(var i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
+            { if(number % i === 0){ return false; } }
         return true;
     };
 
-    const has = Object.prototype.hasOwnProperty.call;
+    /**
+     * Determine if it is odd (whether the remainder divided by 2 is 1).
+     * Even numbers can use {@link isEven}.
+     *
+     * 奇数かどうか(2で割った余りが1かどうか)を判定します。
+     * 偶数には{@link isEven}を使用できます。
+     * @param {*} number
+     * @return {Boolean}
+     */
+    var isOdd = function (number){ return (
+        isNumber(number) && number % 2 === 1
+    ); };
 
-    const last = (array, index=1)=>(
-        array[array.length - index]
-    );
+    /**
+     * Determine if it is even (whether the remainder divided by 2 is 0).
+     * Odd numbers can use {@link isOdd}.
+     *
+     * 偶数かどうか(2で割った余りが0かどうか)を判定します。
+     * 奇数には{@link isOdd}を使用できます。
+     * @param {*} number
+     * @return {Boolean}
+     */
+    var isEven = function (number){ return (
+        isNumber(number) && number % 2 === 0
+    ); };
 
-    const first = (array, index=1)=>(
-        array[index - 1]
-    );
-
-    const spread = (target, ...sources)=>{
-        switch(typeof target){
-        case "object":
-            if(Array.isArray(target))
-                return target.concat(...sources);
-            return Object.assign(target, ...sources);
-        case "function":
-            return target.apply({}, sources.flat());
-        default:
-            return target;
-        }
-    };
-
-    // TODO: キーがかぶらないように合成
-    const attach = (object, name)=>{};
-
-    const allKeys = (...objects)=>{
-        const keys = [];
-        for(const object of objects){
-            keys.push(Object.getOwnPropertyNames(object));
-            keys.push(Object.getOwnPropertySymbols(object));
-        }
-        return keys.flat();
-    };
-
-    const property = (obj, propKey)=>{
-        if(typeof propKey === "string")
-            propKey = propKey.split(".");
-        else if(typeof propKey === "symbol")
-            propKey = [propKey];
-        else if(Array.isArray(propKey))
-            propKey = propKey.flatMap(key=>(
-                typeof key==="string" ? key.split(".") : key
-            ));
-        return propKey.reduce((object, key)=>{
-            if(!has(object, key))object[key] = {};
-            return object[key];
-        }, obj);
-    };
-
-    const structure = (baseObj={}, applyObj={})=>{
-        for(const propName of allKeys(applyObj)){
-            const applyProp = applyObj[propName];
-            if(typeof applyProp === "object")
-                structure(baseObj[propName], applyProp);
-            else baseObj[propName] = applyProp;
-        }
-        return baseObj;
-    };
-
-    const and = (...object)=>{
-        deep([object]);
-        object.reduce();
-    };
-    const xor = (...arrays)=>{};
-
-    const watchMap = new WeakMap();
-    const watch = (obj, propName, func)=>{
-        const descriptors = watchMap.has(obj)
-            ? watchMap.get(obj) : {};
-        const descriptor = Object.getOwnPropertyDescriptor(obj, propName);
-        if(!descriptor.hasOwnProperty("value"))
-            return;
-        descriptors[propName] = descriptor;
-        watchMap.set(obj, descriptors);
-        let value = obj[propName];
-        Object.defineProperty(obj, propName, {
-            get: ()=>value,
-            set: newValue=>{
-                func(value, value = newValue);
-            },
-            enumerable: true,
-            configurable: true
-        });
-    };
-
-    const watchStop = (obj, propName)=>{
-        const descriptor = watchMap.get(obj)[propName];
-        Object.defineProperty(obj, propName, {
-            ...descriptor,
-            value: obj[propName]
-        });
-    };
+    /**
+     * @param {*} value The value to be compared
+     * @return {Boolean} Whether the value is iterable
+     */
+    var isIterable = function (value){ return (
+        isObject(value)
+        && isFunction(value[Symbol.iterator])
+        && isObject(value[Symbol.iterator]())
+    ); };
 
     /**
      * Array.isArrayかisArgumentsがtrueかどうか
-     * Alpha: 値がArrayLikeかどうか
+     * 値がArrayLikeかどうか
      * @param {*} value The value to be compared
-     * @return Whether the value is ArrayLike
+     * @return {Boolean} Whether the value is ArrayLike
      */
-    const isArrayLike = value=>{
-        if(!isObject(value))return false;
-        if(Array.isArray(value) || isArguments(value) || value.length === 0)
-            return true;
+    var isArrayLike = function (value){
+        if(!isObject(value)){ return false; }
+        if(Array.isArray(value) || isArguments(value) || isNumber(value.length))
+            { return true; }
         return false;
     };
 
     /**
      * Alpha:
      * @param {*} value The value to be compared
-     * @return Whether the property does not exist
+     * @return {Boolean} Whether the property does not exist
      */
-    const isEmpty = value=>{
-        if(typeOf$1(value) === "String" || isArrayLike(value))
-            return value.length === 0;
-        if(typeOf$1(value) === "Object")
-            return allKeys(value).length === 0;
+    var isEmpty = function (value){
+        if(isString(value) || isArrayLike(value))
+            { return value.length === 0; }
+        if(typeOf(value) === "Object")
+            { return Object.keys(value).length === 0; }
         return false;
     };
 
@@ -329,9 +321,12 @@
      * "func"に引数として"args"を渡して実行した場合にエラーが発生するか検証します。
      * @param {Function} func Function that verifies if an error occurs
      * @param  {...any} [args] Argument that verifies whether an error has occurred
-     * @return Whether an error has occurred
+     * @return {Boolean} Whether an error has occurred
      */
-    const isThrowError = (func, ...args)=>{
+    var isThrowError = function (func){
+        var args = [], len = arguments.length - 1;
+        while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
         try{
             func.apply(void 0, args);
             return false;
@@ -357,8 +352,8 @@
      * console.log([...range(1, 10, 2)]);
      * // [1, 3, 5, 7, 9]
      */
-    const range = function* (start, end, step=1){
-        if(isUndefined$1(end)){
+    var range = null; /* function* (start, end, step=1){
+        if(isUndefined(end)){
             yield* range(0, start);
             return;
         }
@@ -370,6 +365,7 @@
         }
         yield start;
     };
+    // */
 
     /**
      * Receives an Iterable object and calls a callback function for each value.
@@ -379,17 +375,18 @@
      * A callback function that is executed for each value of the Iterable object
      * When a value other than undefined is returned,
      * the loop is terminated and the value is returned.
-     * @param {*} [that] Specify this of the callback function
      */
-    const forOf$1 = (iterator, func, that)=>{
-        for(const value of iterator){
-            const flag = func.call(that, value);
-            if(!isUndefined$1(flag))return flag;
+    var forOf$1 = function(iterator, func){
+        var variable = [];
+        for(var value /* of iterator */ = null;;){
+            var flag = func.call.apply(func, [ this, value ].concat( variable ));
+            if(!isUndefined$1(flag)){ return flag; }
         }
         return void 0;
     };
 
     /**
+     * OPTIMIZE: 関数のlength0なら素のfor --i:
      * Call the callback function for each number from 0 to maxIndex.
      * 0からmaxIndexまでの数値ごとにコールバック関数を呼び出します。
      * @param {Number} maxIndex Repeats this number of times
@@ -397,15 +394,14 @@
      * Callback function that is executed maxIndex times
      * When a value other than undefined is returned,
      * the loop is terminated and the value is returned.
-     * @param {*} [that] Specify this of the callback function
      */
-    const forIndex = (maxIndex, func, that)=>(
-        forOf$1(range(--maxIndex), index=>{
-            const flag = func.call(that, index);
-            if(!isUndefined$1(flag))return flag;
+    var forIndex = function(maxIndex, func){
+        return forOf$1.call(this, range(--maxIndex), function(){
+            var flag = func.apply(this, arguments);
+            if(!isUndefined$1(flag)){ return flag; }
             return void 0;
-        })
-    );
+        });
+    };
 
     /**
      * @deprecated
@@ -413,12 +409,12 @@
      * @param {*} func
      * @param {*} [that]
      */
-    const forIn = (object, func, that)=>{
+    var forIn = function (object, func, that){
         if(typeof object === "object")
-            object = Object.entries(object);
-        return forIndex(object.length, index=>(
+            { object = Object.entries(object); }
+        return forIndex(object.length, function (index){ return (
             func.call(that, object[index])
-        ));
+        ); });
     };
 
     /**
@@ -427,9 +423,9 @@
      * @param {Function} func Callback function that continues to run as long as it returns undefined
      * @param {*} [that] Specify this of the callback function
      */
-    const doWhile = (func, that)=>{
-        let flag;
-        do flag = func.call(that);
+    var doWhile = function (func, that){
+        var flag;
+        do { flag = func.call(that); }
         while(isUndefined$1(flag));
         return flag;
     };
@@ -444,8 +440,8 @@
      * @param {*} [arg] Arguments passed to the first callback function
      * @return Return value of the last callback function
      */
-    const previous = (level, func, arg)=>{
-        for(;level--;)arg = func(arg);
+    var previous = function (level, func, arg){
+        for(;level--;){ arg = func(arg); }
         return arg;
     };
 
@@ -458,46 +454,90 @@
      *     The return value of the previous callback function is passed as an argument
      * @return Return value of the last callback function
      */
-    const inOrder = (arg, ...orders)=>{
-        for(const func of orders)
+    var inOrder = function (arg){
+        var orders = [], len = arguments.length - 1;
+        while ( len-- > 0 ) orders[ len ] = arguments[ len + 1 ];
+
+        forOf$1(orders, function (func){
             arg = func(arg);
+        });
         return arg;
     };
 
-    // TODO: iterate - 何でもループ"できるようにする"やつ
-    const iterate = function* (value){
-        if(value[Symbol.iterator])
-            yield* value;
-        (function(){
-            return {
-                next(){
-                    return {
-                        value: void 0,
-                        done: false
-                    };
-                }
-            };
-        }).call(value);
+    var own = function (value){ return value; };
+
+    var gurop = function (array, func){
+        if ( func === void 0 ) func=own;
+
+        var gurops = {};
+        forOf$1(array, function (value){
+            /*
+            IDEA: fの返り値: {gurupName1:{value}}
+            */
+            var entry = func(value);
+            var entries = isObject(entry)
+                ? Object.entries(entry)
+                : [[entry, value]];
+            forOf$1(entries, function (ref){
+                var key = ref[0];
+                var value = ref[1];
+
+                if(!gurops[key]){ gurops[key] = []; }
+                gurops[key].push(value);
+            });
+        });
+        return gurops;
     };
+    // export const partition = (array, func)=>{};
+    // INFO: findのマッチした数版
+    var count = function (array, func){
+        var match = 0;
+        forOf$1(array, function (value){
+            match += Boolean(func(value));
+        });
+        return match;
+    };
+
+    var generate = function (generator, func, that){
+        var assign;
+
+        var done;
+        do{
+            var result = generator.next();
+            ((assign = result, done = assign.done));
+            func.call(that, result.value);
+        }while(!done);
+    };
+    var generator = function (){};
+
+    var reduce = function (array, func, defaultValue, that){
+        // {value: undefined, done: false}
+    };
+
+    // export const map = (array, func)=>{
+    //     array.flatMap(value=>func([value]));
+    // };
 
     // TODO: コールバック関数のthisを指定できる高階関数のthatの指定の仕方を変更。
     // 高階関数自体のthisを継承する。
     // f(that) => f.call(that)
 
-    // NOTE: tryCall
     /**
      * Executes the function if the value is a function, otherwise returns the value
      *
+     * NOTE: tryCall
      * @param {*} value The value to be executed if it was a function
      * @param {*[]} [args] Argument when the value is a function
-     * @param {*} [that] this when the value is a function
      * @return {*} The return value of the function if the value is a function, otherwise the value
      */
-    const callorElse = (value, args, that)=>(
-        isFunction(value)
-            ? value.apply(that, args)
-            : value
-    );
+    var callorElse = function(value){
+        var args = [], len = arguments.length - 1;
+        while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+        return isFunction(value)
+            ? value.apply(this, args)
+            : value;
+    };
 
     /**
      * Returns the first found value. If not found, it returns the last value.
@@ -508,11 +548,15 @@
      * A function that evaluates a value. Returning a true value is considered an invalid value.
      * 値を評価する関数。trulyな値を返すと無効な値とみなされる
      */
-    const substitute$1 = (values, evalFunc=isNull)=>(
-        values.reduce((value, subValue)=>(
+    var substitute$1 = function (values, evalFunc){
+        if ( evalFunc === void 0 ) evalFunc=isNull;
+
+        return (
+        values.reduce(function (value, subValue){ return (
             evalFunc(value) ? subValue : value
-        ), values.shift())
+        ); }, values.shift())
     );
+    };
 
     /**
      * Beta:
@@ -521,10 +565,12 @@
      * @param {*} sub
      * @param {*} typeGetter
      */
-    const typeCheck = (value, types, sub, typeGetter=typeOf$1)=>{
-        const type = typeGetter(value);
+    var typeCheck = function (value, types, sub, typeGetter){
+        if ( typeGetter === void 0 ) typeGetter=typeOf;
+
+        var type = typeGetter(value);
         if(types.includes(type))
-            return value;
+            { return value; }
         return callorElse(sub, [type]);
     };
 
@@ -534,49 +580,241 @@
      * @param {*} defaultProps
      * @param {*} subFunc
      */
-    const prop = (props, defaultProps, subFunc)=>(
-        Object.entries(props).reduce((props_, [prop, key])=>{
+    var prop = function (props, defaultProps, subFunc){ return (
+        Object.entries(props).reduce(function (props_, ref){
+            var prop = ref[0];
+            var key = ref[1];
+
             props_[key] = substitute$1([prop, defaultProps[key]], subFunc);
             return props_;
         })
+    ); };
+
+    /**
+     * 引数が全て同じかどうかをSameValueZeroによって検証します。
+     * @param  {...any} values
+     * @return {Boolean}
+     */
+    var equals = function (){
+        var values = [], len = arguments.length;
+        while ( len-- ) values[ len ] = arguments[ len ];
+
+        var first = values.shift();
+        var equal = Number.isNaN(first)
+            ? Number.isNaN
+            : function (value) { return (first === value); };
+        return values.every(equal);
+    };
+
+    /**
+     * 引数の型({@link typeOf})が全て同じかどうかを検証します。
+     * @param  {...any} values
+     * @return {Boolean}
+     */
+    var equalsType = function (){
+        var values = [], len = arguments.length;
+        while ( len-- ) values[ len ] = arguments[ len ];
+
+        return (
+        equals(values.map(typeOf))
     );
-
-    const equals = (...values)=>{
-        // SameValueZero
-        let prev = values.shift();
-        return values.every(value=>(
-            Number.isNaN(prev)
-                ? Number.isNaN(prev=value)
-                : prev===(prev=value)
-        ));
     };
 
-    const toPrimitive = value=>{
-        if(!isObject(value))
-            return value;
-        if("valueOf" in value)
-            return value.valueOf();
-        if("toString" in value)
-            return value.toString();
-        if(Symbol && Symbol.toPrimitive in value)
-            return value[Symbol.toPrimitive]("default");
-        return value;
+    // IDEA: deepEqualをここにつれてくる
+
+    /**
+     * 最後から数えて`index`番目の要素を取得します。
+     *
+     * @param {String|Array} orign 元の要素
+     * @param {Number} index
+     */
+    var last = function (orign, index){
+        if ( index === void 0 ) index=1;
+
+        return (
+        orign[orign.length - index]
+    );
     };
 
-    const debounce = (func, wait)=>{
-        let id;
+    /**
+     * 最初から数えて`index`番目の要素を取得します。
+     *
+     * @param {String|Array} orign 元の要素
+     * @param {Number} index
+     */
+    var first = function (orign, index){
+        if ( index === void 0 ) index=1;
+
+        return (
+        orign[index - 1]
+    );
+    };
+
+    /**
+     * @private
+     * @param {ArrayLike} orign
+     * @param {Number} index
+     */
+    var getIndex = function (orign, index){
+        if ( index === void 0 ) index=0;
+
+        return (
+        isNegative(index)
+            ? orign.length + index - 1
+            : index
+    );
+    };
+
+    /**
+     *
+     * @param {String|Array} orign 元の要素
+     * @param {Number} start 切り取り開始位置
+     * @param {Number} cutCount 切り取る長さ
+     * @param {Array} insertItems 挿入する要素
+     */
+    var splice = function (orign, start, cutCount){
+        if ( cutCount === void 0 ) cutCount=0;
+        var insertItems = [], len = arguments.length - 3;
+        while ( len-- > 0 ) insertItems[ len ] = arguments[ len + 3 ];
+
+        start = getIndex(orign, start);
+        var before = orign.slice(0, start);
+        var after = orign.slice(cutCount + start);
+        return before.concat.apply(before, insertItems.concat( [after] ));
+    };
+
+    /**
+     * indexが正の数なら最初から、負の数なら最後から数えて`index`番目の要素を取得します。
+     *
+     * @param {String|Array} orign 元の要素
+     * @param {Number} index
+     * @param {*} insert
+     */
+    var index = function (orign, index, insert){
+        if ( index === void 0 ) index=0;
+        if ( insert === void 0 ) insert=null;
+
+        if(isNull(insert))
+            { return orign[getIndex(orign, index)]; }
+        return splice(orign, index, 1, insert);
+    };
+
+    /**
+     *
+     * @param {Iterable} iterable
+     * @param {Number} index
+     */
+    var iterableIndex = function (iterable, index){
+        var iterator = iterable[Symbol.iterator]();
+        // if(isNegative(index))index += orign.length;
+        for(;--index;){ iterator.next(); }
+        return iterator.next().value;
+    };
+
+    /**
+     * Beta:
+     * 分割代入拡張
+     *
+     * @param {Array} array 元の配列
+     * @param {Number} beforeItem restの前のパラメータの数
+     * @param {Number} afterItem restの後のパラメータの数
+     * @returns
+     */
+    var restSplit = function (array, beforeItem, afterItem){
+        if ( afterItem === void 0 ) afterItem=0;
+
+        var restEndIndex = array.length - afterItem;
+        var rest = array.slice(beforeItem, restEndIndex);
+        array.splice(beforeItem, restEndIndex - beforeItem, rest);
+        return array;
+    };
+
+    // classifying
+    // const [key, name="the name", ...rest, param{3}] = ArrayLike();
+    // [difault, ...]
+    // const {key, key: name, ...rest} = ObjectLike();
+    // {key: null || name || [name, difault], ...}
+
+    /**
+     * 高階関数。一度実行してから一定時間内に発生した処理を無視、
+     * 一定期間呼び出されなかった場合も実行する。
+     * @param {Function} func
+     * @param {Number} wait 待機時間
+     * @return {(...args: any[]) => void}
+     */
+    var throttle = function (func, wait){
+        if ( wait === void 0 ) wait=1000;
+
+        var id, waiting, context, args;
         return function(){
-            clearTimeout(id);
-            // eslint-disable-next-line
-            id = setTimeout(func.apply, wait, this, arguments);
+            if(!isNumber(id)){
+                func.apply(this, arguments);
+                id = setTimeout(function (){
+                    waiting && func.apply(context, args);
+                    waiting = false;
+                    id = null;
+                }, wait);
+            }else {
+                waiting = true;
+                context = this;
+                args = arguments;
+            }
         };
     };
 
-    const uniq = array=>{
-        const existings = [];
-        return array.filter(value=>{
-            const existing = existings.includes(value);
-            if(!existing)existings.push(value);
+    /**
+     * 高階関数。呼び出されてから一定期間呼び出されなかった場合に実行する。
+     * @param {Function} func
+     * @param {Number} wait 待機時間
+     * @return {(...args: any[]) => void}
+     */
+    var debounce = function (func, wait){
+        if ( wait === void 0 ) wait=1000;
+
+        var id;
+        return function(){
+            var arguments$1 = arguments;
+            var this$1 = this;
+
+            clearTimeout(id);
+            id = setTimeout(function (){ return func.apply(this$1, arguments$1); }, wait);
+        };
+    };
+
+    // TODO: format
+
+    // /**
+    //  * Alpha:
+    //  * @param {String[]} strings
+    //  * @param  {...any} rawStrings
+    //  */
+    // const r = (strings, ...rawStrings)=>{
+    //     console.log(strings);
+    //     const result = [];
+    //     for(const __ of rawStrings){
+    //         result.push(strings.pop());
+    //         result.push(__);
+    //     }
+    //     return result;
+    // };
+
+    var toPrimitive = function (value){
+        if(!isObject(value))
+            { return value; }
+        if("valueOf" in value)
+            { return value.valueOf(); }
+        if("toString" in value)
+            { return value.toString(); }
+        if(Symbol && Symbol.toPrimitive in value)
+            { return value[Symbol.toPrimitive]("default"); }
+        return value;
+    };
+
+    var uniq = function (array){
+        var existings = [];
+        return array.filter(function (value){
+            var existing = existings.includes(value);
+            if(!existing){ existings.push(value); }
             return !existing;
         });
     };
@@ -597,16 +835,18 @@
      * An object whose depth is inverted by 0 and 1.<br>
      * 深度が0と1で反転したオブジェクト。
      */
-    const zip = (objects, getKeys=Object.keys)=>{
-        const keys = getKeys(objects);
-        const rootIsArray = isArrayLike(objects);
-        const isArray = keys.every(key=>(
+    var zip = function (objects, getKeys){
+        if ( getKeys === void 0 ) getKeys=Object.keys;
+
+        var keys = getKeys(objects);
+        var rootIsArray = isArrayLike(objects);
+        var isArray = keys.every(function (key){ return (
             isArrayLike(objects[key])
-            && getKeys(objects[key]).every(isNumber)
-        ));
-        return keys.reduce((ziped, key)=>{
-            getKeys(objects[key]).forEach(name=>{
-                if(!ziped[name])ziped[name] = rootIsArray ? [] : {};
+            && getKeys(objects[key]).every(function (_){ return /\d/.test(_); })
+        ); });
+        return keys.reduce(function (ziped, key){
+            getKeys(objects[key]).forEach(function (name){
+                if(!ziped[name]){ ziped[name] = rootIsArray ? [] : {}; }
                 ziped[name][key] = objects[key][name];
             });
             return ziped;
@@ -647,69 +887,67 @@
 
 
     // eslint-disable-next-line
-    const argument = function(){ return arguments; };
+    var argument = function(){ return arguments; };
 
-    /**
-     * 拡張版分割代入
-     *
-     * @param {object} array
-     * @param {*} classifying
-     * @returns
-     */
-    const restSplit = (array, beforeItem, afterItem=0)=>{
-        const restEndIndex = array.length - afterItem;
-        const rest = array.slice(beforeItem, restEndIndex);
-        array.splice(beforeItem, restEndIndex - beforeItem, rest);
-        return array;
-    };
-    // const [key, name="the name", ...rest, param{3}] = ArrayLike();
-    // [difault, ...]
-    // const {key, key: name, ...rest} = ObjectLike();
-    // {key: null || name || [name, difault], ...}
+    var memoize = function (func, effective){
+        if ( effective === void 0 ) effective=Infinity;
 
-    const memoize = (func, effective=Infinity)=>{
-        const newFunc = function(){
-            const prevResult = forOf(newFunc.memo, (fragment, result)=>{
+        var newFunc = function(){
+            var prevResult = forOf(newFunc.memo, function (fragment, result){
                 if(deepEquals(fragment))
-                    return result;
+                    { return result; }
                 return void 0;
             });
             if(isUndefined(prevResult))
-                return prevResult;
+                { return prevResult; }
             // eslint-disable-next-line prefer-rest-params
-            const result = func.apply(this, arguments);
+            var result = func.apply(this, arguments);
             newFunc.memo.set(arguments, result);
             return result;
         };
         if(Array.isArray(effective)){
             newFunc.memo = new Array(effective.length);
-            forIndex(effective.length, i=>{
+            forIndex(effective.length, function (i){
                 newFunc.memo[i] = new Map(effective[i]);
             });
         }else {
-            const length = substitute([effective,1], v=>!Number.isFinite(v));
+            var length = substitute([effective,1], function (v){ return !Number.isFinite(v); });
             newFunc.memo = new Array(length);
-            forIndex(length, i=>{
+            forIndex(length, function (i){
                 newFunc.memo[i] = new Map();
             });
         }
         return newFunc;
     };
 
-    class MemoMap {
-        constructor(initValue){
-            this.map = new Map(initValue);
-        }
-    }
+    var MemoMap = function MemoMap(initValue){
+        this.map = new Map(initValue);
+    };
 
     // MEMO: ifs スタック
 
-    var index = /*#__PURE__*/Object.freeze({
+    var index$1 = /*#__PURE__*/Object.freeze({
         __proto__: null,
         argument: argument,
-        restSplit: restSplit,
         memoize: memoize,
         MemoMap: MemoMap,
+        gurop: gurop,
+        count: count,
+        generate: generate,
+        generator: generator,
+        reduce: reduce,
+        callorElse: callorElse,
+        substitute: substitute$1,
+        typeCheck: typeCheck,
+        prop: prop,
+        equals: equals,
+        equalsType: equalsType,
+        last: last,
+        first: first,
+        splice: splice,
+        index: index,
+        iterableIndex: iterableIndex,
+        restSplit: restSplit,
         isUndefined: isUndefined$1,
         isNull: isNull,
         isBoolean: isBoolean,
@@ -726,8 +964,14 @@
         isWeakMap: isWeakMap,
         isSet: isSet,
         isWeakSet: isWeakSet,
+        isTypedArray: isTypedArray,
         isNegative: isNegative,
+        isPositive: isPositive,
+        isInfinity: isInfinity,
         isPrime: isPrime,
+        isOdd: isOdd,
+        isEven: isEven,
+        isIterable: isIterable,
         isArrayLike: isArrayLike,
         isEmpty: isEmpty,
         isThrowError: isThrowError,
@@ -737,171 +981,231 @@
         doWhile: doWhile,
         previous: previous,
         inOrder: inOrder,
-        iterate: iterate,
-        typeOf: typeOf$1,
-        callorElse: callorElse,
-        substitute: substitute$1,
-        typeCheck: typeCheck,
-        prop: prop,
-        equals: equals,
-        toPrimitive: toPrimitive,
-        debounce: debounce,
-        uniq: uniq,
         range: range,
+        throttle: throttle,
+        debounce: debounce,
+        typeOf: typeOf,
+        toPrimitive: toPrimitive,
+        uniq: uniq,
         zip: zip
     });
 
-    const copyObject = (modules, object, cloneObject)=>{
-        const propKeys = modules.getAllKeys(object);
-        const prototype = Object.getPrototypeOf(object);
-        object = propKeys.reduce((propertiesObject, propKey) => {
-            const prop = Object.getOwnPropertyDescriptor(object, propKey);
-            if (prop.hasOwnProperty("value"))
-                prop.value = modules.cloneMod(prop.value, cloneObject);
-            Object.defineProperty(propertiesObject, propKey, prop);
-            return propertiesObject;
-        }, Object.create(prototype));
-        return object;
-    };
-    const copy = cloneObject=>{
-        console.log(`type: '${cloneObject.type}'`, [cloneObject.value]);
-        let object = cloneObject.value;
-        // primitive type, function
-        if(typeof object !== "object")
-            return cloneObject;
-        switch(cloneObject.type){
-        case "object": { // {}, new Object, new Foo etc...
-            object = copyObject(modules, object, cloneObject);
-            break;
-        }
-        case "array": // [], new Array
-            object = object.map(value=>modules.cloneMod(value, cloneObject));
-            break;
-        case "number": // new Number
-            return new Number(object);
-        case "string": // new String
-            return new String(object);
-        case "boolean": // new Boolean
-            return new Boolean(object);
-        case "bigint": // Object(BigInt())
-            return object.valueOf();
-        case "regexp": // /regexp/, new RegExp
-            return new RegExp(object);
-        case "null": // null
-            object = null;
-            break;
-        case "date": return new Date(object);
-        case "map": {
-            const map = new Map();
-            for(const [key, value] of object)
-                map.set(key, modules.clone(value));
-            return map;
-        }
-        case "weakmap": {
-            const map = new WeakMap();
-            for(const [key, value] of object)
-                map.set(key, modules.clone(value));
-            return map;
-        }
-        case "set": return new Set(object);
-        case "weakset": return new WeakSet(object);
-        default:
-            return null;
-        }
-        cloneObject.object = object;
-        return cloneObject;
+    var has = function (thisObject, propName){ return (
+        Object.prototype.hasOwnProperty.call(thisObject, propName)
+    ); };
+
+    /**
+     * 受け取ったオブジェクトの全てのプロパティー名とSymbolを取得します。
+     * @param  {...Object} object キーを取得するオブジェクトです。
+     * @return {Array<String | Symbol>} オブジェクトのプロパティー名とSymbolの配列です。
+     */
+    var allKeys = function (object){ return (
+        !isObject(object) ? null : []
+            .concat(Object.getOwnPropertyNames(object))
+            .concat(Object.getOwnPropertySymbols(object))
+    ); };
+
+    /**
+     * 
+     * @param {Object} obj 
+     * @param {String|Symbol|Array<String|Symbol>} propKey 
+     * @param {Boolean} define 
+     */
+    var property = function (obj, propKey, define){
+        if ( define === void 0 ) define=false;
+
+        if(typeof propKey === "string")
+            { propKey = propKey.split("."); }
+        else if(isSymbol(propKey))
+            { propKey = [propKey]; }
+        else if(Array.isArray(propKey))
+            { propKey = propKey.flatMap(function (key){ return (
+                typeof key==="string" ? key.split(".") : key
+            ); }); }
+        return propKey.reduce(function (object, key){
+            if(!has(object, key)){
+                if(define){ object[key] = {}; }
+            }
+            return object[key];
+        }, obj);
     };
 
-    class CloneObject {
-        constructor(cloneObject, props = {}){
-            this.value = cloneObject;
-            this.existingObjects = props.existingObjects || new WeakSet();
-            this.isDone = false;
-        }
-        done(){
-            this.isDone = true;
-            return this.value;
-        }
-        get isExisting(){
-            return this.existingObjects.has(this.value);
-        }
-        get type(){
-            return typeOf(this.value);
-        }
-    }
+    var structure = function (baseObj, applyObj){
+        if ( baseObj === void 0 ) baseObj={};
+        if ( applyObj === void 0 ) applyObj={};
 
-    const undertake = (object, props)=>{
-        object = new CloneObject(object, props);
-        if(object.isExisting)
-            return object.done();
-        console.groupCollapsed(`type: '${object.type}'`, object.value);
-        object.existingObjects.push(object.value);
-        const cloneObject = copy(object);
-        cloneObject.existingObjects.push(cloneObject.value);
-        console.log(cloneObject.existingObjects);
-        console.groupEnd();
-        return cloneObject.done();
+        forOf$1(allKeys(applyObj), function (propName){
+            var applyProp = applyObj[propName];
+            if(typeof applyProp === "object")
+                { structure(baseObj[propName], applyProp); }
+            else { baseObj[propName] = applyProp; }
+        });
+        return baseObj;
     };
 
-    const clone = (object, depth=0)=>(
-        undertake(object, depth)
-    );
+    /**
+     * deepBaseのプロパティー
+     * @typedef {{
+     * keys: Function;
+     * depth: Number;
+     * maxDepth: Number;
+     * existing: Set | WeakSet;
+     * structureCall: Function;
+     * propFuncIfObject: Function;
+     * propFunc: Function;
+     * }} prop
+     */
 
-    // INFO: 汎用Deep関数
-    const deepBase = (object, props={})=>{
-        const {
-            keys=allKeys,
-            depth=0,
-            maxDepth=Infinity,
-            existing=new WeakSet()
-        } = props;
-        callorElse(props.structureFunc, [object]);
-        for(const propName of keys(object)){
-            if(isObjectLike(object[propName])){
-                callorElse(props.propStructure, [object, propName]);
-                deepBase(object[propName], {
-                    ...props,
-                    depth: depth+1,
-                    maxDepth,
-                    existing,
-                });
-            }else
-                callorElse(props.propFunc, [object, propName]);
+    /**
+     * @param {*} object
+     * @param {String | Symbol} propName
+     * @param {prop} props
+     */
+    var allocate = function (object, propName, props){
+        if ( props === void 0 ) props={};
+
+        var target = Object.getOwnPropertyDescriptor(object, propName);
+        if(isObject(target)){
+            callorElse(props.propFuncIfObject, object, propName);
+            if(!props.existing.has(target)){
+                props.existing.add(target);
+                deepBase(target, Object.assign({}, props, {
+                    depth: props.depth + 1,
+                }));
+            }
+        }else {
+            var prop = Object.getOwnPropertyDescriptor(object, propName);
+            callorElse(props.propFunc, object, propName, prop);
         }
     };
 
-    const _ = (object, depth)=>{
-        const result = {};
-        let temp = result;
+    /**
+     * deepBaseのプロパティー
+     * @typedef {{
+     * keys: Function;
+     * depth: Number;
+     * maxDepth: Number;
+     * existing: Set | WeakSet;
+     * structureCall: Function;
+     * propFuncIfObject: Function;
+     * propFunc: Function;
+     * }} prop
+     */
+
+    /**
+     * WIP: 開発難航中。
+     * WARNING: おそらくバグ多数あり。
+     * 汎用Deep関数
+     * @param {Object} targetObject
+     * @param {prop} props
+     */
+    var deepBase = function (targetObject, props){
+        var assign, assign_keys, assign_depth, assign_maxDepth, assign_existing, assign_structureCall, assign_propFuncIfObject, assign_propFunc;
+
+        if ( props === void 0 ) props={};
+        ((assign = props, assign_keys = assign.keys, assign_keys = assign_keys === void 0 ? allKeys : assign_keys, props.keys = assign_keys, assign_depth = assign.depth, assign_depth = assign_depth === void 0 ? 0 : assign_depth, props.depth = assign_depth, assign_maxDepth = assign.maxDepth, assign_maxDepth = assign_maxDepth === void 0 ? Infinity : assign_maxDepth, props.maxDepth = assign_maxDepth, assign_existing = assign.existing, assign_existing = assign_existing === void 0 ? new WeakSet() : assign_existing, props.existing = assign_existing, assign_structureCall = assign.structureCall, assign_structureCall = assign_structureCall === void 0 ? console.log : assign_structureCall, props.structureCall = assign_structureCall, assign_propFuncIfObject = assign.propFuncIfObject, assign_propFuncIfObject = assign_propFuncIfObject === void 0 ? console.log : assign_propFuncIfObject, props.propFuncIfObject = assign_propFuncIfObject, assign_propFunc = assign.propFunc, assign_propFunc = assign_propFunc === void 0 ? console.log : assign_propFunc, props.propFunc = assign_propFunc));
+        callorElse(props.structureCall, targetObject);
+        forOf$1(props.keys(targetObject), function (propName){
+            allocate(targetObject, propName, props);
+        });
+    };
+
+    /**
+     * WIP:
+     * @param {Object} object
+     * @param {Number} depth
+     */
+    var clone_WIP = function (object, depth){
+        var result = {};
+        var temp = result;
         deepBase(object, {
-            propFunc(o, propName){
-                temp[propName] = o[propName];
+            propFunc: function propFunc(o, propName){
+                var prop = Object.getOwnPropertyDescriptor(o, propName);
+                if(has(prop, "value")){ prop.value = null; }
+                Object.defineProperty(temp, propName, prop);
             },
-            propStructure(o, propName){
-                temp[propName] = temp[propName] || {};
+            propFuncIfObject: function propFuncIfObject(o, propName){
+                var target = o[propName];
+                var prototype = Object.getPrototypeOf(target);
+                var __ = Object.create(prototype);
+                temp[propName] = temp[propName] || __;
                 temp = temp[propName];
             },
-            structureFunc(...r){
+            structureCall: function structureCall(r){
                 console.log(r);
             },
             depth: substitute$1([depth, Infinity])
         });
+        console.log(object, "=>", result);
         return result;
     };
 
-    var index$1 = /*#__PURE__*/Object.freeze({
+    var spread = function (target){
+        var sources = [], len = arguments.length - 1;
+        while ( len-- > 0 ) sources[ len ] = arguments[ len + 1 ];
+
+        switch(typeof target){
+        case "object":
+            if(Array.isArray(target))
+                { return target.concat.apply(target, sources); }
+            return Object.assign.apply(Object, [ target ].concat( sources ));
+        case "function":
+            return target.apply({}, sources.flat());
+        default:
+            return target;
+        }
+    };
+
+    // TODO: キーがかぶらないように合成
+    var attach = function (object, name){};
+
+    var and = function (){
+        var object = [], len = arguments.length;
+        while ( len-- ) object[ len ] = arguments[ len ];
+
+        deep([object]);
+    };
+    var xor = function (){
+        var arrays = [], len = arguments.length;
+        while ( len-- ) arrays[ len ] = arguments[ len ];
+    };
+
+    var watchMap = new WeakMap();
+    var watch = function (obj, propName, func){
+        var descriptors = watchMap.has(obj)
+            ? watchMap.get(obj) : {};
+        var descriptor = Object.getOwnPropertyDescriptor(obj, propName);
+        if(!descriptor.hasOwnProperty("value"))
+            { return; }
+        descriptors[propName] = descriptor;
+        watchMap.set(obj, descriptors);
+        var value = obj[propName];
+        Object.defineProperty(obj, propName, {
+            get: function (){ return value; },
+            set: function (newValue){
+                func(value, value = newValue);
+            },
+            enumerable: true,
+            configurable: true
+        });
+    };
+
+    var watchStop = function (obj, propName){
+        var descriptor = watchMap.get(obj)[propName];
+        Object.defineProperty(obj, propName, Object.assign({}, descriptor,
+            {value: obj[propName]}));
+    };
+
+    var index$2 = /*#__PURE__*/Object.freeze({
         __proto__: null,
-        clone: clone,
         deepBase: deepBase,
-        _: _,
+        clone_WIP: clone_WIP,
         has: has,
-        last: last,
-        first: first,
-        spread: spread,
-        attach: attach,
         allKeys: allKeys,
         property: property,
         structure: structure,
+        spread: spread,
+        attach: attach,
         and: and,
         xor: xor,
         watch: watch,
@@ -909,219 +1213,522 @@
     });
 
     /**
-     * 数値を整数・少数表記に変換する。
-     * 内部的には、指数表記の文字列をパースし、小数表記に変換している。
-     *
-     * @param {number|string} number 変換したい数値、または数値形式の文字列。
-     *     数値型であればNaNやInfinityも指定できるが、そのまま文字列化して返される。
-     * @return {string} 小数表記の数値文字列
-     * @throws 適切な形式の数値、または文字列が与えられなかった場合に発生する。
-     *
-     * Note: この関数は、JavaScriptで正確な数値演算を行うために使う**べきではない**。
-     *       この関数でなければ変換できない数値は、JavaScriptの内部データの時点で誤差が発生しており、正確な演算は期待できない。
-     *       また、この関数によって変換された数値が厳密に正しい事も保証しない。
-     *       この関数は、JavaScriptで生成した数値を「見やすく表示する」ためにのみ使用するべきである。
-     * Note: この関数の設計が正しければ（つまり、バグが無ければ）、エラーが発生するのは誤った形式の文字列を与えられた場合のみとなる。
-     *       逆に言えば、数値のプリミティブ型が与えられた場合は、いかなる場合でもエラーは発生しないはずである。
-     *       もし、数値が与えられた場合にもエラーが発生してしまった場合は、この関数のバグを修正する必要がある。
+     * @typedef {Number | String | BigFloat} NumberTypes
      */
-    const Num2FracStr$1 = number => {
-      /*
-       * 引数の値を文字列化
-       */
-      const numStr = String(number);
 
-      /*
-       * 正規表現でマッチング
-       */
-      const match = numStr.match(/^([+-]?)0*([1-9][0-9]*|)(?:\.([0-9]*[1-9]|)0*)?(?:[eE]([+-]?[0-9]+))?$/);
+    var isSafe = function (target){ return (
+        target.integer.length < 16 && !target.decimal
+    ); };
 
-      /*
-       * 引数の型が適切な形式ではない場合…
-       */
-      if (!match) {
-        if (typeof number == "number") {
-          /*
-           * 引数の型が数値であれば、文字列化した値をそのまま返す
-           */
-          return numStr;
-        } else {
-          /*
-           * 引数の型が数値でなければ、エラーにする
-           */
-          throw new Error(`Invalid Number: "${numStr}"`);
+    /**
+     * WIP: In development.
+     *
+     * Alpha: 符号一部バグあり、除算対応できてない、おそらく他にもバグあり。
+     *
+     * OPTIMIZE: 桁が増えたときのパフォーマンスがひどい。
+     *
+     * IDEA: Stringによって1桁ずつ保存ではなく、
+     * 乗算でNumber.MAX_SAFE_INTEGERを超えない7桁ずつArrayに保存
+     * @export
+     * @class BigFloat
+     */
+    var BigFloat = function BigFloat(number){
+        if ( number === void 0 ) number=0;
+
+        this.setNumber(number);
+        this.format();
+        /**
+         * 少数点以下有効桁数
+         * @type {Object}
+         */
+        this.digits = {
+            integer: 1000,
+            decimal: 100,
+            valid: 16
+        };
+    };
+    /**
+     * @readonly
+     * @memberof BigFloat
+     */
+    // eslint-disable-next-line class-methods-use-this
+    // get [Symbol.toStringTag](){
+    // return "BigFloat";
+    // }
+    /**
+     * @readonly
+     * @memberof BigFloat
+     */
+    // get sign(){
+    // return this.isPositive ? "+" : "-";
+    // }
+    BigFloat.prototype.setSign = function setSign (sign){
+        this.isPositive
+            = isString(sign) ? first(sign) !== "-"
+            : isNumber(sign) ? isPositive(sign)
+            : isBoolean(sign) ? sign
+            : sign instanceof BigFloat ? sign.isPositive
+            : null;
+    };
+    /**
+     * 引数の数字をthisのBigfloatに代入
+     *
+     * @memberof BigFloat
+     * @param {NumberTypes} number
+     */
+    BigFloat.prototype.setNumber = function setNumber (number){
+        // @ts-ignore
+        if(Number.isNaN(number) || isInfinity(number)){
+            this.exception = number;
+            // @ts-ignore
+            number = (Math.sign(number) || "").toString().slice(0, 1);
+        }else // IDEA: 無限、循環小数等
+            { this.exception = null; }
+        number = String(number);
+        var fst = number[0];
+        // 正負符号
+        this.setSign(fst);
+        number = fst === "-" || fst === "+"
+            ? number.slice(1) : number;
+        var point = number.indexOf(".");
+        var decimalPoint = point !== -1 ? point : Infinity;
+        this.integer = number.slice(0, decimalPoint);
+        this.decimal = number.slice(decimalPoint + 1);
+    };
+    /**
+     * integer, decimalのpaddingを指定して数字を取得
+     *
+     * @memberof BigFloat
+     * @param {Number} int integerのpadding
+     * @param {Number} dec decimalのpadding
+     * @return {Number[]} full number
+     */
+    BigFloat.prototype.getNumber = function getNumber (int, dec){
+            if ( int === void 0 ) int=1;
+            if ( dec === void 0 ) dec=0;
+
+        var _ = this.integer.padStart(int, "0") + this.decimal.padEnd(dec, "0");
+        var result = [];
+        forIndex(_.length, function (index){
+            result.push(Number(_[index]));
+        });
+        return result;
+    };
+    BigFloat.prototype.setDecimalPoint = function setDecimalPoint (decimalPoint){
+            if ( decimalPoint === void 0 ) decimalPoint=0;
+
+        var number = this.getNumber().join("");
+        var decimal = number.length - decimalPoint;
+        this.integer = number.slice(0, decimal);
+        this.decimal = number.slice(decimal);
+    };
+    BigFloat.prototype.format = function format (){
+        this.integer = this.integer.replace(/^0+/, "");
+        this.decimal = this.decimal.replace(/0+$/, "");
+        return this;
+    };
+    BigFloat.prototype.toString = function toString (){
+        return (!isNull(this.exception)
+            ? String(this.exception)
+            : this.sign.concat(
+                this.integer || "0",
+                this.decimal
+                    ? ("." + (this.decimal))
+                    : ""
+            ));
+    };
+    BigFloat.prototype.valueOf = function valueOf (){
+        return substitute$1([this.exception, this.toString()]);
+    };
+    /**
+     * メソッド版add
+     * @memberof BigFloat
+     * @param {number} number
+     * @return
+     */
+    BigFloat.prototype.increment = function increment (number){
+            if ( number === void 0 ) number=1;
+
+        this.setNumber(BigFloat.addition(this, number));
+        return this;
+    };
+    /**
+     * メソッド版sub
+     * @memberof BigFloat
+     * @param {number} number
+     * @return
+     */
+    BigFloat.prototype.decrement = function decrement (number){
+            if ( number === void 0 ) number=1;
+
+        this.setNumber(BigFloat.subtraction(this, number));
+        return this;
+    };
+    BigFloat.prototype.trunc = function trunc (cutCount){
+            if ( cutCount === void 0 ) cutCount=0;
+
+        this.decimal = this.decimal.slice(0, cutCount);
+        return this;
+    };
+    BigFloat.prototype.floor = function floor (cutCount){
+            if ( cutCount === void 0 ) cutCount=0;
+
+        return this.trunc(cutCount);
+    };
+    BigFloat.prototype.ceil = function ceil (cutCount){
+            if ( cutCount === void 0 ) cutCount=0;
+
+        var fst = first(this.decimal, cutCount);
+        if(fst){ this.increment(); }
+        return this.trunc(cutCount);
+    };
+    /**
+     * 四捨五入
+     * 正の無限大の方向ではなく0から遠ざかる次の整数に丸められます。
+     *
+     * @memberof BigFloat
+     * @param {number} [cutCount=0]
+     * @returns
+     */
+    BigFloat.prototype.round = function round (cutCount){
+            if ( cutCount === void 0 ) cutCount=0;
+
+        var fst = Number(first(this.decimal, cutCount));
+        if(fst >= 5){ this.increment(); }
+        return this.trunc(cutCount);
+    };
+    /**
+     * @memberof BigFloat
+     * @static
+     * @param {BigFloat} n1
+     * @param {BigFloat} n2
+     * @returns
+     */
+    BigFloat.max2 = function max2 (n1, n2){
+        if(n1.integer.length !== n2.integer.length)
+            { return n1.integer.length > n2.integer.length
+                ? n1 : n2; }
+        var digits = {
+            integer: Math.max(n1.integer.length, n2.integer.length),
+            decimal: Math.max(n1.decimal.length, n2.decimal.length),
+        };
+        var sumValue = zip([
+            n1.getNumber(digits.integer, digits.decimal),
+            n2.getNumber(digits.integer, digits.decimal)
+        ]);
+        return forOf$1(sumValue, function (ref){
+                var num1 = ref[0];
+                var num2 = ref[1];
+
+                return (
+            num1 !== num2 ? (num1 > num2 ? num1 : num2) : void 0
+        );
+            });
+    };
+    /**
+     * Beta: 加算
+     * Convert argument to BigFloat perform addition
+     *
+     * FIXME: 符号が正しくない。
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes} target
+     * @param {NumberTypes} addNum
+     * @return {BigFloat} result
+     */
+    BigFloat.addition = function addition (target, addNum){
+        target = new BigFloat(target);
+        addNum = new BigFloat(addNum);
+        // Numberで計算可能ならNumberで計算
+        if(isSafe(target) && isSafe(addNum))
+            { return new BigFloat(Number(target) + Number(addNum)); }
+        // 符号が異なる場合、符号を反転して減算
+        if(target.isPositive !== addNum.isPositive){
+            addNum.setSign(!addNum.isPositive);
+            return BigFloat.subtraction(target, addNum);
         }
-      }
+        var digits = {
+            integer: Math.max(target.integer.length, addNum.integer.length),
+            decimal: Math.max(target.decimal.length, addNum.decimal.length),
+        };
+        var sumValue = zip([
+            target.getNumber(digits.integer, digits.decimal),
+            addNum.getNumber(digits.integer, digits.decimal)
+        ]).reduceRight(function (total, ref){
+                var targetNumber = ref[0];
+                var addNumber = ref[1];
 
-      /** @type {string} 数の符号 */
-      const sign = (match[1] === "-" ? "-" : "");
-      /** @type {string} 仮数部の整数部 */
-      const mantissa_int = match[2];
-      /** @type {string} 仮数部の少数部 */
-      const mantissa_frac = (match[3] ? match[3] : "");
-      /** @type {number} 指数部 */
-      const exponent = Number(match[4]);
-
-      let returnValue = "";
-
-      if (exponent) {
-        /*
-         * exponentがundefinedではなく（正規表現で指数部がマッチしていて）、
-         * かつ、0ではない場合、指数表記として処理を開始する
-         *
-         * Note: 指数部が0の場合、ここで処理する意味は無いので少数表記として処理する。
-         *       よって、指数部が0以外の場合にここで処理する。
-         * Note: undefinedは数値化されるとNaNになり、false相当となる。
-         *       一方、0の場合もfalse相当となる。
-         *       ので、↑の条件文はコレで合っている。
-         */
-
-        /** @type {string} */
-        const mantissa_str = mantissa_int + mantissa_frac;
-        /** @type {number} */
-        const mantissa_len = mantissa_str.length;
-
-        if (0 < mantissa_len) {
-          /** @type {number} */
-          const mantissa_int_len = mantissa_int.length + exponent;
-      
-          /*
-          12.145e+7  121450000             ;  mantissa_str: "12145"  mantissa_int_len: 9   ;  小数部が存在しない数値
-          12.145e+6   12145000             ;  mantissa_str: "12145"  mantissa_int_len: 8   ;  小数部が存在しない数値
-          12.145e+5    1214500             ;  mantissa_str: "12145"  mantissa_int_len: 7   ;  小数部が存在しない数値
-          12.145e+4     121450             ;  mantissa_str: "12145"  mantissa_int_len: 6   ;  小数部が存在しない数値
-          12.145e+3      12145             ;  mantissa_str: "12145"  mantissa_int_len: 5   ;  小数部が存在しない数値
-          12.145e+2       1214.5           ;  mantissa_str: "12145"  mantissa_int_len: 4   ;  小数部が存在し、かつ、1より大きい数値
-          12.145e+1        121.45          ;  mantissa_str: "12145"  mantissa_int_len: 3   ;  小数部が存在し、かつ、1より大きい数値
-          12.145e0          12.145         ;  mantissa_str: "12145"  mantissa_int_len: 2   ;  小数部が存在し、かつ、1より大きい数値
-          12.145e-1          1.2145        ;  mantissa_str: "12145"  mantissa_int_len: 1   ;  小数部が存在し、かつ、1より大きい数値
-          12.145e-2          0.12145       ;  mantissa_str: "12145"  mantissa_int_len: 0   ;  小数部が存在し、かつ、1未満の数値
-          12.145e-3          0.012145      ;  mantissa_str: "12145"  mantissa_int_len: -1  ;  小数部が存在し、かつ、1未満の数値
-          12.145e-4          0.0012145     ;  mantissa_str: "12145"  mantissa_int_len: -2  ;  小数部が存在し、かつ、1未満の数値
-          12.145e-5          0.00012145    ;  mantissa_str: "12145"  mantissa_int_len: -3  ;  小数部が存在し、かつ、1未満の数値
-          12.145e-6          0.000012145   ;  mantissa_str: "12145"  mantissa_int_len: -4  ;  小数部が存在し、かつ、1未満の数値
-          12.145e-7          0.0000012145  ;  mantissa_str: "12145"  mantissa_int_len: -5  ;  小数部が存在し、かつ、1未満の数値
-          */
-
-          if (mantissa_len <= mantissa_int_len) {
+            var carry = Number(first(total));
+            var subtotal = String(carry + targetNumber + addNumber);
+            return splice(total, 0, 1, subtotal.padStart(2, "0"));
+        }, "0");
+        var result = new BigFloat();
+        result.setNumber(sumValue);
+        result.setDecimalPoint(digits.decimal);
+        result.setSign(target);
+        return result.format();
+    };
+    /**
+     * Beta: 減算
+     * Convert argument to BigFloat and perform subtraction
+     *
+     * HACK: let多すぎ問題。もっとスコープを絞りたい。
+     *
+     * WARNING: 途中の桁消えてる可能性あり。splice流用してfirst消して大丈夫か？
+     *
+     * FIXME: 符号が正しくない。
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes} target
+     * @param {NumberTypes} subNum
+     * @return {BigFloat} result
+     */
+    BigFloat.subtraction = function subtraction (target, subNum){
+        target = new BigFloat(target);
+        subNum = new BigFloat(subNum);
+        // Numberで計算可能ならNumberで計算
+        if(isSafe(target) && isSafe(subNum))
+            { return new BigFloat(Number(target) - Number(subNum)); }
+        // 符号が異なる場合、符号を反転して加算
+        if(target.isPositive !== subNum.isPositive){
+            subNum.setSign(!subNum.isPositive);
+            return BigFloat.addition(target, subNum);
             /*
-             * 小数部が存在しない数値（ex: 0, 12, 176, 1214500）の場合の処理
-             */
-            returnValue = mantissa_str.padEnd(mantissa_int_len, "0");
+            NOTE:
+            (+9 - +1) = (+9 + -1) = +8 : -
+            (+1 - +9) = (+1 + -9) = -8 : -
 
-          } else if (0 < mantissa_int_len) {
-            /*
-             * 小数部が存在し、かつ、1より大きい数値（ex: 1.26, 1.0009, 121.45）の場合の処理
-             */
-            returnValue = mantissa_str.slice(0, mantissa_int_len) + "." + mantissa_str.slice(mantissa_int_len);
+            (-9 - -1) = (-9 + +1) = -8 : -
+            (-1 - -9) = (-1 + +9) = +8 : -
 
-          } else {
-            /*
-             * 小数部が存在し、かつ、1未満の数値（ex: 0.26, 0.20098, 0.0012145）の場合の処理
-             */
-            returnValue = "0." + "0".repeat(-mantissa_int_len) + mantissa_str;
-          }
+            (+9 - -1) = (+9 + +1) = +10 : +
+            (+1 - -9) = (+1 + +9) = -10 : +
+
+            (-9 - +1) = (-9 + -1) = -10 : +
+            (-1 - +9) = (-1 + -9) = +10 : +
+            */
         }
+        var digits = {
+            integer: Math.max(target.integer.length, subNum.integer.length),
+            decimal: Math.max(target.decimal.length, subNum.decimal.length),
+        };
+        var borrow = false;
+        var sumValue = zip([
+            target.getNumber(digits.integer, digits.decimal),
+            subNum.getNumber(digits.integer, digits.decimal)
+        ]).reduceRight(function (total, ref){
+                var targetNumber = ref[0];
+                var addNumber = ref[1];
 
-      } else if (mantissa_frac) {
-        /*
-         * 少数表記の場合
-         */
-        returnValue = (mantissa_int || "0") + "." + mantissa_frac;
+            // IDEA: const borrow = Number(last(total));
+            var subtotal = targetNumber - addNumber - Number(borrow);
+            borrow = isNegative(subtotal);
+            if(borrow){ subtotal += 10; }
+            return splice(total, 0, 1, String(Math.abs(subtotal)).padStart(2, "0"));
+        }, "0");
+        if(borrow){
+            var big = "1" + ("0".repeat(sumValue.length - 1));
+            sumValue = BigFloat.subtraction(big, sumValue);
+            // IDEA:
+            // sumValue = [...sumValue].map(char=>(
+            // 10 - Number(char)
+            // )).join("");
+        }
+        var result = new BigFloat();
+        result.setNumber(sumValue);
+        result.setDecimalPoint(digits.decimal);
+        // FIXME: 正しくない。大小によって判断すべき
+        var max2 = BigFloat.max2(target, subNum);
+        result.isPositive = max2 === subNum
+            ? !subNum.isPositive
+            : target.isPositive;
+        return result.format();
+    };
+    /**
+     * Beta: 乗算
+     *
+     * FIXME: 桁がずれるため使い物にならない
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes} target
+     * @param {NumberTypes} mulNum
+     * @return {BigFloat} result
+     */
+    BigFloat.multiplication = function multiplication (target, mulNum){
+        target = new BigFloat(target);
+        mulNum = new BigFloat(mulNum);
+        // 項のどちらかが0なら0を返す。
+        if(BigFloat.equals(target, 0) || BigFloat.equals(mulNum, 0))
+            { return new BigFloat(); }
+        // Numberで計算可能ならNumberで計算
+        var sumLength = target.integer.length + mulNum.integer.length;
+        if(sumLength < 16 && !target.decimal && !mulNum.decimal)
+            { return new BigFloat(Number(target) * Number(mulNum)); }
+        // 計算
+        var targetNumbers = target.getNumber();
+        var mulNumbers = mulNum.getNumber();
+        var sumValue = mulNumbers.reduceRight(function (total, mulNumber){
+            var subtotal = targetNumbers.reduceRight(function (total2, targetNumber){
+                var fst = Number(first(total2));
+                var subtotal2 = String(fst + mulNumber * targetNumber);
+                return splice(total2, 0, 1, subtotal2.padStart(2, "0"));
+            }, "0");
+            return BigFloat.addition(total, subtotal).toString();
+        }, "0");
+        var result = new BigFloat();
+        result.setNumber(sumValue);
+        result.setDecimalPoint(target.decimal.length + mulNum.decimal.length);
+        result.setSign(target.isPositive === mulNum.isPositive);
+        return result.format();
+    };
+    BigFloat.prototype.power = function power (){};
+    /**
+     * Alpha: 除算
+     *
+     * FIXME: 符号によっては無限ループ
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes} target
+     * @param {NumberTypes} divNum
+     * @param {Number} validDigit
+     * @return
+     */
+    BigFloat.division = function division (target, divNum, validDigit){
 
-      } else if (mantissa_int) {
-        /*
-         * 整数表記の場合
-         */
-        returnValue = mantissa_int;
-      }
+        target = new BigFloat(target);
+        divNum = new BigFloat(divNum);
+        if(BigFloat.equals(divNum, Infinity))
+            { return new BigFloat(); }
+        if(BigFloat.equals(divNum, -Infinity))
+            { return new BigFloat(-0); }
+        if(BigFloat.equals(divNum, 0))
+            { return new BigFloat(NaN); }
+        if(BigFloat.equals(target, 0))
+            { return new BigFloat(); }
+        var sumValue = forIndex(Infinity, /** @param {Number} i*/ function (i){
+            target = BigFloat.subtraction(target, divNum);
+            return target.isPositive ? void 0 : i;
+        });
+        var result = new BigFloat();
+        result.setNumber(sumValue);
+        result.setDecimalPoint();
+        return result.format();
+    };
+    /**
+     * Alpha: 余剰
+     *
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes} dividend 被除数(割られる数)
+     * @param {NumberTypes} divisor 除数(割る数)
+     * @returns
+     */
+    BigFloat.surplus = function surplus (dividend, divisor){
+        var terget = new BigFloat(dividend);
+        var divisor_ = new BigFloat(divisor);
+        divisor_.setSign(terget);
+        var result = new BigFloat(doWhile(function (Continue){
+            var subQuotient = BigFloat.subtraction(terget, divisor_);
+            if(BigFloat.equals(subQuotient, 0))
+                { return 0; }
+            if(terget.isPositive === subQuotient.isPositive){
+                terget = subQuotient;
+                return Continue;
+            }
+            return terget;
+        }));
+        result.setSign(terget);
+        return result;
+    };
+    /**
+     * WIP: In development
+     *
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes} dividend
+     * @param {NumberTypes} divisor
+     * @param {Number} [maxDigit=100]
+     * @returns
+     */
+    BigFloat.div_WIP = function div_WIP (dividend, divisor, maxDigit){
+            if ( maxDigit === void 0 ) maxDigit=100;
 
-      return (returnValue) ? sign + (
-        returnValue
-          /* 先頭の余計なゼロを削除 */
-          .replace(/^(?:0(?!\.|$))+/, "")
-          /* 末尾の余計なゼロを削除 */
-          .replace(/(?:\.0+|(\.[0-9]*[1-9])0+)$/, "$1")
-      ) : "0";
+        var quotientList_商 = [];
+        var isComplete = false;
+        var remainders = [];
+        // 小数部の桁数が maxFractionPartLength に到達するまでループで処理する。
+        // 割り切れたり、循環節を検出できた等の理由で、除算が完了した場合はtrue。
+        // 桁数の不足等で除算が完了していない場合はfalse。
+        var recurringStartIndex = forIndex(maxDigit, function (){
+            var remainder = Number(BigFloat.surplus(dividend, divisor));
+            // 除算の商を求める。被除数から剰余を減算しておくことで、割り切れる除算を実行する。
+            quotientList_商.push((dividend - remainder) / divisor);
+            if(remainder === 0){
+                // 割り切れた
+                isComplete = true;
+                return -1;
+            }
+            var recurringStartIndex = remainders.indexOf(remainder);
+            if(recurringStartIndex !== -1){
+                // 循環節を検出
+                isComplete = true;
+                return recurringStartIndex;
+            }
+            dividend = remainder * 10;
+            remainders.push(remainder);
+            return void 0;
+        });
+        var loopPoint = recurringStartIndex === -1 ? Infinity : recurringStartIndex;
+        var integer = quotientList_商.shift();
+        var decimal = quotientList_商.slice(0, loopPoint);
+        var 循環小数 = quotientList_商.slice(loopPoint);
+        return { integer: integer, decimal: decimal, 循環小数: 循環小数, isComplete: isComplete };
+    };
+    /**
+     *
+     *
+     * @memberof BigFloat
+     * @static
+     * @param {NumberTypes[]} numbers
+     * @returns
+     */
+    BigFloat.equals = function equals$1 (){
+            var numbers = [], len = arguments.length;
+            while ( len-- ) numbers[ len ] = arguments[ len ];
+
+        numbers = numbers.map(function (number){ return (
+            new BigFloat(number).toString()
+        ); });
+        return equals.apply(void 0, numbers);
     };
 
-    // NOTE: 有効桁数
-    const Num = number=>{
-        const [integer, decimal] = String(number).split(".");
-        return {integer, decimal, negative};
+    var hyperCall = function (a, lebel, b){
+        if(lebel === 3)
+            { return Math.pow( a, b ); }
+        if(b === 0)
+            { return 1; }
+        console.log(a, lebel, b);
+        lebel--;
+        return previous(--b, function (prev){ return (
+            console.log(prev)
+            || hyperCall(a, lebel, prev)
+        ); }, a);
     };
-    class BigFloat {
-        constructor(number){
-            const [integer, decimal] = Num2FracStr(number).split(".");
-            this.integer = integer || "";
-            this.decimal = decimal || "";
-            this.negative = false;
+
+    var hyper = function (a, lebel, b){
+        if ( b === void 0 ) b=a;
+
+        switch(lebel){
+        case 0:
+            return ++b;
+        case 1:
+            return a + b;
+        case 2:
+            return a * b;
+        default:
+            return hyperCall(a, lebel, b);
         }
-        toString(){
-            const number = this.integer + (this.decimal && "." + this.decimal);
-            return (this.negative ? "-" : "+").concat(number);
-        }
-        _typeCheck(valuue){
-            return Number.isNaN(valuue)
-                || (
-                    typeof valuue !== "string"
-                    && !Number.isFinite(valuue)
-                )
-        }
-        add(number){
-            if(this._typeCheck(number))return this;
-            const bigfloat = number instanceof BigFloat
-                ? number : new BigFloat(number);
-            let carry = false;
-            const integerLength = Math.max(bigfloat.integer.length, this.integer.length);
-            const decimalLength = Math.max(bigfloat.decimal.length, this.decimal.length);
-            const number1 = [
-                ...this.integer.padStart(integerLength, "0"),
-                ...[...this.decimal.padEnd(decimalLength, "0")].reverse()
-            ];
-            const number2 = [
-                ...bigfloat.integer.padStart(integerLength, "0"),
-                ...[...bigfloat.decimal.padEnd(decimalLength, "0")].reverse()
-            ];
-            console.log({number1, number2, integerLength, decimalLength});
-            const num = [...rei.utility.zip(number1, number2)].reduceRight((total, [dec1, dec2])=>{
-                let subtotal = Number(dec1) + Number(dec2) + carry;
-                carry = subtotal >= 10;
-                if(carry)subtotal = Number(subtotal) - 10;
-                return String(subtotal).concat(total);
-            }, "");
-            console.log(carry);
-            this.integer = (carry ? "1" : "") + (decimalLength ? num.slice(0, -decimalLength) : num);
-            this.decimal = decimalLength ? num.slice(-decimalLength) : "";
-            return this;
-        }
-        sub(number){
-            if(this._typeCheck(number))return this;
-            const bigfloat = new BigFloat(number);
-            return this;
-        }
-        mul(...numbers){
-            for(const number of numbers){
-                if(this._typeCheck(number))continue;
-            }
-            return this;
-        }
-        div(...numbers){
-            for(const number of numbers){
-                if(this._typeCheck(number))continue;
-            }
-            return this;
-        }
-        sur(number){
-            return this;
-        }
-        static eval(formula){
-            for(const character of formula){
-                if(character === "\s")
-                    continue;
-            }
-        }
-    }
+    };
 
     // export const add = (number1, number2)=>(
     //     number1 + number2
@@ -1134,42 +1741,82 @@
      * 引数の絶対値を返す。
      * @param {Number} number
      */
-    const abs = number=>(
+    var abs = function (number){ return (
         number < 0 ||
         Object.is(-0, number) ||
         Object.is(BigInt(-0), number)
             ? -number : Number(number)
-    );
+    ); };
 
     /**
      * 引数の中で一番小さい値を返す。
      * @param  {...Number} args
      */
-    const min = (...args)=>(
-        args.reduce((minValue, value)=>(
+    var min = function (){
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+
+        return (
+        args.reduce(function (minValue, value){ return (
             minValue < value ? minValue : value
-        ), Infinity)
+        ); }, Infinity)
     );
+    };
 
     /**
      * 引数の中で一番大きい値を返す。
      * @param  {...Number} args
      */
-    const max = (...args)=>(
-        args.reduce((maxValue, value)=>(
+    var max = function (){
+        var args = [], len = arguments.length;
+        while ( len-- ) args[ len ] = arguments[ len ];
+
+        return (
+        args.reduce(function (maxValue, value){ return (
             maxValue > value ? maxValue : value
-        ), -Infinity)
+        ); }, -Infinity)
     );
+    };
 
     /**
      * 階上。
      * @param {Number} num
      */
-    const factorial = num=>{
+    var factorial = function (num){
         if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
-            return num;
-        for(let i = num;i > 2;num *= --i);
+            { return num; }
+        for(var i = num;i > 2;num *= --i){ }
         return num ? num : ++num;
+    };
+
+    /**
+     * 平均値
+     * @param  {...Number} numbers
+     */
+    var average = function (){
+        var numbers = [], len = arguments.length;
+        while ( len-- ) numbers[ len ] = arguments[ len ];
+
+        var total = numbers.reduce(function (subTotal, number){ return (subTotal + number); }, 0);
+        return total / numbers.length;
+    };
+
+    /**
+     * 中央値
+     * @param  {...Number} numbers
+     */
+    var median = function (){
+        var numbers = [], len = arguments.length;
+        while ( len-- ) numbers[ len ] = arguments[ len ];
+
+        numbers.sort();
+        var center = (numbers.length + 1) / 2;
+        if(Number.isInteger(center))
+            { return numbers[center]; }
+        return average(
+            numbers[Math.floor(center)],
+            numbers[Math.ceil(center)]
+        );
     };
 
     // TODO: sin
@@ -1183,41 +1830,9 @@
     // TODO: 複素数
     // export class Complex {}
 
-    // TODO: ハイパー演算
-    /*
-    package_rei.addModule("math._hyper", ({modules})=>(a, n, b=a)=>{
-        switch(n){
-        case 0: return ++b;
-        case 1: return a + b;
-        case 2: return a * b;
-        case 3: return a ** b;
-        default: {
-            if(b === 0)return 1;
-            let prev = a;
-            for(;--b;)
-                prev = modules.math.hyper(a, --n, prev);
-            return prev;
-        }
-        }
-    });
-    package_rei.addModule("math.hyper", ({modules})=>(a, n, b=a)=>{
-        const stack = new modules.Stack();
-        while(1){
-            stack.push(modules.math._hyper);
-            stack.execute();
-        }
-    });
-    */
-
     // TODO: 公倍数, 公約数
     /*
-    package_rei.addModule("math.ack", ({modules: {math}})=>(x, y, z)=>{
-        if(math.min(x, y, z) < 0)
-            throw new Error("Negative argument cannot be specified for Ackermann function");
-        if(x === 0)return ++y;
-        if(y === 0)return math.ack(--x, 1);
-        return math.ack(--x, math.ack(x, --y));
-    }).addModule("math.Chain", ()=>class Chain {
+    package_rei.addModule("math.ack", ({modules: {math}})=>).addModule("math.Chain", ()=>class Chain {
         constructor() {
             this.chain = [];
         }
@@ -1228,74 +1843,89 @@
     });
     */
 
-    const sqrt5 = Math.sqrt(5);
+    // TODO: xorshift
+    // const seedRandom = seed=>{
+    //     let x = seed * seed;
+    //     x ^= (x << 13);
+    //     x -= seed;
+    //     x ^= (x >> 17);
+    //     x += seed;
+    //     x ^= (x << 5);
+    //     return (x * x - seed) / seed;
+    // };
+
+    var sqrt5 = Math.sqrt(5);
     /**
      * N番目のフィボナッチ数を取得する。
      * @param {Number} frequency N番目の指定
      */
-    const fibonacci$ = frequency=>{
-        const x = Math.pow((1 + sqrt5) / 2, frequency);
-        const y = Math.pow((1 - sqrt5) / 2, frequency);
+    var fibonacci$ = function (frequency){
+        var x = Math.pow((1 + sqrt5) / 2, frequency);
+        var y = Math.pow((1 - sqrt5) / 2, frequency);
         return Math.round((x - y) / sqrt5);
     };
 
-    /**
-     * フィボナッチ数列のジェネレーター。
-     *
-     * @param {Number} frequency Maximum number of times fibonacci number is generated
-     */
-    const fibonacci = function* (frequency=Infinity){
-        for(let prev = 1n, fib = 0n;frequency--;)
-            yield fib = prev + (prev = fib);
-    };
+    // /**
+    //  * フィボナッチ数列のジェネレーター。
+    //  *
+    //  * @param {Number} frequency Maximum number of times fibonacci number is generated
+    //  * @param {Number} seed
+    //  */
+    // export const fibonacci = function* (frequency=Infinity, seed=1){
+    //     // eslint-disable-next-line no-undef
+    //     for(let prev = BigInt(seed), fib = BigInt(0);frequency--;)
+    //         yield fib = prev + (prev = fib);
+    // };
 
-    /**
-     * 素数のジェネレーター。
-     *
-     * @param {Number} frequency Maximum number of times prime number is generated
-     */
-    const prime = function* (frequency=Infinity){
-        yield 2;
-        for(let i = 3;frequency--;i += 2)
-            if(isPrime(i))yield i;
-            else frequency++;
-    };
+    // /**
+    //  * 素数のジェネレーター。
+    //  *
+    //  * @param {Number} frequency Maximum number of times prime number is generated
+    //  */
+    // export const prime = function* (frequency=Infinity){
+    //     yield 2;
+    //     for(let i = 3;frequency--;i += 2)
+    //         if(isPrime(i))yield i;
+    //         else frequency++;
+    // };
 
     /**
      * 素因数分解。
      *
      * @param {Number} number Numbers to factor
      * @return Array of prime factor of `number`
+     * @example
+     * primeFactorization(200560490130);
+     * // => [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
      */
-    const primeFactorization = number=>{
+    var primeFactorization = function (number){
         if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number")
-            return [];
-        const result = [];
+            { return []; }
+        var result = [];
         while(number % 2 === 0){
             result.push(2);
             number /= 2;
         }
-        for(let i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
-            while(number % i === 0){
+        for(var i = 3, sqrt = Math.sqrt(number);i <= sqrt;i += 2)
+            { while(number % i === 0){
                 result.push(i);
                 number /= i;
-            }
-        if(number > 1)result.push(number);
+            } }
+        if(number > 1){ result.push(number); }
         return result;
     };
 
-    var index$2 = /*#__PURE__*/Object.freeze({
+    var index$3 = /*#__PURE__*/Object.freeze({
         __proto__: null,
-        NumToStr: Num2FracStr$1,
-        Num: Num,
         BigFloat: BigFloat,
+        hyper: hyper,
         abs: abs,
         min: min,
         max: max,
         factorial: factorial,
+        average: average,
+        median: median,
         fibonacci$: fibonacci$,
-        fibonacci: fibonacci,
-        prime: prime,
         primeFactorization: primeFactorization
     });
 
@@ -1303,16 +1933,17 @@
     /*!
      * reiyayakko-core
      * Copyright 2020 reiyayakko
+     * License MIT
      */
 
-    const env = {
-        version: "1.0.0",
+    var env = {
+        version: "1.1.1",
     };
 
     exports.env = env;
-    exports.math = index$2;
-    exports.object = index$1;
-    exports.utility = index;
+    exports.math = index$3;
+    exports.object = index$2;
+    exports.utility = index$1;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
