@@ -9,7 +9,7 @@ branches:
   only:
     - "master"
     - "/^v\\d\\.\\d\\.\\d/"
-  except:
     - "develop"
+  # except:
 notifications:
   email: false
