@@ -1,23 +1,34 @@
 
-import {deepBase} from "./deepBase";
-import {substitute} from "../utility/index";
+import { substitute } from "../utility/index";
+import { deepBase } from "./deepbase/index";
+import { has } from "./property";
 
-export const _ = (object, depth)=>{
+/**
+ * WIP:
+ * @param {Object} object
+ * @param {Number} depth
+ */
+export const clone_WIP = (object, depth)=>{
     const result = {};
     let temp = result;
-    let temp2 = object;
     deepBase(object, {
         propFunc(o, propName){
-            temp[propName] = o[propName];
+            const prop = Object.getOwnPropertyDescriptor(o, propName);
+            if(has(prop, "value"))prop.value = null;
+            Object.defineProperty(temp, propName, prop);
         },
-        propStructure(o, propName){
-            temp[propName] = temp[propName] || {};
+        propFuncIfObject(o, propName){
+            const target = o[propName];
+            const prototype = Object.getPrototypeOf(target);
+            const __ = Object.create(prototype);
+            temp[propName] = temp[propName] || __;
             temp = temp[propName];
         },
-        structureFunc(...r){
+        structureCall(r){
             console.log(r);
         },
         depth: substitute([depth, Infinity])
     });
+    console.log(object, "=>", result);
     return result;
 };

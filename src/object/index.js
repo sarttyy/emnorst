@@ -1,5 +1,5 @@
 
 export * from "./clone/index";
-export * from "./deepBase";
+export * from "./deepbase/index";
 export * from "./clone";
 export * from "./temp";
