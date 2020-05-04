@@ -16,7 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'dist/reiyayakko.umd.min.js',
+      'dist/reiyayakko.umd.js',
       'test/index.js'
     ],
 
@@ -57,7 +57,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['FirefoxHeadless'],
 
 
     // Continuous Integration mode
