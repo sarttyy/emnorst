@@ -12,7 +12,7 @@ export const equals = (...values)=>{
     const first = values.shift();
     const equal = Number.isNaN(first)
         ? Number.isNaN
-        : (a, b) => (a === b);
+        : (value) => (first === value);
     return values.every(equal);
 };
 
