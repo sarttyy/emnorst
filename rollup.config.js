@@ -1,9 +1,7 @@
 
 import istanbul from "rollup-plugin-istanbul";
-import babel from "rollup-plugin-babel";
-import babelrc from "babelrc-rollup";
 import buble from "rollup-plugin-buble";
-import {terser} from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
 
 const config = {
     input: "./src/index.js",
@@ -24,33 +22,39 @@ const config = {
     ],
     plugins: [
         // babel(babelrc())
-        // buble({
-        //     target: {
-        //         chrome: 49,
-        //         node: 4,
-        //         firefox: 45,
-        //         safari: 9,
-        //         edge: 12,
-        //         ie: 11
-        //     }
-        // })
+        buble({
+            /*
+            target: {
+                chrome: 49,
+                node: 4,
+                firefox: 45,
+                safari: 9,
+                edge: 12,
+                ie: 11
+            },
+            // */
+            transforms: {
+                forOf: false,
+                generator: false
+            },
+            objectAssign: "Object.assign"
+        })
     ]
 };
 
 // eslint-disable-next-line no-undef, no-process-env
 if(process.env.BUILD !== "production"){
     // dev
-    config.output.map(output=>{
+    config.output.map((output)=>{
         output.sourcemap = true;
         return output;
     });
 }else{
     // production
-    config.output.map(output=>{
-        output.file = output.file.split(".");
-        output.file.splice(-1, 0, "min");
-        output.file = output.file.join(".");
-        console.log(output.file);
+    config.output.map((output)=>{
+        const file = output.file.split(".");
+        file.splice(-1, 0, "min");
+        output.file = file.join(".");
         return output;
     });
     config.plugins.push(terser());
