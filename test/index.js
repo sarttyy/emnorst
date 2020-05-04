@@ -33,7 +33,10 @@ describe("util/is", function(){
         expect(utility.isSymbol(Symbol("hogehoge"))).toBe(true);
         expect(utility.isSymbol("1")).toBe(false);
     });
-    it("isFunction", function(){});
+    it("isFunction", function(){
+        expect(utility.isFunction(function(){})).toBe(true);
+        expect(utility.isFunction("1")).toBe(false);
+    });
     it("isObject", function(){
         expect(utility.isObject(new Object)).toBe(true);
         expect(utility.isObject(new Array)).toBe(true);
