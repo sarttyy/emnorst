@@ -1,4 +1,5 @@
 
+import { forOf } from "./for";
 /**
  * Executes the function specified by func level times.<br>
  * funcで指定された関数をlevel回実行します。
@@ -24,7 +25,8 @@ export const previous = (level, func, arg)=>{
  * @return Return value of the last callback function
  */
 export const inOrder = (arg, ...orders)=>{
-    for(const func of orders)
+    forOf(orders, (func)=>{
         arg = func(arg);
+    });
     return arg;
 };
