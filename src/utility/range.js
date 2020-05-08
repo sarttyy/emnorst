@@ -1,5 +1,8 @@
 
-import {isUndefined} from "./is/index";
+// @ts-check
+
+import { isUndefined } from "./is/index";
+import { generator } from "./generator";
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。
@@ -13,23 +16,50 @@ import {isUndefined} from "./is/index";
  * @param {Number} [step=1]
  * 一度に増やす/減らす数。
  * start > end の場合でも負の値を指定する必要はない。
+ * 0を指定すると1が使用される
+ * @return {Generator<Number>}
  * @example
- * console.log([...range(-4)]);
- * // [0, -1, -2, -3, -4]
+ * console.log([...range(4)]);
+ * // [0, 1, 2, 3, 4]
  *
- * console.log([...range(1, 10, 2)]);
- * // [1, 3, 5, 7, 9]
+ * console.log([...range(1, -10, 2)]);
+ * // [1, -1, -3, -5, -7, -9]
  */
-export const range = function* (start, end, step=1){
+export const range = (start, end, step=1)=>{
+    if(isUndefined(end))
+        return range(0, start);
+    const stepAbs = step = Math.abs(step) || 1;
+    if(start > end)step = -stepAbs;
+    return generator((_)=>{
+        switch(_.phase){
+        case 0:
+            _.yield(start);
+            break;
+        case 1:
+            if(Math.abs(end - start) < stepAbs)
+                _.goto(3);
+            break;
+        case 2:
+            start += step;
+            _.goto(0);
+            break;
+        default:
+            _.return();
+        }
+    });
+};
+/*
+function* (start, end, step=1){
     if(isUndefined(end)){
         yield* range(0, start);
         return;
     }
-    step = Math.abs(step);
+    const stepAbs = step = Math.abs(step) || 1;
     if(start > end)step = -step;
-    while(Math.abs(end - start) >= Math.abs(step)){
+    while(Math.abs(end - start) >= stepAbs){
         yield start;
         start += step;
     }
     yield start;
 };
+// */
