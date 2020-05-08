@@ -1,11 +1,12 @@
 
 export * from "./array";
 export * from "./condition";
-export * from "./equals";
+export * from "./generator";
 export * from "./getIndex";
 export * from "./is/index";
 export * from "./loop/index";
 export * from "./range";
+export * from "./rondom";
 export * from "./thinning";
 export * from "./typeof";
 export * from "./utility";
@@ -43,10 +44,6 @@ import { forIndex } from "./loop/index";
 //     }
 // }
 // String instruction
-
-
-// eslint-disable-next-line
-export const argument = function(){ return arguments; };
 
 export const memoize = (func, effective=Infinity)=>{
     const newFunc = function(){

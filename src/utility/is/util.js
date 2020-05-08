@@ -1,15 +1,44 @@
 
-import { typeOf } from "../typeof";
-import { isArguments, isFunction, isNumber, isObject, isString } from "./type";
+// @ts-check
 
+import { has } from "../../object/property";
+import { typeOf } from "../typeof";
+import { isFunction, isNumber, isObject, isString } from "./type";
+
+/**
+ * 文字列かつ長さが1
+ * @param {*} value
+ * @return {Boolean}
+ */
+export const isChar = (value)=>(
+    isString(value) && value.length === 1
+);
+
+/**
+ * @param {*} value
+ * @return {Boolean}
+ */
+export const isIteratorResult = (value)=>(
+    isObject(value) && has(value, "value") || Boolean(value.done)
+);
+
+/**
+ * @param {*} value
+ * @return {Boolean}
+ */
+export const isIterator = (value)=>(
+    isObject(value)
+    && isFunction(value.next)
+    && isIteratorResult(value.next())
+);
 /**
  * @param {*} value The value to be compared
  * @return {Boolean} Whether the value is iterable
  */
-export const isIterable = value=>(
+export const isIterable = (value)=>(
     isObject(value)
     && isFunction(value[Symbol.iterator])
-    && isObject(value[Symbol.iterator]())
+    && isIterator(value[Symbol.iterator]())
 );
 
 /**
@@ -18,11 +47,9 @@ export const isIterable = value=>(
  * @param {*} value The value to be compared
  * @return {Boolean} Whether the value is ArrayLike
  */
-export const isArrayLike = value=>{
+export const isArrayLike = (value)=>{
     if(!isObject(value))return false;
-    if(Array.isArray(value) || isArguments(value) || isNumber(value.length))
-        return true;
-    return false;
+    return isNumber(value.length);
 };
 
 /**
@@ -30,7 +57,7 @@ export const isArrayLike = value=>{
  * @param {*} value The value to be compared
  * @return {Boolean} Whether the property does not exist
  */
-export const isEmpty = value=>{
+export const isEmpty = (value)=>{
     if(isString(value) || isArrayLike(value))
         return value.length === 0;
     if(typeOf(value) === "Object")
