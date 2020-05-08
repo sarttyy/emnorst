@@ -8,9 +8,9 @@ import { isNumber } from "./is/index";
  * 一定期間呼び出されなかった場合も実行する。
  * @param {Function} func
  * @param {Number} wait 待機時間
- * @return {(...args: any[]) => void}
+ * @return {function(): void}
  */
-export const throttle = (func, wait)=>{
+export const throttle = (func, wait=1000)=>{
     let id, waiting, context, args;
     return function(){
         if(!isNumber(id)){
@@ -32,12 +32,12 @@ export const throttle = (func, wait)=>{
  * 高階関数。呼び出されてから一定期間呼び出されなかった場合に実行する。
  * @param {Function} func
  * @param {Number} wait 待機時間
- * @return {(...args: any[]) => void}
+ * @return {function(): void}
  */
-export const debounce = (func, wait)=>{
+export const debounce = (func, wait=1000)=>{
     let id;
     return function(){
         clearTimeout(id);
-        id = setTimeout(func.apply, wait, this, arguments);
+        id = setTimeout(()=>func.apply(this, arguments), wait);
     };
 };

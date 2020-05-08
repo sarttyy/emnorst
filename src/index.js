@@ -6,12 +6,14 @@
  * License MIT
  */
 
-export const env = {
-    version: "1.1.1",
-};
-
-// export * as command from "./command/index.js";
+import env from "./env";
+import * as wipalt from "./alt/index.js";
 import * as utility from "./utility/index.js";
 import * as object from "./object/index.js";
 import * as math from "./math/index.js";
-export {utility, object, math};
+
+/**
+ * @namespace {Object} rei
+ * @exports
+ */
+export { utility, object, math, wipalt, env };

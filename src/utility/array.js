@@ -1,18 +1,25 @@
 
-import {isArrayLike} from "./is";
+import { isObject } from "./is/index";
+import { forOf } from "./loop/index";
 
 const own = value=>value;
+
+const bind = (func, ...args)=>arg=>func(arg, ...args);
 
 export const gurop = (array, func=own)=>{
     const gurops = {};
     forOf(array, value=>{
-        const temp = func(value);
-        let key;
-        if(isArrayLike(temp))
-            [key, value=value] = temp;
-        else key = temp;
-        if(!gurops[key])gurops[key] = [];
-        gurops[key].push(value);
+        /*
+        IDEA: fの返り値: {gurupName1:{value}}
+        */
+        const entry = func(value);
+        const entries = isObject(entry)
+            ? Object.entries(entry)
+            : [[entry, value]];
+        forOf(entries, ([key, value])=>{
+            if(!gurops[key])gurops[key] = [];
+            gurops[key].push(value);
+        });
     });
     return gurops;
 };
@@ -20,8 +27,9 @@ export const gurop = (array, func=own)=>{
 // INFO: findのマッチした数版
 export const count = (array, func)=>{
     let match = 0;
-    for(const value of array)
+    forOf(array, (value)=>{
         match += Boolean(func(value));
+    });
     return match;
 };
 

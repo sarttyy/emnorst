@@ -1,10 +1,15 @@
 
 // @ts-check
 
-import { isObject, isSymbol } from "../utility/index";
+import { isObject, isString, isSymbol, forOf } from "../utility/index";
 
-export const has = (thisObject, propName)=>(
-    Object.prototype.hasOwnProperty.call(thisObject, propName)
+/**
+ * @param {Object} object
+ * @param {String | Number | Symbol} propName
+ * @return {Boolean}
+ */
+export const has = (object, propName)=>(
+    Object.prototype.hasOwnProperty.call(object, propName)
 );
 
 /**
@@ -22,31 +27,29 @@ export const allKeys = object=>(
  * 
  * @param {Object} obj 
  * @param {String|Symbol|Array<String|Symbol>} propKey 
- * @param {Boolean} define 
+ * @param {Boolean} [defineObj] 
  */
-export const property = (obj, propKey, define=false)=>{
-    if(typeof propKey === "string")
-        propKey = propKey.split(".");
-    else if(isSymbol(propKey))
-        propKey = [propKey];
-    else if(Array.isArray(propKey))
-        propKey = propKey.flatMap(key=>(
+export const property = (obj, propKey, defineObj)=>{
+    const propKeys
+        = isString(propKey) ? propKey.split(".")
+        : isSymbol(propKey) ? [propKey]
+        : propKey.flatMap(key=>(
             typeof key==="string" ? key.split(".") : key
         ));
-    return propKey.reduce((object, key)=>{
-        if(!has(object, key)){
-            if(define)object[key] = {};
-        }
-        return object[key];
-    }, obj);
+    const define = isObject(defineObj);
+    return propKeys.reduce((object, key)=>(
+        define && !has(object, key)
+            ? (object[key] = defineObj)
+            : object[key]
+    ), obj);
 };
 
 export const structure = (baseObj={}, applyObj={})=>{
-    for(const propName of allKeys(applyObj)){
+    forOf(allKeys(applyObj), (propName)=>{
         const applyProp = applyObj[propName];
         if(typeof applyProp === "object")
             structure(baseObj[propName], applyProp);
         else baseObj[propName] = applyProp;
-    }
+    });
     return baseObj;
 };

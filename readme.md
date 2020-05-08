@@ -1,9 +1,11 @@
 
 # reiyayakko-core
 
+[![Build Status](https://travis-ci.org/reiyayakko/reiyayakko-core.svg?branch=master)](https://travis-ci.org/reiyayakko/reiyayakko-core)
+[![codecov](https://codecov.io/gh/reiyayakko/reiyayakko-core/branch/master/graph/badge.svg)](https://codecov.io/gh/reiyayakko/reiyayakko-core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![document](https://reiyayakko.github.io/reiyayakko-core/badge.svg)](https://reiyayakko.github.io/reiyayakko-core)
-<!-- ![_](https://img.shields.io/badge/test-hoge-informational) -->
+<!-- [![_](https://img.shields.io/badge/test-hoge-informational)]() -->
 
 ## Overview
 

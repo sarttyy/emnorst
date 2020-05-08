@@ -49,14 +49,13 @@ export class BigFloat {
      * @memberof BigFloat
      */
     // eslint-disable-next-line class-methods-use-this
-    get [Symbol.toStringTag](){
-        return "BigFloat";
-    }
+    // get [Symbol.toStringTag](){
+    //     return "BigFloat";
+    // }
     /**
-     * @readonly
      * @memberof BigFloat
      */
-    get sign(){
+    sign(){
         return this.isPositive ? "+" : "-";
     }
     setSign(sign){
@@ -122,7 +121,7 @@ export class BigFloat {
     toString(){
         return (!isNull(this.exception)
             ? String(this.exception)
-            : this.sign.concat(
+            : this.sign().concat(
                 this.integer || "0",
                 this.decimal
                     ? `.${this.decimal}`

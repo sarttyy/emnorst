@@ -23,7 +23,6 @@ const config = {
     plugins: [
         // babel(babelrc())
         buble({
-            /*
             target: {
                 chrome: 49,
                 node: 4,
@@ -32,9 +31,8 @@ const config = {
                 edge: 12,
                 ie: 11
             },
-            // */
             transforms: {
-                forOf: false,
+                forOf: false, // MEMO: replaced
                 generator: false
             },
             objectAssign: "Object.assign"
