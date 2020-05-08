@@ -1,5 +1,5 @@
 
-import {isArrayLike} from "./is/index";
+import { isArrayLike } from "./is/index.js";
 
 /**
  * Flip objects at depth 0 and 1.<br>

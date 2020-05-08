@@ -1,5 +1,5 @@
 
-import {isNull, isNegative} from "./is/index";
+import { isNull, isNegative } from "./is/index.js";
 /**
  * 最後から数えて`index`番目の要素を取得します。
  *

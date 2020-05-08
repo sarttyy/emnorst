@@ -1,5 +1,5 @@
 
-import { forOf } from "./for";
+import { forOf } from "./for.js";
 /**
  * Executes the function specified by func level times.<br>
  * funcで指定された関数をlevel回実行します。

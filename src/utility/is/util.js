@@ -1,9 +1,9 @@
 
 // @ts-check
 
-import { has } from "../../object/property";
-import { typeOf } from "../typeof";
-import { isFunction, isNumber, isObject, isString } from "./type";
+import { has } from "../../object/property.js";
+import { typeOf } from "../typeof.js";
+import { isFunction, isNumber, isObject, isString } from "./type.js";
 
 /**
  * 文字列かつ長さが1
@@ -73,6 +73,7 @@ export const isEmpty = (value)=>{
  * @return {Boolean} Whether an error has occurred
  */
 export const isThrowError = (func, ...args)=>{
+    if(isFunction(func))return false;
     try{
         func.apply(void 0, args);
         return false;

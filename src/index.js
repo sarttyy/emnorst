@@ -6,7 +6,7 @@
  * License MIT
  */
 
-import env from "./env";
+import env from "./env.js";
 import * as wipalt from "./alt/index.js";
 import * as utility from "./utility/index.js";
 import * as object from "./object/index.js";

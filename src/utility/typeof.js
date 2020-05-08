@@ -1,6 +1,5 @@
 
 /**
- * 
  * @typedef {"Int8Array"|
  * "Uint8Array"|
  * "Uint8ClampedArray"|
@@ -50,6 +49,6 @@
  * @param {*} value An object that determines the type
  * @return {ObjectToStringTypes & String} object type
  */
-export const typeOf = value=>(
+export const typeOf = (value)=>(
     Object.prototype.toString.call(value).slice(8, -1)
 );

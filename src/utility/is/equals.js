@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { typeOf } from "../typeof";
+import { typeOf } from "../typeof.js";
 
 /**
  * 引数が全て同じかどうかをSameValueZeroによって検証します。

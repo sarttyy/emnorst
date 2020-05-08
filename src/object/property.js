@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isObject, isString, isSymbol, forOf } from "../utility/index";
+import { isObject, isString, isSymbol, forOf } from "../utility/index.js";
 
 /**
  * @param {Object} object

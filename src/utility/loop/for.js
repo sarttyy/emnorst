@@ -1,9 +1,9 @@
 
 // @ts-check
 
-import { isUndefined } from "../is/index";
-import { range } from "../range";
-import { iterate } from "./iterate";
+import { isUndefined } from "../is/index.js";
+import { range } from "../range.js";
+import { iterate } from "./iterate.js";
 
 // TODO: each
 

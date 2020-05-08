@@ -1,5 +1,5 @@
 
-import {isUndefined} from "../is/index";
+import { isUndefined } from "../is/index.js";
 
 /**
  * MEMO: ループ条件とreturnをどうにかして引き剥がしたい。

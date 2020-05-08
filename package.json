@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/reiyayakko.umd.js",
   "scripts": {
-    "test": "karma start",
+    "test": "karma start karma.conf.js",
     "rollup_watch": "rollup -c rollup.config.js -w",
     "build": "rollup -c rollup.config.js --environment INCLUDE_DEPS,BUILD:production",
     "postbuild": "esdoc"
@@ -27,6 +27,8 @@
     "eslint": "^6.8.0",
     "jasmine-core": "^3.5.0",
     "karma": "^5.0.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.2",
     "karma-firefox-launcher": "^1.3.0",
     "karma-jasmine": "^3.1.1",
     "rollup": "^2.7.6",

@@ -1,5 +1,5 @@
 
-import { iterate } from "./loop/iterate";
+import { iterate } from "./loop/iterate.js";
 
 export const tryCatch = (tryFunc, catcher)=>{
     try{

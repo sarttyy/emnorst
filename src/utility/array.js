@@ -1,6 +1,6 @@
 
-import { isObject } from "./is/index";
-import { forOf } from "./loop/index";
+import { isObject } from "./is/index.js";
+import { forOf } from "./loop/index.js";
 
 const own = value=>value;
 

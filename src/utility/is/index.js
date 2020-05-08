@@ -1,5 +1,5 @@
 
-export * from "./type";
-export * from "./number";
-export * from "./util";
-export * from "./equals";
+export * from "./type.js";
+export * from "./number.js";
+export * from "./util.js";
+export * from "./equals.js";

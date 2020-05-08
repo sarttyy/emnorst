@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isNumber } from "./type";
+import { isNumber } from "./type.js";
 
 /**
  * Determines if it is a negative number.
@@ -10,7 +10,7 @@ import { isNumber } from "./type";
  * @param {*} number
  * @return {Boolean}
  */
-export const isNegative = number=>(
+export const isNegative = (number)=>(
     isNumber(number) && number < 0
     || Object.is(-0, number)
 );
@@ -22,7 +22,7 @@ export const isNegative = number=>(
  * @param {*} number
  * @return {Boolean}
  */
-export const isPositive = number=>(
+export const isPositive = (number)=>(
     isNumber(number) && number > 0
     || Object.is(0, number)
 );
@@ -34,7 +34,7 @@ export const isPositive = number=>(
  * @param {*} number
  * @return {Boolean}
  */
-export const isInfinity = number=>(
+export const isInfinity = (number)=>(
     number === Infinity || number === -Infinity
 );
 
@@ -45,7 +45,7 @@ export const isInfinity = number=>(
  * @param {*} number
  * @return {Boolean}
  */
-export const isPrime = number=>{
+export const isPrime = (number)=>{
     if(number === 2)
         return true;
     if(
@@ -69,7 +69,7 @@ export const isPrime = number=>{
  * @param {*} number
  * @return {Boolean}
  */
-export const isOdd = number=>(
+export const isOdd = (number)=>(
     isNumber(number) && number % 2 === 1
 );
 
@@ -82,6 +82,6 @@ export const isOdd = number=>(
  * @param {*} number
  * @return {Boolean}
  */
-export const isEven = number=>(
+export const isEven = (number)=>(
     isNumber(number) && number % 2 === 0
 );

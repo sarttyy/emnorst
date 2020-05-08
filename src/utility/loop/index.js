@@ -1,5 +1,5 @@
 
-export * from "./for";
-export * from "./while";
-export * from "./order";
-export * from "./iterate";
+export * from "./for.js";
+export * from "./while.js";
+export * from "./order.js";
+export * from "./iterate.js";

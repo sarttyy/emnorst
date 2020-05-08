@@ -1,6 +1,6 @@
 
-import { isFunction, isNull } from "./is/index";
-import { typeOf } from "./typeof";
+import { isFunction, isNull } from "./is/index.js";
+import { typeOf } from "./typeof.js";
 
 // TODO: コールバック関数のthisを指定できる高階関数のthatの指定の仕方を変更。
 // 高階関数自体のthisを継承する。

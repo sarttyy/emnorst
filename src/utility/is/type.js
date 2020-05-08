@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { typeOf } from "../typeof";
+import { typeOf } from "../typeof.js";
 
 /**
  * @param {*} value The value to be compared

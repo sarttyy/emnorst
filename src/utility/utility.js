@@ -1,24 +1,24 @@
 
-import { isObject } from "./is/index";
+import { isObject } from "./is/index.js";
 
 // TODO: format
 
-/**
- * Alpha:
- * @param {String[]} strings
- * @param  {...any} rawStrings
- */
-const r = (strings, ...rawStrings)=>{
-    console.log(strings);
-    const result = [];
-    for(const __ of rawStrings){
-        result.push(strings.pop());
-        result.push(__);
-    }
-    return result;
-};
+// /**
+//  * Alpha:
+//  * @param {String[]} strings
+//  * @param  {...any} rawStrings
+//  */
+// const r = (strings, ...rawStrings)=>{
+//     console.log(strings);
+//     const result = [];
+//     for(const __ of rawStrings){
+//         result.push(strings.pop());
+//         result.push(__);
+//     }
+//     return result;
+// };
 
-export const toPrimitive = value=>{
+export const toPrimitive = (value)=>{
     if(!isObject(value))
         return value;
     if("valueOf" in value)
@@ -30,9 +30,9 @@ export const toPrimitive = value=>{
     return value;
 };
 
-export const uniq = array=>{
+export const uniq = (array)=>{
     const existings = [];
-    return array.filter(value=>{
+    return array.filter((value)=>{
         const existing = existings.includes(value);
         if(!existing)existings.push(value);
         return !existing;

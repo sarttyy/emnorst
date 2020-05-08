@@ -1,18 +1,18 @@
 
-export * from "./array";
-export * from "./condition";
-export * from "./generator";
-export * from "./getIndex";
-export * from "./is/index";
-export * from "./loop/index";
-export * from "./range";
-export * from "./rondom";
-export * from "./thinning";
-export * from "./typeof";
-export * from "./utility";
-export * from "./zip";
+export * from "./array.js";
+export * from "./condition.js";
+export * from "./generator.js";
+export * from "./getIndex.js";
+export * from "./is/index.js";
+export * from "./loop/index.js";
+export * from "./range.js";
+export * from "./random.js";
+export * from "./thinning.js";
+export * from "./typeof.js";
+export * from "./utility.js";
+export * from "./zip.js";
 
-import { forIndex } from "./loop/index";
+import { forIndex } from "./loop/index.js";
 // TEMP:
 // export class ArrayLike extends Array {
 //     constructor(){

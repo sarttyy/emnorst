@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isNumber } from "./is/index";
+import { isNumber } from "./is/index.js";
 
 /**
  * 高階関数。一度実行してから一定時間内に発生した処理を無視、

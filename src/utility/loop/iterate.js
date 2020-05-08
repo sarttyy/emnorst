@@ -1,6 +1,6 @@
 
-import env from "../../env";
-import { isArrayLike, isFunction, isNullable } from "../is/index";
+import env from "../../env.js";
+import { isArrayLike, isFunction, isNullable } from "../is/index.js";
 
 /**
  * iterableなオブジェクトをiteratorに変換します。

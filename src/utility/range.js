@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { isUndefined } from "./is/index";
-import { generator } from "./generator";
+import { isUndefined } from "./is/index.js";
+import { generator } from "./generator.js";
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。
