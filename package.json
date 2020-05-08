@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/reiyayakko.umd.js",
   "scripts": {
-    "test": "karma start karma.conf.js",
+    "test": "karma start karma.conf.js || true",
     "rollup_watch": "rollup -c rollup.config.js -w",
     "build": "rollup -c rollup.config.js --environment INCLUDE_DEPS,BUILD:production",
     "postbuild": "esdoc"

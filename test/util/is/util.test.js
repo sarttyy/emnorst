@@ -42,7 +42,7 @@ describe("util/is", ()=>{
         expect(is.isEmpty([])).toBe(true);
         expect(is.isEmpty(["not empty"])).toBe(false);
         expect(is.isEmpty({})).toBe(true);
-        expect(is.isEmpty({prop: "not empty"})).totoBe(false);
+        expect(is.isEmpty({prop: "not empty"})).toBe(false);
     });
     /** @test {isThrowError} */
     it("isThrowError", ()=>{
