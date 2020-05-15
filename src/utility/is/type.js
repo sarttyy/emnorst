@@ -5,25 +5,30 @@ import { typeOf } from "../typeof.js";
 
 /**
  * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is Undefined
+ * @return {Boolean} Whether value is Undefined
  */
 export const isUndefined = (value)=>(
     value === void 0
 );
 
+export const isDefined = (value)=>(
+    value !== void 0
+);
+
 /**
  * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is Null or Undefined
+ * @return {Boolean} Whether value is Null// or Undefined
  */
 export const isNull = (value)=>(
     value === null || isUndefined(value)
 );
 
 /**
+ * 値のプロパティーにアクセス可能かの判定にも使用することができます
  * @param {*} value The value to be compared
  * @return {Boolean} Whether value is null or undefined
  */
-export const isNullable = (value)=>(
+export const isNullLike = (value)=>(
     isNull(value) || isUndefined(value)
 );
 
@@ -65,7 +70,7 @@ export const isSymbol = (value)=>(
  * @return {Boolean} Whether {@link typeOf} is Function
  */
 export const isFunction = (value)=>(
-    typeOf(value) === "Function"
+    typeof (value) === "function"
 );
 
 /**

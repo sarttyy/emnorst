@@ -3,7 +3,7 @@
 
 import { has } from "../../object/property.js";
 import { typeOf } from "../typeof.js";
-import { isFunction, isNumber, isObject, isString } from "./type.js";
+import { isFunction, isNumber, isObject, isString, isNullLike } from "./type.js";
 
 /**
  * 文字列かつ長さが1
@@ -26,11 +26,12 @@ export const isIteratorResult = (value)=>(
  * @param {*} value
  * @return {Boolean}
  */
-export const isIterator = (value)=>(
+const isIterator = (value)=>(
     isObject(value)
     && isFunction(value.next)
     && isIteratorResult(value.next())
 );
+
 /**
  * @param {*} value The value to be compared
  * @return {Boolean} Whether the value is iterable
@@ -48,7 +49,7 @@ export const isIterable = (value)=>(
  * @return {Boolean} Whether the value is ArrayLike
  */
 export const isArrayLike = (value)=>{
-    if(!isObject(value))return false;
+    if(isNullLike(value) || isFunction(value))return false;
     return isNumber(value.length);
 };
 
