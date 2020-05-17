@@ -1,5 +1,5 @@
 
-import { callorElse } from "../../utility/index";
+import { callOrElse } from "../../utility/index";
 import { isObject } from "../../utility/is/index";
 import { deepBase } from "./base";
 
@@ -24,7 +24,7 @@ import { deepBase } from "./base";
 export const allocate = (object, propName, props={})=>{
     const target = Object.getOwnPropertyDescriptor(object, propName);
     if(isObject(target)){
-        callorElse(props.propFuncIfObject, object, propName);
+        callOrElse(props.propFuncIfObject, object, propName);
         if(!props.existing.has(target)){
             props.existing.add(target);
             deepBase(target, Object.assign({}, props, {
@@ -33,6 +33,6 @@ export const allocate = (object, propName, props={})=>{
         }
     }else{
         const prop = Object.getOwnPropertyDescriptor(object, propName);
-        callorElse(props.propFunc, object, propName, prop);
+        callOrElse(props.propFunc, object, propName, prop);
     }
 };

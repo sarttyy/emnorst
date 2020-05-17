@@ -1,5 +1,5 @@
 
-import { callorElse, forOf } from "../../utility/index";
+import { callOrElse, forOf } from "../../utility/index";
 import { allKeys } from "../property";
 import { allocate } from "./allocate";
 
@@ -13,6 +13,7 @@ import { allocate } from "./allocate";
  * structureCall: Function;
  * propFuncIfObject: Function;
  * propFunc: Function;
+ * hooks: Array<Function>;
  * }} prop
  */
 
@@ -33,7 +34,7 @@ export const deepBase = (targetObject, props={})=>{
         propFuncIfObject: props.propFuncIfObject = console.log,
         propFunc: props.propFunc = console.log,
     } = props);
-    callorElse(props.structureCall, targetObject);
+    callOrElse(props.structureCall, targetObject);
     forOf(props.keys(targetObject), (propName)=>{
         allocate(targetObject, propName, props);
     });
