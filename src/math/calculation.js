@@ -1,4 +1,6 @@
 
+// @ts-check
+
 // export const add = (number1, number2)=>(
 //     number1 + number2
 // );
@@ -10,7 +12,7 @@
  * 引数の絶対値を返す。
  * @param {Number} number
  */
-export const abs = number=>(
+export const abs = (number)=>(
     number < 0 ||
     Object.is(-0, number) ||
     Object.is(BigInt(-0), number)
@@ -41,7 +43,7 @@ export const max = (...args)=>(
  * 階上。
  * @param {Number} num
  */
-export const factorial = num=>{
+export const factorial = (num)=>{
     if(Number.isNaN(num) || (!Number.isFinite(num) && typeof num !== "bigint") || typeof num !== "number" && typeof num !== "bigint")
         return num;
     for(let i = num;i > 2;num *= --i);
@@ -83,7 +85,26 @@ export const median = (...numbers)=>{
 // TODO: 複素数
 // export class Complex {}
 
-// TODO: 公倍数, 公約数
+/**
+ * Greatest common divisor / 最大公約数
+ * @param {number} num1
+ * @param {number} num2
+ */
+export const gcd = (num1, num2)=>{
+    for(;num1 % num2 !== 0;num1 %= num2)
+        if(num1 < num2)
+            [num2, num1] = [num1, num2];
+    return num2;
+};
+
+/**
+ * Least common multiple / 最小公倍数
+ * @param {number} num1
+ * @param {number} num2
+ */
+export const lcm = (num1, num2)=>(
+    num1 / gcd(num1, num2) * num2
+);
 /*
 package_rei.addModule("math.ack", ({modules: {math}})=>).addModule("math.Chain", ()=>class Chain {
     constructor() {
