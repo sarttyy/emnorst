@@ -1,5 +1,6 @@
 
 export * from "./array.js";
+export * from "./format.js";
 export * from "./condition.js";
 export * from "./generator.js";
 export * from "./getIndex.js";
