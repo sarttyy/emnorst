@@ -3,7 +3,8 @@
 
 import { has } from "../../object/property.js";
 import { typeOf } from "../typeof.js";
-import { isFunction, isNumber, isObject, isString, isNullLike } from "./type.js";
+import { isFunction, isObject, isString, isNullLike } from "./type.js";
+import { isPositive } from "./number.js";
 
 /**
  * 文字列かつ長さが1
@@ -50,7 +51,7 @@ export const isIterable = (value)=>(
  */
 export const isArrayLike = (value)=>{
     if(isNullLike(value) || isFunction(value))return false;
-    return isNumber(value.length);
+    return isPositive(value.length);
 };
 
 /**

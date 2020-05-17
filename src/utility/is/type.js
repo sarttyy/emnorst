@@ -70,7 +70,7 @@ export const isSymbol = (value)=>(
  * @return {Boolean} Whether {@link typeOf} is Function
  */
 export const isFunction = (value)=>(
-    typeof (value) === "function"
+    typeOf(value) === "Function"
 );
 
 /**

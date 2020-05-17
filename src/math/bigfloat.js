@@ -22,6 +22,12 @@ const isSafe = (target)=>(
  *
  * IDEA: Stringによって1桁ずつ保存ではなく、
  * 乗算でNumber.MAX_SAFE_INTEGERを超えない7桁ずつArrayに保存
+ *
+ * IDEA: getNumberで数値リテラルのカット桁数を指定
+ * "12345671234567", 7 => [1234567, 1234567]
+ * 加算/減産は15桁、乗算は7桁でカット
+ *
+ * IDEA: 数値ごとに有効桁数を保存して除算時に計算・使用する
  * @export
  * @class BigFloat
  */
@@ -463,8 +469,4 @@ export class BigFloat {
         ));
         return equals(...numbers);
     }
-
-    // sur(number){
-    //     return this;
-    // }
 }

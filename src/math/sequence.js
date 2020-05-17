@@ -1,5 +1,5 @@
 
-import { isPrime } from "../utility/is/number";
+import { isPrime, isInfinity } from "../utility/is/number";
 import { generator } from "../utility/generator";
 
 // TODO: xorshift
@@ -82,10 +82,10 @@ export const prime = (frequency=Infinity)=>{
  * @return Array of prime factor of `number`
  * @example
  * primeFactorization(200560490130);
- * // => [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+ * // > [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
  */
 export const primeFactorization = (number)=>{
-    if(Number.isNaN(number) || !Number.isFinite(number) || typeof number !== "number")
+    if(Number.isNaN(number) || isInfinity(number) || typeof number !== "number")
         return [];
     const result = [];
     while(number % 2 === 0){

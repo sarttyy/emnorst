@@ -1,19 +1,32 @@
 
-const ack = (x, y)=>{
-    // eslint-disable-next-line no-undef
-    if(min(x, y) < 0)
+// @ts-check
+
+/**
+ * @param {number} num1
+ * @param {number} num2
+ * @return {number}
+ */
+export const ack = (num1, num2)=>{
+    if(Math.min(num1, num2) < 0)
         throw new Error("Negative argument cannot be specified for Ackermann function");
-    const carry = {};
-    while(carry.x !== 0){
-        if(carry.y === 0){
-            carry.x--;
-            carry.y = 1;
-            continue;
-            // return ack(--x, 1);
+    const stack = [num1, num2];
+    while(stack.length > 1){
+        const n = stack.pop();
+        const m = stack.pop();
+        if(m === 0){
+            stack.push(n + 1);
+        }else if(n === 0){
+            stack.push(m - 1);
+            stack.push(1);
+        }else if(m === 1){
+            stack.push(n + 2);
+        }else if(m === 2){
+            stack.push(n * 2 + 3);
+        }else{
+            stack.push(m - 1);
+            stack.push(m);
+            stack.push(n - 1);
         }
-        carry.x--;
-        carry.y = ack(carry.x, --carry.y);
-        // return ack(--x, ack(x, --y));
     }
-    return ++carry.y;
+    return stack.pop();
 };

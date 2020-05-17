@@ -1,5 +1,7 @@
 
-import { isNull, isNegative } from "./is/index.js";
+// @ts-check
+
+import { isNullLike, isNegative } from "./is/index.js";
 /**
  * 最後から数えて`index`番目の要素を取得します。
  *
@@ -27,33 +29,38 @@ export const first = (orign, index=1)=>(
  */
 const getIndex = (orign, index=0)=>(
     isNegative(index)
-        ? orign.length + index - 1
+        ? orign.length + index
         : index
 );
 
 /**
- *
- * @param {String|Array} orign 元の要素
- * @param {Number} start 切り取り開始位置
- * @param {Number} cutCount 切り取る長さ
- * @param {Array} insertItems 挿入する要素
+ * 元のオブジェクトへの破壊的な変更を行わず、新しい配列を作成します。
+ * @param {string | array} origin 元のオブジェクト
+ * @param {number} start 切り取り開始位置
+ * @param {number} cutCount 切り取る長さ
+ * @param {...any} insertItems 挿入する要素
  */
-export const splice = (orign, start, cutCount=0, ...insertItems)=>{
-    start = getIndex(orign, start);
-    const before = orign.slice(0, start);
-    const after = orign.slice(cutCount + start);
+export const splice = (origin, start=0, cutCount=0, ...insertItems)=>{
+    if(isNegative(cutCount))
+        start -= cutCount = -cutCount;
+    const startIndex = isNegative(start)
+        ? origin.length + start
+        : start;
+    const before = origin.slice(0, startIndex);
+    const after = origin.slice(startIndex + cutCount);
+    // @ts-ignore
     return before.concat(...insertItems, after);
 };
 
 /**
  * indexが正の数なら最初から、負の数なら最後から数えて`index`番目の要素を取得します。
  *
- * @param {String|Array} orign 元の要素
+ * @param {string | array} orign 元の要素
  * @param {Number} index
- * @param {*} insert
+ * @param {string | array} [insert]
  */
-export const index = (orign, index=0, insert=null)=>{
-    if(isNull(insert))
+export const index = (orign, index=0, insert)=>{
+    if(isNullLike(insert))
         return orign[getIndex(orign, index)];
     return splice(orign, index, 1, insert);
 };
