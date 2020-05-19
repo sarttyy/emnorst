@@ -1,8 +1,9 @@
 
 // @ts-check
 
-import { isUndefined } from "../is/index.js";
+import { isDefined } from "../is/index.js";
 import { iterate } from "./iterate.js";
+import { loop } from "./loop.js";
 
 /*
 iterable protocolを使用して値ごとにコールバック関数を呼び出します。
@@ -25,7 +26,7 @@ breakFuncでfalsyと判断される値を返した場合、ループが終了し
  * A callback function that is executed for each value of the Iterable object.
  * If breakFunc returns a value that is determined to be falsy,
  * the loop ends and the value is returned.
- * @param {function(any): Boolean} breakFunc
+ * @param {function(any): Boolean} isBreak
  * A function that determines whether to continue the loop.
  * IsUndefined is specified by default.
  * @example
@@ -39,12 +40,17 @@ breakFuncでfalsyと判断される値を返した場合、ループが終了し
  * // > o
  * // result = "hoge"
  */
-export const forOf = function(iterable, func, breakFunc=isUndefined){
+export const forOf = function(iterable, func, isBreak=isDefined){
     const iterator = iterate(iterable);
-    for(;;){
+    return loop(()=>{
         const iteratorResult = iterator.next();
         if(iteratorResult.done)return void 0;
-        const flag = func.call(this, iteratorResult.value);
-        if(!breakFunc(flag))return flag;
-    }
+        return func.call(this, iteratorResult.value);
+    }, { isBreak });
+    // for(;;){
+    //     const iteratorResult = iterator.next();
+    //     if(iteratorResult.done)return void 0;
+    //     const flag = func.call(this, iteratorResult.value);
+    //     if(!breakFunc(flag))return flag;
+    // }
 };
