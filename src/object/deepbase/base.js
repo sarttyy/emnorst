@@ -1,41 +1,47 @@
 
+// @ts-check
+
 import { callOrElse, forOf } from "../../utility/index";
-import { allKeys } from "../property";
+import { isObject } from "../../utility/is/index";
+import { has } from "../property";
 import { allocate } from "./allocate";
+import { Props } from "./prop";
+
+// * structureCall: Function;
+// * propFuncIfObject: Function;
+// * propFunc: Function;
 
 /**
- * deepBaseのプロパティー
- * @typedef {{
- * keys: Function;
- * depth: Number;
- * maxDepth: Number;
- * existing: Set | WeakSet;
- * structureCall: Function;
- * propFuncIfObject: Function;
- * propFunc: Function;
- * hooks: Array<Function>;
- * }} prop
- */
-
-/**
- * WIP: 開発難航中。
- * WARNING: おそらくバグ多数あり。
+ * WIP: 開発中。
  * 汎用Deep関数
  * @param {Object} targetObject
- * @param {prop} props
+ * @param {Props} props
  */
 export const deepBase = (targetObject, props={})=>{
     ({
-        keys:     props.keys = allKeys,
-        depth:    props.depth = 0,
-        maxDepth: props.maxDepth = Infinity,
-        existing: props.existing = new WeakSet(),
-        structureCall: props.structureCall = console.log,
-        propFuncIfObject: props.propFuncIfObject = console.log,
-        propFunc: props.propFunc = console.log,
+        depth:      props.depth = 0,
+        depthLimit: props.depthLimit = Infinity,
+        existing:   props.existing = new WeakSet(),
+        hooks:      props.hooks = {},
+        methods:    props.methods = {},
     } = props);
-    callOrElse(props.structureCall, targetObject);
-    forOf(props.keys(targetObject), (propName)=>{
-        allocate(targetObject, propName, props);
-    });
+    if(props.depth > props.depthLimit){
+        return;
+    }
+    callOrElse(props.hooks.every, null, targetObject, props.depth);
+    if(props.methods.isObject(targetObject))
+        forOf(props.methods.keys(targetObject), (propName)=>{
+            /** @type {PropertyDescriptor} */
+            const prop = Object.getOwnPropertyDescriptor(targetObject, propName);
+            if(has(prop, "value")){
+                callOrElse(props.hooks.property, null, prop);
+                const terget = prop.value;
+                deepBase(terget, {
+                    ...props,
+                    depth: props.depth + 1
+                });
+            }else{
+                callOrElse(props.hooks.accessor, null, prop);
+            }
+        });
 };
