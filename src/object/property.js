@@ -14,10 +14,10 @@ export const has = (object, propName)=>(
 
 /**
  * 受け取ったオブジェクトの全てのプロパティー名とSymbolを取得します。
- * @param  {...Object} object キーを取得するオブジェクトです。
- * @return {Array<String | Symbol>} オブジェクトのプロパティー名とSymbolの配列です。
+ * @param  {any} object キーを取得するオブジェクトです。
+ * @return {(String | symbol)[]} オブジェクトのプロパティー名とSymbolの配列です。
  */
-export const allKeys = object=>(
+export const allKeys = (object)=>(
     !isObject(object) ? null : []
         .concat(Object.getOwnPropertyNames(object))
         .concat(Object.getOwnPropertySymbols(object))

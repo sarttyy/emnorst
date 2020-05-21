@@ -1,7 +1,8 @@
 
 // @ts-check
 
-import { isArrayLike, isNumber, isUndefined } from "../is/index.js";
+import { isUndefined } from "../is/index.js";
+import { assertType } from "../condition/index.js";
 
 /**
  * Call the callback function for each number from 0 to maxIndex.
@@ -14,8 +15,9 @@ import { isArrayLike, isNumber, isUndefined } from "../is/index.js";
  * @param {function(any): Boolean} [breakFunc]
  */
 export const forIndex = function(count, func, breakFunc=isUndefined){
-    if(!isNumber(count))
-        return "throw new Error(\"\")";
+    assertType(count, "Number");
+    assertType(func, "Function");
+    assertType(breakFunc, "Function");
     const step = Math.sign(count),
         isNeg = step === -1,
         goal = isNeg ? -1 : count;

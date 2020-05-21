@@ -100,3 +100,14 @@ export const primeFactorization = (number)=>{
     if(number > 1)result.push(number);
     return result;
 };
+
+export const triangular = (frequency=Infinity)=>{
+    let i = 1, j = 0;
+    return generator((_)=>{
+        if(!frequency--){
+            _.return();
+            return;
+        }
+        _.yield(j += i++);
+    });
+};

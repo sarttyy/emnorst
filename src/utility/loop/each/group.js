@@ -6,9 +6,9 @@ import { each } from "../each.js";
 import { foldLeft } from "../fold.js";
 
 /**
- * @typedef {function(any):
- * string | {[x: string]: any}
- * } groupCB
+ * @callback groupCB
+ * @param {any} any
+ * @return {PropertyKey | {[x: string]: any}}
  */
 
 /**

@@ -4,7 +4,7 @@
 import { each } from "./each.js";
 import { isDefined } from "../is/type.js";
 
-const foldEngine = (func, init)=>(current)=>{
+const foldEngine = (func, init)=>function(current){
     const result = func.call(this, init, current);
     isDefined(result) && (init = result);
 };

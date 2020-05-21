@@ -4,6 +4,7 @@
 import { isDefined } from "../is/index.js";
 import { iterate } from "./iterate.js";
 import { loop } from "./loop.js";
+import { assertType } from "../condition/index.js";
 
 /*
 iterable protocolを使用して値ごとにコールバック関数を呼び出します。
@@ -41,6 +42,8 @@ breakFuncでfalsyと判断される値を返した場合、ループが終了し
  * // result = "hoge"
  */
 export const forOf = function(iterable, func, isBreak=isDefined){
+    assertType(func, "Function");
+    assertType(isBreak, "Function");
     const iterator = iterate(iterable);
     return loop(()=>{
         const iteratorResult = iterator.next();

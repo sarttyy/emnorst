@@ -2,6 +2,7 @@
 // @ts-check
 
 import { forOf } from "./for-of.js";
+import { isDefined } from "../is/index.js";
 
 /**
  * Executes the function specified by func level times.
@@ -15,7 +16,10 @@ import { forOf } from "./for-of.js";
  * @return Return value of the last callback function
  */
 export const previous = function(level, func, arg){
-    for(;level--;)arg = func.call(this, arg);
+    for(;level--;){
+        const result = func.call(this, arg);
+        isDefined(result) && (arg = result);
+    }
     return arg;
 };
 
