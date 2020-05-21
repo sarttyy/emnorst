@@ -8,6 +8,7 @@
 
 import env from "./env.js";
 import * as wipalt from "./alt/index.js";
+import * as util from "./util/index.js";
 import * as utility from "./utility/index.js";
 import * as object from "./object/index.js";
 import * as math from "./math/index.js";
@@ -16,4 +17,4 @@ import * as math from "./math/index.js";
  * @namespace {Object} rei
  * @exports
  */
-export { utility, object, math, wipalt, env };
+export { utility, object, math, util, wipalt, env };
