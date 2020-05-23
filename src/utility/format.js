@@ -8,6 +8,9 @@ import { splice } from "./getIndex";
  * @param {string} string
  * @param {*} placeholders
  * @param {[string, string]} affix
+ * @example
+ * format("{test}", { test: "value" });
+ * // => "value"
  */
 export const format = (string, placeholders, affix=["{", "}"])=>{
     each(placeholders, (value, key)=>{

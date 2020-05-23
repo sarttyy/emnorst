@@ -28,7 +28,7 @@ export const chunk = (array, size)=>{
  * @param {*} array
  * @param {*} count 幾つの塊に分けるか
  */
-export const chunk2 = (array, count)=>{
+export const split = (array, count)=>{
     assertType(array, ["String", "Array"]);
     assertType(count, "Number");
     let index = 0;

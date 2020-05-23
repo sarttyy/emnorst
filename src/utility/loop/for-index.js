@@ -15,7 +15,7 @@ import { assertType } from "../condition/index.js";
  * @param {function(any): Boolean} [breakFunc]
  */
 export const forIndex = function(count, func, breakFunc=isUndefined){
-    assertType(count, "Number");
+    assertType(count, Number.isFinite);
     assertType(func, "Function");
     assertType(breakFunc, "Function");
     const step = Math.sign(count),

@@ -2,7 +2,7 @@
 // @ts-check
 
 import { average } from "../../math/index";
-import { swap } from "../../object/swap";
+import { swap } from "../../object/property/swap";
 import { heapSort } from "./heap";
 
 /**

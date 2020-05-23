@@ -1,9 +1,9 @@
 
 // @ts-check
 
-import { isArrayLike, isNegative } from "../is/index.js";
+import { isArrayLike, isNegative, isIterable } from "../is/index.js";
 import { forIndex } from "./for-index.js";
-import { has } from "../../object/property.js";
+import { has } from "../../object/property/index.js";
 import { forOf } from "./for-of.js";
 import { loop } from "./loop.js";
 
@@ -38,6 +38,8 @@ export const each = function(items, func, props={}){
             has(items, index)
             && func.call(this, items[index], index, items);
         }, props.isBreak);
+    }else if(isIterable(items)){
+        forOf(items, ()=>{});
     }else{
         const keys = getKeys(Object(items));
         loop((index)=>{

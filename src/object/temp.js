@@ -15,15 +15,13 @@ export const spread = (target, ...sources)=>{
 // TODO: キーがかぶらないように合成
 export const attach = (object, name)=>{};
 
-export * from "./property";
-
 export const and = (...object)=>{
     deep([object]);
     object.reduce();
 };
 export const xor = (...arrays)=>{};
 
-const watchMap = new WeakMap();
+// const watchMap = new WeakMap();
 export const watch = (obj, propName, func)=>{
     const descriptors = watchMap.has(obj)
         ? watchMap.get(obj) : {};

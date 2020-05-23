@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { swap } from "../../object/swap";
+import { swap } from "../../object/property/swap";
 
 /**
  * @typedef {function(any, any): boolean} compare
