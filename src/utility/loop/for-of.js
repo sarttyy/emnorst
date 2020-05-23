@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isDefined } from "../is/index.js";
+import { isDefined } from "../../util/is/index.js";
 import { iterate } from "./iterate.js";
 import { loop } from "./loop.js";
 import { assertType } from "../condition/index.js";

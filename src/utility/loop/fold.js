@@ -2,7 +2,7 @@
 // @ts-check
 
 import { each } from "./each.js";
-import { isDefined } from "../is/type.js";
+import { isDefined } from "../../util/is/type.js";
 
 const foldEngine = (func, init)=>function(current){
     const result = func.call(this, init, current);

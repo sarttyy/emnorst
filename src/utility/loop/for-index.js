@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isUndefined } from "../is/index.js";
+import { isUndefined } from "../../util/is/index.js";
 import { assertType } from "../condition/index.js";
 
 /**

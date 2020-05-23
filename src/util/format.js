@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { each } from "./loop/each";
-import { splice } from "./getIndex";
+import { each } from "../utility/loop/each";
+import { splice } from "../utility/getIndex";
 
 /**
  * @param {string} string

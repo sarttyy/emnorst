@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isArrayLike, isNegative, isIterable } from "../is/index.js";
+import { isArrayLike, isNegative, isIterable } from "../../util/is/index.js";
 import { forIndex } from "./for-index.js";
 import { has } from "../../object/property/index.js";
 import { forOf } from "./for-of.js";

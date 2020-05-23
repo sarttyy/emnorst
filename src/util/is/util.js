@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { has } from "../../object/property.js";
+import { has } from "../../object/property/index.js";
 import { typeOf } from "../typeof.js";
 import { isFunction, isObject, isString, isNullLike } from "./type.js";
 import { isPositive } from "./number.js";

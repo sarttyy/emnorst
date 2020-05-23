@@ -1,10 +1,10 @@
 
 // @ts-check
 
-import { isNullLike, isArray } from "./is/index.js";
-import { typeOf } from "./typeof.js";
+import { isNullLike, isArray } from "../util/is/index.js";
+import { typeOf } from "../util/typeof.js";
 import { forOf } from "./loop/index.js";
-import { has } from "../object/property.js";
+import { has } from "../object/property/index.js";
 
 // TODO: コールバック関数のthisを指定できる高階関数のthatの指定の仕方を変更。
 // 高階関数自体のthisを継承する。

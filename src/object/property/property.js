@@ -1,7 +1,8 @@
 
 // @ts-check
 
-import { isObject, isString, isSymbol, forOf } from "../../utility/index.js";
+import { forOf } from "../../utility/index.js";
+import { isObject, isString, isSymbol } from "../../util/index.js";
 
 const flat = (array, depth=1) => {
     const flattend = [];

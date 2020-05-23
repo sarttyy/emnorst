@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isObject } from "../../is/index.js";
+import { isObject } from "../../../util/is/index.js";
 import { each } from "../each.js";
 import { foldLeft } from "../fold.js";
 

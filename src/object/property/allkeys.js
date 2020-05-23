@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isNullLike } from "../../utility/index.js";
+import { isNullLike } from "../../util/index.js";
 import { keys } from "./keys.js";
 
 const getPropNames = Object.getOwnPropertyNames || keys;

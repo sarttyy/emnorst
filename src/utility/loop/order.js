@@ -2,7 +2,7 @@
 // @ts-check
 
 import { forOf } from "./for-of.js";
-import { isDefined } from "../is/index.js";
+import { isDefined } from "../../util/is/index.js";
 
 /**
  * Executes the function specified by func level times.

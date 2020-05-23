@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isDefined } from "../is/index.js";
+import { isDefined } from "../../util/is/index.js";
 
 // break
 // 回数

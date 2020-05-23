@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { isArrayLike } from "./is/index.js";
-import { forOf } from "./loop/for-of.js";
+import { isArrayLike } from "../util/is/index.js";
+import { forOf } from "../utility/loop/for-of.js";
 
 /**
  * Flip objects at depth 0 and 1.

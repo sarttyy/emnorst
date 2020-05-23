@@ -1,5 +1,5 @@
 
-import { isPrime, isInfinity } from "../utility/is/number";
+import { isPrime, isInfinity } from "../util/is/number";
 import { generator } from "../utility/generator";
 
 // TODO: xorshift

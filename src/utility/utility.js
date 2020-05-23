@@ -1,5 +1,5 @@
 
-import { isObject } from "./is/index.js";
+import { isObject } from "../util/is/index.js";
 
 // TODO: format
 

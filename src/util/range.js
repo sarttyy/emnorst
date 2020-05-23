@@ -2,7 +2,7 @@
 // @ts-check
 
 import { isUndefined } from "./is/index.js";
-import { generator } from "./generator.js";
+import { generator } from "../utility/generator.js";
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。

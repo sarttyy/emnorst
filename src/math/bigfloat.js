@@ -2,8 +2,9 @@
 // @ts-check
 
 import { first, splice } from "../utility/getIndex";
-import { doWhile, equals, forIndex, forOf, previous, substitute, zip } from "../utility/index";
-import { isInfinity, isNegative, isNull, isNumber, isPositive, isString, isBoolean } from "../utility/is/index";
+import { doWhile, forIndex, forOf, previous, substitute } from "../utility/index";
+import { zip } from "../object/index";
+import { equals, isInfinity, isNegative, isNull, isNumber, isPositive, isString, isBoolean } from "../util/is/index";
 
 /**
  * @typedef {Number | String | BigFloat} NumberTypes

@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isNullLike, isNegative } from "./is/index.js";
+import { isNullLike, isNegative } from "../util/is/index.js";
 /**
  * 最後から数えて`index`番目の要素を取得します。
  *

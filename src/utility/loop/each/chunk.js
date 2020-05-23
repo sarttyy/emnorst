@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isFunction } from "../../is/index";
+import { isFunction } from "../../../util/is/index";
 import { assertType } from "../../condition/index";
 import { previous } from "../order";
 
