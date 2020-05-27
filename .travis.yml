@@ -5,11 +5,9 @@ branches:
   only:
     - "master"
     - "/^v\\d\\.\\d\\.\\d/"
-    - "develop"
   # except:
+    - "develop"
 notifications:
   email: false
-install:
-  - npm install codecov
 after_success:
   - codecov

@@ -1,5 +1,4 @@
 
-import istanbul from "rollup-plugin-istanbul";
 import buble from "rollup-plugin-buble";
 import { terser } from "rollup-plugin-terser";
 
@@ -11,7 +10,7 @@ const config = {
             format: "cjs",
         },
         {
-            file: "./dist/reiyayakko.es.js",
+            file: "./dist/reiyayakko.esm.js",
             format: "es",
         },
         {
@@ -21,7 +20,6 @@ const config = {
         },
     ],
     plugins: [
-        // babel(babelrc())
         buble({
             target: {
                 chrome: 49,
