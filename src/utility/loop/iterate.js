@@ -1,6 +1,8 @@
 
+// @ts-check
+
 import env from "../../env.js";
-import { isArrayLike, isFunction, isNullable } from "../is/index.js";
+import { isArrayLike, isFunction, isNullLike } from "../../util/is/index.js";
 
 /**
  * iterableなオブジェクトをiteratorに変換します。
@@ -10,7 +12,7 @@ import { isArrayLike, isFunction, isNullable } from "../is/index.js";
  * @throws {TypeError}
  */
 export const iterate = (iterable)=>{
-    if(env.Symbol && !isNullable(iterable[Symbol.iterator]))
+    if(env.Symbol && !isNullLike(iterable[Symbol.iterator]))
         return iterable[Symbol.iterator]();
     if(!isArrayLike(iterable))
         throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
@@ -21,5 +23,21 @@ export const iterate = (iterable)=>{
     } : {
         done: false,
         value: iterable[i++]
+    }) };
+};
+
+/**
+ * @param {Iterable} iterable
+ * @param {function} func
+ */
+const iterableMap = (iterable, func)=>{
+    const iterator = iterate(iterable);
+    return { [Symbol.iterator]:()=>({
+        next(){
+            const iterResult = iterator.next();
+            if(!iterResult.done)
+                iterResult.value = func(iterResult.value);
+            return iterResult;
+        }
     }) };
 };

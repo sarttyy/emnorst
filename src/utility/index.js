@@ -4,11 +4,9 @@ export * from "./condition/index.js";
 export * from "./generator.js";
 export * from "./getIndex.js";
 export * from "./loop/index.js";
-export * from "./random.js";
-export * from "./thinning.js";
 export * from "./later.js";
 export * from "./utility.js";
-export * from "./sort/index.js";
+// export * from "./sort/index.js";
 
 import { forIndex } from "./loop/index.js";
 // TEMP:
@@ -16,16 +14,6 @@ import { forIndex } from "./loop/index.js";
 //     constructor(){
 //         super();
 //         console.log(this);
-//     }
-// }
-// export class Temp {
-//     constructor(){
-//         this.gen = this.gen.bind(this);
-//         return this.gen;
-//     }
-//     gen(){
-//         console.log(this);
-//         return this.gen;
 //     }
 // }
 // export class Memo {
@@ -43,39 +31,39 @@ import { forIndex } from "./loop/index.js";
 // }
 // String instruction
 
-export const memoize = (func, effective=Infinity)=>{
-    const newFunc = function(){
-        const prevResult = forOf(newFunc.memo, (fragment, result)=>{
-            if(deepEquals(fragment))
-                return result;
-            return void 0;
-        });
-        if(isUndefined(prevResult))
-            return prevResult;
-        // eslint-disable-next-line prefer-rest-params
-        const result = func.apply(this, arguments);
-        newFunc.memo.set(arguments, result);
-        return result;
-    };
-    if(Array.isArray(effective)){
-        newFunc.memo = new Array(effective.length);
-        forIndex(effective.length, i=>{
-            newFunc.memo[i] = new Map(effective[i]);
-        });
-    }else{
-        const length = substitute([effective,1], v=>!Number.isFinite(v));
-        newFunc.memo = new Array(length);
-        forIndex(length, i=>{
-            newFunc.memo[i] = new Map();
-        });
-    }
-    return newFunc;
-};
+// export const memoize = (func, effective=Infinity)=>{
+//     const newFunc = function(){
+//         const prevResult = forOf(newFunc.memo, (fragment, result)=>{
+//             if(deepEquals(fragment))
+//                 return result;
+//             return void 0;
+//         });
+//         if(isUndefined(prevResult))
+//             return prevResult;
+//         // eslint-disable-next-line prefer-rest-params
+//         const result = func.apply(this, arguments);
+//         newFunc.memo.set(arguments, result);
+//         return result;
+//     };
+//     if(Array.isArray(effective)){
+//         newFunc.memo = new Array(effective.length);
+//         forIndex(effective.length, i=>{
+//             newFunc.memo[i] = new Map(effective[i]);
+//         });
+//     }else{
+//         const length = substitute([effective,1], v=>!Number.isFinite(v));
+//         newFunc.memo = new Array(length);
+//         forIndex(length, i=>{
+//             newFunc.memo[i] = new Map();
+//         });
+//     }
+//     return newFunc;
+// };
 
-export class MemoMap {
-    constructor(initValue){
-        this.map = new Map(initValue);
-    }
-}
+// export class MemoMap {
+//     constructor(initValue){
+//         this.map = new Map(initValue);
+//     }
+// }
 
 // MEMO: ifs スタック

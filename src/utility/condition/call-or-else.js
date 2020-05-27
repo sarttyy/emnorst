@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isFunction } from "../is/index.js";
+import { isFunction } from "../../util/is/index.js";
 
 /**
  * NOTE: tryCall

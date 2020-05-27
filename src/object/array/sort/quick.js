@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { average } from "../../math/index";
-import { swap } from "../../object/property/swap";
+import { average } from "../../../math/index";
+import { swap } from "../../property/swap";
 
 /**
  * destructive: `true`,

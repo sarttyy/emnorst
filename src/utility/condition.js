@@ -16,7 +16,7 @@ import { has } from "../object/property/index.js";
  * 値の中で最初に見つかった値を返します。見つからない場合、最後の値を返します。
  *
  * @param {*[]} values Value and alternate value. Higher priority to the left
- * @param {Function} evalFunc
+ * @param {function(any): boolean} evalFunc
  * A function that evaluates a value. Returning a true value is considered an invalid value.
  * 値を評価する関数。trulyな値を返すと無効な値とみなされる
  */
@@ -45,10 +45,10 @@ export const typeCheck = (value, types, sub, typeGetter=typeOf)=>{
  * Beta:
  * @param {*} origin
  * @param {*} patchObject
- * @param {*} [subFunc]
  * @param {boolean} toOrigin
+ * @param {function(any): boolean} [subFunc]
  */
-export const patch = (origin, patchObject, subFunc, toOrigin=true)=>{
+export const patch = (origin, patchObject, toOrigin=true, subFunc)=>{
     const target = toOrigin ? origin : {};
     forOf(Object.entries(patchObject), ([key, value])=>{
         target[key] = has(origin, key)

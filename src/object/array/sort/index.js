@@ -1,4 +1,4 @@
 
 export * from "./heap";
 export * from "./quick";
-export * from "./intro";
+export * from "../../../utility/sort/intro";

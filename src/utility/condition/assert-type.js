@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { isArray } from "../is/index.js";
-import { typeOf } from "../typeof.js";
+import { isArray, isFunction } from "../../util/is/index.js";
+import { typeOf } from "../../util/typeof.js";
 import { callOrElse } from "./call-or-else.js";
 
 /**
@@ -13,7 +13,10 @@ import { callOrElse } from "./call-or-else.js";
 export const assertType = (value, types, typeGetter=typeOf)=>{
     if(!isArray(types))types = [types];
     const some = types.some((type) => callOrElse(type, false, value));
-    if(some || types.includes(typeGetter(value)))
+    const type = typeGetter(value);
+    if(some || types.includes(type))
         return;
-    throw new TypeError(`typeof value is not in ${types}`);
+    throw new TypeError(`Type "${type}" is not included in ${types.map((type)=>(
+        isFunction(type) ? type.name : type
+    ))}`);
 };
