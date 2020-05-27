@@ -92,9 +92,9 @@ export const isObjectLike = (value)=>(
  * @param {*} value The value to be compared
  * @return {Boolean} Whether {@link typeOf} is Array
  */
-export const isArray = Array.isArray || ((value)=>(
+export const isArray = (value)=>(
     typeOf(value) === "Array"
-));
+);
 
 /**
  * @param {*} value The value to be compared
@@ -102,6 +102,15 @@ export const isArray = Array.isArray || ((value)=>(
  */
 export const isArguments = (value)=>(
     typeOf(value) === "Arguments"
+);
+
+/**
+ * @param {*} value The value to be compared
+ * @return {Boolean} Whether {@link typeOf} is TypedArray
+ */
+export const isTypedArray = (value)=>(
+    /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/
+        .test(typeOf(value))
 );
 
 /**
@@ -118,45 +127,4 @@ export const isRegExp = (value)=>(
  */
 export const isError = (value)=>(
     typeOf(value) === "Error"
-);
-
-/**
- * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is Map
- */
-export const isMap = (value)=>(
-    typeOf(value) === "Map"
-);
-
-/**
- * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is WeakMap
- */
-export const isWeakMap = (value)=>(
-    typeOf(value) === "WeakMap"
-);
-
-/**
- * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is Set
- */
-export const isSet = (value)=>(
-    typeOf(value) === "Set"
-);
-
-/**
- * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is WeakSet
- */
-export const isWeakSet = (value)=>(
-    typeOf(value) === "WeakSet"
-);
-
-/**
- * @param {*} value The value to be compared
- * @return {Boolean} Whether {@link typeOf} is TypedArray
- */
-export const isTypedArray = (value)=>(
-    /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/
-        .test(typeOf(value))
 );
