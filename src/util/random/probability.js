@@ -15,7 +15,7 @@ import { random } from "./random.js";
  * @param {number} max The denominator of probability. The default value is 100.
  * @return {boolean}
  */
-export const probability = (number, max=100)=>(
+export const probability = (number=50, max=100)=>(
     Number.isFinite(number)
     && random(0, max) < number
 );

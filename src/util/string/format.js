@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { each } from "../utility/loop/each";
-import { splice } from "../utility/getIndex";
+import { each } from "../../utility/loop/each";
+import { splice } from "../../utility/getIndex";
 
 /**
  * @param {string} string
@@ -15,7 +15,8 @@ import { splice } from "../utility/getIndex";
 export const format = (string, placeholders, affix=["{", "}"])=>{
     each(placeholders, (value, key)=>{
         const str = splice(affix, 1, 0, key).join("");
-        while(string.indexOf(str) !== -1)
+        if(~value.indexOf(str))return;
+        while(~string.indexOf(str))
             string = string.replace(str, value);
     });
     return string;
