@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isUndefined } from "./is/index.js";
+import { isUndefined } from "./is/type.js";
 import { generator } from "../utility/generator.js";
 
 /**

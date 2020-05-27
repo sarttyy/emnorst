@@ -53,7 +53,6 @@ export const isString = (value)=>(
  * @return {Boolean} Whether {@link typeOf} is Number
  */
 export const isNumber = (value)=>(
-    // eslint-disable-next-line no-self-compare
     typeOf(value) === "Number" && !isNaN(value)
 );
 

@@ -1,5 +1,5 @@
 
-import { isArray, isString } from "../../../util/index";
+import { isArray, isString } from "../../is/index";
 import { foldLeft } from "../../../utility/loop/fold";
 
 const toHex = function(_decz) {

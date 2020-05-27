@@ -2,7 +2,8 @@
 // @ts-check
 
 import env from "../../env.js";
-import { isArrayLike, isFunction, isNullLike } from "../../util/is/index.js";
+import { isArrayLike } from "../../util/is/util.js";
+import { isNullLike } from "../../util/is/type.js";
 
 /**
  * iterableなオブジェクトをiteratorに変換します。

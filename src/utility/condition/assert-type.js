@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isArray, isFunction } from "../../util/is/index.js";
+import { isArray, isFunction } from "../../util/is/type.js";
 import { typeOf } from "../../util/typeof.js";
 import { callOrElse } from "./call-or-else.js";
 
