@@ -1,9 +1,7 @@
 
 // @ts-check
 
-import { hash } from "./core";
-import { forIndex } from "../../../utility/loop/index";
-import { xor3 } from "./lib";
+import { hashCore } from "./core";
 
 const K = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
@@ -27,64 +25,69 @@ const T = [
     0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039, 0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,
     0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1, 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391,
 ];
-const blockLen = 64;
 const initState = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
-const sttLen = initState.length;
 
-const fromLittleEndian32 = (_blk) => {
+const fromLittleEndian32 = (data) => {
     const result = [];
-    for(let n = 0, i = 0;i < _blk.length;i++) {
-        result[n++] = _blk[i] & 0xff;
-        result[n++] = (_blk[i] >>> 8) & 0xff;
-        result[n++] = (_blk[i] >>> 16) & 0xff;
-        result[n++] = (_blk[i] >>> 24) & 0xff;
+    for(;data.length;) {
+        const ___ = data.shift();
+        result.push(___ & 0xff);
+        result.push(___ >>> 8 & 0xff);
+        result.push(___ >>> 16 & 0xff);
+        result.push(___ >>> 24 & 0xff);
     }
     return result;
 };
 
-const toLittleEndian32 = (_blk) => {
-    const result = [];
-    for (let n = 0, i = 0;i < _blk.length;i += 4, n++)
-        result[n] = (_blk[i + 3] << 24) | (_blk[i + 2] << 16) | (_blk[i + 1] << 8) | _blk[i];
-    return result;
+const $ = (data, charSize, state, _i) => {
+    const tmp = new Array(16);
+    if(charSize === 1)
+        for(let j = 0, n = _i;j < 16;)
+            tmp[j++] = data[n++] | (data[n++] << 8)
+                | (data[n++] << 16) | (data[n++] << 24);
+    else for(let j = 0, n = _i;j < 16;)
+        tmp[j++] = data[n++] | (data[n++] << 16);
+    const stateRef = [...state];
+    for(let i = 0;i < 64;i++) {
+        const [s0, s1, s2, s3] = state;
+        const _1
+            = i < 16 ? (s1 & s2) | (~s1 & s3)
+            : i < 32 ? (s1 & s3) | (s2 & ~s3)
+            : i < 48 ? s1 ^ s2 ^ s3
+            : s2 ^ (s1 | ~s3);
+        const _2 = _1 + s0 + T[i] + tmp[K[i]];
+        const Si = S[i];
+        const _3 = (_2 << Si) | (_2 >>> (32 - Si));
+        state[0] = _3 + s1;
+        state.unshift(state.pop());
+    }
+    for(let i = 0;i < 4;i++)
+        state[i] = state[i] + stateRef[i] & 0xffffffff;
 };
 
-const round = (_block) => {
+/**
+ * @param {number[]} data
+ * @return {number[]}
+ */
+const hashMD5 = (data) => {
     const state = [...initState];
-    for (let i = 0;i < _block.length;i += blockLen) {
-        const stateRef = [...state];
-        const x = toLittleEndian32(_block.slice(i, i + blockLen));
-        forIndex(64, (index)=>{
-            let tmp
-                = index < 16 ? (state[1] & state[2]) | (~state[1] & state[3])
-                : index < 32 ? (state[1] & state[3]) | (state[2] & ~state[3])
-                : index < 48 ? xor3(state)
-                : state[2] ^ (state[1] | ~state[3]);
-            tmp += x[K[index]] + T[index] + state[0];
-            state[0] = state[1] + ((tmp << S[index]) | (tmp >>> (32 - S[index])));
-            state.unshift(state.pop());
-        });
-        forIndex(sttLen, (index)=>{
-            state[index] += stateRef[index];
-        });
+    const len = data.length;
+    const index = len & 0x3f;
+    let paddingLen = (index < 56 ? 56 : 64) - index;// 元は65 : 120 だった。64でもいい?(64でも結果同じ)
+    if(paddingLen) {
+        data.push(128);
+        for(;--paddingLen;)data.push(0);
     }
+    data.push(...fromLittleEndian32([len * 8]),0,0,0,0);
+    const { length } = data;
+    for(let i = 0;i < length;i += 64)
+        $(data, 1, state, i);
     return fromLittleEndian32(state);
-};
-
-const paddingData = (_datz) => {
-    let datLen = _datz.length;
-    let n = datLen;
-    _datz[n++] = 0x80;
-    while(n % blockLen !== 56) _datz[n++] = 0;
-    datLen *= 8;
-    return _datz.concat(fromLittleEndian32([datLen]), 0, 0, 0, 0);
 };
 
 /**
  * MD5
- * @param {string} text
- * @param {"hex" | "binary" | "dec"} [format]
+ * @param {string} data
+ * @param {{format?: "hex" | "binary" | "dec"}} [props]
  */
-export const MD5 = (text, format) => (
-    hash(text, format, round, paddingData)
-);
+export const md5 = (data, props={}) => hashCore(hashMD5, data, props);
