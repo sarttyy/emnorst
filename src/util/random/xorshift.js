@@ -25,6 +25,8 @@ xorshiftアルゴリズムを使用して整数の疑似乱数を生成します
 export const xorshift = (min=0, max=Infinity, seed) => {
     assertType(min, Number.isFinite);
     assertType(max, isNumber);
+    if(min > max) [min, max] = [max, min];
+    if(min === max) return min;
     let number = isNumber(seed) ? seed : seedCache;
     number ^= number << 13;
     number ^= number >> 17;

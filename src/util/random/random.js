@@ -13,7 +13,8 @@ import { xorshift } from "./xorshift.js";
 export const random = (min=0, max=1, seed) => {
     assertType(min, Number.isFinite);
     assertType(max, Number.isFinite);
-    if(min > max)[min, max] = [max, min];
+    if(min > max) [min, max] = [max, min];
+    if(min === max) return min;
     // 0b1111111111111111111111111111111
     // おそらくこれがxorshiftの最大値。
     const constant = 2147483647;
