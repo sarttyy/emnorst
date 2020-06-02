@@ -1,13 +1,50 @@
 {
-  "coverage": "45.97%",
-  "expectCount": 87,
-  "actualCount": 40,
+  "coverage": "32.42%",
+  "expectCount": 475,
+  "actualCount": 154,
   "files": {
-    "src/index.js": {
-      "expectCount": 1,
+    "src/alt/index.js": {
+      "expectCount": 30,
+      "actualCount": 3,
+      "undocumentLines": [
+        9,
+        66,
+        73,
+        75,
+        106,
+        124,
+        281,
+        292,
+        352,
+        354,
+        355,
+        358,
+        365,
+        407,
+        415,
+        416,
+        425,
+        426,
+        429,
+        432,
+        443,
+        451,
+        464,
+        497,
+        504,
+        519,
+        508
+      ]
+    },
+    "src/alt/sandbox/index.js": {
+      "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        8
+        4,
+        5,
+        6,
+        8,
+        9
       ]
     },
     "src/lib/Num2DecStr.js": {
@@ -15,29 +52,164 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/math/bigfloat.js": {
-      "expectCount": 14,
+    "src/math/ack.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/math/calculation.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "src/math/fft/fft.js": {
+      "expectCount": 10,
+      "actualCount": 3,
+      "undocumentLines": [
+        11,
+        12,
+        17,
+        19,
+        34,
+        38,
+        43
+      ]
+    },
+    "src/math/hyper.js": {
+      "expectCount": 2,
       "actualCount": 0,
       "undocumentLines": [
         5,
-        10,
-        11,
-        13,
-        14,
-        15,
-        17,
-        21,
-        28,
-        55,
-        61,
-        67,
-        73,
-        76
+        19
       ]
     },
-    "src/math/calculation.js": {
+    "src/math/mathEval.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        15,
+        18,
+        19,
+        20,
+        22
+      ]
+    },
+    "src/math/number/bigfloat/calculation/pow.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/math/number/bigfloat/calculation/sin.js": {
       "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        20,
+        28,
+        68
+      ]
+    },
+    "src/math/number/bigfloat/calculation.js": {
+      "expectCount": 11,
+      "actualCount": 7,
+      "undocumentLines": [
+        53,
+        217,
+        218,
+        219
+      ]
+    },
+    "src/math/number/bigfloat/class.js": {
+      "expectCount": 13,
       "actualCount": 4,
+      "undocumentLines": [
+        25,
+        28,
+        29,
+        45,
+        58,
+        59,
+        73,
+        79,
+        84
+      ]
+    },
+    "src/math/number/bigfloat/constant.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        7,
+        8
+      ]
+    },
+    "src/math/number/bigfloat.js": {
+      "expectCount": 30,
+      "actualCount": 17,
+      "undocumentLines": [
+        68,
+        69,
+        85,
+        98,
+        99,
+        117,
+        123,
+        128,
+        138,
+        161,
+        165,
+        168,
+        359
+      ]
+    },
+    "src/math/number/tobaseof.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        8,
+        12,
+        22,
+        28,
+        36,
+        50,
+        52,
+        61
+      ]
+    },
+    "src/math/sequence.js": {
+      "expectCount": 7,
+      "actualCount": 5,
+      "undocumentLines": [
+        16,
+        117
+      ]
+    },
+    "src/math/tolerance.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        9
+      ]
+    },
+    "src/object/array/shuffle.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/object/array/sort/heap.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/object/array/sort/quick.js": {
+      "expectCount": 1,
+      "actualCount": 1,
       "undocumentLines": []
     },
     "src/object/clone/clone.js": {
@@ -59,22 +231,76 @@
       "expectCount": 9,
       "actualCount": 0,
       "undocumentLines": [
-        4,
         5,
         6,
         7,
         8,
-        10,
-        14,
-        17,
-        22
+        9,
+        11,
+        15,
+        18,
+        23
       ]
     },
     "src/object/clone.js": {
       "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/object/deepbase/allocate.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/object/deepbase/baseClone_lodash.js": {
+      "expectCount": 32,
+      "actualCount": 7,
+      "undocumentLines": [
+        26,
+        27,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ]
+    },
+    "src/object/editable.js": {
+      "expectCount": 14,
       "actualCount": 0,
       "undocumentLines": [
-        5
+        9,
+        10,
+        11,
+        12,
+        14,
+        27,
+        40,
+        52,
+        66,
+        78,
+        91,
+        102,
+        113,
+        124
       ]
     },
     "src/object/equals.js": {
@@ -85,61 +311,480 @@
         13
       ]
     },
-    "src/utility/array.js": {
-      "expectCount": 6,
+    "src/object/extract.js": {
+      "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        4,
-        6,
-        21,
+        7
+      ]
+    },
+    "src/object/property/allkeys.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        7,
+        9
+      ]
+    },
+    "src/object/property/has.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/object/property/keys.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/object/property/parsePropertyKey.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/object/property/property.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        26
+      ]
+    },
+    "src/object/property/swap.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/object/structure/class.js": {
+      "expectCount": 25,
+      "actualCount": 0,
+      "undocumentLines": [
+        10,
+        11,
+        12,
+        16,
+        24,
+        25,
+        26,
+        27,
         28,
-        36,
+        42,
+        54,
+        69,
+        78,
+        83,
+        89,
+        90,
+        92,
+        93,
+        94,
+        96,
+        104,
+        105,
+        113,
+        128,
+        130
+      ]
+    },
+    "src/object/zip.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/bitflag.js": {
+      "expectCount": 8,
+      "actualCount": 5,
+      "undocumentLines": [
+        26,
+        34,
         38
       ]
     },
-    "src/utility/condition.js": {
-      "expectCount": 4,
-      "actualCount": 4,
-      "undocumentLines": []
-    },
-    "src/utility/index.js": {
-      "expectCount": 6,
-      "actualCount": 1,
+    "src/util/chain.js": {
+      "expectCount": 5,
+      "actualCount": 0,
       "undocumentLines": [
-        45,
-        65,
-        94,
-        95,
-        96
+        6,
+        15,
+        16,
+        17,
+        19
       ]
     },
-    "src/utility/is/number.js": {
+    "src/util/function/benchmark.js": {
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
     },
-    "src/utility/is/type.js": {
-      "expectCount": 16,
-      "actualCount": 16,
-      "undocumentLines": []
-    },
-    "src/utility/is/util.js": {
-      "expectCount": 3,
-      "actualCount": 3,
-      "undocumentLines": []
-    },
-    "src/utility/loop/for.js": {
-      "expectCount": 3,
-      "actualCount": 3,
-      "undocumentLines": []
-    },
-    "src/utility/loop/index.js": {
+    "src/util/function/thinning.js": {
       "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/util/is/equals.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/util/is/is.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/is/number.js": {
+      "expectCount": 7,
+      "actualCount": 6,
+      "undocumentLines": [
+        43
+      ]
+    },
+    "src/util/is/type.js": {
+      "expectCount": 16,
+      "actualCount": 15,
+      "undocumentLines": [
+        14
+      ]
+    },
+    "src/util/is/util.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/util/random/probability.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/random/random.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/random/randomstr.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/random/xorshift.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "src/util/range.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/string/base64.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        9,
+        15,
+        29
+      ]
+    },
+    "src/util/string/diff/diff.js": {
+      "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
         6,
+        48,
+        149,
+        166
+      ]
+    },
+    "src/util/string/diff/diffNewTemp.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        15,
+        22,
+        58,
+        93
+      ]
+    },
+    "src/util/string/diff/diff_orz_do.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        206
+      ]
+    },
+    "src/util/string/diff/stringDiff.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
         9
       ]
+    },
+    "src/util/string/diff/temp2.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        19,
+        27,
+        37,
+        42,
+        43,
+        578,
+        681
+      ]
+    },
+    "src/util/string/enigma.js": {
+      "expectCount": 13,
+      "actualCount": 1,
+      "undocumentLines": [
+        4,
+        9,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        23,
+        26
+      ]
+    },
+    "src/util/string/format.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/util/string/hash/core.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "src/util/string/hash/lib.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        15,
+        22,
+        24,
+        33,
+        37,
+        41
+      ]
+    },
+    "src/util/string/hash/md5.js": {
+      "expectCount": 8,
+      "actualCount": 2,
+      "undocumentLines": [
+        6,
+        12,
+        18,
+        28,
+        30,
+        42
+      ]
+    },
+    "src/util/string/hash/md5_$$.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        24,
+        44,
+        54,
+        64,
+        74,
+        85,
+        92,
+        99,
+        106,
+        113,
+        124,
+        171
+      ]
+    },
+    "src/util/string/hash/md5_$.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        13
+      ]
+    },
+    "src/util/string/hash/md5_dev_wip.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/util/string/hash/sha1.js": {
+      "expectCount": 8,
+      "actualCount": 1,
+      "undocumentLines": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        18
+      ]
+    },
+    "src/util/string/hash/sha1_$.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        11
+      ]
+    },
+    "src/util/string/hash/sha256.js": {
+      "expectCount": 11,
+      "actualCount": 1,
+      "undocumentLines": [
+        8,
+        29,
+        30,
+        34,
+        36,
+        40,
+        43,
+        46,
+        49,
+        53
+      ]
+    },
+    "src/util/typeof.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/condition/assert-type.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/condition/call-or-else.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/condition.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/utility/generator.js": {
+      "expectCount": 23,
+      "actualCount": 1,
+      "undocumentLines": [
+        4,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        22,
+        26,
+        34,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        43,
+        46,
+        47,
+        57,
+        62
+      ]
+    },
+    "src/utility/getIndex.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/utility/later.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        22
+      ]
+    },
+    "src/utility/loop/each/chunk.js": {
+      "expectCount": 3,
+      "actualCount": 2,
+      "undocumentLines": [
+        8
+      ]
+    },
+    "src/utility/loop/each/count.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/loop/each/group.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/loop/each/partition.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/utility/loop/each.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/loop/fold.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        12,
+        20,
+        22
+      ]
+    },
+    "src/utility/loop/for-index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/loop/for-of.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/loop/for.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/utility/loop/iterate.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/utility/loop/loop.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/utility/loop/order.js": {
       "expectCount": 2,
@@ -151,30 +796,61 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/utility/range.js": {
+    "src/utility/memolize.js": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
     },
-    "src/utility/typeof.js": {
+    "src/utility/recursion.js": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
     },
-    "src/utility/utility.js": {
+    "src/utility/return.js": {
       "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
+        2,
         4,
-        14,
-        26,
-        35
+        6,
+        8
       ]
     },
-    "src/utility/zip.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+    "src/utility/sort/intro.js": {
+      "expectCount": 6,
+      "actualCount": 5,
+      "undocumentLines": [
+        118
+      ]
+    },
+    "src/utility/stack.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        21,
+        29,
+        30,
+        31,
+        33,
+        37,
+        42,
+        50,
+        52,
+        79
+      ]
+    },
+    "src/utility/utility.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        21,
+        33
+      ]
     }
   }
 }

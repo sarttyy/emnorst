@@ -84,7 +84,14 @@ export const iterableIndex = (iterable, index)=>{
  * @param {Array} array 元の配列
  * @param {Number} beforeItem restの前のパラメータの数
  * @param {Number} afterItem restの後のパラメータの数
- * @returns
+ * @return
+ * @example
+ * const arr = [1,2,3,4,5,6,7,8];
+ * const [a, b, rest, y, z] = restSplit(arr, 2, 2);
+ * // a = 1, b = 2
+ * // rest = [3,4,5,6]
+ * // y = 7, z = 8
+ * // const [a, b, ...rest, y, z] = arr;
  */
 export const restSplit = (array, beforeItem, afterItem=0)=>{
     const restEndIndex = array.length - afterItem;

@@ -18,27 +18,39 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/math/bigfloat.js~num",
-    "function/index.html#static-function-Num",
-    "<span>Num</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/bigfloat.js</span>",
-    "function"
-  ],
-  [
-    "reiyayakko-core/src/object/clone.js~_",
-    "function/index.html#static-function-_",
-    "<span>_</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/clone.js</span>",
-    "function"
-  ],
-  [
     "reiyayakko-core/src/math/calculation.js~abs",
     "function/index.html#static-function-abs",
     "<span>abs</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
     "function"
   ],
   [
+    "reiyayakko-core/src/math/matheval.js~add",
+    "function/index.html#static-function-add",
+    "<span>add</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/mathEval.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/object/property.js~allkeys",
+    "function/index.html#static-function-allKeys",
+    "<span>allKeys</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/property.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/object/deepbase/allocate.js~allocate",
+    "function/index.html#static-function-allocate",
+    "<span>allocate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/deepbase/allocate.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/index.js~argument",
     "function/index.html#static-function-argument",
     "<span>argument</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/index.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/calculation.js~average",
+    "function/index.html#static-function-average",
+    "<span>average</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
     "function"
   ],
   [
@@ -54,6 +66,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/object/clone.js~clone_wip",
+    "function/index.html#static-function-clone_WIP",
+    "<span>clone_WIP</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/clone.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/object/clone/clone.js~copy",
     "function/index.html#static-function-copy",
     "<span>copy</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/clone/clone.js</span>",
@@ -66,9 +84,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/utility.js~debounce",
+    "reiyayakko-core/src/utility/thinning.js~debounce",
     "function/index.html#static-function-debounce",
-    "<span>debounce</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "<span>debounce</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/thinning.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/object/deepbase/base.js~deepbase",
+    "function/index.html#static-function-deepBase",
+    "<span>deepBase</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/deepbase/base.js</span>",
     "function"
   ],
   [
@@ -78,27 +102,45 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/math/matheval.js~div",
+    "function/index.html#static-function-div",
+    "<span>div</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/mathEval.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/loop/while.js~dowhile",
     "function/index.html#static-function-doWhile",
     "<span>doWhile</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/while.js</span>",
     "function"
   ],
   [
-    "reiyayakko-core/src/index.js~env",
-    "variable/index.html#static-variable-env",
-    "<span>env</span> <span class=\"search-result-import-path\">reiyayakko-core/src/index.js</span>",
-    "variable"
+    "reiyayakko-core/src/utility/is/equals.js~equals",
+    "function/index.html#static-function-equals",
+    "<span>equals</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/equals.js</span>",
+    "function"
   ],
   [
-    "reiyayakko-core/src/utility/utility.js~equals",
-    "function/index.html#static-function-equals",
-    "<span>equals</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "reiyayakko-core/src/utility/is/equals.js~equalstype",
+    "function/index.html#static-function-equalsType",
+    "<span>equalsType</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/equals.js</span>",
     "function"
   ],
   [
     "reiyayakko-core/src/math/calculation.js~factorial",
     "function/index.html#static-function-factorial",
     "<span>factorial</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/sequence.js~fibonacci$",
+    "function/index.html#static-function-fibonacci$",
+    "<span>fibonacci$</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/sequence.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/getindex.js~first",
+    "function/index.html#static-function-first",
+    "<span>first</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/getIndex.js</span>",
     "function"
   ],
   [
@@ -138,9 +180,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/object/property.js~has",
+    "function/index.html#static-function-has",
+    "<span>has</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/property.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/hyper.js~hyper",
+    "function/index.html#static-function-hyper",
+    "<span>hyper</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/hyper.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/loop/order.js~inorder",
     "function/index.html#static-function-inOrder",
     "<span>inOrder</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/order.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/getindex.js~index",
+    "function/index.html#static-function-index",
+    "<span>index</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/getIndex.js</span>",
     "function"
   ],
   [
@@ -148,6 +208,12 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-isArguments",
     "<span>isArguments</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
     "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/is/type.js~isarray",
+    "variable/index.html#static-variable-isArray",
+    "<span>isArray</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
+    "variable"
   ],
   [
     "reiyayakko-core/src/utility/is/util.js~isarraylike",
@@ -174,9 +240,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/utility/is/number.js~iseven",
+    "function/index.html#static-function-isEven",
+    "<span>isEven</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/is/type.js~isfunction",
     "function/index.html#static-function-isFunction",
     "<span>isFunction</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/is/number.js~isinfinity",
+    "function/index.html#static-function-isInfinity",
+    "<span>isInfinity</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/is/util.js~isiterable",
+    "function/index.html#static-function-isIterable",
+    "<span>isIterable</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/util.js</span>",
     "function"
   ],
   [
@@ -216,6 +300,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/utility/is/number.js~isodd",
+    "function/index.html#static-function-isOdd",
+    "<span>isOdd</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/is/number.js~ispositive",
+    "function/index.html#static-function-isPositive",
+    "<span>isPositive</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/is/number.js~isprime",
     "function/index.html#static-function-isPrime",
     "<span>isPrime</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/number.js</span>",
@@ -252,6 +348,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/utility/is/type.js~istypedarray",
+    "function/index.html#static-function-isTypedArray",
+    "<span>isTypedArray</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/is/type.js~isundefined",
     "function/index.html#static-function-isUndefined",
     "<span>isUndefined</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/is/type.js</span>",
@@ -270,15 +372,39 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/loop/index.js~iterate",
+    "reiyayakko-core/src/utility/getindex.js~iterableindex",
+    "function/index.html#static-function-iterableIndex",
+    "<span>iterableIndex</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/getIndex.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/loop/for.js~iterate",
     "function/index.html#static-function-iterate",
-    "<span>iterate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/index.js</span>",
+    "<span>iterate</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/for.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/getindex.js~last",
+    "function/index.html#static-function-last",
+    "<span>last</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/getIndex.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/matheval.js~matheval",
+    "function/index.html#static-function-mathEval",
+    "<span>mathEval</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/mathEval.js</span>",
     "function"
   ],
   [
     "reiyayakko-core/src/math/calculation.js~max",
     "function/index.html#static-function-max",
     "<span>max</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/calculation.js~median",
+    "function/index.html#static-function-median",
+    "<span>median</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/calculation.js</span>",
     "function"
   ],
   [
@@ -294,9 +420,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "reiyayakko-core/src/math/matheval.js~mul",
+    "function/index.html#static-function-mul",
+    "<span>mul</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/mathEval.js</span>",
+    "function"
+  ],
+  [
     "reiyayakko-core/src/utility/loop/order.js~previous",
     "function/index.html#static-function-previous",
     "<span>previous</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/loop/order.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/sequence.js~primefactorization",
+    "function/index.html#static-function-primeFactorization",
+    "<span>primeFactorization</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/sequence.js</span>",
     "function"
   ],
   [
@@ -306,10 +444,28 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/range.js~range",
-    "function/index.html#static-function-range",
-    "<span>range</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/range.js</span>",
+    "reiyayakko-core/src/object/property.js~property",
+    "function/index.html#static-function-property",
+    "<span>property</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/property.js</span>",
     "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/utility.js~random",
+    "function/index.html#static-function-random",
+    "<span>random</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/utility.js~randomstr",
+    "function/index.html#static-function-randomStr",
+    "<span>randomStr</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/utility.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/range.js~range",
+    "variable/index.html#static-variable-range",
+    "<span>range</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/range.js</span>",
+    "variable"
   ],
   [
     "reiyayakko-core/src/utility/array.js~reduce",
@@ -318,15 +474,39 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "reiyayakko-core/src/utility/index.js~restsplit",
+    "reiyayakko-core/src/utility/getindex.js~restsplit",
     "function/index.html#static-function-restSplit",
-    "<span>restSplit</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/index.js</span>",
+    "<span>restSplit</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/getIndex.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/getindex.js~splice",
+    "function/index.html#static-function-splice",
+    "<span>splice</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/getIndex.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/object/property.js~structure",
+    "function/index.html#static-function-structure",
+    "<span>structure</span> <span class=\"search-result-import-path\">reiyayakko-core/src/object/property.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/math/matheval.js~sub",
+    "function/index.html#static-function-sub",
+    "<span>sub</span> <span class=\"search-result-import-path\">reiyayakko-core/src/math/mathEval.js</span>",
     "function"
   ],
   [
     "reiyayakko-core/src/utility/condition.js~substitute",
     "function/index.html#static-function-substitute",
     "<span>substitute</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/condition.js</span>",
+    "function"
+  ],
+  [
+    "reiyayakko-core/src/utility/thinning.js~throttle",
+    "function/index.html#static-function-throttle",
+    "<span>throttle</span> <span class=\"search-result-import-path\">reiyayakko-core/src/utility/thinning.js</span>",
     "function"
   ],
   [
@@ -648,6 +828,12 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/env.js",
+    "file/src/env.js.html",
+    "src/env.js",
+    "file"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
@@ -660,21 +846,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/math/ack.js",
+    "file/src/math/ack.js.html",
+    "src/math/ack.js",
+    "file"
+  ],
+  [
+    "src/math/arithmetic.js",
+    "file/src/math/arithmetic.js.html",
+    "src/math/arithmetic.js",
+    "file"
+  ],
+  [
     "src/math/bigfloat.js",
     "file/src/math/bigfloat.js.html",
     "src/math/bigfloat.js",
     "file"
   ],
   [
-    "src/math/bigfloat.js~bigfloat#_typecheck",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-method-_typeCheck",
-    "src/math/bigfloat.js~BigFloat#_typeCheck",
-    "method"
-  ],
-  [
-    "src/math/bigfloat.js~bigfloat#add",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-method-add",
-    "src/math/bigfloat.js~BigFloat#add",
+    "src/math/bigfloat.js~bigfloat#ceil",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-ceil",
+    "src/math/bigfloat.js~BigFloat#ceil",
     "method"
   ],
   [
@@ -690,9 +882,45 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/math/bigfloat.js~bigfloat#div",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-method-div",
-    "src/math/bigfloat.js~BigFloat#div",
+    "src/math/bigfloat.js~bigfloat#decrement",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-decrement",
+    "src/math/bigfloat.js~BigFloat#decrement",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#digits",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-member-digits",
+    "src/math/bigfloat.js~BigFloat#digits",
+    "member"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#exception",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-member-exception",
+    "src/math/bigfloat.js~BigFloat#exception",
+    "member"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#floor",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-floor",
+    "src/math/bigfloat.js~BigFloat#floor",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#format",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-format",
+    "src/math/bigfloat.js~BigFloat#format",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#getnumber",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-getNumber",
+    "src/math/bigfloat.js~BigFloat#getNumber",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#increment",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-increment",
+    "src/math/bigfloat.js~BigFloat#increment",
     "method"
   ],
   [
@@ -702,27 +930,39 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/math/bigfloat.js~bigfloat#mul",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-method-mul",
-    "src/math/bigfloat.js~BigFloat#mul",
-    "method"
-  ],
-  [
-    "src/math/bigfloat.js~bigfloat#negative",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-member-negative",
-    "src/math/bigfloat.js~BigFloat#negative",
+    "src/math/bigfloat.js~bigfloat#ispositive",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-member-isPositive",
+    "src/math/bigfloat.js~BigFloat#isPositive",
     "member"
   ],
   [
-    "src/math/bigfloat.js~bigfloat#sub",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-method-sub",
-    "src/math/bigfloat.js~BigFloat#sub",
+    "src/math/bigfloat.js~bigfloat#power",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-power",
+    "src/math/bigfloat.js~BigFloat#power",
     "method"
   ],
   [
-    "src/math/bigfloat.js~bigfloat#sur",
-    "class/src/math/bigfloat.js~BigFloat.html#instance-method-sur",
-    "src/math/bigfloat.js~BigFloat#sur",
+    "src/math/bigfloat.js~bigfloat#round",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-round",
+    "src/math/bigfloat.js~BigFloat#round",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#setdecimalpoint",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-setDecimalPoint",
+    "src/math/bigfloat.js~BigFloat#setDecimalPoint",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#setnumber",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-setNumber",
+    "src/math/bigfloat.js~BigFloat#setNumber",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#setsign",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-setSign",
+    "src/math/bigfloat.js~BigFloat#setSign",
     "method"
   ],
   [
@@ -732,10 +972,70 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/math/bigfloat.js~bigfloat.eval",
-    "class/src/math/bigfloat.js~BigFloat.html#static-method-eval",
-    "src/math/bigfloat.js~BigFloat.eval",
+    "src/math/bigfloat.js~bigfloat#trunc",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-trunc",
+    "src/math/bigfloat.js~BigFloat#trunc",
     "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat#valueof",
+    "class/src/math/bigfloat.js~BigFloat.html#instance-method-valueOf",
+    "src/math/bigfloat.js~BigFloat#valueOf",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.addition",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-addition",
+    "src/math/bigfloat.js~BigFloat.addition",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.div_wip",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-div_WIP",
+    "src/math/bigfloat.js~BigFloat.div_WIP",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.division",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-division",
+    "src/math/bigfloat.js~BigFloat.division",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.equals",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-equals",
+    "src/math/bigfloat.js~BigFloat.equals",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.max2",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-max2",
+    "src/math/bigfloat.js~BigFloat.max2",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.multiplication",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-multiplication",
+    "src/math/bigfloat.js~BigFloat.multiplication",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.subtraction",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-subtraction",
+    "src/math/bigfloat.js~BigFloat.subtraction",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~bigfloat.surplus",
+    "class/src/math/bigfloat.js~BigFloat.html#static-method-surplus",
+    "src/math/bigfloat.js~BigFloat.surplus",
+    "method"
+  ],
+  [
+    "src/math/bigfloat.js~numbertypes",
+    "typedef/index.html#static-typedef-NumberTypes",
+    "src/math/bigfloat.js~NumberTypes",
+    "typedef"
   ],
   [
     "src/math/calculation.js",
@@ -744,9 +1044,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/math/hyper.js",
+    "file/src/math/hyper.js.html",
+    "src/math/hyper.js",
+    "file"
+  ],
+  [
     "src/math/index.js",
     "file/src/math/index.js.html",
     "src/math/index.js",
+    "file"
+  ],
+  [
+    "src/math/matheval.js",
+    "file/src/math/mathEval.js.html",
+    "src/math/mathEval.js",
+    "file"
+  ],
+  [
+    "src/math/sequence.js",
+    "file/src/math/sequence.js.html",
+    "src/math/sequence.js",
     "file"
   ],
   [
@@ -774,6 +1092,36 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/object/deepbase/allocate.js",
+    "file/src/object/deepbase/allocate.js.html",
+    "src/object/deepbase/allocate.js",
+    "file"
+  ],
+  [
+    "src/object/deepbase/allocate.js~prop",
+    "typedef/index.html#static-typedef-prop",
+    "src/object/deepbase/allocate.js~prop",
+    "typedef"
+  ],
+  [
+    "src/object/deepbase/base.js",
+    "file/src/object/deepbase/base.js.html",
+    "src/object/deepbase/base.js",
+    "file"
+  ],
+  [
+    "src/object/deepbase/base.js~prop",
+    "typedef/index.html#static-typedef-prop",
+    "src/object/deepbase/base.js~prop",
+    "typedef"
+  ],
+  [
+    "src/object/deepbase/index.js",
+    "file/src/object/deepbase/index.js.html",
+    "src/object/deepbase/index.js",
+    "file"
+  ],
+  [
     "src/object/equals.js",
     "file/src/object/equals.js.html",
     "src/object/equals.js",
@@ -792,6 +1140,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/object/property.js",
+    "file/src/object/property.js.html",
+    "src/object/property.js",
+    "file"
+  ],
+  [
+    "src/polyfill/index.js",
+    "file/src/polyfill/index.js.html",
+    "src/polyfill/index.js",
+    "file"
+  ],
+  [
     "src/utility/array.js",
     "file/src/utility/array.js.html",
     "src/utility/array.js",
@@ -801,6 +1161,12 @@ window.esdocSearchIndex = [
     "src/utility/condition.js",
     "file/src/utility/condition.js.html",
     "src/utility/condition.js",
+    "file"
+  ],
+  [
+    "src/utility/getindex.js",
+    "file/src/utility/getIndex.js.html",
+    "src/utility/getIndex.js",
     "file"
   ],
   [
@@ -820,6 +1186,12 @@ window.esdocSearchIndex = [
     "class/src/utility/index.js~MemoMap.html#instance-member-map",
     "src/utility/index.js~MemoMap#map",
     "member"
+  ],
+  [
+    "src/utility/is/equals.js",
+    "file/src/utility/is/equals.js.html",
+    "src/utility/is/equals.js",
+    "file"
   ],
   [
     "src/utility/is/index.js",
@@ -882,6 +1254,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/utility/recursion.js",
+    "file/src/utility/recursion.js.html",
+    "src/utility/recursion.js",
+    "file"
+  ],
+  [
+    "src/utility/thinning.js",
+    "file/src/utility/thinning.js.html",
+    "src/utility/thinning.js",
+    "file"
+  ],
+  [
     "src/utility/typeof.js",
     "file/src/utility/typeof.js.html",
     "src/utility/typeof.js",
@@ -891,6 +1275,12 @@ window.esdocSearchIndex = [
     "src/utility/typeof.js~objecttostringtypes",
     "typedef/index.html#static-typedef-ObjectToStringTypes",
     "src/utility/typeof.js~ObjectToStringTypes",
+    "typedef"
+  ],
+  [
+    "src/utility/typeof.js~typedarray",
+    "typedef/index.html#static-typedef-TypedArray",
+    "src/utility/typeof.js~TypedArray",
     "typedef"
   ],
   [
@@ -904,5 +1294,77 @@ window.esdocSearchIndex = [
     "file/src/utility/zip.js.html",
     "src/utility/zip.js",
     "file"
+  ],
+  [
+    "test/index.js",
+    "test-file/test/index.js.html",
+    "test/index.js",
+    "testFile"
+  ],
+  [
+    "test/util/is/type.test.js",
+    "test-file/test/util/is/type.test.js.html",
+    "test/util/is/type.test.js",
+    "testFile"
+  ],
+  [
+    "utility utility,utility",
+    "test-file/test/util/is/type.test.js.html#lineNumber6",
+    "util/is",
+    "test"
+  ],
+  [
+    "null src/.external-ecmascript.js~null,null",
+    "test-file/test/util/is/type.test.js.html#lineNumber57",
+    "util/is ",
+    "test"
+  ],
+  [
+    "isboolean src/utility/is/type.js~isboolean,isboolean",
+    "test-file/test/util/is/type.test.js.html#lineNumber19",
+    "util/is isBoolean",
+    "test"
+  ],
+  [
+    "isfunction src/utility/is/type.js~isfunction,isfunction",
+    "test-file/test/util/is/type.test.js.html#lineNumber44",
+    "util/is isFunction",
+    "test"
+  ],
+  [
+    "isnull src/utility/is/type.js~isnull,isnull",
+    "test-file/test/util/is/type.test.js.html#lineNumber13",
+    "util/is isNull",
+    "test"
+  ],
+  [
+    "isnumber src/utility/is/type.js~isnumber,isnumber",
+    "test-file/test/util/is/type.test.js.html#lineNumber32",
+    "util/is isNumber",
+    "test"
+  ],
+  [
+    "isobject src/utility/is/type.js~isobject,isobject",
+    "test-file/test/util/is/type.test.js.html#lineNumber49",
+    "util/is isObject",
+    "test"
+  ],
+  [
+    "isstring src/utility/is/type.js~isstring,isstring",
+    "test-file/test/util/is/type.test.js.html#lineNumber26",
+    "util/is isString",
+    "test"
+  ],
+  [
+    "issymbol src/utility/is/type.js~issymbol,issymbol",
+    "test-file/test/util/is/type.test.js.html#lineNumber39",
+    "util/is isSymbol",
+    "test"
+  ],
+  [
+    "isundefined src/utility/is/type.js~isundefined,isundefined",
+    "test-file/test/util/is/type.test.js.html#lineNumber8",
+    "util/is isUndefined",
+    "test"
   ]
 ]

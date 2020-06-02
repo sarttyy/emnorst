@@ -1,49 +1,49 @@
 [
   {
-    "name": "restSplit",
-    "filePath": "src/utility/index.js",
+    "name": "sort2",
+    "filePath": "src/utility/sort/intro.js",
     "lines": [
       {
-        "lineNumber": 46,
+        "lineNumber": 90,
         "line": "/**\r"
       },
       {
-        "lineNumber": 47,
-        "line": " * 拡張版分割代入\r"
+        "lineNumber": 91,
+        "line": " * @param {any[]} a\r"
       },
       {
-        "lineNumber": 48,
-        "line": " *\r"
+        "lineNumber": 92,
+        "line": " * @param {number} i0\r"
       },
       {
-        "lineNumber": 49,
-        "line": " * @param {object} array\r"
+        "lineNumber": 93,
+        "line": " * @param {number} iN\r"
       },
       {
-        "lineNumber": 50,
-        "line": " * @param {*} classifying\r"
+        "lineNumber": 94,
+        "line": " * @param {number} d\r"
       },
       {
-        "lineNumber": 51,
-        "line": " * @returns\r"
-      },
-      {
-        "lineNumber": 52,
+        "lineNumber": 95,
         "line": " */\r"
       },
       {
-        "lineNumber": 53,
-        "line": "export const restSplit = (array, beforeItem, afterItem=0)=>{\r"
+        "lineNumber": 96,
+        "line": "const sort2 = (a, i0, iN, d, compare)=>{\r"
       }
     ],
     "codeParams": [
-      "array",
-      "beforeItem",
-      "afterItem"
+      "a",
+      "i0",
+      "iN",
+      "d",
+      "compare"
     ],
     "docParams": [
-      "array",
-      "classifying"
+      "a",
+      "i0",
+      "iN",
+      "d"
     ]
   }
 ]
