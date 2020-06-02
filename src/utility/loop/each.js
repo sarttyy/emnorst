@@ -12,7 +12,7 @@ import { loop } from "./loop.js";
  * @property {boolean} [fromRight]
  * @property {boolean} [fold]
  * @property {function(any): boolean} [isBreak]
- * @property {function(any): (string | symbol)[]} [keys]
+ * @property {function(any): PropertyKey[]} [keys]
  * @property {function} [frameWork]
  * @property {function} [engine]
  */

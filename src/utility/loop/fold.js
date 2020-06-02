@@ -9,7 +9,7 @@ const foldEngine = (func, init)=>function(current){
     isDefined(result) && (init = result);
 };
 
-export const foldLeft = function(iterable, init, func){
+export const foldLeft = function(iterable, func, init){
     each(iterable, (current)=>{
         const result = func.call(this, init, current);
         isDefined(result) && (init = result);
@@ -19,7 +19,7 @@ export const foldLeft = function(iterable, init, func){
 
 export const fold = foldLeft;
 
-export const foldRight = function(iterable, init, func){
+export const foldRight = function(iterable, func, init){
     each(iterable, (current)=>{
         const result = func.call(this, init, current);
         isDefined(result) && (init = result);

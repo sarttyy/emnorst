@@ -13,11 +13,12 @@ import { isDefined } from "../../util/is/index.js";
  * @param {function} func Repeated callback function
  * The return value of the previous callback function is passed as an argument
  * @param {*} [arg] Arguments passed to the first callback function
+ * @param  {...any} testArgs
  * @return Return value of the last callback function
  */
-export const previous = function(level, func, arg){
+export const previous = function(level, func, arg, ...testArgs){
     for(;level--;){
-        const result = func.call(this, arg);
+        const result = func.call(this, arg, ...testArgs);
         isDefined(result) && (arg = result);
     }
     return arg;

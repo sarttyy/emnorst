@@ -13,12 +13,12 @@ import { forOf } from "../utility/loop/for-of.js";
  * The target object. The child properties of this object must also be objects.
  *
  * ターゲットオブジェクト。 このオブジェクトの子プロパティもオブジェクトである必要があります。
- * @param {function(any): (string|symbol)[]} getKeys
+ * @param {function(any): PropertyKey[]} getKeys
  * A function that returns the keys of the object as an array.
  *
  * オブジェクトのキーを配列として返す関数。
  * {@link allKeys}などが指定できます
- * @return
+ * @return {object}
  * An object whose depth is inverted by 0 and 1.
  *
  * 深度が0と1で反転したオブジェクト。

@@ -32,7 +32,7 @@ export const split = (array, count)=>{
     assertType(array, ["String", "Array"]);
     assertType(count, "Number");
     let index = 0;
-    return previous(Math.ceil(array.length / count), (result)=>{
-        result.push(array.slice(index, (index += count)));
+    return previous(count, (result)=>{
+        result.push(array.slice(index, (index += Math.round(array.length / count))));
     }, []);
 };
