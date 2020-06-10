@@ -1,47 +1,48 @@
 
 // @ts-check
 
-import { callOrElse, forOf } from "../../utility/index";
-import { isObject } from "../../utility/is/index";
-import { has } from "../property";
-import { allocate } from "./allocate";
-import { Props } from "./prop";
-
-// * structureCall: Function;
-// * propFuncIfObject: Function;
-// * propFunc: Function;
+import { callOrElse, forOf, patch } from "../../utility/index";
+import { isObject, isFunction } from "../../util/is/type";
+import { has } from "../property/has";
+import { getKeys } from "../property/keys";
 
 /**
- * WIP: 開発中。
- * 汎用Deep関数
- * @param {Object} targetObject
- * @param {Props} props
+ * ネストされたオブジェクトなどに対して処理を行います。
+ * RC:
+ * @param {*} target
+ * @param {import("./prop").Props} props
  */
-export const deepBase = (targetObject, props={})=>{
-    ({
-        depth:      props.depth = 0,
-        depthLimit: props.depthLimit = Infinity,
-        existing:   props.existing = new WeakSet(),
-        hooks:      props.hooks = {},
-        methods:    props.methods = {},
-    } = props);
-    if(props.depth > props.depthLimit){
+export const deepBase = (target, props={})=>{
+    patch(props, {
+        depthLimit: Infinity,
+        existing: new WeakSet(),
+        path: [],
+        hooks: {},
+        methods: {},
+    });
+    patch(props.methods, {
+        keys: getKeys,
+        isExplore: isObject,
+    }, true, isFunction);
+    if(props.path.length > props.depthLimit) {
         return;
     }
-    callOrElse(props.hooks.every, null, targetObject, props.depth);
-    if(props.methods.isObject(targetObject))
-        forOf(props.methods.keys(targetObject), (propName)=>{
-            /** @type {PropertyDescriptor} */
-            const prop = Object.getOwnPropertyDescriptor(targetObject, propName);
-            if(has(prop, "value")){
-                callOrElse(props.hooks.property, null, prop);
-                const terget = prop.value;
-                deepBase(terget, {
-                    ...props,
-                    depth: props.depth + 1
-                });
-            }else{
-                callOrElse(props.hooks.accessor, null, prop);
-            }
-        });
+    callOrElse(props.hooks.every, null, target, [...props.path]);
+    if(!props.methods.isExplore(target)) {
+        return;
+    }
+    props.existing.add(target);
+    forOf(props.methods.keys(target), (propName) => {
+        props.path.push(propName);
+        const propDesc = Object.getOwnPropertyDescriptor(target, propName);
+        if(props.existing.has(propDesc.value)) {
+            callOrElse(props.hooks.existing, null, propDesc, [...props.path], target);
+            return;
+        }
+        callOrElse(props.hooks.propBefore, null, propDesc, [...props.path], target);
+        if(has(propDesc, "value"))
+            deepBase(propDesc.value, props);
+        callOrElse(props.hooks.propAfter, null, propDesc, [...props.path], target);
+        props.path.pop();
+    });
 };
