@@ -9,7 +9,9 @@ const Gears = [
     [11,12,25,3,0,10,21,19,8,24,2,15,9,22,18,17,23,14,1,4,13,16,7,6,20,5],
 ];
 const reverse = (n) => isOdd(n) ? n + 1 : n - 1;
-const table = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+// const reverse = (n, l) => (isOdd(n) ? l - n : isOdd(n / 2) ? n - 2 : n + 2) % l;
+const table = "abcdefghijklmnopqrstuvwxyz";
+// ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
 
 /**
  * @example
@@ -19,7 +21,7 @@ const table = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
  * hoge.exchange("hello world");
  * // => "llxrrdwecp"
  *
- * hoge.rotate(true); // reset rotation
+ * hoge.rotate(0); // reset rotation
  * hoge.exchange("fbuuqrpedw");
  * // => "helloworld"
  * hoge.exchange("llxrrdwecp");
@@ -36,17 +38,19 @@ export class Enigma {
         this.gears = gears;
         this.reverse = typeof reverseGear === "function"
             ? reverseGear : (i) => reverseGear[i];
-        this.rotation = new Array(this.gears.length).fill(0);
+        this.rotation = new Array(this.gears.length);
+        this.rotate(0);
     }
     /**
-     * @param {boolean} [reset]
+     * @param {number} [count]
      */
-    rotate(reset) {
-        if(reset) this.rotation.fill(0);
-        else for(let i = 0, flag = true;flag && i < this.gears.length;) {
+    rotate(count=1) {
+        if(count === 0) this.rotation.fill(0);
+        else for(;count--;)for(let i = 0, flag = true;flag && i < this.gears.length;) {
             flag = ++this.rotation[i] === this.gears[i].length;
             flag && (this.rotation[i++] = 0);
         }
+        return this;
     }
     /**
      * @param {number} n
@@ -77,12 +81,15 @@ export class Enigma {
         let cryptedStr = "";
         for(let i = 0;i < string.length;i++) {
             let n = this.charTable.indexOf(string[i]);
+            // const code = string.charCodeAt(i);
+            // let n = [code & 0xff, code >>> 8];
             if(!~n) continue;
             if(!Array.isArray(n))
                 n = this.convert(n);
             else for(let j = 0;j < n.length;j++)
                 n[j] = this.convert(n[j]);
             cryptedStr += this.charTable[n];
+            // cryptedStr += String.fromCharCode(n[0] | (n[1] << 8));
         }
         return cryptedStr;
     }
