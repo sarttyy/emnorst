@@ -1,41 +1,60 @@
 
 // @ts-check
 
-export const fromBigEndian32 = (_blk) => {
-    const result = [];
-    for (let n = 0, i = 0;i < _blk.length;i++) {
-        result[n++] = (_blk[i] >>> 24) & 0xff;
-        result[n++] = (_blk[i] >>> 16) & 0xff;
-        result[n++] = (_blk[i] >>> 8) & 0xff;
-        result[n++] = _blk[i] & 0xff;
+export const fromLittleEndian32 = (data, arr) => {
+    const result = arr || [];
+    while(data.length) {
+        const ___ = data.shift();
+        result.push(___ & 0xff);
+        result.push(___ >>> 8 & 0xff);
+        result.push(___ >>> 16 & 0xff);
+        result.push(___ >>> 24 & 0xff);
     }
     return result;
 };
 
-export const toBigEndian32 = (_blk) => {
-    const tmp = [];
-    for(let n = 0, i = 0;i < _blk.length;i += 4, n++)
-        tmp[n] = (_blk[i] << 24) | (_blk[i + 1] << 16) | (_blk[i + 2] << 8) | _blk[i + 3];
-    return tmp;
+export const toLittleEndian32 = (data, i=0) => {
+    const result = [];
+    for(let j = 16;j--;) {
+        const d0 = data[i++];
+        const d1 = data[i++] << 8;
+        const d2 = data[i++] << 16;
+        const d3 = data[i++] << 24;
+        result.push(d0 | d1 | d2 | d3);
+    }
+    return result;
 };
 
-const blockLen = 64;
-
-export const paddingData = (_datz) => {
-    let datLen = _datz.length;
-    let n = datLen;
-    _datz[n++] = 0x80;
-    while(n % blockLen !== 56)_datz[n++] = 0;
-    datLen *= 8;
-    return _datz.concat(0, 0, 0, 0, fromBigEndian32([datLen]));
+export const fromBigEndian32 = (data, arr) => {
+    const result = arr || [];
+    while(data.length) {
+        const ___ = data.shift();
+        result.push(___ >>> 24 & 0xff);
+        result.push(___ >>> 16 & 0xff);
+        result.push(___ >>> 8 & 0xff);
+        result.push(___ & 0xff);
+    }
+    return result;
 };
 
-export const ch = (_b, _c, _d) => (
-    (_b & _c) ^ (~_b & _d)
-);
+export const toBigEndian32 = (data, i=0) => {
+    const result = [];
+    for(let j = 16;j--;) {
+        const d0 = data[i++] << 24;
+        const d1 = data[i++] << 16;
+        const d2 = data[i++] << 8;
+        const d3 = data[i++];
+        result.push(d0 | d1 | d2 | d3);
+    }
+    return result;
+};
 
-export const maj = (_b, _c, _d) => (
-    (_b & _c) ^ (_b & _d) ^ (_c & _d)
-);
-
-export const xor3 = (state) => (state[1] ^ state[2] ^ state[3]);
+export const padding = (data) => {
+    const len = data.length & 0x3f;
+    let paddingLen = (len < 56 ? 56 : 64) - len;
+    if(paddingLen) {
+        data.push(0x80);
+        while(--paddingLen) data.push(0);
+    }
+    return data;
+};

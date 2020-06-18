@@ -2,6 +2,7 @@
 // @ts-check
 
 import { hashCore } from "./core";
+import { fromLittleEndian32, toLittleEndian32, padding } from "./lib";
 
 const K = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
@@ -27,26 +28,7 @@ const T = [
 ];
 const initState = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
 
-const fromLittleEndian32 = (data) => {
-    const result = [];
-    for(;data.length;) {
-        const ___ = data.shift();
-        result.push(___ & 0xff);
-        result.push(___ >>> 8 & 0xff);
-        result.push(___ >>> 16 & 0xff);
-        result.push(___ >>> 24 & 0xff);
-    }
-    return result;
-};
-
-const $ = (data, charSize, state, _i) => {
-    const tmp = new Array(16);
-    if(charSize === 1)
-        for(let j = 0, n = _i;j < 16;)
-            tmp[j++] = data[n++] | (data[n++] << 8)
-                | (data[n++] << 16) | (data[n++] << 24);
-    else for(let j = 0, n = _i;j < 16;)
-        tmp[j++] = data[n++] | (data[n++] << 16);
+const $ = (data, state) => {
     const stateRef = [...state];
     for(let i = 0;i < 64;i++) {
         const [s0, s1, s2, s3] = state;
@@ -55,9 +37,8 @@ const $ = (data, charSize, state, _i) => {
             : i < 32 ? (s1 & s3) | (s2 & ~s3)
             : i < 48 ? s1 ^ s2 ^ s3
             : s2 ^ (s1 | ~s3);
-        const _2 = _1 + s0 + T[i] + tmp[K[i]];
-        const Si = S[i];
-        const _3 = (_2 << Si) | (_2 >>> (32 - Si));
+        const _2 = _1 + s0 + T[i] + data[K[i]];
+        const _3 = (_2 << S[i]) | (_2 >>> 32 - S[i]);
         state[0] = _3 + s1;
         state.unshift(state.pop());
     }
@@ -70,18 +51,13 @@ const $ = (data, charSize, state, _i) => {
  * @return {number[]}
  */
 const hashMD5 = (data) => {
-    const state = [...initState];
-    const len = data.length;
-    const index = len & 0x3f;
-    let paddingLen = (index < 56 ? 56 : 64) - index;// 元は65 : 120 だった。64でもいい?(64でも結果同じ)
-    if(paddingLen) {
-        data.push(128);
-        for(;--paddingLen;)data.push(0);
-    }
-    data.push(...fromLittleEndian32([len * 8]),0,0,0,0);
     const { length } = data;
-    for(let i = 0;i < length;i += 64)
-        $(data, 1, state, i);
+    padding(data);
+    fromLittleEndian32([length * 8], data);
+    data.push(0, 0, 0, 0);
+    const state = [...initState];
+    for(let i = 0;i < data.length;i += 64)
+        $(toLittleEndian32(data, i), state);
     return fromLittleEndian32(state);
 };
 

@@ -1,4 +1,4 @@
 
-export * from "./md5.js";
-export * from "./sha1.js";
-export * from "./sha256.js";
+export * from "./MD5.js";
+export * from "./SHA-1.js";
+export * from "./SHA-224-256.js";
