@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { isObject, isTypedArray } from "../../util/is/type";
-import { typeOf } from "../../util/typeof";
+import { isObject, isTypedArray } from "../../util/is/type.js";
+import { typeOf } from "../../util/typeof.js";
 
 const copyObject = (object) => {
     const prototype = Object.getPrototypeOf(object);

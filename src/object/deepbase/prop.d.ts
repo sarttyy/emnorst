@@ -1,9 +1,15 @@
 
+interface State {
+    parent: object;
+    depth: number;
+    innermost: boolean;
+}
+
 interface Hooks {
-    every?(v: any, p: PropertyKey[]): void;
-    propBefore?(p: PropertyDescriptor, p: PropertyKey[], o: any): void;
-    propAfter?(p: PropertyDescriptor, p: PropertyKey[], o: any): void;
-    existing?(p: PropertyDescriptor, p: PropertyKey[], o: any): void;
+    every?(v: any, p: PropertyKey[]): void | boolean;
+    propBefore?(d: PropertyDescriptor, p: PropertyKey[], o: State): void | boolean;
+    propAfter?(d: PropertyDescriptor, p: PropertyKey[], o: State): void | boolean;
+    existing?(d: PropertyDescriptor, p: PropertyKey[], o: State): void | boolean;
 }
 
 interface Methods {
@@ -17,4 +23,5 @@ export interface Props {
     path?: PropertyKey[];
     hooks?: Hooks;
     methods?: Methods;
+    exit?: boolean;
 }
