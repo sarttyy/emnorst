@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { hashCore } from "./core";
-import { fromBigEndian32, toBigEndian32, padding } from "./lib";
+import { hashCore } from "./core.js";
+import { fromBigEndian32, toBigEndian32, padding } from "./lib.js";
 
 const K = [0x5a827999 , 0x6ed9eba1 , 0x8f1bbcdc , 0xca62c1d6];
 const initState = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];

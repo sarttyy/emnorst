@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { isArray, isString } from "../../is/index";
-import { foldLeft } from "../../../utility/loop/fold";
+import { isArray, isString } from "../../is/type.js";
+import { foldLeft } from "../../../utility/loop/fold.js";
 
 const unpack = (text) => {
     const result = new Array(text.length);

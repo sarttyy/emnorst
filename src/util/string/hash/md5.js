@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { hashCore } from "./core";
-import { fromLittleEndian32, toLittleEndian32, padding } from "./lib";
+import { hashCore } from "./core.js";
+import { fromLittleEndian32, toLittleEndian32, padding } from "./lib.js";
 
 const K = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
