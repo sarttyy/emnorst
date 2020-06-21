@@ -2,18 +2,7 @@
 // @ts-check
 
 import { isNumber } from "./type.js";
-
-/**
- * Determines if it is a negative number.
- *
- * 負の数かどうかを判定します。
- * @param {*} number
- * @return {Boolean}
- */
-export const isNegative = (number)=>(
-    isNumber(number) && number < 0
-    || Object.is(-0, number)
-);
+import { is } from "./is.js";
 
 /**
  * Determines if it is a positive number.
@@ -24,7 +13,19 @@ export const isNegative = (number)=>(
  */
 export const isPositive = (number)=>(
     isNumber(number) && number > 0
-    || Object.is(0, number)
+    || is(0, number)
+);
+
+/**
+ * Determines if it is a negative number.
+ *
+ * 負の数かどうかを判定します。
+ * @param {*} number
+ * @return {Boolean}
+ */
+export const isNegative = (number)=>(
+    isNumber(number) && number < 0
+    || is(-0, number)
 );
 
 /**

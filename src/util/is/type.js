@@ -20,7 +20,7 @@ export const isDefined = (value)=>(
  * @return {Boolean} Whether value is Null// or Undefined
  */
 export const isNull = (value)=>(
-    value === null || isUndefined(value)
+    value === null
 );
 
 /**
@@ -87,6 +87,11 @@ export const isObject = (value)=>(
 export const isObjectLike = (value)=>(
     isFunction(value) || isObject(value)
 );
+
+export const isPureObject = (value)=>(
+    typeOf(value) === "Object" && value.constructor === Object
+);
+
 /**
  * @type {Function}
  * @param {*} value The value to be compared
@@ -126,5 +131,15 @@ export const isRegExp = (value)=>(
  * @return {Boolean} Whether {@link typeOf} is Error
  */
 export const isError = (value)=>(
-    typeOf(value) === "Error"
+    /Error$/.test(typeOf(value))
 );
+
+export const isPrimitive = (value)=>{
+    const type = typeof value;
+    return isNullLike(value)
+        || type === "string"
+        || type === "number"
+        || type === "boolean"
+        || type === "bigint"
+        || type === "symbol";
+};

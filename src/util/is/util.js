@@ -5,6 +5,7 @@ import { has } from "../../object/property/has.js";
 import { typeOf } from "../typeof.js";
 import { isFunction, isObject, isString, isNullLike } from "./type.js";
 import { isPositive } from "./number.js";
+import { getKeys } from "../../object/property/keys.js";
 
 /**
  * 文字列かつ長さが1
@@ -60,10 +61,10 @@ export const isArrayLike = (value)=>{
  * @return {Boolean} Whether the property does not exist
  */
 export const isEmpty = (value)=>{
-    if(isString(value) || isArrayLike(value))
+    if(isArrayLike(value))
         return value.length === 0;
     if(typeOf(value) === "Object")
-        return Object.keys(value).length === 0;
+        return getKeys(value).length === 0;
     return false;
 };
 
@@ -75,9 +76,9 @@ export const isEmpty = (value)=>{
  * @return {Boolean} Whether an error has occurred
  */
 export const isThrowError = (func, ...args)=>{
-    if(isFunction(func))return false;
-    try{
+    if(!isFunction(func)) return false;
+    try {
         func.apply(void 0, args);
         return false;
-    }catch(err){ return true; }
+    }catch(err) { return true; }
 };
