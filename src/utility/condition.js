@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isNullLike, isArray } from "../util/is/type.js";
+import { isNullLike, isFunction } from "../util/is/type.js";
 import { typeOf } from "../util/typeof.js";
 import { forOf } from "./loop/for-of.js";
 import { has } from "../object/property/has.js";
@@ -41,19 +41,23 @@ export const typeCheck = (value, types, sub, typeGetter=typeOf)=>{
 };
 
 // IDEA: foldは参照型のオブジェクトはreturnいらず。
+
 /**
- * Beta:
  * @param {*} origin
- * @param {*} patchObject
- * @param {boolean} toOrigin
- * @param {function(any): boolean} [subFunc]
+ * @param  {...any} patchObjects
  */
-export const patch = (origin, patchObject, toOrigin=true, subFunc)=>{
-    const target = toOrigin ? origin : {};
-    forOf(Object.entries(patchObject), ([key, value])=>{
-        target[key] = has(origin, key)
-            ? substitute([origin[key], value], subFunc)
-            : patchObject[key];
-    });
+export const patch = (origin, ...patchObjects) => {
+    const target = origin;
+    let subFunc = () => true;
+    for(let i = 0;i < patchObjects.length;i++) {
+        const patchObject = patchObjects[i];
+        if(isFunction(patchObject))
+            subFunc = patchObject;
+        else forOf(Object.entries(patchObject), ([key, value]) => {
+            target[key] = has(origin, key)
+                ? substitute([origin[key], value], subFunc)
+                : patchObject[key];
+        });
+    }
     return target;
 };
