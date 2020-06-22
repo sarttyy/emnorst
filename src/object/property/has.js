@@ -1,11 +1,13 @@
 
 // @ts-check
 
+const { hasOwnProperty } = Object.prototype;
+
 /**
- * @param {object} object
- * @param {PropertyKey} propName
+ * @param {object} obj
+ * @param {PropertyKey} propKey
  * @return {boolean}
  */
-export const has = (object, propName)=>(
-    Object.prototype.hasOwnProperty.call(object, propName)
+export const has = (obj, propKey)=>(
+    hasOwnProperty.call(Object(obj), propKey)
 );

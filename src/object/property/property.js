@@ -1,8 +1,8 @@
 
 // @ts-check
 
-import { forOf } from "../../utility/index.js";
-import { isObject } from "../../util/index.js";
+import { forOf } from "../../utility/loop/for-of.js";
+import { isObject } from "../../util/is/type.js";
 import { parsePropertyKey } from "./parsePropertyKey.js";
 import { has } from "./has.js";
 

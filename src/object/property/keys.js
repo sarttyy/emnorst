@@ -1,15 +1,20 @@
 
 // @ts-check
 
-import { has } from "./has";
+import { has } from "./has.js";
 
 /**
- * @param {object} obj
+ * @param {object[]} objs
  * @return {string[]}
  */
-export const getKeys = (obj) => {
+export const getKeys = (...objs) => {
     const result = [];
-    for(const key in obj)
-        has(obj, key) && result.push(key);
+    for(let i = 0;i < objs.length;i++) {
+        for(const key in objs[i]) {
+            has(objs[i], key)
+            && ~result.indexOf(key)
+            || result.push(key);
+        }
+    }
     return result;
 };

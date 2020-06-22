@@ -1,5 +1,7 @@
 
-import { isString, isSymbol, isNumber } from "../../util/index.js";
+// @ts-check
+
+import { isString, isSymbol, isNumber } from "../../util/is/type.js";
 
 const flat = (array, depth=1) => {
     const flattend = [];
@@ -18,18 +20,28 @@ const flat = (array, depth=1) => {
  * @param {PropertyKey | PropertyKey[]} propKey
  * @return {PropertyKey[]}
  */
-export const parsePropertyKey = (propKey) => {
+export const parsePropertyKey = (propKey=[]) => {
+    // @ts-ignore
+    if(propKey.parsed) return propKey;
     switch(typeof propKey) {
-    case "string":
-        return propKey.split(".");
+    case "string": {
+        const temp = propKey.split(".");
+        temp.parsed = true;
+        return temp;
+    }
     case "number":
-    case "symbol":
-        return [propKey];
+    case "symbol": {
+        const temp = [propKey];
+        temp.parsed = true;
+        return temp;
+    }
     case "object": {
-        const temp = propKey.map((key) => (
+        const temp1 = propKey.map((key) => (
             typeof key === "string" ? key.split(".") : key
         ));
-        return flat(temp);
+        const temp = flat(temp1);
+        temp.parsed = true;
+        return temp;
     }
     }
     return (
