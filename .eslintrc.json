@@ -17,7 +17,7 @@
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2020,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "rules": {
@@ -85,7 +85,6 @@
         "no-implied-eval"              : ["error"],
         "no-iterator"                  : "error",
         "no-lone-blocks"               : "error",
-        "no-loop-func"                 : "error",
         "no-multi-spaces"              : ["warn", {
             "exceptions": 
             {
@@ -226,7 +225,13 @@
             "words"    : true,
             "nonwords" : false
         }],
-        "spaced-comment"                   : ["warn", "always"],
+        "spaced-comment"                   : ["warn", "always", {
+            "block": {
+                "markers": ["!"],
+                "exceptions": ["*"],
+                "balanced": true
+            }
+        }],
         "switch-colon-spacing"             : ["error"],
         "template-tag-spacing"             : ["error"], // タグ使わないので保留
         "unicode-bom"                      : ["error", "never"],

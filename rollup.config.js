@@ -2,23 +2,20 @@
 import buble from "rollup-plugin-buble";
 import { terser } from "rollup-plugin-terser";
 
-const config = {
-    input: "./src/index.js",
-    output: [
-        {
-            file: "./dist/reiyayakko.cjs.js",
-            format: "cjs",
-        },
-        {
-            file: "./dist/reiyayakko.esm.js",
-            format: "es",
-        },
-        {
-            file: "./dist/reiyayakko.umd.js",
-            format: "umd",
-            name: "rei",
-        },
-    ],
+const moduleName = "machilia";
+const entry = "./src/index.js";
+const dir = "./dist/";
+
+const configs = [{
+    input: entry,
+    output: [{
+        file: ["cjs"],
+        format: "cjs",
+    }, {
+        file: ["umd"],
+        format: "umd",
+        name: moduleName,
+    }],
     plugins: [
         buble({
             target: {
@@ -27,33 +24,46 @@ const config = {
                 firefox: 45,
                 safari: 9,
                 edge: 12,
-                ie: 11
+                ie: 11,
             },
             transforms: {
                 forOf: false, // MEMO: replaced
-                generator: false
+                generator: false,
             },
-            objectAssign: "Object.assign"
+            objectAssign: "machilia.patch",
         })
-    ]
-};
+    ],
+}, {
+    input: entry,
+    output: [{
+        file: ["es2015", "esm"],
+        format: "es",
+    }, {
+        file: ["es2015", "umd"],
+        format: "umd",
+        name: moduleName,
+    }],
+    plugins: [],
+}];
 
+const file = (...args) => [dir + moduleName, ...args, "js"].join(".");
 // eslint-disable-next-line no-undef, no-process-env
-if(process.env.BUILD !== "production"){
-    // dev
-    config.output.map((output)=>{
-        output.sourcemap = true;
-        return output;
+if(process.env.BUILD !== "production") {
+    // develop
+    configs.forEach((config) => {
+        config.output.forEach((output) => {
+            output.sourcemap = true;
+            output.file = file(...output.file);
+        });
     });
-}else{
+}else {
     // production
-    config.output.map((output)=>{
-        const file = output.file.split(".");
-        file.splice(-1, 0, "min");
-        output.file = file.join(".");
-        return output;
+    configs.forEach((config) => {
+        config.output.forEach((output) => {
+            output.file = file(...output.file, "min");
+        });
+        config.plugins.push(terser());
     });
-    config.plugins.push(terser());
 }
 
-export default config;
+export default configs;
