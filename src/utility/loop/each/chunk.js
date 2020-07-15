@@ -14,14 +14,16 @@ const not = (value)=>(
 /**
  * @param {string | any[]} array
  * @param {number} size 幾つごとに塊に分けるか
+ * @param {boolean} fromRight
  */
-export const chunk = (array, size)=>{
+export const chunk = (array, size, fromRight=false)=>{
     assertType(array, ["String", "Array"]);
     assertType(size, Number.isSafeInteger);
-    let index = 0;
-    return previous(Math.ceil(array.length / size), (result)=>{
+    assertType(fromRight, "Boolean");
+    let index = fromRight ? array.length % size : 0;
+    return previous(Math.ceil(array.length / size) - Number(fromRight), (result)=>{
         result.push(array.slice(index, (index += size)));
-    }, []);
+    }, fromRight ? [array.slice(0, array.length % size)] : []);
 };
 
 /**
