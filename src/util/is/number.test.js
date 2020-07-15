@@ -2,7 +2,7 @@
 
 import { isNegative, isPositive, isInfinity, isPrime, isOdd, isEven } from "./number.js";
 
-/** @test {utility} */
+/** @test {util} */
 describe("util/is", ()=>{
     /** @test {isPositive} */
     it("isPositive", ()=>{

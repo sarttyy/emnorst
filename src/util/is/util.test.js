@@ -2,7 +2,7 @@
 
 import { isChar, isIteratorResult, isIterable, isArrayLike, isEmpty, isThrowError } from "./util.js";
 
-/** @test {utility} */
+/** @test {util} */
 describe("util/is", ()=>{
     /** @test {isChar} */
     it("isChar", ()=>{

@@ -2,7 +2,7 @@
 
 import { isDefined, isUndefined, isNull, isNullLike, isBoolean, isString, isNumber, isSymbol, isFunction, isObject, isObjectLike, isPureObject, isPrimitive, isArguments, isRegExp, isError } from "./type.js";
 
-/** @test {utility} */
+/** @test {util} */
 describe("util/is", ()=>{
     /** @test {isDefined} */
     it("isDefined", ()=>{
@@ -20,8 +20,8 @@ describe("util/is", ()=>{
         expect(isNull(void 0)).toBe(false);
         expect(isNull([])).toBe(false);
     });
-    /** @test {isNullable} */
-    it("isNullable", ()=>{
+    /** @test {isNullLike} */
+    it("isNullLike", ()=>{
         expect(isNullLike(null)).toBe(true);
         expect(isNullLike(void 0)).toBe(true);
         expect(isNullLike([])).toBe(false);
@@ -64,20 +64,20 @@ describe("util/is", ()=>{
         expect(isObject(Object(""))).toBe(true);
         expect(isObject(null)).toBe(false);
     });
-    /** @test {null} */
+    /** @test {isObjectLike} */
     it("isObjectLike", ()=>{
         expect(isObjectLike({})).toBe(true);
         expect(isObjectLike(()=>{})).toBe(true);
         expect(isObjectLike(null)).toBe(false);
     });
-    /** @test {null} */
+    /** @test {isPureObject} */
     it("isPureObject", ()=>{
         expect(isPureObject({})).toBe(true);
         expect(isPureObject([])).toBe(false);
         expect(isPureObject(new class {})).toBe(false);
         expect(isPureObject(new Boolean)).toBe(false);
     });
-    /** @test {null} */
+    /** @test {isPrimitive} */
     it("isPrimitive", ()=>{
         expect(isPrimitive("")).toBe(true);
         expect(isPrimitive(1)).toBe(true);
@@ -88,19 +88,19 @@ describe("util/is", ()=>{
         expect(isPrimitive(void 0)).toBe(true);
         expect(isPrimitive({})).toBe(false);
     });
-    /** @test {null} */
+    /** @test {isArguments} */
     it("isArguments", ()=>{
         expect(isArguments((function() {
             return arguments;
         })())).toBe(true);
         expect(isArguments([])).toBe(false);
     });
-    /** @test {null} */
+    /** @test {isRegExp} */
     it("isRegExp", ()=>{
         expect(isRegExp(/./)).toBe(true);
         expect(isRegExp("/./")).toBe(false);
     });
-    /** @test {null} */
+    /** @test {isError} */
     it("isError", ()=>{
         expect(isError(new Error)).toBe(true);
         expect(isError(new TypeError)).toBe(true);
