@@ -3,7 +3,7 @@ import buble from "rollup-plugin-buble";
 import { terser } from "rollup-plugin-terser";
 
 const moduleName = "machilia";
-const entry = "./src/index.js";
+const entry = "./src/main.js";
 const dir = "./dist/";
 
 const configs = [{
@@ -36,10 +36,10 @@ const configs = [{
 }, {
     input: entry,
     output: [{
-        file: ["es2015", "esm"],
+        file: ["esm"],
         format: "es",
     }, {
-        file: ["es2015", "umd"],
+        file: ["es", "umd"],
         format: "umd",
         name: moduleName,
     }],
