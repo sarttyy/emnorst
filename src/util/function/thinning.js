@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isNull } from "../is/index.js";
+import { isNull } from "../is/type.js";
 
 /**
  * @typedef {function(...any): void} voidFn

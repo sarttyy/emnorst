@@ -1,10 +1,10 @@
 
 // @ts-check
 
-import { isDefined } from "../../util/is/index.js";
+import { isDefined } from "../../util/is/type.js";
 import { iterate } from "./iterate.js";
 import { loop } from "./loop.js";
-import { assertType } from "../condition/index.js";
+import { assertType } from "../condition/assert-type.js";
 
 /*
 iterable protocolを使用して値ごとにコールバック関数を呼び出します。
@@ -23,7 +23,7 @@ breakFuncでfalsyと判断される値を返した場合、ループが終了し
  *
  * @template T
  * @param {Iterable<T>} iterable An Iterable object used for the loop
- * @param {function(T): any} func
+ * @param {function(T, PropertyKey): any} func
  * A callback function that is executed for each value of the Iterable object.
  * If breakFunc returns a value that is determined to be falsy,
  * the loop ends and the value is returned.
@@ -45,10 +45,10 @@ export const forOf = function(iterable, func, isBreak=isDefined){
     assertType(func, "Function");
     assertType(isBreak, "Function");
     const iterator = iterate(iterable);
-    return loop(()=>{
+    return loop((index)=>{
         const iteratorResult = iterator.next();
         if(iteratorResult.done)return void 0;
-        return func.call(this, iteratorResult.value);
+        return func.call(this, iteratorResult.value, index);
     }, { isBreak });
     // for(;;){
     //     const iteratorResult = iterator.next();

@@ -1,10 +1,10 @@
 
 // @ts-check
 
-export * from "./xorshift";
-export * from "./random";
-export * from "./randomstr";
-export * from "./probability";
+export * from "./xorshift.js";
+export * from "./random.js";
+export * from "./randomstr.js";
+export * from "./probability.js";
 
 // const temp = [123456789, 362436069, 521288629, 88675123];
 // const shift = (a, b)=>a ^ (a >> b);

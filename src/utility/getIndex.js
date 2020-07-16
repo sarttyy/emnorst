@@ -2,6 +2,8 @@
 // @ts-check
 
 import { isNullLike, isNegative } from "../util/is/index.js";
+import { Symbol } from "../env/symbol.js";
+
 /**
  * 最後から数えて`index`番目の要素を取得します。
  *
