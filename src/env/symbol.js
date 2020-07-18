@@ -6,10 +6,6 @@ if(typeof Symbol === "function")
     symbol = Symbol;
 else {
     const registry = { forKeys: [], forSyms: [], all: [] };
-    /**
-     * @param {string | number} description
-     * @return {symbol}
-     */
     symbol = (description="") => {
         let str = `@@${description}`;
         do str += "\u200b";
