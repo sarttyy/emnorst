@@ -22,13 +22,3 @@ export const property = (obj, propKey, defineObj)=>{
             : object[key]
     ), obj);
 };
-
-export const structure = (baseObj={}, applyObj={})=>{
-    forOf(allKeys(applyObj), (propName)=>{
-        const applyProp = applyObj[propName];
-        if(typeof applyProp === "object")
-            structure(baseObj[propName], applyProp);
-        else baseObj[propName] = applyProp;
-    });
-    return baseObj;
-};
