@@ -24,27 +24,26 @@ const copyDataView = (dataView) => {
 };
 
 export const copyType = (obj) => {
-    if(!isObject(obj)) {
+    if(!isObject(obj))// primitive value, function, etc...
         return obj;
-    }
-    if(isTypedArray(obj)) {
+    if(isTypedArray(obj))
         return copyTypedArray(obj);
-    }
     switch(typeOf(obj)) {
-    case "Object": // {}, new Object, new MyClass etc...
+    case "Object": // {}, new Object, new MyClass, etc...
         return copyObject(obj);
     case "Array": // [], new Array
         return new Array(obj.length);
     case "Number": // new Number
     case "String": // new String
     case "Boolean": // new Boolean
-    case "RegExp": // /regexp/, new RegExp
+    case "RegExp":
     case "Date":
     case "Error":
         return new obj.constructor(obj);
     case "BigInt": // Object(BigInt())
+    case "Symbol": // Object(Symbol())
         return Object(obj.valueOf());
-    case "Arguments":
+    case "Arguments": // function() { return arguments }
         return copyArgs(...obj);
     case "ArrayBuffer":
         return copyArrayBuffer(obj);
