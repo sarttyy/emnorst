@@ -1,8 +1,6 @@
 
 // @ts-check
 
-import { isNull } from "../is/type.js";
-
 /**
  * @typedef {function(...any): void} voidFn
  */
@@ -14,17 +12,17 @@ import { isNull } from "../is/type.js";
  * @param {number} wait 待機時間
  * @return {voidFn}
  */
-export const throttle = (func, wait=1000)=>{
+export const throttle = (func, wait=1000) => {
     let id = null, waiting = false, context, args;
-    return function(){
-        if(isNull(id)){
+    return function() {
+        if(id === null) {
             func.apply(this, arguments);
-            id = setTimeout(()=>{
+            id = setTimeout(() => {
                 waiting && func.apply(context, args);
                 waiting = false;
                 id = null;
             }, wait);
-        }else{
+        }else {
             waiting = true;
             context = this;
             args = arguments;
@@ -38,11 +36,11 @@ export const throttle = (func, wait=1000)=>{
  * @param {number} wait 待機時間
  * @return {voidFn}
  */
-export const debounce = (func, wait=1000)=>{
+export const debounce = (func, wait=1000) => {
     let id;
-    return function(){
+    return function() {
         clearTimeout(id);
-        id = setTimeout(()=>{
+        id = setTimeout(() => {
             func.apply(this, arguments);
         }, wait);
     };

@@ -1,6 +1,6 @@
 
-import { forOf } from "../../utility/loop/for-of";
-import { equals } from "../is/equals";
+import { forOf } from "../../../utility/loop/for-of";
+import { equals } from "../../is/equals";
 
 export const memolize = (func) => {
     const cache = new Map();
@@ -9,7 +9,7 @@ export const memolize = (func) => {
         forOf(cache, (cacheN) => {
             const eqLength = cacheN[0].length === arguments.length;
             const eq = eqLength && cacheN[0].every(fn);
-            if(eq) return cacheN[1];
+            return eq ? cacheN[1] : void 0;
         });
         const result = func(...arguments);
         cache.set([...arguments], result);
