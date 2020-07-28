@@ -1,17 +1,20 @@
 
 // @ts-check
 
-import { isOdd } from "../is/number";
+import { lowerCase, decimal } from "../const/string";
 
 const Gears = [
     [16,14,6,3,4,20,9,24,7,2,23,1,25,8,19,0,5,12,15,18,21,11,13,10,17,22],
     [9,7,3,24,17,10,1,13,15,22,2,25,5,14,19,4,0,20,18,23,11,16,8,12,21,6],
     [11,12,25,3,0,10,21,19,8,24,2,15,9,22,18,17,23,14,1,4,13,16,7,6,20,5],
 ];
-const reverse = (n) => isOdd(n) ? n + 1 : n - 1;
-// const reverse = (n, l) => (isOdd(n) ? l - n : isOdd(n / 2) ? n - 2 : n + 2) % l;
-const table = "abcdefghijklmnopqrstuvwxyz";
-// ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+const reverse = (n, len) => {
+    const s = Math.sqrt(len);
+    const X = n % s;
+    const Y = (n - X) / s;
+    return X * s + Y;
+};
+const table = lowerCase + decimal;
 
 /**
  * @example
