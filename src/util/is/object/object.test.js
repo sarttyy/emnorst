@@ -10,11 +10,26 @@ import {
 } from "./index.js";
 
 describe("is/object", () => {
+    /** @test {isEmpty} */
+    it("isEmpty", () => {
+        expect(isEmpty("")).toBe(true);
+        expect(isEmpty("c")).toBe(false);
+        expect(isEmpty([])).toBe(true);
+        expect(isEmpty(["not empty"])).toBe(false);
+        expect(isEmpty({})).toBe(true);
+        expect(isEmpty({ prop: "not empty" })).toBe(false);
+        expect(isEmpty(true)).toBe(false);
+        expect(isEmpty(0)).toBe(false);
+    });
     /** @test {isArray} */
     it("isArray", () => {
         expect(isArray([])).toBe(true);
         expect(isArray("isArrayLike")).toBe(false);
         expect(isArray({ length: 0 })).toBe(false);
+    });
+    /** @test {isTypedArray} */
+    it("isTypedArray", () => {
+        expect(isTypedArray([])).toBe(false);
     });
     /** @test {isArrayLike} */
     it("isArrayLike", () => {
@@ -46,20 +61,6 @@ describe("is/object", () => {
         expect(isPureObject([])).toBe(false);
         expect(isPureObject(new class {})).toBe(false);
         expect(isPureObject(new Boolean)).toBe(false);
-    });
-    /** @test {isEmpty} */
-    xit("isEmpty", () => {
-        expect(isEmpty("")).toBe(true);
-        expect(isEmpty("c")).toBe(false);
-        expect(isEmpty([])).toBe(true);
-        expect(isEmpty(["not empty"])).toBe(false);
-        expect(isEmpty({})).toBe(true);
-        expect(isEmpty({ prop: "not empty" })).toBe(false);
-        expect(isEmpty(true)).toBe(false);
-    });
-    /** @test {isTypedArray} */
-    xit("isTypedArray", () => {
-        expect(isTypedArray([])).toBe(false);
     });
     // expect().toBe();
     // expect().not.toBe();
