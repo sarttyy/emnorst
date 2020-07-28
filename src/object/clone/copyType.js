@@ -1,15 +1,14 @@
 
 // @ts-check
 
-import { isObject, isTypedArray } from "../../util/is/type.js";
+import { isObject } from "../../util/is/object/object.js";
+import { isTypedArray } from "../../util/is/object/typed-array.js";
 import { typeOf } from "../../util/typeof.js";
+import { Arguments as $Arguments } from "../../util/function/simple/arguments.js";
 
-const copyObject = (object) => {
+const copyPrototype = (object) => {
     const prototype = Object.getPrototypeOf(object);
     return Object.create(prototype);
-};
-const copyArgs = function() {
-    return arguments;
 };
 const copyArrayBuffer = (buffer) => (
     new buffer.constructor(buffer.byteLength)
@@ -24,13 +23,13 @@ const copyDataView = (dataView) => {
 };
 
 export const copyType = (obj) => {
-    if(!isObject(obj))// primitive value, function, etc...
+    if(!isObject(obj))// primitive value, function, etc(not ECMAScript`s Object)...
         return obj;
     if(isTypedArray(obj))
         return copyTypedArray(obj);
     switch(typeOf(obj)) {
     case "Object": // {}, new Object, new MyClass, etc...
-        return copyObject(obj);
+        return copyPrototype(obj);
     case "Array": // [], new Array
         return new Array(obj.length);
     case "Number": // new Number
@@ -44,7 +43,7 @@ export const copyType = (obj) => {
     case "Symbol": // Object(Symbol())
         return Object(obj.valueOf());
     case "Arguments": // function() { return arguments }
-        return copyArgs(...obj);
+        return $Arguments(...obj); // length保存しないなら中身いらない?
     case "ArrayBuffer":
         return copyArrayBuffer(obj);
     case "DataView":
