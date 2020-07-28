@@ -8,10 +8,16 @@ import { copyType } from "./copyType.js";
 import { assertType } from "../../utility/condition/assert-type.js";
 import { isInfinity } from "../../util/is/number.js";
 
-/*
+/**
 オブジェクトに深いコピーを行います。
 prototype
 クロージャの可能性を考慮して関数はコピーしません。
+
+この関数が複製しないオブジェクト
+- 関数(クロージャーやコンストラクターの問題を解決できないため)
+- Mapのkey
+- WeakMap, WeakSet(列挙が不可能なため)
+- ECMAScriptにないオブジェクト
 
 コピーするオブジェクトです。
 
@@ -19,18 +25,17 @@ prototype
 */
 
 /**
+ * TODO: Map, Set
+ *
  * RC:
  * The function is not copied due to the possibility of closure.
  * @param {*} target The object to copy.
  * @param {number} depth Specify the depth to copy. 0 is a shallow copy.
  * @example
  * const hoge = {
- *     huga: [1, 1, 2, 3, 5, 8],
- *     piyo: {
- *         :
- *     },
+ *     array: [1, 1, 2, 3, 5, 8],
  *     null: null,
- *     number: new Number(),
+ *     number: new Number(0xff),
  *     string: new String("hello machilia!"),
  *     boolean: new Boolean(true),
  *     regexp: /./,
@@ -38,12 +43,15 @@ prototype
  *     error: new Error("418 I'm a teapot"),
  *     bigint: 9007199254740993n,
  *     arguments: (function() { return arguments; })(),
+ *     ...etc,
  * };
- * hoge.hoge = hoge;
- * const cloned = clone(hoge);
+ * target.recursive = target;
+ *
+ * const cloned = clone(target);
+ *
+ * target !== cloned // => true
  */
 export const clone = (target, depth=Infinity) => {
-    assertType(depth, [Number.isSafeInteger, isInfinity]);
     const root = copyType(target);
     const clonedMap = new Map([[target, root]]);
     deepBase(target, {
