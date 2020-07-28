@@ -1,12 +1,13 @@
 /* eslint-disable */
 
 import {
+    isEmpty,
     isArray,
+    isTypedArray,
     isArrayLike,
     isObject,
     isObjectLike,
     isPureObject,
-    isTypedArray,
 } from "./index.js";
 
 describe("is/object", () => {
