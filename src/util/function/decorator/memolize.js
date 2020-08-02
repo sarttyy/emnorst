@@ -1,18 +1,19 @@
 
-import { forOf } from "../../../utility/loop/for-of";
-import { equals } from "../../is/equals";
+import { Each } from "../../loop/base/each-class.js";
+import { equals } from "../../is/equals/equals.js";
 
 export const memolize = (func) => {
-    const cache = new Map();
+    const cache = {};
     return function() {
-        const fn = (arg, i) => equals(arg, arguments[i]);
-        forOf(cache, (cacheN) => {
-            const eqLength = cacheN[0].length === arguments.length;
-            const eq = eqLength && cacheN[0].every(fn);
-            return eq ? cacheN[1] : void 0;
-        });
+        const { length } = arguments;
+        if(cache[length]) {
+            const fn = (arg, i) => equals(arg, arguments[i]);
+            for(const each = new Each(cache[length], { mode: "iterable" });each.continue();)
+                if(each.current.value[0].every(fn))
+                    return each.current.value[1];
+        }else cache[length] = new Map();
         const result = func(...arguments);
-        cache.set([...arguments], result);
+        cache[length].set([...arguments], result);
         return result;
     };
 };
