@@ -1,7 +1,8 @@
 
 // @ts-check
 
-import { isArray, isString } from "../../is/type.js";
+import { isString } from "../../is/string/string.js";
+import { isArray } from "../../is/object/array.js";
 import { foldLeft } from "../../../utility/loop/fold.js";
 
 const unpack = (text) => {
@@ -15,6 +16,10 @@ const unpack = (text) => {
     }
     return result;
 };
+
+const hexFold = (hex, current) => (
+    hex + (current > 0xf ? "" : "0") + current.toString(16)
+);
 
 /**
  * @param {function(number[]): number[]} hash
@@ -30,9 +35,7 @@ export const hashCore = (hash, data, props={}) => {
     switch(props.format) {
     default:
     case "hex":
-        return foldLeft(hashedData, (hex, current)=>(
-            hex + (current > 0xf ? "" : "0") + current.toString(16)
-        ), "");
+        return foldLeft(hashedData, hexFold, "");
     case "bin":
         return String.fromCharCode(...hashedData);
     case "dec":
