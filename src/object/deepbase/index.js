@@ -1,2 +1,2 @@
 
-export * from "./base.js";
+export * from "./deep-base.js";
