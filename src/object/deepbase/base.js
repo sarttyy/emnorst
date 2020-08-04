@@ -49,7 +49,7 @@ class DeepState {
 }
 
 const invokeHook = (hookName, props, propDesc) => {
-    const hookfn = props.hooks[hookName];
+    const hookfn = props[hookName];
     isFunction(hookfn)
         && hookfn(propDesc, [...props.state.path], props.state.current());
 };
@@ -67,18 +67,18 @@ export const deepBase = (target, props={})=>{
         props.state.target = target;
     }else {
         // entry root setting
-        props = { hooks: {}, methods: {},...props };
+        props = { ...props };
         if(!Number.isSafeInteger(props.depthLimit))
             props.depthLimit = Infinity;
-        isFunction(props.methods.keys)
-            || (props.methods.keys = getKeys);
-        isFunction(props.methods.isExplore)
-            || (props.methods.isExplore = isObject);
+        isFunction(props.keys)
+            || (props.keys = getKeys);
+        isFunction(props.isExplore)
+            || (props.isExplore = isObject);
         props.state = new DeepState(props);
         props.state.target = props.root = target;
         props.eachProp = {
-            mode: ["object","arraylike"],
-            keys: props.methods.keys,
+            mode: ["object", "arraylike"],
+            keys: props.keys,
             after() {},
         };
     }
@@ -87,7 +87,7 @@ export const deepBase = (target, props={})=>{
     invokeHook("every", props, target);
     if(state.isExit()) return;
 
-    if(!props.methods.isExplore(target)) {
+    if(!props.isExplore(target)) {
         // innermost
         return;
     }
