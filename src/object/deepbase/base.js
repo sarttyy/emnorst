@@ -1,95 +1,117 @@
 
 // @ts-check
 
-import { isFunction, isNullLike, isObject } from "../../util/is/type.js";
-import { eachBase } from "../../util/loop/each/each.js";
-import { patch } from "../../utility/condition.js";
-import { callOrElse } from "../../utility/condition/call-or-else.js";
-import { forOf } from "../../utility/loop/for-of.js";
+import { isObject } from "../../util/is/object/object.js";
+import { isFunction } from "../../util/is/other/function.js";
+import { Each } from "../../util/loop/base/each-class.js";
 import { has } from "../property/has.js";
 import { getKeys } from "../property/keys.js";
 
-/**
- * @param {string} name
- * @param {import("./prop").Props} props
- * @param {PropertyDescriptor} propDesc
- * @param {any} parent
- */
-const hook = (name, props, propDesc, parent) => {
-    const depth = props.path.length;
-    const innermost = depth > props.depthLimit;
-    const flag = callOrElse(
-        props.hooks[name],
-        null,
-        propDesc,
-        [...props.path],
-        /** @type {import("./prop").State} */
-        { parent, depth, innermost }
-    );
-    return !isNullLike(flag);
+class DeepState {
+    constructor(props) {
+        this.existing = new WeakSet();
+        this.path = [];
+        this.exit = 0;
+        this.props = props;
+        this.reset();
+        this.target = null;
+    }
+    reset() {
+        this.skip = false;
+    }
+    current() {
+        const state = this;
+        // /** @type {import("./prop").State} */
+        // { parent, depth, innermost }
+        return {
+            parent: this.target,
+            depth: this.depth(),
+            innermost: this.isDeepest(),
+            deepest: this.isDeepest(),
+            command(action) {
+                switch(action) {
+                case "exit":
+                    state.exit++;
+                    break;
+                case "skip":
+                    state.exit = -1;
+                    break;
+                }
+            },
+        };
+    }
+    depth() { return this.path.length; }
+    isDeepest() { return this.depth() > this.props.depthLimit; }
+    isExit() { return this.exit && this.exit--; }
+    isDive() {
+        return !this.isDeepest();
+    }
+}
+
+const invokeHook = (hookName, props, propDesc) => {
+    const hookfn = props.hooks[hookName];
+    isFunction(hookfn)
+        && hookfn(propDesc, [...props.state.path], props.state.current());
 };
 
 /**
  * ネストされたオブジェクトなどに対して処理を行います。
  * RC:
  * @param {*} target
- * @param {import("./prop").Props} props
+ * @doc
+ * #param {import("./prop").Props<DeepState>} props
  */
+// eslint-disable-next-line max-statements
 export const deepBase = (target, props={})=>{
-    patch(props, isNullLike, {
-        depthLimit: Infinity,
-        existing: new WeakSet(),
-        path: [],
-        hooks: {},
-        methods: {},
-    });
-    patch(props.methods, isFunction, {
-        keys: getKeys,
-        isExplore: isObject,
-    });
-
-    // exceeds depthLimit
-    if(props.path.length > props.depthLimit)
-        return;
-
-    const exitFlag = callOrElse(props.hooks.every, null, target, [...props.path]);
-    if(!isNullLike(exitFlag)) {
-        props.exit = true;
-        return;
+    if(props.state instanceof DeepState) {
+        props.state.target = target;
+    }else {
+        // entry root setting
+        props = { hooks: {}, methods: {},...props };
+        if(!Number.isSafeInteger(props.depthLimit))
+            props.depthLimit = Infinity;
+        isFunction(props.methods.keys)
+            || (props.methods.keys = getKeys);
+        isFunction(props.methods.isExplore)
+            || (props.methods.isExplore = isObject);
+        props.state = new DeepState(props);
+        props.state.target = props.root = target;
+        props.eachProp = {
+            mode: ["object","arraylike"],
+            keys: props.methods.keys,
+            after() {},
+        };
     }
+    const { state } = props;
+
+    invokeHook("every", props, target);
+    if(state.isExit()) return;
 
     if(!props.methods.isExplore(target)) {
         // innermost
         return;
     }
-    props.existing.add(target);
+    state.existing.add(target);
 
-    eachBase(target, ({ index, key=index, done }) => {
-        if(!has(target, key))
-            return;
-        props.path.push(key);
+    for(const each = new Each(target, props.eachProp);each.continue();) {
+        const { current } = each;
+        const key = current.key || current.index;
+        state.path.push(key);
         const propDesc = Object.getOwnPropertyDescriptor(target, key);
-        const hasValue = has(propDesc || Object.create(null), "value");
-        if(hasValue && props.existing.has(propDesc.value)) {
-            // recursive
-            if(hook("existing", props, propDesc, target)) {
-                props.path.pop();
-                props.exit = true;
-                done();
-                return;
+
+        const hasValue = propDesc && has(propDesc, "value");
+        if(state.existing.has(propDesc.value)) {
+            invokeHook("recursive", props, propDesc);
+        }else {
+            invokeHook("property", props, propDesc);
+            if(state.isDive() && hasValue) {
+                invokeHook("propertyWillDive", props, propDesc);
+                deepBase(propDesc.value, props);
+                invokeHook("propertyDidDive", props, propDesc);
             }
-            return;
         }
-        if(!hook("propBefore", props, propDesc, target) && hasValue)
-            deepBase(propDesc.value, props);
-        if(hook("propAfter", props, propDesc, target)) {
-            props.exit = true;
-            props.path.pop();
-            done();
-            return;
-        }
-        props.path.pop();
-    }, {
-        keys: props.methods.keys
-    });
+
+        state.path.pop();
+        if(state.isExit()) return;
+    }
 };
