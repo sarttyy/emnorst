@@ -22,4 +22,5 @@ export const nexts = {
         current.value = iteratorResult.value;
         if(iteratorResult.done) context.done = true;
     },
+    [null](context) { context.done = true; }
 };

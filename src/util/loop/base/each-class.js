@@ -1,13 +1,13 @@
 
 // @ts-check
 
-import { has } from "../../../object/property/has.js";
 import { getKeys } from "../../../object/property/keys.js";
-import { isArrayLike } from "../../is/object/array-like.js";
-import { isIterable } from "../../is/other/iterable.js";
 import { isNullLike } from "../../is/other/null-like.js";
 import { iterate } from "../iterate/iterate.js";
 import { nexts } from "./each-nexts.js";
+import { modeAnalysis } from "./mode-analysis.js";
+
+/** @typedef {"object" | "arraylike" | "iterable" | "auto"} mode */
 
 /**
  * @example
@@ -19,7 +19,7 @@ export class Each {
     /**
      * @param {any} eachItems
      * @param {{
-        mode?: "object" | "arraylike" | "iterable";
+        mode?: mode | (mode)[];
         keys?(arg0: object): PropertyKey[];
         reverse?: boolean;
     }} props
@@ -27,10 +27,7 @@ export class Each {
     constructor(eachItems, props={}) {
         if(isNullLike(eachItems))
             throw new Error("eachItems is not eachable");
-        this.mode = has(nexts, props.mode) ? props.mode
-            : isArrayLike(eachItems) ? "arraylike"
-            : isIterable(eachItems) ? "iterable"
-            : "object";
+        this.mode = modeAnalysis(eachItems, props.mode);
         switch(this.mode) {
         case "object":
             this.keys = (props.keys || getKeys)(eachItems);
