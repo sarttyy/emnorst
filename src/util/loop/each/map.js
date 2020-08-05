@@ -2,7 +2,7 @@
 import { Each } from "../base/each-class.js";
 import { copyType } from "../../../object/clone/copyType.js";
 
-export const map = (items, fn) => {
+export const map = function(items, fn) {
     const maped = copyType(items);
     for(const each = new Each(items);each.continue();) {
         const { current } = each;

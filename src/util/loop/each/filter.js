@@ -2,7 +2,7 @@
 import { Each } from "../base/each-class.js";
 import { copyType } from "../../../object/clone/copyType.js";
 
-export const filter = (items, fn) => {
+export const filter = function(items, fn) {
     const filtered = copyType(items);
     for(const each = new Each(items);each.continue();) {
         const { current } = each;
