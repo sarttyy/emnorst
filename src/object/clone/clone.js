@@ -5,8 +5,6 @@ import { deepBase } from "../deepbase/index.js";
 import { has } from "../property/has.js";
 import { property } from "../property/property.js";
 import { copyType } from "./copyType.js";
-import { assertType } from "../../utility/condition/assert-type.js";
-import { isInfinity } from "../../util/is/number.js";
 
 /**
 オブジェクトに深いコピーを行います。
@@ -56,25 +54,24 @@ export const clone = (target, depth=Infinity) => {
     const clonedMap = new Map([[target, root]]);
     deepBase(target, {
         depthLimit: depth,
-        hooks: {
-            propBefore(propDesc, path, { innermost }) {
-                if(!innermost && has(propDesc, "value")) {
-                    const { value } = propDesc;
-                    propDesc = { ...propDesc, value: copyType(value) };
-                    clonedMap.set(value, propDesc.value);
-                }
-                const last = path.pop();
-                const context = property(root, path);
-                Object.defineProperty(context, last, propDesc);
-            },
-            existing(propDesc, path) {
-                const last = path.pop();
-                const context = property(root, path);
-                Object.defineProperty(context, last, {
-                    ...propDesc,
-                    value: clonedMap.get(propDesc.value)
-                });
-            },
+        property(propDesc, path, { innermost }) {
+            if(!propDesc) return;
+            if(!innermost && has(propDesc, "value")) {
+                const { value } = propDesc;
+                propDesc = { ...propDesc, value: copyType(value) };
+                clonedMap.set(value, propDesc.value);
+            }
+            const last = path.pop();
+            const context = property(root, path);
+            Object.defineProperty(context, last, propDesc);
+        },
+        recursive(propDesc, path) {
+            const last = path.pop();
+            const context = property(root, path);
+            Object.defineProperty(context, last, {
+                ...propDesc,
+                value: clonedMap.get(propDesc.value)
+            });
         },
     });
     return root;
