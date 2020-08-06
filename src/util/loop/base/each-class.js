@@ -2,7 +2,7 @@
 // @ts-check
 
 import { getKeys } from "../../../object/property/keys.js";
-import { isNullLike } from "../../is/other/null-like.js";
+import { isFunction } from "../../is/other/function.js";
 import { iterate } from "../iterate/iterate.js";
 import { nexts } from "./each-nexts.js";
 import { modeAnalysis } from "./mode-analysis.js";
@@ -25,12 +25,14 @@ export class Each {
     }} props
      */
     constructor(eachItems, props={}) {
-        if(isNullLike(eachItems))
+        if(eachItems == null)
             throw new Error("eachItems is not eachable");
-        this.mode = modeAnalysis(eachItems, props.mode);
-        switch(this.mode) {
+        const mode = this.mode = modeAnalysis(eachItems, props.mode);
+        switch(mode) {
         case "object":
-            this.keys = (props.keys || getKeys)(eachItems);
+            this.keys = isFunction(props.keys)
+                ? (props.keys || getKeys)(eachItems)
+                : props.keys;
             break;
         case "arraylike":
             this.reverse = !!props.reverse;
