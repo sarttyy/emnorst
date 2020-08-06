@@ -37,7 +37,7 @@ export const deepBase = (target, props={})=>{
         props.state = new DeepState(props);
         props.state.target = props.root = target;
         props.eachProp = {
-            mode: ["object", "arraylike"],
+            mode: "object",
             keys: props.keys,
             after() {},
         };
@@ -54,8 +54,7 @@ export const deepBase = (target, props={})=>{
     state.existing.add(target);
 
     for(const each = new Each(target, props.eachProp);each.continue();) {
-        const { current } = each;
-        const key = current.key || current.index;
+        const { key } = each.current;
         state.path.push(key);
         const propDesc = Object.getOwnPropertyDescriptor(target, key);
 
