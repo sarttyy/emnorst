@@ -19,7 +19,7 @@ export class Each {
     /**
      * @param {any} eachItems
      * @param {{
-        mode?: mode | (mode)[];
+        mode?: mode | mode[];
         keys?(arg0: object): PropertyKey[];
         reverse?: boolean;
     }} props
@@ -27,7 +27,7 @@ export class Each {
     constructor(eachItems, props={}) {
         if(eachItems == null)
             throw new Error("eachItems is not eachable");
-        const mode = this.mode = modeAnalysis(eachItems, props.mode);
+        const mode = this.mode = modeAnalysis(eachItems, props.mode || props);
         switch(mode) {
         case "object":
             this.keys = isFunction(props.keys)
