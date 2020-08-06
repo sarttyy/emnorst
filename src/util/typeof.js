@@ -3,12 +3,13 @@
 
 const { toString } = Object.prototype;
 
+// `Object.prototype.toString`を使用して値の型を取得します。
+
 /**
- * You can add the type by changing the "Symbol.toStringTag" property of the object.
+ * Use `Object.prototype.toString` to get the value type.
  *
- * オブジェクトの"Symbol.toStringTag"プロパティーを変更することで、型を追加できます。
- * @param {*} value An object that determines the type
- * @return {string} object type
+ * @param {any} value
+ * @return {string}
  */
 export const typeOf = (value) => (
     toString.call(value).slice(8, -1)
