@@ -8,4 +8,4 @@ export * from "./positive.js";
 export * from "./negative.js";
 export * from "./mersenne.js";
 export * from "./prime.js";
-
+export * from "./between.js";
