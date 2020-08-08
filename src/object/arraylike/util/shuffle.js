@@ -1,13 +1,15 @@
 
 // @ts-check
 
-import { swap } from "../../property/swap.js";
 import { xorshift } from "../../../util/random/xorshift.js";
+import { copyType } from "../../clone/copyType.js";
+import { swap } from "../../property/swap.js";
 
-export const shuffle = (data) => {
-    for(let i = data.length - 1;i--;) {
+export const shuffle = (origin, copy=false) => {
+    const result = copy ? copyType(origin) : origin;
+    for(let i = origin.length;i--;) {
         const r = xorshift(0, i);
-        swap(data, i, r);
+        swap(origin, i, r, result);
     }
-    return data;
+    return result;
 };
