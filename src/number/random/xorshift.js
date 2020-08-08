@@ -2,9 +2,10 @@
 // @ts-check
 
 import { assertType } from "../../utility/condition/assert-type.js";
-import { isNumber } from "../is/type.js";
+import { isNumber } from "../../util/is/number/number.js";
+import { density } from "./density.js";
 
-let seedCache = 1073741824;
+let seedCache = 0xf0f0f0f0;
 
 /*
 xorshiftアルゴリズムを使用して整数の疑似乱数を生成します。
@@ -30,7 +31,7 @@ export const xorshift = (min=0, max=Infinity, seed) => {
     let number = isNumber(seed) ? seed : seedCache;
     number ^= number << 13;
     number ^= number >> 17;
-    number ^= number << 5;
-    seedCache = number;
-    return Math.abs(number) % (max + 1 - min) + min;
+    number ^= number << 15;
+    const _ = density(Math.abs(seedCache = number), max - min, 0x80000000);
+    return Math.floor(_ + min + 0.5);
 };
