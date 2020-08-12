@@ -1,9 +1,7 @@
 
-import { isNullLike } from "./null-like.js";
-
 export const isPrimitive = (value) => {
     const type = typeof value;
-    return isNullLike(value)
+    return value == null
         || type === "string"
         || type === "number"
         || type === "boolean"
