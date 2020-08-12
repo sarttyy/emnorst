@@ -18,7 +18,6 @@ export class DeepState {
         return {
             parent: this.target,
             depth: this.depth(),
-            innermost: this.isDeepest(),
             deepest: this.isDeepest(),
             command(action) {
                 switch(action) {

@@ -6,34 +6,34 @@ import { isFunction } from "../../util/is/other/function.js";
 import { Each } from "../../util/loop/base/each-class.js";
 import { has } from "../property/has.js";
 import { getKeys } from "../property/keys.js";
-import { DeepState } from "./deep-state.js";
+import { DeepState } from "./state.js";
 
 const invokeHook = (hookName, props, propDesc) => {
     const hookfn = props[hookName];
-    isFunction(hookfn)
-        && hookfn(propDesc, [...props.state.path], props.state.current());
+    if(isFunction(hookfn))
+        hookfn(propDesc, [...props.state.path], props.state.current());
 };
 
 /**
  * ネストされたオブジェクトなどに対して処理を行います。
- * RC:
  * @param {*} target
- * @doc
- * #param {import("./prop").Props<DeepState>} props
+ * @param {*} props
  */
-// eslint-disable-next-line max-statements
-export const deepBase = (target, props={})=>{
+export const deepExplore = (target, props={}) => {
     if(props.state instanceof DeepState) {
         props.state.target = target;
     }else {
         // entry root setting
         props = { ...props };
+
         if(!Number.isSafeInteger(props.depthLimit))
             props.depthLimit = Infinity;
+
         isFunction(props.keys)
             || (props.keys = getKeys);
         isFunction(props.isExplore)
             || (props.isExplore = isObject);
+
         props.state = new DeepState(props);
         props.state.target = props.root = target;
         props.eachProp = {
@@ -65,7 +65,7 @@ export const deepBase = (target, props={})=>{
             invokeHook("property", props, propDesc);
             if(state.isDive() && hasValue) {
                 invokeHook("propertyWillDive", props, propDesc);
-                deepBase(propDesc.value, props);
+                deepExplore(propDesc.value, props);
                 invokeHook("propertyDidDive", props, propDesc);
             }
         }

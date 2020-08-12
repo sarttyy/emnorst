@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { deepBase } from "../deepbase/index.js";
+import { deepExplore } from "../deep-explore/index.js";
 import { has } from "../property/has.js";
 import { property } from "../property/property.js";
 import { copyType } from "./copyType.js";
@@ -12,7 +12,9 @@ prototype
 クロージャの可能性を考慮して関数はコピーしません。
 
 この関数が複製しないオブジェクト
-- 関数(クロージャーやコンストラクターの問題を解決できないため)
+- 関数(クロージャーやコンストラクターの問題を同時に解決できないため)
+    - new Function(fn.toString())
+    - function() { return fn.apply(this, arguments); }
 - Mapのkey
 - WeakMap, WeakSet(列挙が不可能なため)
 - ECMAScriptにないオブジェクト
@@ -52,7 +54,7 @@ prototype
 export const clone = (target, depth=Infinity) => {
     const root = copyType(target);
     const clonedMap = new Map([[target, root]]);
-    deepBase(target, {
+    deepExplore(target, {
         depthLimit: depth,
         property(propDesc, path, { innermost }) {
             if(!propDesc) return;
