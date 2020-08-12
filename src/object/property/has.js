@@ -9,5 +9,5 @@ const { hasOwnProperty } = Object.prototype;
  * @return {boolean}
  */
 export const has = (obj, propKey)=>(
-    hasOwnProperty.call(Object(obj), propKey)
+    obj != null && hasOwnProperty.call(obj, propKey)
 );
