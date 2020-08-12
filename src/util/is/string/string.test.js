@@ -3,8 +3,8 @@
 import {
     isString,
     isChar,
-    isLowerLetter,
-    isUpperLetter,
+    isLowerCase,
+    isUpperCase,
 } from "./index.js";
 
 const letter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -27,18 +27,30 @@ describe("is/string", () => {
         expect(isChar("test")).toBe(false);
         expect(isChar(["c"])).toBe(false);
     });
-    /** @test {isLowerLetter} */
-    it("isLowerLetter", () => {
-        const expectData1 = [...letter].map(isLowerLetter);
+    /** @test {isLowerCase} */
+    it("isLowerCase", () => {
+        expect(isLowerCase(letter)).toBe(false);
+        expect(isLowerCase("()")).toBe(false);
+        expect(isLowerCase("lower letter")).toBe(true);
+        expect(isLowerCase("Letter")).toBe(false);
+        expect(isLowerCase(null)).toBe(false);
+
+        const expectData1 = [...letter].map(isLowerCase);
         expect(expectData1).toEqual([ ...true26, ...false26, ...false10]);
-        const expectData2 = [...letter].map(charCodeAt).map(isLowerLetter);
-        expect(expectData2).toEqual([ ...true26, ...false26, ...false10]);
+        // const expectData2 = [...letter].map(charCodeAt).map(isLowerCase);
+        // expect(expectData2).toEqual([ ...true26, ...false26, ...false10]);
     });
-    /** @test {isUpperLetter} */
-    it("isUpperLetter", () => {
-        const expectData1 = [...letter].map(isUpperLetter);
+    /** @test {isUpperCase} */
+    it("isUpperCase", () => {
+        expect(isUpperCase(letter)).toBe(false);
+        expect(isUpperCase("()")).toBe(false);
+        expect(isUpperCase("UPPER LETTER")).toBe(true);
+        expect(isUpperCase("Letter")).toBe(false);
+        expect(isUpperCase(null)).toBe(false);
+
+        const expectData1 = [...letter].map(isUpperCase);
         expect(expectData1).toEqual([ ...false26, ...true26, ...false10]);
-        const expectData2 = [...letter].map(charCodeAt).map(isUpperLetter);
-        expect(expectData2).toEqual([ ...false26, ...true26, ...false10]);
+        // const expectData2 = [...letter].map(charCodeAt).map(isUpperCase);
+        // expect(expectData2).toEqual([ ...false26, ...true26, ...false10]);
     });
 });
