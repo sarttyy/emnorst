@@ -1,5 +1,6 @@
 
 export * from "./empty.js";
+export * from "./sorted.js";
 export * from "./array.js";
 export * from "./array-like.js";
 export * from "./typed-array.js";
