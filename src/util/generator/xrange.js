@@ -1,19 +1,18 @@
 
 // @ts-check
 
-import { isUndefined } from "../is/other/null-like.js";
 import { Generator as Generator$ } from "./generator.js";
 
 /**
  * startからendまでのincrementごとの数のジェネレーター。
  * for-of文で使う場合代替として{@link forIndex}が使用できます。
  *
- * @param {Number} start
+ * @param {number} start
  * 初期値。`end`が指定されていなかった場合は0からこの数までの連版となる。
  * つまり、`range(end)`は`range(0, end)`と等価。
- * @param {Number} [end]
+ * @param {number} [end]
  * 出力する数字の上限/下限。
- * @param {Number} [step=1]
+ * @param {number} [step]
  * 一度に増やす/減らす数。
  * start > end の場合でも負の値を指定する必要はない。
  * 0を指定すると1が使用される
@@ -25,20 +24,20 @@ import { Generator as Generator$ } from "./generator.js";
  * console.log([...range(1, -10, 2)]);
  * // [1, -1, -3, -5, -7, -9]
  */
-export const xrange = (start, end, step=1) => {
-    if(isUndefined(end)) {
+export const xrange = (start, end, step) => {
+    if(end == null) {
         end = start;
         start = 0;
     }
     const stepAbs = step = Math.abs(step) || 1;
     if(start > end) step = -stepAbs;
     return new Generator$((_) => {
-        switch(_.phase){
+        switch(_.phase) {
         case 0:
             _.yield(start);
             break;
         case 1:
-            if(Math.abs(end - start) < stepAbs)
+            if(Math.abs(end - start) <= stepAbs)
                 _.goto(3);
             break;
         case 2:
@@ -59,7 +58,7 @@ function* (start, end, step=1){
     }
     const stepAbs = step = Math.abs(step) || 1;
     if(start > end)step = -step;
-    while(Math.abs(end - start) >= stepAbs){
+    while(Math.abs(end - start) > stepAbs){
         yield start;
         start += step;
     }
