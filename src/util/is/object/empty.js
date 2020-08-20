@@ -1,7 +1,7 @@
 
 import { isArrayLike } from "./array-like.js";
 import { typeOf } from "../../typeof.js";
-import { getKeys } from "../../../object/property/keys.js";
+import { getKeys } from "../../../object/standard/keys.js";
 
 export const isEmpty = (value) => {
     if(isArrayLike(value))

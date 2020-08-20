@@ -1,9 +1,5 @@
 
-/**
- * IDEA: rename isNullish
- */
-// eslint-disable-next-line no-eq-null
-export const isNullLike = (value) => value == null;
+export const isNullish = (value) => value == null;
 
 export const isNull = (value) => value === null;
 
