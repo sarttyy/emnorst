@@ -6,7 +6,7 @@ import { has } from "../property/has.js";
 import { property } from "../property/property.js";
 import { copyType } from "./copyType.js";
 
-/**
+/*
 オブジェクトに深いコピーを行います。
 prototype
 クロージャの可能性を考慮して関数はコピーしません。
@@ -29,14 +29,16 @@ prototype
  *
  * RC:
  * The function is not copied due to the possibility of closure.
+ *
  * @param {*} target The object to copy.
  * @param {number} depth Specify the depth to copy. 0 is a shallow copy.
+ * @return {*} cloned object
  * @example
  * const hoge = {
  *     array: [1, 1, 2, 3, 5, 8],
  *     null: null,
  *     number: new Number(0xff),
- *     string: new String("hello machilia!"),
+ *     string: new String("hello world!"),
  *     boolean: new Boolean(true),
  *     regexp: /./,
  *     date: new Date(),

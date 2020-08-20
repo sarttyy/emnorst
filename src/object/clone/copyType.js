@@ -21,6 +21,15 @@ const copyDataView = (dataView) => {
     const buffer = copyArrayBuffer(dataView.buffer);
     return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
 };
+const copyFunction = (Fn) => {
+    const $function = function() {
+        if(new.target) // this instanceof $function
+            return new Fn(...arguments);
+        return Fn.apply(this, arguments);
+    };
+    Object.defineProperty($function, "name", { value: Fn.name });
+    return $function;
+};
 
 export const copyType = (obj) => {
     if(!isObject(obj))// primitive value, function, etc(not ECMAScript`s Object)...
