@@ -1,4 +1,3 @@
 
-export const reiyayakko_core = "1.1.1";
-
-export * from "./symbol.js";
+export const VERSION = "$VERSION";
+export const BUILD = "$ENVIRONMENT";
