@@ -1,5 +1,5 @@
 
-let { fromEntries } = Object;
+let fromEntries = Object.fromEntries;
 
 if(typeof fromEntries !== "function") {
     fromEntries = (entries) => {

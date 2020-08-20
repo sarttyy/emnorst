@@ -1,7 +1,7 @@
 
 import { getKeys } from "./keys.js";
 
-let { assign } = Object;
+let assign = Object.assign;
 
 if(typeof assign !== "function") {
     assign = (target, ...sources) => {

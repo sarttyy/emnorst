@@ -1,7 +1,7 @@
 
 import { getKeys } from "./keys.js";
 
-let { defineProperties } = Object;
+let defineProperties = Object.defineProperties;
 
 const { defineProperty } = Object;
 

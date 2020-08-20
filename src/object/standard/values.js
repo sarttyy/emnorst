@@ -1,7 +1,7 @@
 
 import { keys } from "./keys.js";
 
-let { values } = Object;
+let values = Object.values;
 
 if(typeof values !== "function") {
     values = (obj) => {
