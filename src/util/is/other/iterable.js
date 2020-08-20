@@ -1,5 +1,5 @@
 
-import * as context from "../../../env/symbol.js";
+import * as context from "../../standard/symbol.js";
 import { isObject } from "../object/object.js";
 import { isFunction } from "./function.js";
 

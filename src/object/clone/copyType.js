@@ -3,7 +3,7 @@
 
 import { isObject } from "../../util/is/object/object.js";
 import { isTypedArray } from "../../util/is/object/typed-array.js";
-import { typeOf } from "../../util/typeof.js";
+import { typeOf } from "../../util/standard/type-of.js";
 import { Arguments as $Arguments } from "../../util/function/simple/arguments.js";
 
 const copyPrototype = (object) => {

@@ -1,5 +1,5 @@
 
-import { typeOf } from "../../typeof.js";
+import { typeOf } from "../../standard/type-of.js";
 
 const regexp = /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/;
 

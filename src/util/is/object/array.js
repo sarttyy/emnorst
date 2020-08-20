@@ -1,6 +1,10 @@
 
-import { typeOf } from "../../typeof.js";
+import { typeOf } from "../../standard/type-of.js";
 
-export const isArray = (value) => (
-    typeOf(value) === "Array"
-);
+let { isArray } = Array;
+
+if(typeof isArray !== "function") {
+    isArray = (value) => typeOf(value) === "Array";
+}
+
+export { isArray };

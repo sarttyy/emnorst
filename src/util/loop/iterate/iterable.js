@@ -1,5 +1,5 @@
 
-import * as context from "../../../env/symbol.js";
+import * as context from "../../standard/symbol.js";
 import { iterator } from "./iterator.js";
 
 /**

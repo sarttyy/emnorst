@@ -1,5 +1,5 @@
 
-import * as context from "../../../env/symbol.js";
+import * as context from "../../standard/symbol.js";
 import { isArrayLike } from "../../is/object/array-like.js";
 import { isFunction } from "../../is/other/function.js";
 import { iterator } from "./iterator.js";

@@ -1,6 +1,6 @@
 
 import { isArrayLike } from "./array-like.js";
-import { typeOf } from "../../typeof.js";
+import { typeOf } from "../../standard/type-of.js";
 import { getKeys } from "../../../object/standard/keys.js";
 
 export const isEmpty = (value) => {
