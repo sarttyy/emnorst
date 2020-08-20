@@ -1,7 +1,7 @@
 
 import { anonymous } from "../../util/function/simple/anonymous.js";
 import { isObject } from "../../util/is/object/object.js";
-import { defineProperties } from "./defineProperties.js";
+import { defineProperties } from "./defineProperty.js";
 
 let { create } = Object;
 

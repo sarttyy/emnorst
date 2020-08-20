@@ -1,5 +1,5 @@
 
-import { getKeys } from "../property/keys.js";
+import { getKeys } from "./keys.js";
 
 let { defineProperties } = Object;
 
