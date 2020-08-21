@@ -1,69 +1,101 @@
 
-import buble from "rollup-plugin-buble";
+import buble from "@rollup/plugin-buble";
+import commonjs from "@rollup/plugin-commonjs";
+import inject from "@rollup/plugin-inject";
+import json from "@rollup/plugin-json";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import strip from "@rollup/plugin-strip";
+import analyze from "rollup-plugin-analyzer";
 import { terser } from "rollup-plugin-terser";
+import visualizer from "rollup-plugin-visualizer";
 
-const moduleName = "machilia";
+import fs from "fs";
+import path from "path";
+import $package from "./package.json";
+
+const moduleName = "monster";
 const entry = "./src/main.js";
-const dir = "./dist/";
+const DEVELOPMENT = process.env.BUILD === "development";
 
-const configs = [{
+const DevPlugins = [];
+const ProdPlugins = [
+    strip({
+        // functions: ["console.*", "assert.*"]
+    }),
+    terser(),
+    visualizer({
+        filename: `./dist/stats.${moduleName}.html`,
+        // template: "sunburst",
+        // template: "network",
+    }),
+    analyze({
+        writeTo(analysisString) {
+            fs.writeFileSync(`./dist/analysis.${moduleName}.txt`, analysisString);
+        }
+    }),
+];
+const EveryPlugins = [
+    // alias(),
+    inject({
+        // import key from value;
+        // import { value[1] as key } from value[0];
+        Symbol: [path.resolve("src/util/standard/symbol.js"), "Symbol"],
+    }),
+    commonjs(),
+    json({ indent: "    ", namedExports: false }),
+    nodeResolve(),
+    replace({
+        include: "**/env/*.js",
+        delimiters: ["<$", "/>"],
+        values: {
+            VERSION: $package.version,
+            ENVIRONMENT: process.env.BUILD,
+        }
+    }),
+];
+
+export default [{
     input: entry,
     output: [{
-        file: ["cjs"],
-        format: "cjs",
-    }, {
-        file: ["umd"],
+        file: `./dist/${moduleName}.umd.js`,
         format: "umd",
         name: moduleName,
+        sourcemap: DEVELOPMENT,
     }],
     plugins: [
+        ...EveryPlugins,
         buble({
-            target: {
-                chrome: 49,
-                node: 4,
-                firefox: 45,
-                safari: 9,
-                edge: 12,
-                ie: 11,
-            },
             transforms: {
-                forOf: false, // MEMO: replaced
+                forOf: false,
                 generator: false,
             },
-            objectAssign: "machilia.patch",
-        })
+            objectAssign: true,
+        }),
+        ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
     ],
 }, {
     input: entry,
     output: [{
-        file: ["esm"],
+        file: `./dist/${moduleName}.esm.js`,
         format: "es",
+        sourcemap: DEVELOPMENT,
     }, {
-        file: ["es", "umd"],
-        format: "umd",
-        name: moduleName,
+        file: `./dist/${moduleName}.cjs.js`,
+        format: "cjs",
+        sourcemap: DEVELOPMENT,
     }],
-    plugins: [],
-}];
-
-const file = (...args) => [dir + moduleName, ...args, "js"].join(".");
-// eslint-disable-next-line no-undef, no-process-env
-if(process.env.BUILD !== "production") {
-    // develop
-    configs.forEach((config) => {
-        config.output.forEach((output) => {
-            output.sourcemap = true;
-            output.file = file(...output.file);
+    plugins: [
+        ...EveryPlugins,
+        ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
+    ],
+}].map((config) => {
+    if(!DEVELOPMENT) {
+        config.output.forEach((out) => {
+            const path = out.file.split(".");
+            path.splice(-1, 0, "min");
+            out.file = path.join(".");
         });
-    });
-}else {
-    // production
-    configs.forEach((config) => {
-        config.output.forEach((output) => {
-            output.file = file(...output.file, "min");
-        });
-        config.plugins.push(terser());
-    });
-}
-
-export default configs;
+    }
+    return config;
+});

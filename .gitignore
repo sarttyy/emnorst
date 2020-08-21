@@ -1,8 +1,8 @@
 
-RIP
-command
+alt
 
 manual/
 coverage
 node_modules/
 .vscode
+*.ts
