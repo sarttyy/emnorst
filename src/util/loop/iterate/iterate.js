@@ -1,5 +1,4 @@
 
-import * as context from "../../standard/symbol.js";
 import { isArrayLike } from "../../is/object/array-like.js";
 import { isFunction } from "../../is/other/function.js";
 import { iterator } from "./iterator.js";
@@ -17,8 +16,8 @@ const next = (data, i) => ({
  * @throws {TypeError}
  */
 export const iterate = (iterable) => {
-    if(isFunction(iterable[context.Symbol.iterator]))
-        return iterable[context.Symbol.iterator]();
+    if(isFunction(iterable[Symbol.iterator]))
+        return iterable[Symbol.iterator]();
     if(isFunction(iterable["@@iterator"]))
         return iterable["@@iterator"]();
     if(isArrayLike(iterable))

@@ -4,7 +4,6 @@ import { isArrayLike } from "../../is/object/array-like.js";
 import { isArray } from "../../is/object/array.js";
 import { isObject } from "../../is/object/object.js";
 import { isIterable } from "../../is/other/iterable.js";
-import * as context from "../../standard/symbol.js";
 import { iterate } from "../iterate/iterate.js";
 import { nexts } from "./each-nexts.js";
 
@@ -75,7 +74,7 @@ export class Each {
             done: !this.continue()
         };
     }
-    [context.Symbol.iterator]() {
+    [Symbol.iterator]() {
         return this;
     }
     static modeAnalysis(eachItems, mode) {

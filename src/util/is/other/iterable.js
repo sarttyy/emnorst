@@ -1,5 +1,4 @@
 
-import * as context from "../../standard/symbol.js";
 import { isObject } from "../object/object.js";
 import { isFunction } from "./function.js";
 
@@ -13,6 +12,6 @@ const isIterator = (value) => (
  */
 export const isIterable = (value) => (
     isObject(value)
-    && isFunction(value[context.Symbol.iterator])
-    && isIterator(value[context.Symbol.iterator]())
+    && isFunction(value[Symbol.iterator])
+    && isIterator(value[Symbol.iterator]())
 );
