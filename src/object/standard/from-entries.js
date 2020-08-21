@@ -1,5 +1,5 @@
 
-let fromEntries = Object.fromEntries;
+export let fromEntries = Object.fromEntries;
 
 if(typeof fromEntries !== "function") {
     fromEntries = (entries) => {
@@ -12,5 +12,3 @@ if(typeof fromEntries !== "function") {
         return obj;
     };
 }
-
-export { fromEntries };

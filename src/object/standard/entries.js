@@ -1,7 +1,7 @@
 
 import { keys } from "./keys.js";
 
-let entries = Object.entries;
+export let entries = Object.entries;
 
 if(typeof entries !== "function") {
     entries = (obj) => {
@@ -15,5 +15,3 @@ if(typeof entries !== "function") {
         return entries$;
     };
 }
-
-export { entries };

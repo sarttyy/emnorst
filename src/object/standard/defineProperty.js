@@ -1,9 +1,9 @@
 
 import { getKeys } from "./keys.js";
 
-let defineProperties = Object.defineProperties;
+export let defineProperties = Object.defineProperties;
 
-const { defineProperty } = Object;
+export const { defineProperty } = Object;
 
 if(typeof defineProperties !== "function") {
     defineProperties = (obj, properties) => {
@@ -17,5 +17,3 @@ if(typeof defineProperties !== "function") {
         return obj;
     };
 }
-
-export { defineProperty, defineProperties };
