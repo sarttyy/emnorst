@@ -35,12 +35,30 @@ const ProdPlugins = [
         }
     }),
 ];
+
+const createStandard = ($path, prefix="") => (assign, fileName=assign) => {
+    const transform = (char, i) => (i ? "-" : "") + char.toLowerCase();
+    fileName = fileName.replace(/[A-Z]/g, transform);
+    return {
+        [`${prefix}${assign}`]: [path.resolve(`src/${$path}/${fileName}.js`), assign]
+    };
+};
+const util = createStandard("util/standard");
+const object = createStandard("object/standard", "Object.");
 const EveryPlugins = [
     // alias(),
     inject({
         // import key from value;
         // import { value[1] as key } from value[0];
-        Symbol: [path.resolve("src/util/standard/symbol.js"), "Symbol"],
+        ...util("Symbol"),
+        ...object("assign"),
+        ...object("create"),
+        ...object("defineProperty"),
+        ...object("defineProperties", "defineProperty"),
+        ...object("entries"),
+        ...object("fromEntries"),
+        ...object("keys"),
+        ...object("values"),
     }),
     commonjs(),
     json({ indent: "    ", namedExports: false }),

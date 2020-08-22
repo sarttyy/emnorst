@@ -1,7 +1,6 @@
 
 import { anonymous } from "../../util/function/simple/anonymous.js";
 import { isObject } from "../../util/is/object/object.js";
-import { defineProperties } from "./defineProperty.js";
 
 export let create = Object.create;
 
@@ -16,6 +15,6 @@ if(typeof create !== "function") {
             C.prototype = null;
         }else obj = { __proto__: prototype };
 
-        return defineProperties(obj, properties);
+        return Object.defineProperties(obj, properties);
     };
 }
