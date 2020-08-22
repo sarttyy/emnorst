@@ -1,3 +1,4 @@
 
-export * from "./thinning.js";
+export * from "./later.js";
 export * from "./memolize.js";
+export * from "./thinning.js";
