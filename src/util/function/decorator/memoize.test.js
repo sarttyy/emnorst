@@ -1,12 +1,12 @@
 /* eslint-disable */
 
-import { memolize } from "./memolize.js";
+import { memoize } from "./memoize.js";
 
-describe("memolize", () => {
-    /** @test {memolize} */
-    it("memolize", () => {
+describe("memoize", () => {
+    /** @test {memoize} */
+    it("memoize", () => {
         const spyFn = jasmine.createSpy();
-        const fn = memolize(spyFn);
+        const fn = memoize(spyFn);
         fn(1);
         fn(1);
         fn(1);
