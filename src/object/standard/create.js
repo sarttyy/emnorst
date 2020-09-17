@@ -5,7 +5,8 @@ import { isObject } from "../../util/is/object/object.js";
 export let create = Object.create;
 
 if(typeof create !== "function") {
-    const C = anonymous(class {});
+    // eslint-disable-next-line prefer-arrow-callback
+    const C = anonymous(function() {});
     create = (prototype, properties={}) => {
         let obj;
 

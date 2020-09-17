@@ -1,9 +1,9 @@
 
 import { getKeys } from "./keys.js";
 
-export let defineProperties = Object.defineProperties;
-
 export const { defineProperty } = Object;
+
+export let defineProperties = Object.defineProperties;
 
 if(typeof defineProperties !== "function") {
     defineProperties = (obj, properties) => {

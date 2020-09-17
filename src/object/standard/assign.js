@@ -15,7 +15,7 @@ if(typeof assign !== "function") {
 
             const keys = getKeys(source);
             for(let j = 0;j < keys.length;i++) {
-                const key = keys[j];
+                const key = keys[j++];
                 target[key] = source[key];
             }
         }
