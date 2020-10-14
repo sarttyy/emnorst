@@ -1,13 +1,15 @@
 
 // import { isArrayLike } from "../../../util/is/object/array-like.js";
 
+import { slice } from "../../array/prototype";
+
 /**
- * @param {ArrayLike} items
- * @param {number} count 幾つの塊に分けるか
- * @param {boolean} right
- * @return {ArrayLike[]}
+ * @param items
+ * @param count 幾つの塊に分けるか
+ * @param right
+ * @return
  */
-export const split = (items, count, right=false) => {
+export const split = <T>(items: ArrayLike<T>, count: number, right=false): ArrayLike<T>[] => {
     // if(!isArrayLike(items)) return null;
     const { length } = items;
     const surplus = length % count;
@@ -15,8 +17,8 @@ export const split = (items, count, right=false) => {
     const size = (length - surplus) / count;
     const splitArray = new Array(count);
     for(let i = 0, pos = 0;i < count;i++) {
-        const pad = right ? extra <= i : surplus > i;
-        splitArray[i] = items.slice(pos, (pos += size + pad));
+        const pad: number = +(right ? extra <= i : surplus > i);
+        splitArray[i] = slice.call(items, pos, pos += size+pad);
     }
     return splitArray;
 };
