@@ -17,8 +17,8 @@ export const getKeys = (obj) => {
         const symbols = getPropSymbols(obj);
         for(let i = 0;i < symbols.length;i++) {
             const symbol = symbols[i];
-            const propDesc = Object.getOwnPropertyDescriptor(obj, symbol);
-            if(propDesc.enumerable) keys$.push(symbol);
+            if(obj.propertyIsEnumerable(symbol))
+                keys$.push(symbol);
         }
     }
     return keys$;
