@@ -1,10 +1,8 @@
 
-// @ts-check
-
-import { deepExplore } from "../deep-explore/index.js";
-import { has } from "../property/has.js";
-import { property } from "../property/property.js";
-import { copyType } from "./copyType.js";
+import { explore } from "../deep-explore";
+// import { has } from "../property/has";
+import { property } from "../property/property";
+import { copyBase } from "./copy-base";
 
 /*
 オブジェクトに深いコピーを行います。
@@ -24,15 +22,18 @@ prototype
 コピーを行う深度を指定します。0でシャローコピーです。
 */
 
+interface CloneOptions {
+    depth?: number;
+}
+
 /**
- * TODO: Map, Set
+ * TODO: support Map, Set
  *
- * RC:
  * The function is not copied due to the possibility of closure.
  *
- * @param {*} target The object to copy.
- * @param {number} depth Specify the depth to copy. 0 is a shallow copy.
- * @return {*} cloned object
+ * @param target The object to copy.
+ * @param options Specify the depth to copy. 0 is a shallow copy.
+ * @return cloned object
  * @example
  * const hoge = {
  *     array: [1, 1, 2, 3, 5, 8],
@@ -53,27 +54,38 @@ prototype
  *
  * target !== cloned // => true
  */
-export const clone = (target, depth=Infinity) => {
-    const root = copyType(target);
-    const clonedMap = new Map([[target, root]]);
-    deepExplore(target, {
-        depthLimit: depth,
-        property(propDesc, path, { innermost }) {
-            if(!propDesc) return;
-            if(!innermost && has(propDesc, "value")) {
-                const { value } = propDesc;
-                propDesc = { ...propDesc, value: copyType(value) };
-                clonedMap.set(value, propDesc.value);
+export const clone = <T>(target: T, options: CloneOptions={}): T => {
+    const root = copyBase(target);
+    const clonedMap = new Map;
+    clonedMap.set(target, root);
+    explore(target, {
+        depthLimit: options.depth,
+        // existings: new Map,
+        // every({ isExplore, existings, value }) {
+        //     if(isExplore) existings.set(value, copyBase(value));
+        // },
+        property({ propDesc, path: [...path], deepest }) {
+            if(!deepest && "value" in propDesc) {
+                const { value: oldValue } = propDesc;
+                propDesc = {
+                    configurable: propDesc.configurable,
+                    enumerable: propDesc.enumerable,
+                    writable: propDesc.writable,
+                    value: copyBase(oldValue),
+                };
+                clonedMap.set(oldValue, propDesc.value);
             }
             const last = path.pop();
             const context = property(root, path);
             Object.defineProperty(context, last, propDesc);
         },
-        recursive(propDesc, path) {
+        recursive({ propDesc, path: [...path] }) {
             const last = path.pop();
             const context = property(root, path);
             Object.defineProperty(context, last, {
-                ...propDesc,
+                configurable: propDesc.configurable,
+                enumerable: propDesc.enumerable,
+                writable: propDesc.writable,
                 value: clonedMap.get(propDesc.value)
             });
         },
