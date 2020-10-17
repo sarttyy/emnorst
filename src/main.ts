@@ -1,8 +1,5 @@
 
-// import * as all from "./index.js";
-// export default all;
-
-export * from "./index.js";
+export * from "./index";
 
 export const VERSION: string = "<$VERSION/>";
 export const BUILD: string = "<$ENVIRONMENT/>";

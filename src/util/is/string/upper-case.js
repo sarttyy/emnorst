@@ -1,7 +1,7 @@
 
-import { isInteger } from "../number/integer.js";
-import { isLowerChar, isUpperChar } from "./letter.js";
-import { isString } from "./string.js";
+import { isInteger } from "../../../number/is/integer";
+import { isLowerChar, isUpperChar } from "./letter";
+import { isString } from "./string";
 
 export const isUpperCase = (value) => {
     if(isInteger(value))

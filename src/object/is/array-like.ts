@@ -1,5 +1,5 @@
 
-import { isInteger } from "../../util/is/number/integer";
+import { isInteger } from "../../number/is/integer";
 
 export const isArrayLike = (value: any): value is ArrayLike<any> => {
     if(value == null || typeof value == "function")

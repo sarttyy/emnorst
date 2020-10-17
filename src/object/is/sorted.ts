@@ -1,5 +1,5 @@
 
-import { isArrayLike } from "../../util/is/object/array-like";
+import { isArrayLike } from "../is/array-like";
 
 /*
 比較関数の結果として期待される値。

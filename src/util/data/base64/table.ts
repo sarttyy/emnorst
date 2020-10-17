@@ -1,4 +1,5 @@
 
-import { upperCaseAlphabet, lowerCaseAlphabet, decimal } from "../../string/constant";
+import { upperAlphabet, lowerAlphabet, decimal } from "../../string/constant";
 
-export const base64Table = `${upperCaseAlphabet + lowerCaseAlphabet + decimal}+/`;
+export const base64Table = `${upperAlphabet + lowerAlphabet + decimal}+/`;
+// export const base64urlTable = `${upperAlphabet + lowerAlphabet + decimal}-_`;
