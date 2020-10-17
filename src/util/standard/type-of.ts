@@ -26,3 +26,22 @@ export const typeOf = (value: any): string => {
 
     return result;
 };
+
+
+/**
+ * if null, returns "null".
+ * if primitive, use typeof to get the type.
+ * else, same as typeOf.
+ *
+ * @see typeOf
+ * @param value Value to get the type
+ * @return String of type
+ */
+export const getTypeOf = (value: any): string => {
+    if(value === null) return "null";
+
+    const type = typeof value;
+    return (type in primitiveTypeTable
+        ? type : typeOf(value)
+    );
+};
