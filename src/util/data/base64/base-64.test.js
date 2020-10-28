@@ -1,5 +1,5 @@
 
-const { BASE64 } = require("../../../../dist/monster.cjs.js");
+const { BASE64 } = require("../../../../dist/emnorst.cjs.js");
 
 const toBin = (str) => [...str].map($ => $.charCodeAt());
 const toStr = (bin) => bin.reduce((acc, cur) => acc + String.fromCharCode(cur), "");

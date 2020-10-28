@@ -1,6 +1,6 @@
 
-import { isNumber } from "./number.js";
+import { isNumber } from "./number";
 
-export const isInteger = (number: any): boolean => (
+export const isInteger = (number: unknown): boolean => (
     isNumber(number) && Number.isInteger(+number)
 );

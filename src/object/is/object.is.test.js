@@ -11,7 +11,7 @@ const {
     isObject,
     isObjectLike,
     isPureObject,
-} = require("../../../dist/monster.cjs.js");
+} = require("../../../dist/emnorst.cjs.js");
 
 describe("is/object", () => {
     /** @test {isEmpty} */

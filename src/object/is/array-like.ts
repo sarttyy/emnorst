@@ -1,8 +1,10 @@
 
 import { isInteger } from "../../number/is/integer";
 
-export const isArrayLike = (value: any): value is ArrayLike<any> => {
+export const isArrayLike = (value: unknown): value is ArrayLike<unknown> => {
     if(value == null || typeof value == "function")
         return false;
-    return value.length >= 0 && isInteger(value.length);
+
+    const { length } = <ArrayLike<unknown>>value;
+    return length >= 0 && isInteger(length);
 };

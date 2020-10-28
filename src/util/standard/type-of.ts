@@ -3,9 +3,7 @@ import primitiveTypeTable from "./primitive-type-table.json";
 
 const { toString } = Object.prototype;
 
-let prev: any = NaN, result: string;
-
-// `Object.prototype.toString`を使用して値の型を取得します。
+let prev: unknown = NaN, result: string;
 
 /**
  * Use `Object.prototype.toString` to get the value type.
@@ -13,7 +11,7 @@ let prev: any = NaN, result: string;
  * @param value Value to get the type
  * @return String of type
  */
-export const typeOf = (value: any): string => {
+export const typeOf = (value: unknown): string => {
     if(prev === value)
         return result;
 
@@ -33,11 +31,11 @@ export const typeOf = (value: any): string => {
  * if primitive, use typeof to get the type.
  * else, same as typeOf.
  *
- * @see typeOf
+ * @see {@link typeOf}
  * @param value Value to get the type
  * @return String of type
  */
-export const getTypeOf = (value: any): string => {
+export const getTypeOf = (value: unknown): string => {
     if(value === null) return "null";
 
     const type = typeof value;

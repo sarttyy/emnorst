@@ -1,12 +1,12 @@
 
-import { isBetween } from "../number/between.js";
+import { uptrend } from "../../../number/is/trend";
 
 export const isLowerChar = (char) => (
-    isBetween(char, "a", "z")
-    || isBetween(char, "ａ", "ｚ")
+    uptrend("a", char, "z")
+    || uptrend("ａ", char, "ｚ")
 );
 
 export const isUpperChar = (char) => (
-    isBetween(char, "A", "Z")
-    || isBetween(char, "Ａ", "Ｚ")
+    uptrend("A", char, "Z")
+    || uptrend("Ａ", char, "Ｚ")
 );

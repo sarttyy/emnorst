@@ -1,5 +1,5 @@
 
-const { explore } = require("../../../dist/monster.cjs.js");
+const { explore } = require("../../../dist/emnorst.cjs.js");
 // const { describe, test, expect } = require("@jest/globals");
 
 describe("explore", () => {

@@ -1,5 +1,5 @@
 
-const { typeOf, getTypeOf } = require("../../../dist/monster.cjs.js");
+const { typeOf, getTypeOf } = require("../../../dist/emnorst.cjs.js");
 
 describe("type", () => {
     test("typeOf", () => {
