@@ -1,34 +1,46 @@
-/* eslint-disable */
 
-import { throttle, debounce } from "./thinning.js";
+const { memoize, throttle, debounce } = require("../../../../dist/emnorst.cjs.js");
 
 /** @test {object} */
-describe("thinning", () => {
-    beforeEach(() => {
-        jasmine.clock().install();
+describe.skip("thinning", () => {
+    /** @test {memoize} */
+    test("memoize", () => {
+        const spyFn = jest.fn();
+        const fn = memoize(spyFn);
+        fn(1);
+        fn(1);
+        fn(1);
+        fn();
+        fn();
+        fn();
+        fn(2);
+        fn(2);
+        fn({});
+        fn({});
+        expect(spyFn).toHaveBeenCalledTimes(5);
     });
-    afterEach(() => {
-        jasmine.clock().uninstall();
+    beforeEach(() => {
+        jest.useFakeTimers();
     });
     /** @test {throttle} */
-    it("throttle", () => {
-        const spyFn = jasmine.createSpy();
+    test("throttle", () => {
+        const spyFn = jest.fn();
         const fn = throttle(spyFn);
         fn();
         fn();
         fn();
-        jasmine.clock().tick(1001);
-        expect(spyFn.calls.count()).toBe(2);
+        jest.runAllTimers();
+        expect(spyFn).toHaveBeenCalledTimes(2);
     });
     /** @test {debounce} */
-    it("debounce", () => {
-        const spyFn = jasmine.createSpy();
+    test("debounce", () => {
+        const spyFn = jest.fn();
         const fn = debounce(spyFn);
         fn();
         fn();
-        jasmine.clock().tick(1001);
+        jest.runAllTimers();
         fn();
-        jasmine.clock().tick(1001);
-        expect(spyFn.calls.count()).toBe(2);
+        jest.runAllTimers();
+        expect(spyFn).toHaveBeenCalledTimes(2);
     });
 });
