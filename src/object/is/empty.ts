@@ -1,12 +1,12 @@
 
-import { isArrayLike } from "./array-like";
 import { typeOf } from "../../util/standard/type-of";
 import { getKeys } from "../standard/keys";
+import { isArrayLike } from "./array-like";
 
-export const isEmpty = (value: any): boolean => {
+export const isEmpty = (value: unknown): boolean => {
     if(isArrayLike(value))
         return value.length === 0;
     if(typeOf(value) === "Object")
-        return getKeys(value).length === 0;
+        return getKeys(<object>value).length === 0;
     return false;
 };

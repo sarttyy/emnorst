@@ -7,6 +7,10 @@ import { isArrayLike } from "../is/array-like";
 */
 
 /**
+ * 
+ *
+ * @param arrayLike
+ * @param compare
  * @param direction The value expected as the result of the comparison function.
  * If not specified, the first result is specified.
  */
@@ -27,8 +31,7 @@ export const isSorted = <T, U>(
     if(direction == null) direction = result;
 
     let i = 1;
-    // eslint-disable-next-line eqeqeq
-    while(direction == result && ++i < arrayLike.length)
+    while(direction === result && ++i < arrayLike.length)
         result = compare(prev, prev = arrayLike[i]);
 
     return i === arrayLike.length;

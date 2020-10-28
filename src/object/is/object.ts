@@ -4,7 +4,7 @@
  */
 export const isObject: {
     (value: Function): value is never;
-    (value: any): value is object;
-} = (value: any): value is never => (
+    (value: unknown): value is object;
+} = (value: unknown): value is never => (
     typeof value === "object" && value !== null
 );
