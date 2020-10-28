@@ -1,0 +1,1314 @@
+{
+  "type": "File",
+  "start": 0,
+  "end": 935,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 33,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 935,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 33,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [],
+    "directives": [],
+    "leadingComments": null,
+    "innerComments": [
+      {
+        "type": "CommentLine",
+        "value": " // @ts-check",
+        "start": 2,
+        "end": 17,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 15
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": " export const mergeSort = (a, left, right)=>{",
+        "start": 21,
+        "end": 68,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 0
+          },
+          "end": {
+            "line": 4,
+            "column": 47
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     if(right - left === 1)return;",
+        "start": 70,
+        "end": 106,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 0
+          },
+          "end": {
+            "line": 5,
+            "column": 36
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     const mid = left + (right - left) / 2;",
+        "start": 108,
+        "end": 153,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 0
+          },
+          "end": {
+            "line": 6,
+            "column": 45
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     // 左半分 [left, mid) をソート",
+        "start": 157,
+        "end": 187,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 0
+          },
+          "end": {
+            "line": 8,
+            "column": 30
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     mergeSort(a, left, mid);",
+        "start": 189,
+        "end": 220,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "line": 9,
+            "column": 31
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     // 右半分 [mid, right) をソート",
+        "start": 224,
+        "end": 255,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 0
+          },
+          "end": {
+            "line": 11,
+            "column": 31
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     mergeSort(a, mid, right);",
+        "start": 257,
+        "end": 289,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 0
+          },
+          "end": {
+            "line": 12,
+            "column": 32
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     // 一旦「左」と「右」のソート結果をコピーしておく (右側は左右反転)",
+        "start": 293,
+        "end": 336,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 0
+          },
+          "end": {
+            "line": 14,
+            "column": 43
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     vector<int> buf;",
+        "start": 338,
+        "end": 361,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 0
+          },
+          "end": {
+            "line": 15,
+            "column": 23
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     for (int i = left; i < mid; ++i) buf.push_back(a[i]);",
+        "start": 363,
+        "end": 423,
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 0
+          },
+          "end": {
+            "line": 16,
+            "column": 60
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     for (int i = right-1; i >= mid; --i) buf.push_back(a[i]);",
+        "start": 425,
+        "end": 489,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 0
+          },
+          "end": {
+            "line": 17,
+            "column": 64
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     // マージする",
+        "start": 493,
+        "end": 508,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 0
+          },
+          "end": {
+            "line": 19,
+            "column": 15
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     int iterator_left = 0;                    // 左側のイテレータ",
+        "start": 510,
+        "end": 570,
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 0
+          },
+          "end": {
+            "line": 20,
+            "column": 60
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     int iterator_right = (int)buf.size() - 1; // 右側のイテレータ",
+        "start": 572,
+        "end": 632,
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 0
+          },
+          "end": {
+            "line": 21,
+            "column": 60
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     for (int i = left; i < right; ++i) {",
+        "start": 634,
+        "end": 677,
+        "loc": {
+          "start": {
+            "line": 22,
+            "column": 0
+          },
+          "end": {
+            "line": 22,
+            "column": 43
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         // 左側採用",
+        "start": 679,
+        "end": 697,
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 0
+          },
+          "end": {
+            "line": 23,
+            "column": 18
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         if (buf[iterator_left] <= buf[iterator_right]) {",
+        "start": 699,
+        "end": 758,
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 0
+          },
+          "end": {
+            "line": 24,
+            "column": 59
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "             a[i] = buf[iterator_left++];",
+        "start": 760,
+        "end": 803,
+        "loc": {
+          "start": {
+            "line": 25,
+            "column": 0
+          },
+          "end": {
+            "line": 25,
+            "column": 43
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         }",
+        "start": 805,
+        "end": 817,
+        "loc": {
+          "start": {
+            "line": 26,
+            "column": 0
+          },
+          "end": {
+            "line": 26,
+            "column": 12
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         // 右側採用",
+        "start": 819,
+        "end": 837,
+        "loc": {
+          "start": {
+            "line": 27,
+            "column": 0
+          },
+          "end": {
+            "line": 27,
+            "column": 18
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         else {",
+        "start": 839,
+        "end": 856,
+        "loc": {
+          "start": {
+            "line": 28,
+            "column": 0
+          },
+          "end": {
+            "line": 28,
+            "column": 17
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "             a[i] = buf[iterator_right--];",
+        "start": 858,
+        "end": 902,
+        "loc": {
+          "start": {
+            "line": 29,
+            "column": 0
+          },
+          "end": {
+            "line": 29,
+            "column": 44
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "         }",
+        "start": 904,
+        "end": 916,
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 0
+          },
+          "end": {
+            "line": 30,
+            "column": 12
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "     }",
+        "start": 918,
+        "end": 926,
+        "loc": {
+          "start": {
+            "line": 31,
+            "column": 0
+          },
+          "end": {
+            "line": 31,
+            "column": 8
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": " };",
+        "start": 928,
+        "end": 933,
+        "loc": {
+          "start": {
+            "line": 32,
+            "column": 0
+          },
+          "end": {
+            "line": 32,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  "comments": [
+    {
+      "type": "CommentLine",
+      "value": " // @ts-check",
+      "start": 2,
+      "end": 17,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " export const mergeSort = (a, left, right)=>{",
+      "start": 21,
+      "end": 68,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     if(right - left === 1)return;",
+      "start": 70,
+      "end": 106,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     const mid = left + (right - left) / 2;",
+      "start": 108,
+      "end": 153,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 45
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // 左半分 [left, mid) をソート",
+      "start": 157,
+      "end": 187,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     mergeSort(a, left, mid);",
+      "start": 189,
+      "end": 220,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // 右半分 [mid, right) をソート",
+      "start": 224,
+      "end": 255,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     mergeSort(a, mid, right);",
+      "start": 257,
+      "end": 289,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // 一旦「左」と「右」のソート結果をコピーしておく (右側は左右反転)",
+      "start": 293,
+      "end": 336,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     vector<int> buf;",
+      "start": 338,
+      "end": 361,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     for (int i = left; i < mid; ++i) buf.push_back(a[i]);",
+      "start": 363,
+      "end": 423,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     for (int i = right-1; i >= mid; --i) buf.push_back(a[i]);",
+      "start": 425,
+      "end": 489,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // マージする",
+      "start": 493,
+      "end": 508,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     int iterator_left = 0;                    // 左側のイテレータ",
+      "start": 510,
+      "end": 570,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     int iterator_right = (int)buf.size() - 1; // 右側のイテレータ",
+      "start": 572,
+      "end": 632,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 0
+        },
+        "end": {
+          "line": 21,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     for (int i = left; i < right; ++i) {",
+      "start": 634,
+      "end": 677,
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         // 左側採用",
+      "start": 679,
+      "end": 697,
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 23,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         if (buf[iterator_left] <= buf[iterator_right]) {",
+      "start": 699,
+      "end": 758,
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 0
+        },
+        "end": {
+          "line": 24,
+          "column": 59
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "             a[i] = buf[iterator_left++];",
+      "start": 760,
+      "end": 803,
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 0
+        },
+        "end": {
+          "line": 25,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         }",
+      "start": 805,
+      "end": 817,
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 0
+        },
+        "end": {
+          "line": 26,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         // 右側採用",
+      "start": 819,
+      "end": 837,
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         else {",
+      "start": 839,
+      "end": 856,
+      "loc": {
+        "start": {
+          "line": 28,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "             a[i] = buf[iterator_right--];",
+      "start": 858,
+      "end": 902,
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         }",
+      "start": 904,
+      "end": 916,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 30,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     }",
+      "start": 918,
+      "end": 926,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 0
+        },
+        "end": {
+          "line": 31,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " };",
+      "start": 928,
+      "end": 933,
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 0
+        },
+        "end": {
+          "line": 32,
+          "column": 5
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentLine",
+      "value": " // @ts-check",
+      "start": 2,
+      "end": 17,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " export const mergeSort = (a, left, right)=>{",
+      "start": 21,
+      "end": 68,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     if(right - left === 1)return;",
+      "start": 70,
+      "end": 106,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     const mid = left + (right - left) / 2;",
+      "start": 108,
+      "end": 153,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 45
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // 左半分 [left, mid) をソート",
+      "start": 157,
+      "end": 187,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     mergeSort(a, left, mid);",
+      "start": 189,
+      "end": 220,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // 右半分 [mid, right) をソート",
+      "start": 224,
+      "end": 255,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     mergeSort(a, mid, right);",
+      "start": 257,
+      "end": 289,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // 一旦「左」と「右」のソート結果をコピーしておく (右側は左右反転)",
+      "start": 293,
+      "end": 336,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     vector<int> buf;",
+      "start": 338,
+      "end": 361,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     for (int i = left; i < mid; ++i) buf.push_back(a[i]);",
+      "start": 363,
+      "end": 423,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     for (int i = right-1; i >= mid; --i) buf.push_back(a[i]);",
+      "start": 425,
+      "end": 489,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     // マージする",
+      "start": 493,
+      "end": 508,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     int iterator_left = 0;                    // 左側のイテレータ",
+      "start": 510,
+      "end": 570,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     int iterator_right = (int)buf.size() - 1; // 右側のイテレータ",
+      "start": 572,
+      "end": 632,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 0
+        },
+        "end": {
+          "line": 21,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     for (int i = left; i < right; ++i) {",
+      "start": 634,
+      "end": 677,
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         // 左側採用",
+      "start": 679,
+      "end": 697,
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 23,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         if (buf[iterator_left] <= buf[iterator_right]) {",
+      "start": 699,
+      "end": 758,
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 0
+        },
+        "end": {
+          "line": 24,
+          "column": 59
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "             a[i] = buf[iterator_left++];",
+      "start": 760,
+      "end": 803,
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 0
+        },
+        "end": {
+          "line": 25,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         }",
+      "start": 805,
+      "end": 817,
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 0
+        },
+        "end": {
+          "line": 26,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         // 右側採用",
+      "start": 819,
+      "end": 837,
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         else {",
+      "start": 839,
+      "end": 856,
+      "loc": {
+        "start": {
+          "line": 28,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "             a[i] = buf[iterator_right--];",
+      "start": 858,
+      "end": 902,
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "         }",
+      "start": 904,
+      "end": 916,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 30,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "     }",
+      "start": 918,
+      "end": 926,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 0
+        },
+        "end": {
+          "line": 31,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " };",
+      "start": 928,
+      "end": 933,
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 0
+        },
+        "end": {
+          "line": 32,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 935,
+      "end": 935,
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 0
+        },
+        "end": {
+          "line": 33,
+          "column": 0
+        }
+      }
+    }
+  ]
+}

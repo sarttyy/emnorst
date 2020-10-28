@@ -5,11 +5,19 @@
         "name": "esdoc-standard-plugin",
         "option": {
             "test": {
-                "source": "./src"
+                "source": "./test",
+                "includes": ["\\.js$"]
+            },
+            "brand": {
+                "title": "Reiyayakko core",
+                "repository": "https://github.com/reiyayakko/reiyayakko-core"
             },
             "manual": {
+                "globalIndex": true,
+                "index": "./readme.md",
                 "files": [
-                    "./manual/index.md"
+                    "./manual/index.md",
+                    "./manual/usage.md"
                 ]
             }
         }

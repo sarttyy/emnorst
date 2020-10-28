@@ -1,0 +1,8 @@
+{
+    "string": "String",
+    "number": "Number",
+    "bigint": "BigInt",
+    "boolean": "Boolean",
+    "symbol": "Symbol",
+    "undefined": "Undefined"
+}

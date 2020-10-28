@@ -1,61 +1,38 @@
 
-import {isNull} from "./is/index";
+import { isObject } from "../util/is/index.js";
 
-export const equals = (...values)=>{
-    // SameValueZero
-    let prev = values.shift();
-    return values.every(value=>(
-        Number.isNaN(prev)
-            ? Number.isNaN(prev=value)
-            : prev===(prev=value)
-    ));
-};
+// TODO: format
 
-export const typeOf = object=>(
-    Object.prototype.toString.call(object).slice(8, -1)
-);
+// /**
+//  * Alpha:
+//  * @param {String[]} strings
+//  * @param  {...any} rawStrings
+//  */
+// const r = (strings, ...rawStrings)=>{
+//     console.log(strings);
+//     const result = [];
+//     for(const __ of rawStrings){
+//         result.push(strings.pop());
+//         result.push(__);
+//     }
+//     return result;
+// };
 
-// TODO: require
-
-// NOTE: 元tryCall
-export const callorElse = (value, args, that)=>(
-    typeof value === "function"
-        ? value.apply(that, args)
-        : value
-);
-
-export const substitute = (values, checkFunk=isNull)=>(
-    values.reduce((value, subValue)=>(
-        checkFunk(value) ? subValue : value
-    ), values.shift())
-);
-
-export const typeCheck = (value, types, sub, typeGetter=typeOf)=>{
-    const type = typeGetter(value);
-    if(types.includes(type))
+export const toPrimitive = (value)=>{
+    if(!isObject(value))
         return value;
-    return callorElse(sub, [type]);
+    if("valueOf" in value)
+        return value.valueOf();
+    if("toString" in value)
+        return value.toString();
+    if(Symbol && Symbol.toPrimitive in value)
+        return value[Symbol.toPrimitive]("default");
+    return value;
 };
 
-export const debounce = (func, wait)=>{
-    let id;
-    return function(){
-        clearTimeout(id);
-        // eslint-disable-next-line
-        id = setTimeout(func.apply, wait, this, arguments);
-    };
-};
-
-export const prop = (props, defaultProps, subFunc)=>(
-    Object.entries(props).reduce((props_, [prop, key])=>{
-        props_[key] = substitute([prop, defaultProps[key]], subFunc);
-        return props_;
-    })
-);
-
-export const uniq = array=>{
+export const uniq = (array)=>{
     const existings = [];
-    return array.filter(value=>{
+    return array.filter((value)=>{
         const existing = existings.includes(value);
         if(!existing)existings.push(value);
         return !existing;

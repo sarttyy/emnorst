@@ -2,21 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | reiyayakko-core</title>
+  <base data-ice="baseUrl" href="./">
+  <title data-ice="title">Manual | Reiyayakko core</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
 </head>
-<body class="layout-container" data-ice="rootContainer">
+<body class="layout-container manual-root manual-index" data-ice="rootContainer">
 
 <header>
   <a href="./">Home</a>
-  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  
+  <a href="test.html" data-ice="testLink">Test</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -26,78 +26,86 @@
   </div>
 <a style="position:relative; top:3px;" href="https://github.com/reiyayakko/reiyayakko-core"><img width="20px" src="./image/github.png"></a></header>
 
-<nav class="navigation" data-ice="nav"><div>
-  <ul>
-    
-  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Num2FracStr">Num2FracStr</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#math">math</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/math/bigfloat.js~BigFloat.html">BigFloat</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-Num">Num</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abs">abs</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-add">add</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-diff">diff</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-div">div</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-factorial">factorial</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-max">max</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-min">min</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-mul">mul</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sub">sub</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#object">object</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_">_</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEquals">deepEquals</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#object-clone">object/clone</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copy">copy</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-clone">clone</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-undertake">undertake</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utility">utility</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utility/index.js~MemoMap.html">MemoMap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-count">count</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generate">generate</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generator">generator</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-gurop">gurop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-reduce">reduce</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-argument">argument</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-memoize">memoize</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-restSplit">restSplit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-range">range</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callorElse">callorElse</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-debounce">debounce</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equals">equals</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-prop">prop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-substitute">substitute</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeCheck">typeCheck</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-typeOf">typeOf</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uniq">uniq</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-zip">zip</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utility-is">utility/is</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArguments">isArguments</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isBoolean">isBoolean</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isError">isError</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isFunction">isFunction</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isMap">isMap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNull">isNull</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNumber">isNumber</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObject">isObject</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isObjectLike">isObjectLike</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isRegExp">isRegExp</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSet">isSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isString">isString</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isSymbol">isSymbol</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isUndefined">isUndefined</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakMap">isWeakMap</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isWeakSet">isWeakSet</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isArrayLike">isArrayLike</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isEmpty">isEmpty</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isNegative">isNegative</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isThrowError">isThrowError</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utility-loop">utility/loop</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIn">forIn</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forIndex">forIndex</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-forOf">forOf</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-doWhile">doWhile</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inOrder">inOrder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-iterate">iterate</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-previous">previous</a></span></span></li>
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/index.html"><a href="manual/index.html" data-ice="link">&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x306B;&#x3064;&#x3044;&#x3066;</a></li>
 </ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/usage.html"><a href="manual/usage.html" data-ice="link">usage</a></li>
+</ul>
+  </div>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="reiyayakko-core">reiyayakko-core</h1><p>This is a utility library</p>
-<p>wiki: <a href="https://reiyayakko.github.io/reiyayakko-core">https://reiyayakko.github.io/reiyayakko-core</a></p>
+<div class="content" data-ice="content"><div class="github-markdown">
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="reiyayakko-core">reiyayakko-core</h1><p><a href="https://travis-ci.org/reiyayakko/reiyayakko-core"><img src="https://travis-ci.org/reiyayakko/reiyayakko-core.svg?branch=master" alt="Build Status"></a>
+<a href="https://codecov.io/gh/reiyayakko/reiyayakko-core"><img src="https://codecov.io/gh/reiyayakko/reiyayakko-core/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://reiyayakko.github.io/reiyayakko-core"><img src="https://reiyayakko.github.io/reiyayakko-core/badge.svg" alt="document"></a>
+<!-- [![_](https://img.shields.io/badge/test-hoge-informational)]() --></p>
+<h2 id="overview">Overview</h2><p>&#x3042;&#x3063;&#x305F;&#x3089;&#x3044;&#x3044;&#x306A;&#x3001;&#x3068;&#x601D;&#x3063;&#x305F;&#x6A5F;&#x80FD;&#x3092;&#x8A70;&#x3081;&#x8FBC;&#x3093;&#x3060;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3067;&#x3059;&#x3002;
+&#x5927;&#x304D;&#x304F;&#x5206;&#x3051;&#x3066;&#x4EE5;&#x4E0B;&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="math">math</h3><p>Bigfloat&#x3084;&#x30A2;&#x30C3;&#x30AB;&#x30FC;&#x30DE;&#x30F3;&#x95A2;&#x6570;&#x3001;&#x7D20;&#x56E0;&#x6570;&#x5206;&#x89E3;&#x306A;&#x3069;&#x306E;&#x6570;&#x5B66;&#x7684;&#x306A;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
+<h3 id="object">object</h3><p>zip&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x64CD;&#x4F5C;&#x306B;&#x95A2;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
+<h3 id="utilities">utilities</h3><p>&#x305D;&#x306E;&#x4ED6;&#x306E;&#x5206;&#x985E;&#x3055;&#x308C;&#x306A;&#x304B;&#x3063;&#x305F;&#x4FBF;&#x5229;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="usage">usage</h2><p>&#x8A73;&#x3057;&#x304F;&#x306F;<a href="https://reiyayakko.github.io/reiyayakko-core">&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;</a>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<p>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x7A2E;&#x985E;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x901A;&#x308A;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li>commonJS (cjs)</li>
+<li>ES2015 Module (es)</li>
+<li>umd (umd)</li>
+</ul>
+<h3 id="example">example</h3><p>&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306A;&#x30BF;&#x30B0;&#x3092;&#x57CB;&#x3081;&#x8FBC;&#x3093;&#x3067;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;https://cdn.jsdelivr.net/gh/reiyayakko/reiyayakko-core@1.1.1/dist/reiyayakko.umd.min.js&quot;&gt;&lt;/script&gt;</code>
+</code></pre>
+<h2 id="licence">Licence</h2><p>Copyright (c) 2020 reiyayakko</p>
+<p><a href="https://opensource.org/licenses/MIT">MIT Licence</a>  </p>
+</div>
+
+  
+
+  <div class="manual-cards">
+    
+  <div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x306B;&#x3064;&#x3044;&#x3066;</h1><p>&#x3053;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x306E;&#x307B;&#x3068;&#x3093;&#x3069;&#x306F;
+&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x6642;&#x306B;this&#x3092;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const {debounce} = rei.utility;
+
+const hoge = debounce(function(){
+    console.log(this);
+});
+
+hoge.call(&quot;hello world!&quot;);
+// &gt; String {&quot;hello world!&quot;}</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/index.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>usage</h1><pre><code class="lang-javascript"><code class="source-code prettyprint"></code>
+</code></pre><pre><code class="lang-javascript"><code class="source-code prettyprint">
+// case 1
+const _ = rei;
+rei.util.isNumber(1);
+// true
+
+// case 2
+const { util: { isNumber } } = rei;
+isNumber(NaN);
+// false
+</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/usage.html"></a>
+      </div>
+    </div>
+</div>
 </div>
 </div>
 
