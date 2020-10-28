@@ -1,4 +1,4 @@
 
-export const isNumber = (value: any): value is number | Number =>  (
+export const isNumber = (value: unknown): value is number | Number => (
     typeof value === "number" || value instanceof Number
-) && value == +value; // eslint-disable-line no-self-compare
+) && value == +value; // eslint-disable-line eqeqeq
