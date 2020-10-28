@@ -8,7 +8,7 @@ const {
     isNull,
     isDefined,
     isUndefined,
-} = require("../../../dist/emnorst.cjs.js");
+} = require("../dist/emnorst.cjs.js");
 
 describe("util/is", () => {
     /** @test {equals} */

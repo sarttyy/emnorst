@@ -1,5 +1,5 @@
 
-const { md5, sha1, sha224, sha256 } = require("../../../../dist/emnorst.cjs.js");
+const { md5, sha1, sha224, sha256 } = require("../dist/emnorst.cjs.js");
 
 /** @test {object} */
 describe("util/string/hash", () => {
