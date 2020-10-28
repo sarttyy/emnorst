@@ -1,7 +1,6 @@
 
-// import { isArrayLike } from "../../../util/is/object/array-like.js";
-
-import { slice } from "../../array/prototype";
+// import { isArrayLike } from "../../is/array-like";
+import { slice } from "../../standard/prototype";
 
 /**
  * @param items チャンクを生成するオブジェクト
@@ -12,11 +11,13 @@ import { slice } from "../../array/prototype";
 export const chunk = <T>(items: ArrayLike<T>, size: number, right=false): ArrayLike<T>[] => {
     // if(!isArrayLike(items)) return null;
 
-    const chunks = [], length = items.length;
-    let i = 0, pos = right ? length % size : 0;
+    const chunkSize = Math.abs(size | 0) || 1;
+    const { length } = items;
+    const chunks = [];
+    let i = 0, pos = right ? length % chunkSize : 0;
 
-    if(pos) chunks[i++] = slice.call(items, 0, pos);
+    if(pos > 0) chunks[i++] = slice.call(items, 0, pos);
     while(pos < length)
-        chunks[i++] = slice.call(items, pos, pos += size);
+        chunks[i++] = slice.call(items, pos, pos += chunkSize);
     return chunks;
 };
