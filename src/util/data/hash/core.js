@@ -1,9 +1,14 @@
 
 // @ts-check
 
-import { isString } from "../../is/string/string.js";
-import { isArray } from "../../is/object/array.js";
-import { foldLeft } from "../../../utility/loop/fold.js";
+import { isString } from "../../is/string/string";
+import { isArray } from "../../../object/is/array";
+
+const foldLeft = (hashedData, hexFold, acc="") => {
+    for(let i = 0;i < hashedData.length;i++)
+        acc = hexFold(acc, hashedData[i]);
+    return acc;
+};
 
 const unpack = (text) => {
     const result = new Array(text.length);
