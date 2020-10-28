@@ -6,27 +6,38 @@ import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import strip from "@rollup/plugin-strip";
+// import typescript from "@rollup/plugin-typescript";
+import ts from "@wessberg/rollup-plugin-ts";
 import analyze from "rollup-plugin-analyzer";
 import { terser } from "rollup-plugin-terser";
 import visualizer from "rollup-plugin-visualizer";
 
 import fs from "fs";
 import path from "path";
-import $package from "./package.json";
+import pkg from "./package.json";
 
-const moduleName = "monster";
-const entry = "./src/main.js";
+const moduleName = "emnorst";
+const entry = "./src/main.ts";
 const DEVELOPMENT = process.env.BUILD === "development";
+const banner = `/**
+ * @license
+ * emnorst v${pkg.version}
+ * Copyright 2020 reiyayakko
+ * License MIT
+ */`;
 
 const DevPlugins = [];
 const ProdPlugins = [
     strip({
+        include: ["**/*.js", "**/*.ts"],
         // functions: ["console.*", "assert.*"]
+        functions: ["new Error", "Error", "TypeError"],
+        labels: ["develop"],
     }),
     terser(),
     visualizer({
         filename: `./dist/stats.${moduleName}.html`,
-        // template: "sunburst",
+        template: "sunburst",
         // template: "network",
     }),
     analyze({
@@ -36,84 +47,107 @@ const ProdPlugins = [
     }),
 ];
 
-const createStandard = ($path, prefix="") => (assign, fileName=assign) => {
-    const transform = (char, i) => (i ? "-" : "") + char.toLowerCase();
-    fileName = fileName.replace(/[A-Z]/g, transform);
-    return {
-        [`${prefix}${assign}`]: [path.resolve(`src/${$path}/${fileName}.js`), assign]
-    };
+const standard = ({ path: $path, prefix="", extend={} }, ...injects) => {
+    const result = { ...extend };
+    for(const inject of injects) {
+        const injectIsArray = Array.isArray(inject);
+        const fileName = (injectIsArray ? inject[1] : inject)
+            .replace(/[A-Z]/g, (char, i) => (i ? "-" : "")+char.toLowerCase());
+        const assign = injectIsArray ? inject[0] : inject;
+        result[prefix+assign] = [path.resolve(`src/${$path}/${fileName}.js`), assign];
+    }
+    return result;
 };
-const util = createStandard("util/standard");
-const object = createStandard("object/standard", "Object.");
-const EveryPlugins = [
-    // alias(),
+// alias, virtual, typescript
+const Plugins = [
+    json({ indent: "    ", namedExports: false }),
+    ts({
+        transpileOnly: true,
+        tsconfig: {
+            declaration: DEVELOPMENT,
+            sourceMap: DEVELOPMENT,
+            target: "ESNEXT",
+        }
+    }),
     inject({
         // import key from value;
         // import { value[1] as key } from value[0];
-        ...util("Symbol"),
-        ...object("assign"),
-        ...object("create"),
-        ...object("defineProperty"),
-        ...object("defineProperties", "defineProperty"),
-        ...object("entries"),
-        ...object("fromEntries"),
-        ...object("keys"),
-        ...object("values"),
+        ...standard({ path: "util/standard" }, "Symbol"),
+        "Array.prototype": ["src/object/standard/prototype", "ArrayPrototype"],
+        "Array.prototype.slice": ["src/object/standard/prototype", "slice"],
+        "Object.prototype": ["src/object/standard/prototype", "ObjectPrototype"],
+        ...standard({ path: "object/standard", prefix: "Object." },
+            "assign", "create", "defineProperty",
+            ["defineProperties", "defineProperty"],
+            "entries", "fromEntries",
+            "keys", "values"
+        ),
     }),
     commonjs(),
-    json({ indent: "    ", namedExports: false }),
     nodeResolve(),
     replace({
-        include: "**/env/*.js",
+        // include: "**/env/*.js",
         delimiters: ["<$", "/>"],
         values: {
-            VERSION: $package.version,
+            VERSION: pkg.version,
             ENVIRONMENT: process.env.BUILD,
         }
     }),
 ];
 
-export default [{
+const UMDBuild = {
     input: entry,
-    output: [{
-        file: `./dist/${moduleName}.umd.js`,
+    output: {
+        file: pkg.unpkg,
         format: "umd",
         name: moduleName,
+        extend: true,
         sourcemap: DEVELOPMENT,
-    }],
+        banner,
+    },
     plugins: [
-        ...EveryPlugins,
+        ...Plugins,
         buble({
             transforms: {
+                dangerousForOf: true,
+                dangerousTaggedTemplateString: true,
                 forOf: false,
                 generator: false,
             },
             objectAssign: true,
         }),
+        inject(standard({ path: "object/standard", prefix: "Object." }, "assign")),
         ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
     ],
-}, {
+}, ESBuild = {
     input: entry,
     output: [{
-        file: `./dist/${moduleName}.esm.js`,
+        file: pkg.module,
         format: "es",
         sourcemap: DEVELOPMENT,
+        banner,
     }, {
-        file: `./dist/${moduleName}.cjs.js`,
+        file: pkg.main,
         format: "cjs",
         sourcemap: DEVELOPMENT,
+        banner,
     }],
     plugins: [
-        ...EveryPlugins,
+        ...Plugins,
         ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
     ],
-}].map((config) => {
+};
+
+export default [UMDBuild, ESBuild].map((config) => {
     if(!DEVELOPMENT) {
-        config.output.forEach((out) => {
+        const _ = (out) => {
             const path = out.file.split(".");
             path.splice(-1, 0, "min");
             out.file = path.join(".");
-        });
+        };
+        if(Array.isArray(config.output))
+            config.output.forEach(_);
+        else _(config.output);
     }
     return config;
 });
