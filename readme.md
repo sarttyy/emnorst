@@ -1,7 +1,7 @@
 
 # emnorst
 
-[![Test](https://github.com/reiyayakko/emnorst/workflows/Test/badge.svg)](https://github.com/reiyayakko/emnorst/actions?query=workflow%3ATest)
+[![CI](https://github.com/reiyayakko/emnorst/workflows/CI/badge.svg)](https://github.com/reiyayakko/emnorst/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/reiyayakko/emnorst/branch/master/graph/badge.svg)](https://codecov.io/gh/reiyayakko/emnorst)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- [![document](https://reiyayakko.github.io/emnorst/badge.svg)](https://reiyayakko.github.io/emnorst) -->

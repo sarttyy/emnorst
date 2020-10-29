@@ -1,9 +1,7 @@
-/* eslint-disable */
 
-import { anonymous } from "./anonymous.js";
-import { Arguments } from "./arguments.js";
+const { anonymous, Arguments } = require("../dist/emnorst.cjs.js");
 
-describe("simple", () => {
+describe.skip("simple", () => {
     /** @test {anonymous} */
     it("anonymous", () => {
         expect(anonymous(1, true, null)).toBe(1);

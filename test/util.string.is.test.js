@@ -4,7 +4,7 @@ const {
     isChar,
     isLowerCase,
     isUpperCase,
-} = require("../../../../dist/emnorst.cjs.js");
+} = require("../dist/emnorst.cjs.js");
 
 const azAZ09 = "azAZ09";
 

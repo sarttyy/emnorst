@@ -10,7 +10,7 @@ const {
     isPrime,
     uptrend,
     downtrend,
-} = require("../../../dist/emnorst.cjs.js");
+} = require("../dist/emnorst.cjs.js");
 
 describe("is/number", () => {
     /** @test {isNumber} */

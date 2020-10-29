@@ -1,5 +1,5 @@
 
-const { xorshift, random, randomStr, probability } = require("../../../dist/emnorst.cjs.js");
+const { xorshift, random, randomStr, probability } = require("../dist/emnorst.cjs.js");
 
 /** @test {object} */
 describe.skip("util/string/hash", () => {
