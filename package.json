@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
+    "build:dev": "rollup -c rollup.config.js --environment BUILD:development",
     "build": "rollup -c rollup.config.js --environment BUILD:production",
     "test": "jest --coverage",
     "gen-typedoc": "typedoc --options typedoc.json",
