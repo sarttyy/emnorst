@@ -34,7 +34,7 @@ jobs:
 
   npm-publish:
     needs: test
-    if: github.event_name == "release"
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
