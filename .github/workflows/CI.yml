@@ -5,19 +5,18 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
+  release:
+    types: [created]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -30,3 +29,22 @@ jobs:
     - run: npm test
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
+      with:
+        directory: ./coverage/
+
+  npm-publish:
+    needs: test
+    if: github.event_name == "release"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+        registry-url: https://registry.npmjs.org/
+    - run: npm ci
+    - run: npm run build
+    - run: npm run build:dev
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.npm_token }}

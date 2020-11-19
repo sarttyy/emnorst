@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/reiyayakko/emnorst.git"
   },
-  "author": "reiyayakko",
+  "author": "reiyayakko <reiyayakko@gmail.com> (https://github.com/reiyayakko)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/reiyayakko/emnorst/issues"
