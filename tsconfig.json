@@ -3,6 +3,8 @@
         "target": "ESNEXT",
         "module": "CommonJS",
         "resolveJsonModule": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "strict": true,
+        "typeRoots": ["node_modules/@types", "src/@types"]
     }
 }
