@@ -1,8 +1,7 @@
 
-alt
-
+alt/
 manual/
-coverage
+
+.vscode/
+coverage/
 node_modules/
-.vscode
-*.ts
