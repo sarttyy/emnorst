@@ -7,24 +7,30 @@
 <!-- [![document](https://reiyayakko.github.io/emnorst/badge.svg)](https://reiyayakko.github.io/emnorst) -->
 <!-- [![_](https://img.shields.io/badge/test-hoge-informational)]() -->
 
-## Overview
-
 ## usage
 
 詳しくは[ドキュメント](https://reiyayakko.github.io/emnorst)を参照してください。
 
-パッケージの種類は以下の通りです。
-
-- commonJS (cjs)
-- ES2015 Module (es)
-- umd (umd)
-
-### example
-
-ブラウザで使用する場合は以下のようなタグを埋め込んで使用してください。
+### Browser
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/reiyayakko/emnorst@1.1.1/dist/reiyayakko.umd.min.js"></script>
+<script src="https://unpkg.com/emnorst@0.0.1/dist/emnorst.umd.js"></script>
+```
+
+### NodeJS
+
+install
+`npm i emnorst`
+
+```javascript
+// CommonJS
+const emnorst = requie("emnorst");
+
+// ES2015 Module
+import * as emnorst from "emnorst";
+
+emnorst.isNumber(1);
+// > true
 ```
 
 ## Licence
