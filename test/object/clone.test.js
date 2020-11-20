@@ -1,5 +1,5 @@
 
-const { clone } = require("../dist/emnorst.cjs.js");
+const { clone } = require("../../dist/emnorst.cjs.js");
 
 describe.skip("clone", () => {
     test("primitives", () => {

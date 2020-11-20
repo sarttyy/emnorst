@@ -1,5 +1,5 @@
 
-const { memoize, throttle, debounce } = require("../dist/emnorst.cjs.js");
+const { memoize, throttle, debounce } = require("../../dist/emnorst.cjs.js");
 
 /** @test {object} */
 describe.skip("thinning", () => {

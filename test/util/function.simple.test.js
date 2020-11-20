@@ -1,5 +1,5 @@
 
-const { anonymous, Arguments } = require("../dist/emnorst.cjs.js");
+const { anonymous, Arguments } = require("../../dist/emnorst.cjs.js");
 
 describe.skip("simple", () => {
     /** @test {anonymous} */

@@ -1,5 +1,5 @@
 
-const { Heap } = require("../dist/emnorst.cjs.js");
+const { Heap } = require("../../dist/emnorst.cjs.js");
 
 describe("Heap", () => {
     test("sort", () => {
