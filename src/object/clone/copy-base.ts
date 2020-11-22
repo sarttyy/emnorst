@@ -1,7 +1,7 @@
 
 import { isObject } from "../is/object";
 import { typeOf } from "../../util/standard/type-of";
-// import { isTypedArray } from "../is/typed-array";
+import { isTypedArray } from "../is/typed-array";
 // import { Arguments as $Arguments } from "../../util/function/simple/arguments";
 
 /**
@@ -15,17 +15,7 @@ export const copyPrototype = (object: object | null): object | null => {
     const prototype = Object.getPrototypeOf(object);
     return Object.create(prototype);
 };
-// const copyArrayBuffer = (buffer) => (
-//     new buffer.constructor(buffer.byteLength)
-// );
-// const copyTypedArray = (typedArray) => {
-//     const buffer = copyArrayBuffer(typedArray.buffer);
-//     return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
-// };
-// const copyDataView = (dataView) => {
-//     const buffer = copyArrayBuffer(dataView.buffer);
-//     return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
-// };
+
 // export const copyFunction = (Fn) => function fn(...args) {
 //     if(new.target) // OR: this instanceof fn
 //         return new Fn(...args);
@@ -44,8 +34,6 @@ export const copyBase = (value: unknown): unknown => {
 
     const Ctor = value.constructor as Constructable;
 
-    // if(isTypedArray(value))
-    //     return copyTypedArray(value);
     switch(typeOf(value)) {
     case "Object": // {}, new Object, new MyClass, etc...
         return Ctor === Object ? {} : copyPrototype(value);
@@ -63,16 +51,21 @@ export const copyBase = (value: unknown): unknown => {
     //     return Object(value.valueOf());
     // case "Arguments": // function() { return arguments }
     //     return $Arguments(...value); // MEMO: length保存しないなら中身いらない?
-    // case "ArrayBuffer":
-    //     return copyArrayBuffer(value);
-    // case "DataView":
-    //     return copyDataView(value);
     // case "Map":
     //     // if("map" in copy && !copy.map) return obj;
     //     return new Map(value);
     // case "Set":
     //     return new Set(value);
-    default:
-        return value;
+    case "ArrayBuffer":
+        return new ArrayBuffer((value as ArrayBuffer).byteLength);
+    case "DataView": {
+        assertType<DataView>(value);
+        const buffer = new ArrayBuffer(value.buffer.byteLength);
+        return new DataView(buffer, value.byteOffset, value.byteLength);
+    }
+    default: if(isTypedArray(value)) {
+        const buffer = new ArrayBuffer(value.buffer.byteLength);
+        return new Ctor(buffer, value.byteOffset, value.length);
+    } return value;
     }
 };
