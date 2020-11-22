@@ -62,7 +62,7 @@ export class Heap<T> {
      */
     static remove<U>(list: WritableArrayLike<U>, comparator?: Comparator<U>): U {
         const result = list[0];
-        const last = pop.call(list) as U;
+        const last: U = pop.call(list);
         if(result !== last) list[0] = last;
         Heap.downHeap(list, 0, void 0, comparator);
         return result;
@@ -97,7 +97,7 @@ export class Heap<T> {
      * @param list ArrayLike object to heapify
      * @param comparator 比較関数
      */
-    static heapify<U, V extends WritableArrayLike<U>>(list: V, comparator?: Comparator<U>): V {
+    static heapify<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number]>): U {
         for(let i = 0;i < list.length;)
             Heap.upHeap(list, i++, comparator);
         return list;
@@ -107,7 +107,7 @@ export class Heap<T> {
      * @param list ArrayLike object for heap sorting.
      * @param comparator 比較関数
      */
-    static sort<U, V extends WritableArrayLike<U>>(list: V, comparator?: Comparator<U>): V {
+    static sort<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number]>): U {
         Heap.heapify(list, comparator);
 
         let i = list.length;
