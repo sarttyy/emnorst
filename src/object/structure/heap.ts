@@ -22,7 +22,7 @@ export class Heap<T> {
     ) {
         let i = 0;
         if(items instanceof Heap) while(i < items.heap.length)
-            this.heap.push(items[i++]);
+            this.heap.push(items.heap[i++]);
         else if(items) while(i < items.length)
             this.add(items[i++]);
     }
