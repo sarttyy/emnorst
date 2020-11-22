@@ -9,7 +9,7 @@ import { typeOf } from "../../util/standard/type-of";
  *
  * @param object
  */
-export const copyPrototype = (object: object): object => {
+export const copyPrototype = (object: object | null): object | null => {
     if(object == null) return null;
 
     const prototype = Object.getPrototypeOf(object);
@@ -32,29 +32,32 @@ export const copyPrototype = (object: object): object => {
 //     return Fn.apply(this, args);
 // };
 
+interface Constructable { new (...args: any): unknown }
+
 /**
  *
- * @param value 
+ * @param value
  */
-export const copyBase = (value: any): any => {
+export const copyBase = (value: unknown): unknown => {
     // primitive value, function, etc...
     if(!isObject(value)) return value;
+
+    const Ctor = value.constructor as Constructable;
 
     // if(isTypedArray(value))
     //     return copyTypedArray(value);
     switch(typeOf(value)) {
     case "Object": // {}, new Object, new MyClass, etc...
-        return value.constructor === Object ? {} : copyPrototype(value);
+        return Ctor === Object ? {} : copyPrototype(value);
     case "Array": // [], new Array
         return []; // MEMO: 長さを継承しない場面(filter等の実装)での使用、または最適化できなくなる可能性からリテラル[]を使用。
-        // return new Array(value.length);
     // case "Number": // new Number
     // case "String": // new String
     // case "Boolean": // new Boolean
     // case "RegExp":
     // case "Date":
     // case "Error":
-    //     return new value.constructor(value);
+    //     return new Ctor(value);
     // case "BigInt": // Object(BigInt())
     // case "Symbol": // Object(Symbol())
     //     return Object(value.valueOf());
