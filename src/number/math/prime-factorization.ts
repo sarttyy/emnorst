@@ -1,23 +1,25 @@
 
-import { isInteger } from "../../util/is/number/integer.js";
-import { isInfinity } from "../../util/is/number/infinity.js";
+import { isInteger } from "../is/integer";
+import { isInfinity } from "../is/infinity";
 
 // 素因数分解。
 
+interface Factors { [n: number]: number }
+
 /**
  *
- * @param {number} number Number to be factored.
- * @return {{ [x: number]: number }} Array of prime factor of `number`
+ * @param number Number to be factored.
+ * @return Array of prime factor of `number`
  * @example
  * const number = (2**4)*(3**2)*(5**3)*(7**1);
  * primeFactorization(number);
- * // => { 2: 3, 3: 2, 5: 3, 7: 1 }
+ * // => { 2: 4, 3: 2, 5: 3, 7: 1 }
  */
-export const primeFactorization = (number) => {
+export const primeFactorization = (number: number): Factors => {
     if(!isInteger(number) || isInfinity(number))
         return {};
-    const result = {};
-    const divide = (i) => {
+    const result: Factors = {};
+    const divide = (i: number) => {
         let count = 0;
         while(number % i === 0) {
             count++;
