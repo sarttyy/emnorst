@@ -35,7 +35,8 @@ export const primeFactorization = (number: number): Factors => {
     divide(2);
 
     const sqrt = Math.sqrt(number);
-    for(let i = 3;i <= sqrt;i += 2)
+    // eslint-disable-next-line no-unmodified-loop-condition
+    for(let i = 3;i <= sqrt && number !== 1;i += 2)
         divide(i);
 
     if(number > 1) factors[number] = 1;
