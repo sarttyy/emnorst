@@ -18,19 +18,25 @@ interface Factors { [n: number]: number }
 export const primeFactorization = (number: number): Factors => {
     if(!isInteger(number) || isInfinity(number))
         return {};
-    const result: Factors = {};
-    const divide = (i: number) => {
+
+    const factors: Factors = {};
+
+    const divide = (n: number) => {
         let count = 0;
-        while(number % i === 0) {
+        while(number % n === 0) {
             count++;
-            number /= i;
+            number /= n;
         }
-        if(count) result[i] = count;
+        if(count > 0) factors[n] = count;
     };
+
     divide(2);
+
     const sqrt = Math.sqrt(number);
     for(let i = 3;i <= sqrt;i += 2)
         divide(i);
-    if(number > 1) result[number] = 1;
-    return result;
+
+    if(number > 1) factors[number] = 1;
+
+    return factors;
 };
