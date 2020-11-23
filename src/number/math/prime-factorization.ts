@@ -1,6 +1,7 @@
 
 import { isInteger } from "../is/integer";
 import { isInfinity } from "../is/infinity";
+import { isNegative } from "../is/nega-posi";
 
 // 素因数分解。
 
@@ -16,8 +17,11 @@ interface Factors { [n: number]: number }
  * // => { 2: 4, 3: 2, 5: 3, 7: 1 }
  */
 export const primeFactorization = (number: number): Factors => {
-    if(!isInteger(number) || isInfinity(number))
-        return {};
+    if(!isInteger(number)
+    || isInfinity(number)
+    || +number === 0
+    || isNegative(number)
+    ) return {};
 
     const factors: Factors = {};
 
