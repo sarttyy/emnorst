@@ -1,5 +1,5 @@
 
-import primitiveTypeTable from "./primitive-type-table.json";
+import primitiveTable from "./primitive-type-table.json";
 
 const { toString } = Object.prototype;
 
@@ -12,12 +12,11 @@ let prev: unknown = NaN, result: string;
  * @return String of type
  */
 export const typeOf = (value: unknown): string => {
-    if(prev === value)
-        return result;
+    if(prev === value) return result;
 
     const type = typeof value;
-    result = (type in primitiveTypeTable
-        ? primitiveTypeTable[type]
+    result = (type in primitiveTable
+        ? primitiveTable[type as keyof typeof primitiveTable]
         : toString.call(value).slice(8, -1)
     );
     prev = value;
@@ -39,7 +38,7 @@ export const getTypeOf = (value: unknown): string => {
     if(value === null) return "null";
 
     const type = typeof value;
-    return (type in primitiveTypeTable
+    return (type in primitiveTable
         ? type : typeOf(value)
     );
 };
