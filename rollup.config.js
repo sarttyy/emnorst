@@ -69,7 +69,10 @@ const Plugins = [
             target: "ESNEXT",
         }
     }),
-    strip({ functions: ["assertType"] }),
+    strip({
+        include: ["**/*.(js|ts)"],
+        functions: ["assert.*"]
+    }),
     inject({
         // import key from value;
         // import { value[1] as key } from value[0];

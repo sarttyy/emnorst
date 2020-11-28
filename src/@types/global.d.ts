@@ -1,14 +1,8 @@
 
-declare function assertType<T>(v: unknown): asserts v is T;
-
-// interface IAssertType {
-//     <T>(v: unknown): asserts v is T;
-//     (v: unknown, t: "string"): asserts v is string;
-//     (v: unknown, t: "number"): asserts v is number;
-//     (v: unknown, t: "boolean"): asserts v is boolean;
-// }
-
-// declare const assertType: IAssertType;
+declare namespace assert {
+    export function type<T>(v: unknown): asserts v is T;
+    export function interface<T extends new(...args: any) => unknown>(v: unknown, t: T): asserts v is InstanceType<T>;
+}
 
 type Callable = (...args: any) => any;
 
