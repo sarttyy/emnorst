@@ -77,12 +77,7 @@ const Plugins = [
         "Array.prototype": ["src/object/standard/prototype", "ArrayPrototype"],
         "Array.prototype.slice": ["src/object/standard/prototype", "slice"],
         "Object.prototype": ["src/object/standard/prototype", "ObjectPrototype"],
-        ...standard({ path: "object/standard", prefix: "Object." },
-            "assign", "create", "defineProperty",
-            ["defineProperties", "defineProperty"],
-            "entries", "fromEntries",
-            "keys", "values"
-        ),
+        "Object.keys": ["src/object/standard/keys", "keys"],
     }),
     commonjs(),
     nodeResolve(),
@@ -117,7 +112,9 @@ const UMDBuild = {
             },
             objectAssign: true,
         }),
-        inject(standard({ path: "object/standard", prefix: "Object." }, "assign")),
+        // inject({
+        //     "Object.assign": ["./src/", "assign"]
+        // }),
         ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
     ],
 }, ESBuild = {
