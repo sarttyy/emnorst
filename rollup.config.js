@@ -73,7 +73,6 @@ const Plugins = [
     inject({
         // import key from value;
         // import { value[1] as key } from value[0];
-        ...standard({ path: "util/standard" }, "Symbol"),
         "Array.prototype": ["src/object/standard/prototype", "ArrayPrototype"],
         "Array.prototype.slice": ["src/object/standard/prototype", "slice"],
         "Object.prototype": ["src/object/standard/prototype", "ObjectPrototype"],
