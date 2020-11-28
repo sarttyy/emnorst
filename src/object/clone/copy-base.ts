@@ -59,7 +59,7 @@ export const copyBase = (value: unknown): unknown => {
     case "ArrayBuffer":
         return new ArrayBuffer((value as ArrayBuffer).byteLength);
     case "DataView": {
-        assertType<DataView>(value);
+        assert.type<DataView>(value);
         const buffer = new ArrayBuffer(value.buffer.byteLength);
         return new DataView(buffer, value.byteOffset, value.byteLength);
     }
