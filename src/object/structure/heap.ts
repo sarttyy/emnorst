@@ -67,8 +67,13 @@ export class Heap<T> {
         Heap.downHeap(list, 0, void 0, comparator);
         return result;
     }
-    static upHeap<U>(list: WritableArrayLike<U>, i=list.length-1, comparator: Comparator<U>=lessThan): void {
-        const temp = list[i], refi = i;
+    static upHeap<U>(
+        list: WritableArrayLike<U>,
+        start = list.length - 1,
+        comparator: Comparator<U> = lessThan,
+    ): void {
+        const temp = list[start];
+        let i = start;
         while(i > 0) {
             const parentI = (i - 1) / 2 | 0;
             const parent = list[parentI];
@@ -76,11 +81,17 @@ export class Heap<T> {
             list[i] = parent;
             i = parentI;
         }
-        if(refi !== i) list[i] = temp;
+        if(start !== i) list[i] = temp;
     }
-    static downHeap<U>(list: WritableArrayLike<U>, i=0, limit=list.length-1, comparator: Comparator<U>=lessThan): void {
-        const temp = list[i], refi = i;
-        while(true) {
+    static downHeap<U>(
+        list: WritableArrayLike<U>,
+        start = 0,
+        limit = list.length - 1,
+        comparator: Comparator<U> = lessThan,
+    ): void {
+        const temp = list[start];
+        let i = start;
+        while(true as boolean) {
             let childI = 2 * i + 1;
             if(childI > limit) break;
             if(childI < limit && comparator(list[childI+1], list[childI]))
@@ -90,7 +101,7 @@ export class Heap<T> {
             list[i] = child;
             i = childI;
         }
-        if(refi !== i) list[i] = temp;
+        if(start !== i) list[i] = temp;
     }
     /**
      * Destructively heapify ArrayLike object.
