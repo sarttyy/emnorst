@@ -27,7 +27,7 @@ export const typeOf = (value: unknown): string => {
 
 /**
  * if null, returns "null".
- * if primitive, use typeof to get the type.
+ * if primitive, use typeof operator to get the type.
  * else, same as typeOf.
  *
  * @see {@link typeOf}
