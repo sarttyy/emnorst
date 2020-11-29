@@ -65,7 +65,6 @@ const Plugins = [
         transpileOnly: true,
         tsconfig: {
             declaration: DEVELOPMENT,
-            sourceMap: DEVELOPMENT,
             target: "ESNEXT",
         }
     }),
