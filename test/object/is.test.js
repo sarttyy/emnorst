@@ -16,77 +16,77 @@ const {
 describe("is/object", () => {
     /** @test {isEmpty} */
     test("isEmpty", () => {
-        expect(isEmpty("")).toBe(true);
-        expect(isEmpty("c")).toBe(false);
-        expect(isEmpty([])).toBe(true);
-        expect(isEmpty(["not empty"])).toBe(false);
-        expect(isEmpty({})).toBe(true);
-        expect(isEmpty({ prop: "not empty" })).toBe(false);
-        expect(isEmpty(true)).toBe(false);
-        expect(isEmpty(0)).toBe(false);
+        expect(isEmpty("")).toBeTruthy();
+        expect(isEmpty("c")).toBeFalsy();
+        expect(isEmpty([])).toBeTruthy();
+        expect(isEmpty(["not empty"])).toBeFalsy();
+        expect(isEmpty({})).toBeTruthy();
+        expect(isEmpty({ prop: "not empty" })).toBeFalsy();
+        expect(isEmpty(true)).toBeFalsy();
+        expect(isEmpty(0)).toBeFalsy();
     });
     test.skip("isMatch", () => {
-        expect(isMatch({}, {})).toBe(true);
-        expect(isMatch({}, {})).toBe(false);
+        expect(isMatch({}, {})).toBeTruthy();
+        expect(isMatch({}, {})).toBeFalsy();
     });
     test.skip("isEquals", () => {
-        expect(isEquals({}, {})).toBe(true);
-        expect(isEquals({}, {})).toBe(false);
+        expect(isEquals({}, {})).toBeTruthy();
+        expect(isEquals({}, {})).toBeFalsy();
     });
     test("isSorted", () => {
         const comparator = (l, r) => l > r;
-        expect(isSorted([1,2,3], comparator)).toBe(true);
-        expect(isSorted([1,3,2], comparator)).toBe(false);
+        expect(isSorted([1,2,3], comparator)).toBeTruthy();
+        expect(isSorted([1,3,2], comparator)).toBeFalsy();
     });
     test("isIterable", () => {
-        expect(isIterable("")).toBe(true);
-        expect(isIterable([])).toBe(true);
-        expect(isIterable(new Map)).toBe(true);
+        expect(isIterable("")).toBeTruthy();
+        expect(isIterable([])).toBeTruthy();
+        expect(isIterable(new Map)).toBeTruthy();
         expect(isIterable({
             [Symbol.iterator]() {}
-        })).toBe(true);
-        expect(isIterable({})).toBe(false);
-        expect(isIterable(0)).toBe(false);
+        })).toBeTruthy();
+        expect(isIterable({})).toBeFalsy();
+        expect(isIterable(0)).toBeFalsy();
     });
     /** @test {isArray} */
     test("isArray", () => {
-        expect(isArray([])).toBe(true);
-        expect(isArray("isArrayLike")).toBe(false);
-        expect(isArray({ length: 0 })).toBe(false);
+        expect(isArray([])).toBeTruthy();
+        expect(isArray("isArrayLike")).toBeFalsy();
+        expect(isArray({ length: 0 })).toBeFalsy();
     });
     /** @test {isTypedArray} */
     test("isTypedArray", () => {
-        expect(isTypedArray([])).toBe(false);
+        expect(isTypedArray([])).toBeFalsy();
     });
     /** @test {isArrayLike} */
     test("isArrayLike", () => {
-        expect(isArrayLike([])).toBe(true);
-        expect(isArrayLike("isArrayLike")).toBe(true);
-        expect(isArrayLike({ length: 0 })).toBe(true);
-        expect(isArrayLike(() => {})).toBe(false);
-        expect(isArrayLike({})).toBe(false);
-        expect(isArrayLike(null)).toBe(false);
+        expect(isArrayLike([])).toBeTruthy();
+        expect(isArrayLike("isArrayLike")).toBeTruthy();
+        expect(isArrayLike({ length: 0 })).toBeTruthy();
+        expect(isArrayLike(() => {})).toBeFalsy();
+        expect(isArrayLike({})).toBeFalsy();
+        expect(isArrayLike(null)).toBeFalsy();
     });
     /** @test {isObject} */
     test("isObject", () => {
-        expect(isObject({})).toBe(true);
-        expect(isObject(Object(""))).toBe(true);
-        expect(isObject(new Object)).toBe(true);
-        expect(isObject(new Array)).toBe(true);
-        expect(isObject(new Boolean)).toBe(true);
-        expect(isObject(null)).toBe(false);
+        expect(isObject({})).toBeTruthy();
+        expect(isObject(Object(""))).toBeTruthy();
+        expect(isObject(new Object)).toBeTruthy();
+        expect(isObject(new Array)).toBeTruthy();
+        expect(isObject(new Boolean)).toBeTruthy();
+        expect(isObject(null)).toBeFalsy();
     });
     /** @test {isObjectLike} */
     test("isObjectLike", () => {
-        expect(isObjectLike({})).toBe(true);
-        expect(isObjectLike(() => {})).toBe(true);
-        expect(isObjectLike(null)).toBe(false);
+        expect(isObjectLike({})).toBeTruthy();
+        expect(isObjectLike(() => {})).toBeTruthy();
+        expect(isObjectLike(null)).toBeFalsy();
     });
     /** @test {isPureObject} */
     test("isPureObject", () => {
-        expect(isPureObject({})).toBe(true);
-        expect(isPureObject([])).toBe(false);
-        expect(isPureObject(new class {})).toBe(false);
-        expect(isPureObject(new Boolean)).toBe(false);
+        expect(isPureObject({})).toBeTruthy();
+        expect(isPureObject([])).toBeFalsy();
+        expect(isPureObject(new class {})).toBeFalsy();
+        expect(isPureObject(new Boolean)).toBeFalsy();
     });
 });

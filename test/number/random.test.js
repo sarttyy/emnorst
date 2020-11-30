@@ -40,9 +40,9 @@ describe.skip("util/string/hash", () => {
     /** @test {probability} */
     test("probability", () => {
         xorshift(0, Infinity, 0xf0f0f0f0);
-        expect(probability()).toBe(true);
-        expect(probability()).toBe(true);
-        expect(probability()).toBe(true);
-        expect(probability()).toBe(false);
+        expect(probability()).toBeTruthy();
+        expect(probability()).toBeTruthy();
+        expect(probability()).toBeTruthy();
+        expect(probability()).toBeFalsy();
     });
 });
