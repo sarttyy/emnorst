@@ -121,10 +121,10 @@ export class Heap<T> {
     static sort<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number]>): U {
         Heap.heapify(list, comparator);
 
-        let i = list.length;
-        while(--i > 0) {
+        let i = list.length - 1;
+        while(i > 0) {
             swap(list, 0, i);
-            Heap.downHeap(list, 0, i - 1, comparator);
+            Heap.downHeap(list, 0, --i, comparator);
         }
         return list;
     }
