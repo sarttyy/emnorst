@@ -1,4 +1,5 @@
 
+import { isFunction } from "../is/function";
 import { isPrimitive } from "../is/primitive";
 
 type Hint = "string" | "number" | "default";
@@ -17,7 +18,7 @@ export const toPrimitive = (input: unknown, preferredType?: Hint): Primitive => 
     const hint: Hint = preferredType !== "string" && preferredType !== "number"
         ? "default" : preferredType;
 
-    if(typeof input[Symbol.toPrimitive] === "function") {
+    if(isFunction(input[Symbol.toPrimitive])) {
         const result = input[Symbol.toPrimitive](hint);
         if(isPrimitive(result)) return result;
     } else { // OrdinaryToPrimitive
@@ -25,7 +26,7 @@ export const toPrimitive = (input: unknown, preferredType?: Hint): Primitive => 
 
         for(let i = 0;i < 2;i++) {
             const fn = (hint === "string" ? 0 : 1) === i ? input.toString : input.valueOf;
-            if(typeof fn === "function") {
+            if(isFunction(fn)) {
                 const result = fn.call(input);
                 if(isPrimitive(result)) return result;
             }

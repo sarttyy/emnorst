@@ -1,4 +1,5 @@
 
+import { isFunction } from "../../util/is/function";
 import { MAX_BIT_NUMBER } from "../../util/string/constant";
 import { isObject } from "../is/object";
 import { getKeys } from "../standard/keys";
@@ -13,9 +14,9 @@ import { deepExplore, InternalState, Options, Report } from "./deep-explore";
  */
 export const explore = (target: any, options: Options={}): Report => {
     const state: InternalState = {
-        keys: typeof options.keys === "function"
+        keys: isFunction(options.keys)
             ? options.keys : getKeys,
-        shouldExplore: typeof options.shouldExplore === "function"
+        shouldExplore: isFunction(options.shouldExplore)
             ? options.shouldExplore : isObject,
         depthLimit: options.depthLimit < MAX_BIT_NUMBER
             ? options.depthLimit | 0 : Infinity,
