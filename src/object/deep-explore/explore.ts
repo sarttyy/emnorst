@@ -12,14 +12,14 @@ import { deepExplore, InternalState, Options, Report } from "./deep-explore";
  * @example
  * const report = deepExplore(target);
  */
-export const explore = (target: any, options: Options={}): Report => {
+export const explore = (target: unknown, options: Options={}): Report => {
     const state: InternalState = {
         keys: isFunction(options.keys)
             ? options.keys : getKeys,
         shouldExplore: isFunction(options.shouldExplore)
             ? options.shouldExplore : isObject,
-        depthLimit: options.depthLimit < MAX_BIT_NUMBER
-            ? options.depthLimit | 0 : Infinity,
+        depthLimit: (options.depthLimit as number) < MAX_BIT_NUMBER
+            ? (options.depthLimit as number) | 0 : Infinity,
         existings: options.useMap ? new Map : new Set,
         path: [],
         route: [],
