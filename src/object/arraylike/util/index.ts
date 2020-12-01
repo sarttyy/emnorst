@@ -5,3 +5,4 @@ export * from "./split";
 // export * from "./nth.js";
 export * from "./reverse";
 export * from "./shuffle";
+export * from "./uniq-keys";
