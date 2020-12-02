@@ -12,15 +12,15 @@ let prev: unknown = NaN, result: string;
  * @return String of type
  */
 export const typeOf = (value: unknown): string => {
+    const type = typeof value;
+    if(type in primitiveTable) {
+        return primitiveTable[type as keyof typeof primitiveTable];
+    }
+
     if(prev === value) return result;
 
-    const type = typeof value;
-    result = (type in primitiveTable
-        ? primitiveTable[type as keyof typeof primitiveTable]
-        : toString.call(value).slice(8, -1)
-    );
     prev = value;
-
+    result = toString.call(value).slice(8, -1);
     return result;
 };
 
