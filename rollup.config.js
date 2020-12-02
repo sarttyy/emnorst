@@ -6,17 +6,14 @@ import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import strip from "@rollup/plugin-strip";
-// import typescript from "@rollup/plugin-typescript";
 import ts from "@wessberg/rollup-plugin-ts";
 import analyze from "rollup-plugin-analyzer";
 import { terser } from "rollup-plugin-terser";
 import visualizer from "rollup-plugin-visualizer";
 
 import fs from "fs";
-import path from "path";
 import pkg from "./package.json";
 
-const moduleName = "emnorst";
 const entry = "./src/main.ts";
 const DEVELOPMENT = process.env.BUILD === "development";
 const banner = `/**
@@ -28,37 +25,20 @@ const banner = `/**
 
 const DevPlugins = [];
 const ProdPlugins = [
-    strip({
-        include: ["**/*.js", "**/*.ts"],
-        // functions: ["console.*", "assert.*"]
-        functions: ["new Error", "Error", "TypeError"],
-        labels: ["develop"],
-    }),
     terser(),
     visualizer({
-        filename: `./dist/stats.${moduleName}.html`,
+        filename: `./dist/stats.${pkg.name}.html`,
         template: "sunburst",
         // template: "network",
     }),
     analyze({
         writeTo(analysisString) {
-            fs.writeFileSync(`./dist/analysis.${moduleName}.txt`, analysisString);
+            fs.writeFileSync(`./dist/analysis.${pkg.name}.txt`, analysisString);
         }
     }),
 ];
 
-const standard = ({ path: $path, prefix="", extend={} }, ...injects) => {
-    const result = { ...extend };
-    for(const inject of injects) {
-        const injectIsArray = Array.isArray(inject);
-        const fileName = (injectIsArray ? inject[1] : inject)
-            .replace(/[A-Z]/g, (char, i) => (i ? "-" : "")+char.toLowerCase());
-        const assign = injectIsArray ? inject[0] : inject;
-        result[prefix+assign] = [path.resolve(`src/${$path}/${fileName}.js`), assign];
-    }
-    return result;
-};
-// alias, virtual, typescript
+// alias, virtual
 const Plugins = [
     json({ indent: "    ", namedExports: false }),
     ts({
@@ -97,7 +77,7 @@ const UMDBuild = {
     output: {
         file: pkg.unpkg,
         format: "umd",
-        name: moduleName,
+        name: pkg.name,
         extend: true,
         sourcemap: DEVELOPMENT,
         banner,
