@@ -24,7 +24,6 @@ export const typeOf = (value: unknown): string => {
     return result;
 };
 
-
 /**
  * if null, returns "null".
  * if primitive, use typeof operator to get the type.
