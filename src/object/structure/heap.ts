@@ -17,7 +17,7 @@ export class Heap<T> {
     [Symbol.toStringTag]: "Heap";
     private readonly heap: T[] = [];
     constructor(
-        items?: ArrayLike<T> | Heap<T>,
+        items?: ArrayLike<T> | Heap<T> | null,
         private readonly comparator: Comparator<T>=lessThan,
     ) {
         let i = 0;
