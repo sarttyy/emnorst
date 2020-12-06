@@ -1,10 +1,9 @@
 
 /* eslint-disable no-self-compare */
 
-// SameValueZeroアルゴリズムを使用して、値がすべて等しいことを検証します。
-
 /**
  * Validate that the values are all equal using the SameValueZero algorithm.
+ *
  * @param first
  * @param values
  * @return
