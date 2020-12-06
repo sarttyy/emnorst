@@ -1,4 +1,6 @@
 
+/* eslint-disable no-self-compare */
+
 // SameValueZeroアルゴリズムを使用して、値がすべて等しいことを検証します。
 
 /**
@@ -7,7 +9,7 @@
  * @param values
  * @return
  */
-export const equals = (first: any, ...values: any): boolean => {
+export const equals = (first: unknown, ...values: unknown[]): boolean => {
     let i = 0;
     const size = values.length;
     if(first === first)
