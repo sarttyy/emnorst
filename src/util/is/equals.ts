@@ -12,7 +12,7 @@ export const equals = (first: unknown, ...values: unknown[]): boolean => {
     let i = 0;
     const size = values.length;
     if(first === first)
-        while(first === values[i] && i < size) ++i;
-    else while(values[i] !== values[i] && i < size) ++i;
+        while(first === values[i] && ++i < size);
+    else while(values[i] !== values[i] && ++i < size);
     return i === size;
 };
