@@ -7,10 +7,10 @@ const { hasOwnProperty } = Object.prototype;
  *
  * @param obj
  * @param path
- * @param flags -
+ * @param flags bit mask options
  * - 1: Don't search for prototype chain.
- * - 2:
- * - 4:
+ * - 2: nothing yet for now
+ * - 4: same as above
  */
 export const get = (obj: object, path: PropertyKey[], flags=0): any => {
     const depthLimit = path.length;
