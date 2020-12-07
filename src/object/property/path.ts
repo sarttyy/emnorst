@@ -17,7 +17,8 @@ export const get = (obj: object, path: PropertyKey[], flags=0): any => {
     let depth = 0;
     while(obj != null && depth < depthLimit) {
         const key = path[depth++];
-        if(flags & 1 && !hasOwnProperty.call(obj, key)) return void 0;
+        const hasProp = flags & 1 ? hasOwnProperty.call(obj, key) : key in obj;
+        if(!hasProp) return void 0;
         obj = obj[key];
     }
     return obj;
