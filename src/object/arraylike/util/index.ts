@@ -6,3 +6,4 @@ export * from "./split";
 export * from "./reverse";
 export * from "./shuffle";
 export * from "./uniq-keys";
+export * from "./times";
