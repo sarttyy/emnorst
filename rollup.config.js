@@ -45,7 +45,7 @@ const Plugins = [
         transpileOnly: true,
         tsconfig: {
             declaration: DEVELOPMENT,
-            target: "ESNEXT",
+            target: "ES2019",
         }
     }),
     strip({
