@@ -1,7 +1,7 @@
 
 // @ts-check
 
-import { isString } from "../../is/string/string";
+import { isString } from "../../string/is/string";
 import { isArray } from "../../../object/is/array";
 
 const foldLeft = (hashedData, hexFold, acc="") => {

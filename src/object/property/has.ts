@@ -13,7 +13,7 @@ export const HAS = (obj: object, path: Path): boolean => {
     if(!isArray(path)) return has(obj, path);
     const last = path.pop();
     obj = get(obj, path, 1);
-    return obj != null && has(obj, last);
+    return obj != null && has(obj, last!);
 };
 
 export const IN = (obj: object, path: Path): boolean => {
@@ -21,5 +21,5 @@ export const IN = (obj: object, path: Path): boolean => {
     if(!isArray(path)) return path in obj;
     const last = path.pop();
     obj = get(obj, path, 0);
-    return obj != null && last in obj;
+    return obj != null && last! in obj;
 };

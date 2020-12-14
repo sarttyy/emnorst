@@ -7,6 +7,6 @@ export const isEmpty = (value: unknown): boolean => {
     if(isArrayLike(value))
         return value.length === 0;
     if(typeOf(value) === "Object")
-        return getKeys(<object>value).length === 0;
+        return getKeys(value as object).length === 0;
     return false;
 };
