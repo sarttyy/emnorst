@@ -1,30 +1,37 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "plugins": [
-        "jsdoc"
-    ],
+    "plugins": ["@typescript-eslint"],
     "extends": [
         "eslint:recommended",
-        "plugin:jsdoc/recommended"
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 2018,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
-    "settings": {
-        "jsdoc": {
-            "tagNamePreference": {
-                "returns": "return"
-            }
-        }
+    "env": {
+        // "node": true,
+        // "browser": true,
+        "es6": true
+        // "jest/globals": true
+    },
+    "globals": {
+        "assert": false,
+        "Primitive": false
     },
     "rules": {
         // JSDoc
-        "jsdoc/check-syntax": 1,
-        "jsdoc/check-examples": 1,
+        // "jsdoc/check-syntax": 1,
+        // "jsdoc/check-examples": 1,
+        // "jsdoc/no-undefined-types": [1, {
+        //     "definedTypes": ["ArrayLike"]
+        // }],
+        // "jsdoc/require-jsdoc": ["error", { "publicOnly": true }],
+
+        // typescript
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
 
         // Possible Errors
         "for-direction"               : "error",
@@ -80,7 +87,7 @@
         "no-caller"                    : 2,
         "no-case-declarations"         : "warn",
         "no-div-regex"                 : "error",
-        "no-else-return"               : ["error", {"allowElseIf": false }],
+        "no-else-return"               : [0, {"allowElseIf": false }],
         "no-empty-function"            : ["warn"],
         "no-empty-pattern"             : "error",
         // "no-eq-null"                   : "error",
@@ -132,7 +139,7 @@
         "yoda"                         : [2, "never", {"exceptRange": true }],
 
         // Strict Mode
-        "strict" : ["off"], // 保留
+        // "strict" : ["off"], // 保留
 
         // Variables
         "no-catch-shadow"            : "error",
@@ -145,11 +152,11 @@
         "no-undef-init"              : "error",
         "no-undefined"               : "error",
         "no-unused-vars"             : ["off"],
-        "no-use-before-define"       : ["error"],
+        // "no-use-before-define"       : ["error"],
 
         // Node.js and CommonJS
-        "callback-return"       : ["error"],
-        "global-require"        : "error",
+        // "callback-return"       : ["error"],
+        // "global-require"        : "error",
         "handle-callback-err"   : ["warn"],
         "no-buffer-constructor" : "warn",
         "no-mixed-requires"     : ["warn"],
@@ -196,13 +203,13 @@
         "max-statements"                   : ["warn", {"max": 40}, {"ignoreTopLevelFunctions": true}],
         "max-statements-per-line"          : ["warn", {"max": 8}],
         "new-cap"                          : ["error"],
-        "new-parens"                       : ["error"],
+        // "new-parens"                       : ["error"],
         "no-array-constructor"             : ["error"],
         "no-continue"                      : "off",
         "no-inline-comments"               : "off",
         "no-lonely-if"                     : "error",
         "no-mixed-spaces-and-tabs"         : ["error"],
-        "no-multiple-empty-lines"          : ["error"],
+        "no-multiple-empty-lines"          : ["error", { "max": 1, "maxEOF": 0 }],
         "no-new-object"                    : "error",
         "no-plusplus"                      : ["off"],
         "no-restricted-syntax"             : ["off"],
@@ -246,7 +253,7 @@
 
         // ECMAScript 6
         "arrow-body-style"        : ["error", "as-needed"],
-        "arrow-parens"            : ["error"],
+        "arrow-parens"            : ["error", "as-needed"],
         "constructor-super"       : "error",
         "generator-star-spacing"  : ["error", {
             "before" : false,
@@ -255,7 +262,7 @@
         "no-class-assign"         : "error",
         "no-confusing-arrow"      : ["off"], // 簡単な三項演算子は使いたいかもしれないので、保留
         "no-const-assign"         : "error",
-        "no-dupe-class-members"   : "error",
+        // "no-dupe-class-members"   : "error",
         "no-duplicate-imports"    : ["error"],
         "no-new-symbol"           : "error",
         "no-restricted-imports"   : ["warn"],
@@ -271,7 +278,7 @@
         "prefer-template"         : "warn",
         "require-yield"           : "error",
         "rest-spread-spacing"     : ["error", "never"],
-        "sort-imports" : ["off"],
+        // "sort-imports" : ["warn"],
         "symbol-description" : "error",
         "template-curly-spacing" : ["error", "never"],
         "yield-star-spacing" : ["error", {
