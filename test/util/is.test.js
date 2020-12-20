@@ -11,7 +11,7 @@ describe("util/is", () => {
     test("equals", () => {
         expect(equals(NaN, NaN)).toBeTruthy();
         expect(equals(0, -0)).toBeTruthy();
-        expect(equals(0, 0, 1)).toBeFalsy();
+        expect(equals(0, 0, void 0)).toBeFalsy();
     });
     test("isBoolean", () => {
         expect(isBoolean(true)).toBeTruthy();
