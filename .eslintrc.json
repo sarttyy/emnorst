@@ -17,6 +17,8 @@
     },
     "globals": {
         "assert": false,
+        "Callable": false,
+        "TypedArray": false,
         "Primitive": false
     },
     "rules": {
@@ -32,6 +34,30 @@
         "@typescript-eslint/ban-types": 0,
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/naming-convention": ["warn",
+            {
+                "selector": "default",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow",
+                "trailingUnderscore": "allow"
+            },
+            {
+                "selector": "variable",
+                "format": ["camelCase", "UPPER_CASE"],
+                "leadingUnderscore": "allow",
+                "trailingUnderscore": "allow"
+            },
+            {
+                "selector": "typeLike",
+                "format": ["PascalCase"]
+            },
+            {
+                "format": ["camelCase"],
+                "selector": "property",
+                "modifiers": ["private"],
+                "leadingUnderscore": "require"
+            }
+        ],
 
         // Possible Errors
         "for-direction"               : "error",
@@ -116,7 +142,6 @@
         "no-proto"                     : "error",
         "no-redeclare"                 : 2,
         "no-restricted-properties"     : "off",
-        "no-return-assign"             : "error",
         "no-return-await"              : "warn",
         "no-script-url"                : "error",
         "no-self-assign"               : 2,
@@ -189,9 +214,9 @@
         "id-length"                   : ["off"],
         "id-match"                    : ["off"],
         "implicit-arrow-linebreak"    : ["error", "beside"],
-        "indent"                      : [2, 4, {
-            "flatTernaryExpressions": true
-        }],
+        // "indent"                      : [2, 4, {
+        //     "flatTernaryExpressions": true
+        // }],
         "jsx-quotes"                  : ["error"],
         "line-comment-position"            : ["off"],
         "lines-around-comment"             : ["off"],
