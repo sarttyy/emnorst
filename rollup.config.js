@@ -25,7 +25,11 @@ const banner = `/**
 
 const DevPlugins = [];
 const ProdPlugins = [
-    terser(),
+    terser({
+        mangle: {
+            properties: { regex: /^_/ }
+        }
+    }),
     visualizer({
         filename: `./dist/stats.${pkg.name}.html`,
         template: "sunburst",
