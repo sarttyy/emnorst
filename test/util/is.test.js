@@ -38,7 +38,7 @@ describe("util/is", () => {
         expect(isPrimitive({})).toBeFalsy();
     });
     /** @test {isFunction} */
-    test.skip("isFunction", () => {
+    test("isFunction", () => {
         expect(isFunction(() => {})).toBeTruthy();
         expect(isFunction(function*() {})).toBeTruthy();
         expect(isFunction("1")).toBeFalsy();
