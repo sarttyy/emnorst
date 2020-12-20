@@ -1,14 +1,14 @@
 
 import { isFunction } from "../../util/is/function";
-import { MAX_BIT_NUMBER } from "../../util/string/constant";
+import { MAX_BIT_NUMBER } from "../../number/util/constant";
 import { isObject } from "../is/object";
 import { getKeys } from "../standard/keys";
 import { deepExplore, InternalState, Options, Report } from "./deep-explore";
 
 /**
- * 
+ *
  * @param target object to explore
- * @param options 
+ * @param options
  * @example
  * const report = deepExplore(target);
  */
