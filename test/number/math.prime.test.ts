@@ -1,9 +1,12 @@
 
-const { primeFactorization } = require("../../dist/emnorst.cjs.js");
+import { primeFactorization } from "../emnorst.import";
 
-const factorToNumber = (factors) => {
+const factorToNumber = (factors: ReturnType<typeof primeFactorization>) => {
     const entries = Object.entries(factors);
-    return entries.reduce((accum, [mantissa, exp]) => accum * mantissa ** exp, 1);
+
+    return entries.reduce((accum, [mantissa, exp]) => (
+        accum * Number(mantissa) ** exp
+    ), 1);
 };
 
 test("primeFactorization", () => {
@@ -16,7 +19,7 @@ test("primeFactorization", () => {
 
 test("none" , () => {
     expect(primeFactorization(0)).toEqual({});
-    expect(primeFactorization("")).toEqual({});
+    expect(primeFactorization("" as unknown as number)).toEqual({});
     expect(primeFactorization(-10)).toEqual({});
     expect(primeFactorization(10.5)).toEqual({});
 });

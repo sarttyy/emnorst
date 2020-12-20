@@ -1,5 +1,5 @@
 
-const { xorshift, random, randomStr, probability } = require("../../dist/emnorst.cjs.js");
+import { xorshift, random } from "../emnorst.import";
 
 /** @test {object} */
 describe.skip("util/string/hash", () => {
@@ -33,16 +33,16 @@ describe.skip("util/string/hash", () => {
         expect(random(1, 1)).toBe(1);
     });
     /** @test {randomStr} */
-    test("randomStr", () => {
-        xorshift(0, Infinity, 0xf0f0f0f0);
-        expect(randomStr()).toBe("zu1u3y5w");
-    });
-    /** @test {probability} */
-    test("probability", () => {
-        xorshift(0, Infinity, 0xf0f0f0f0);
-        expect(probability()).toBeTruthy();
-        expect(probability()).toBeTruthy();
-        expect(probability()).toBeTruthy();
-        expect(probability()).toBeFalsy();
-    });
+    // test("randomStr", () => {
+    //     xorshift(0, Infinity, 0xf0f0f0f0);
+    //     expect(randomStr()).toBe("zu1u3y5w");
+    // });
+    // /** @test {probability} */
+    // test("probability", () => {
+    //     xorshift(0, Infinity, 0xf0f0f0f0);
+    //     expect(probability()).toBeTruthy();
+    //     expect(probability()).toBeTruthy();
+    //     expect(probability()).toBeTruthy();
+    //     expect(probability()).toBeFalsy();
+    // });
 });

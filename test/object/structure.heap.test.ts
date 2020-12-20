@@ -1,5 +1,5 @@
 
-import { Heap } from "../../dist/emnorst.cjs.js";
+import { Heap } from "../emnorst.import";
 
 describe("Heap", () => {
     test("class", () => {

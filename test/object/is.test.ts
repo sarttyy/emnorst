@@ -1,8 +1,8 @@
 
-const {
+import {
     isEmpty,
-    isMatch,
-    isEquals,
+    // isMatch,
+    // isEquals,
     isSorted,
     isIterable,
     isArray,
@@ -11,7 +11,7 @@ const {
     isObject,
     isObjectLike,
     isPureObject,
-} = require("../../dist/emnorst.cjs.js");
+} from "../emnorst.import";
 
 describe("is/object", () => {
     /** @test {isEmpty} */
@@ -26,17 +26,19 @@ describe("is/object", () => {
         expect(isEmpty(0)).toBeFalsy();
     });
     test.skip("isMatch", () => {
+        let isMatch: any;
         expect(isMatch({}, {})).toBeTruthy();
         expect(isMatch({}, {})).toBeFalsy();
     });
     test.skip("isEquals", () => {
+        let isEquals: any;
         expect(isEquals({}, {})).toBeTruthy();
         expect(isEquals({}, {})).toBeFalsy();
     });
     test("isSorted", () => {
-        const comparator = (l, r) => l > r;
-        expect(isSorted([1,2,3], comparator)).toBeTruthy();
-        expect(isSorted([1,3,2], comparator)).toBeFalsy();
+        const comparator = (l: number, r: number) => l > r;
+        expect(isSorted([1, 2, 3], comparator)).toBeTruthy();
+        expect(isSorted([1, 3, 2], comparator)).toBeFalsy();
     });
     test("isIterable", () => {
         expect(isIterable("")).toBeTruthy();
@@ -71,8 +73,8 @@ describe("is/object", () => {
     test("isObject", () => {
         expect(isObject({})).toBeTruthy();
         expect(isObject(Object(""))).toBeTruthy();
-        expect(isObject(new Object)).toBeTruthy();
-        expect(isObject(new Array)).toBeTruthy();
+        expect(isObject({})).toBeTruthy();
+        expect(isObject([])).toBeTruthy();
         expect(isObject(new Boolean)).toBeTruthy();
         expect(isObject(null)).toBeFalsy();
     });

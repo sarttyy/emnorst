@@ -1,10 +1,10 @@
 
-const {
+import {
     equals,
     isBoolean,
     isPrimitive,
     isFunction,
-} = require("../../dist/emnorst.cjs.js");
+} from "../emnorst.import";
 
 describe("util/is", () => {
     /** @test {equals} */
