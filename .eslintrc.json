@@ -34,6 +34,7 @@
         "@typescript-eslint/ban-types": 0,
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-namespace": 0,
         "@typescript-eslint/naming-convention": ["warn",
             {
                 "selector": "default",
@@ -293,7 +294,6 @@
         "no-restricted-imports"   : ["warn"],
         "no-this-before-super"    : "error",
         "no-useless-computed-key" : "error",
-        "no-useless-constructor"  : "error",
         "no-useless-rename"       : ["error"],
         "no-var"                  : "error",
         "object-shorthand"        : ["error"],
