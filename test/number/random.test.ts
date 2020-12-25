@@ -1,10 +1,30 @@
 
 import { xorshift, random } from "../emnorst.import";
 
-/** @test {object} */
-describe.skip("util/string/hash", () => {
+declare global {
+    namespace jest {
+        interface Matchers<R> {
+            toBeWithinRange(a: number, b: number): R;
+        }
+    }
+}
+
+expect.extend({
+    toBeWithinRange(received: number, floor: number, ceiling: number) {
+        const pass = floor <= received && received <= ceiling;
+        return pass ? {
+            message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
+            pass: true,
+        } : {
+            message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
+            pass: false,
+        };
+    },
+});
+
+describe("random", () => {
     /** @test {xorshift} */
-    test("xorshift", () => {
+    test.skip("xorshift", () => {
         xorshift(0, Infinity, 0xf0f0f0f0);
         const _ = [];
         for(let i = 10;i--;)
@@ -18,31 +38,23 @@ describe.skip("util/string/hash", () => {
     });
     /** @test {random} */
     test("random", () => {
-        xorshift(0, Infinity, 0xf0f0f0f0);
-        const _ = [];
-        for(let i = 10;i--;)
-            _.push(random());
-        expect(_).toEqual([
-            0.011031319392393957, 0.051706517139313055,
-            0.6823969034861759, 0.45124616634624365,
-            0.8851178730303039, 0.4178441573948805,
-            0.25577750487987766, 0.6201005529705903,
-            0.6532930590460511, 0.11331213783161348,
-        ]);
-        expect(random(10, 1)).toBe(4.162825157010381);
+        let prev = random();
+        for(let i = 0;i < 100;i++) {
+            const randNum = random();
+
+            expect(randNum).not.toBe(prev);
+
+            prev = randNum;
+        }
+    });
+    test("in range", () => {
+        const min = 10, max = 20;
+
+        for(let i = 0;i < 100;i++) {
+            expect(random(min, max)).toBeWithinRange(min, max);
+            expect(random(max, min)).toBeWithinRange(min, max);
+        }
+
         expect(random(1, 1)).toBe(1);
     });
-    /** @test {randomStr} */
-    // test("randomStr", () => {
-    //     xorshift(0, Infinity, 0xf0f0f0f0);
-    //     expect(randomStr()).toBe("zu1u3y5w");
-    // });
-    // /** @test {probability} */
-    // test("probability", () => {
-    //     xorshift(0, Infinity, 0xf0f0f0f0);
-    //     expect(probability()).toBeTruthy();
-    //     expect(probability()).toBeTruthy();
-    //     expect(probability()).toBeTruthy();
-    //     expect(probability()).toBeFalsy();
-    // });
 });
