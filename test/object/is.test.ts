@@ -45,7 +45,7 @@ describe("is/object", () => {
         expect(isIterable([])).toBeTruthy();
         expect(isIterable(new Map)).toBeTruthy();
         expect(isIterable({
-            [Symbol.iterator]() {}
+            [Symbol.iterator]() { /* noop */ }
         })).toBeTruthy();
         expect(isIterable({})).toBeFalsy();
         expect(isIterable(0)).toBeFalsy();
@@ -65,7 +65,7 @@ describe("is/object", () => {
         expect(isArrayLike([])).toBeTruthy();
         expect(isArrayLike("isArrayLike")).toBeTruthy();
         expect(isArrayLike({ length: 0 })).toBeTruthy();
-        expect(isArrayLike(() => {})).toBeFalsy();
+        expect(isArrayLike(() => { /* noop */ })).toBeFalsy();
         expect(isArrayLike({})).toBeFalsy();
         expect(isArrayLike(null)).toBeFalsy();
     });
@@ -81,7 +81,7 @@ describe("is/object", () => {
     /** @test {isObjectLike} */
     test("isObjectLike", () => {
         expect(isObjectLike({})).toBeTruthy();
-        expect(isObjectLike(() => {})).toBeTruthy();
+        expect(isObjectLike(() => { /* noop */ })).toBeTruthy();
         expect(isObjectLike(null)).toBeFalsy();
     });
     /** @test {isPureObject} */

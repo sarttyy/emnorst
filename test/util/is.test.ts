@@ -39,8 +39,8 @@ describe("util/is", () => {
     });
     /** @test {isFunction} */
     test("isFunction", () => {
-        expect(isFunction(() => {})).toBeTruthy();
-        expect(isFunction(function*() {})).toBeTruthy();
+        expect(isFunction(() => { /* noop */ })).toBeTruthy();
+        expect(isFunction(function* () { /* noop */ })).toBeTruthy();
         expect(isFunction("1")).toBeFalsy();
     });
 });
