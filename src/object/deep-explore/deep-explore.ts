@@ -39,7 +39,7 @@ export interface Options {
     keys?(o: object): PropertyKey[];
     shouldExplore?(o: unknown): boolean;
     // hooks
-    // every?(s: InternalState): boolean;
+    every?(): boolean;
     // every?(s: InternalState, s2: InternalState): boolean;
     property?(profile: PropertyProfile): void | Function;
 }
