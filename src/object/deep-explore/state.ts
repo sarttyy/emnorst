@@ -48,8 +48,18 @@ export class DeepState {
     exploreSingle(value: unknown): void {
         const isExplore = this._shouldExplore(value);
 
+        const ref = this.options.every!();
+
         if(!isExplore) return;
         assert.type<Record<PropertyKey, unknown>>(value);
+
+        if(this.options.useMap) {
+            assert.type<Map<object, unknown>>(this._existings);
+            this._existings.set(value, ref);
+        } else {
+            assert.type<Set<object>>(this._existings);
+            this._existings.add(value);
+        }
 
         this._route.push(value);
 
