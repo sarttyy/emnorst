@@ -16,25 +16,22 @@ describe.skip("clone", () => {
         expect(cloned).not.toBe(target);
         expect(cloned).toEqual(target);
     });
-    describe("object", () => {
-        const target = {
-            object: {},
-            array: [],
-            myClass: new class Myclass {},
-            Number: new Number(0xff),
-            String: new String("hello deepCopy!"),
-            Boolean: new Boolean(true),
-            regexp: /./,
-            date: new Date(),
-            Bigint: Object(BigInt("9007199254740993")),
-            arguments: (function() { return arguments; })(),
-        };
+    test.each(Object.entries({
+        object: {},
+        array: [],
+        myClass: new class Myclass {},
+        number: new Number(0xff),
+        string: new String("hello deepCopy!"),
+        boolean: new Boolean(true),
+        regexp: /./,
+        date: new Date(),
+        bigint: Object(BigInt("9007199254740993")),
+        arguments: (function() { return arguments; })(),
+    }))("object(%s)", (type, target) => {
         const cloned = clone(target);
-        const entries = Object.keys(cloned).map((key) => [cloned[key], target[key]]);
-        test.each(entries)("%o", (cloned, origin) => {
-            expect(cloned).not.toBe(origin);
-            expect(cloned).toEqual(origin);
-        });
+
+        expect(cloned).not.toBe(target);
+        expect(cloned).toEqual(target);
     });
     test("getter/setter", () => {
         const target = {
