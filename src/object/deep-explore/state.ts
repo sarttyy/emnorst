@@ -7,12 +7,12 @@ import { getKeys } from "../standard/keys";
 import { Options, PropertyProfile, Report } from "./deep-explore";
 
 export class DeepState {
-    keys: (o: object) => PropertyKey[];
-    shouldExplore: (o: unknown) => boolean;
-    depthLimit: number;
-    existings: Set<object> | Map<object, unknown>;
-    path: PropertyKey[] = [];
-    route: object[] = [];
+    private _keys: (o: object) => PropertyKey[];
+    private _shouldExplore: (o: unknown) => boolean;
+    private _depthLimit: number;
+    private _existings: Set<object> | Map<object, unknown>;
+    private _path: PropertyKey[] = [];
+    private _route: object[] = [];
     report: Report = {
         maxDepth: 0,
         skip: 0,
@@ -22,20 +22,20 @@ export class DeepState {
     };
     constructor(public options: Options) {
         const { keys } = options;
-        this.keys = isFunction(keys)
+        this._keys = isFunction(keys)
             ? keys : getKeys;
 
         const { shouldExplore } = options;
-        this.shouldExplore = isFunction(shouldExplore)
+        this._shouldExplore = isFunction(shouldExplore)
             ? shouldExplore : isObject;
 
         const depthLimit = options.depthLimit!;
-        this.depthLimit = depthLimit < MAX_BIT_NUMBER
+        this._depthLimit = depthLimit < MAX_BIT_NUMBER
             ? depthLimit | 0 : MAX_BIT_NUMBER;
 
-        this.existings = options.useMap ? new Map : new Set;
+        this._existings = options.useMap ? new Map : new Set;
     }
-    depth(): number { return this.route.length; }
+    private _depth(): number { return this._route.length; }
     // keys(obj: unknown): void {
     //     if(this._shouldExplore(obj)) {
     //         this._keys(obj);
@@ -43,17 +43,20 @@ export class DeepState {
     //         // options.all();
     //     }
     // }
+    // TODO: Map, Set等の対応。
+    // IDEA: ユーザーが任意に拡張できるようする?
     exploreSingle(value: unknown): void {
-        const isExplore = this.shouldExplore(value);
+        const isExplore = this._shouldExplore(value);
+
         if(!isExplore) return;
         assert.type<Record<PropertyKey, unknown>>(value);
 
-        this.route.push(value);
+        this._route.push(value);
 
-        const depth = this.depth();
-        const isDeepest = depth > this.depthLimit;
+        const depth = this._depth();
+        const isDeepest = depth > this._depthLimit;
 
-        const keys = this.keys(value);
+        const keys = this._keys(value);
         for(let i = 0;i < keys.length;i++) {
             const key = keys[i];
             if(has(value, key)) continue;
@@ -63,19 +66,19 @@ export class DeepState {
             const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(value, key) : null;
             const child = useDescriptor ? value[key as string] : descriptor!.value;
 
-            this.path.push(key);
+            this._path.push(key);
 
             const isAccessor = useDescriptor && descriptor ? !("value" in descriptor) : false;
-            const isExisting = this.existings.has(child); // Again
-            const isRecursiveReference = isExisting && this.route.includes(child);
+            const isExisting = this._existings.has(child); // Again
+            const isRecursiveReference = isExisting && this._route.includes(child);
             if(isRecursiveReference) this.report.hasCyclic = true;
             const isDive = !(isDeepest || isRecursiveReference || isAccessor);
             // const isExplore = isDive && this.shouldExplore(target);
 
             const propertyProfile: PropertyProfile = {
-                path: this.path,
-                route: this.route,
-                existings: this.existings,
+                path: this._path,
+                route: this._route,
+                existings: this._existings,
                 descriptor: descriptor!,
                 key,
                 // value: child,
@@ -98,9 +101,9 @@ export class DeepState {
                 // } else ;
                 if(didDive) didDive();
             }
-            this.path.pop();
+            this._path.pop();
         }
-        this.route.pop();
+        this._route.pop();
     }
     // parallel() {}
 }
