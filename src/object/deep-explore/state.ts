@@ -66,7 +66,7 @@ export class DeepState {
         const keys = this._keys(value);
         for(let i = 0;i < keys.length;i++) {
             const key = keys[i];
-            if(has(value, key)) continue;
+            if(!has(value, key)) continue;
             this._path.push(key);
 
             const propertyProfile = this.getPropertyProfile(value, key);
@@ -91,7 +91,7 @@ export class DeepState {
         const useDescriptor = !!this.options.useDescriptor;
 
         const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(parent, key) : null;
-        const child = useDescriptor ? parent[key as string] : descriptor!.value;
+        const child = useDescriptor ? descriptor!.value : parent[key as string];
 
         const isAccessor = useDescriptor && descriptor ? !("value" in descriptor) : false;
         const isExisting = this._existings.has(child); // Again
