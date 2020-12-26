@@ -3,7 +3,8 @@ import { isFunction } from "../../util/is/function";
 import { MAX_BIT_NUMBER } from "../../number/util/constant";
 import { isObject } from "../is/object";
 import { getKeys } from "../standard/keys";
-import { Options, Report } from "./deep-explore";
+import { Options, Report, PropertyProfile } from "./deep-explore";
+import { has } from "../property/has";
 
 export class DeepState {
     keys: (o: object) => PropertyKey[];
@@ -42,6 +43,65 @@ export class DeepState {
     //         // options.all();
     //     }
     // }
-    // single() {}
+    exploreSingle(value: unknown): void {
+        const isExplore = this.shouldExplore(value);
+        if(!isExplore) return;
+        assert.type<Record<PropertyKey, unknown>>(value);
+
+        this.route.push(value);
+
+        const depth = this.depth();
+        const isDeepest = depth > this.depthLimit;
+
+        const keys = this.keys(value);
+        for(let i = 0;i < keys.length;i++) {
+            const key = keys[i];
+            if(has(value, key)) continue;
+
+            const useDescriptor = !!this.options.useDescriptor;
+
+            const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(value, key) : null;
+            let child = useDescriptor ? value[key] : descriptor!.value;
+
+            this.path.push(key);
+
+            const isAccessor = useDescriptor && descriptor ? !("value" in descriptor) : false;
+            const isExisting = this.existings.has(child); // Again
+            const isRecursiveReference = isExisting && this.route.includes(child);
+            if(isRecursiveReference) this.report.hasCyclic = true;
+            let isDive = !(isDeepest || isRecursiveReference || isAccessor);
+            // const isExplore = isDive && this.shouldExplore(target);
+
+            const propertyProfile: PropertyProfile = {
+                path: this.path,
+                route: this.route,
+                existings: this.existings,
+                ...descriptor,
+                descriptor: descriptor!,
+                key,
+                // value: child,
+                depth,
+                isDive,
+                isDeepest,
+                // isExplore,
+                isAccessor,
+                isExisting,
+                isRecursiveReference,
+                // dive(value: unknown) {
+                //     isDive = value != null;
+                //     child = value;
+                // }
+            };
+            const didDive = this.options.property(propertyProfile);
+            if(isDive) {
+                // if(isExplore) {
+                this.exploreSingle(child);
+                // } else ;
+                if(didDive) didDive();
+            }
+            this.path.pop();
+        }
+        this.route.pop();
+    }
     // parallel() {}
 }
