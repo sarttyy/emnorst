@@ -1,10 +1,10 @@
 
-import { isFunction } from "../../util/is/function";
 import { MAX_BIT_NUMBER } from "../../number/util/constant";
+import { isFunction } from "../../util/is/function";
 import { isObject } from "../is/object";
-import { getKeys } from "../standard/keys";
-import { Options, Report, PropertyProfile } from "./deep-explore";
 import { has } from "../property/has";
+import { getKeys } from "../standard/keys";
+import { Options, PropertyProfile, Report } from "./deep-explore";
 
 export class DeepState {
     keys: (o: object) => PropertyKey[];
