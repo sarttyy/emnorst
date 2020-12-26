@@ -4,7 +4,7 @@ import { clone } from "../emnorst.import";
 describe.skip("clone", () => {
     test("primitives", () => {
         const target = {
-            fn() {},
+            fn() { /* noop */ },
             undefined: void 0,
             null: null,
             number: 0xff,
@@ -40,13 +40,13 @@ describe.skip("clone", () => {
         const target = {
             value: 0,
             get getter() { return this.value; },
-            set setter(value) { this.value = value; },
+            set setter(value: number) { this.value = value; },
         };
         const cloned = clone(target);
         expect(cloned).toEqual(target);
     });
     test("recursive reference", () => {
-        const target = {};
+        const target: { value?: object } = {};
         target.value = target;
         const cloned = clone(target);
         expect(cloned).toBe(cloned.value);
