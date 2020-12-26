@@ -1,7 +1,4 @@
 
-import { has } from "../property/has";
-import { DeepState } from "./state";
-
 export interface PropertyProfile {
     // parent: any;
     descriptor: PropertyDescriptor;
@@ -54,71 +51,3 @@ export interface Report {
     exit: boolean;
     hasCyclic: boolean;
 }
-
-// TODO: Map, Set等の対応。
-// IDEA: ユーザーが任意に拡張できるようする?
-export const deepExplore = (target: unknown, state: DeepState): void => {
-    const isExplore = state.shouldExplore(target);
-
-    // state.invoke("every", { isExplore });
-
-    if(!isExplore) return;
-
-    // if("add" in state.existings)
-    //     state.existings.add(target);
-    // // else state.existings.set(target, state.ref);
-    state.route.push(target);
-
-    const depth = state.depth();
-    const isDeepest = depth > state.depthLimit;
-
-    const keys = state.keys(target);
-    for(let i = 0;i < keys.length;) {
-        const key = keys[i++];
-        if(has(target, key)) continue;
-
-        const useDescriptor = !!state.options.useDescriptor;
-
-        const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(target, key) : null;
-        let child = useDescriptor ? target[key] : descriptor!.value;
-
-        state.path.push(key);
-
-        const isAccessor = useDescriptor && descriptor ? !("value" in descriptor) : false;
-        const isExisting = state.existings.has(child); // Again
-        const isRecursiveReference = isExisting && state.route.includes(child);
-        if(isRecursiveReference) state.report.hasCyclic = true;
-        let isDive = !(isDeepest || isRecursiveReference || isAccessor);
-        // const isExplore = isDive && state.shouldExplore(target);
-
-        const propertyProfile: PropertyProfile = {
-            path: state.path,
-            route: state.route,
-            existings: state.existings,
-            ...descriptor,
-            descriptor: descriptor!,
-            key,
-            // value: child,
-            depth,
-            isDive,
-            isDeepest,
-            // isExplore,
-            isAccessor,
-            isExisting,
-            isRecursiveReference,
-            // dive(value: unknown) {
-            //     isDive = value != null;
-            //     child = value;
-            // }
-        };
-        const didDive = state.options.property(propertyProfile);
-        if(isDive) {
-            // if(isExplore) {
-            deepExplore(child, state);
-            // } else ;
-            if(didDive) didDive();
-        }
-        state.path.pop();
-    }
-    state.route.pop();
-};
