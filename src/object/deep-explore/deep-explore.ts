@@ -2,7 +2,7 @@
 import { has } from "../property/has";
 import { DeepState } from "./state";
 
-interface PropertyProfile {
+export interface PropertyProfile {
     // parent: any;
     descriptor: PropertyDescriptor;
     key: PropertyKey | null; // for root
