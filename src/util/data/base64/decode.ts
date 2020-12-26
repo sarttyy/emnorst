@@ -16,7 +16,7 @@ export const base64Decode = (base64String: string): Uint8Array => {
         : base64String[length-1] === "=" ? 1 : 0;
     const size = length - fill;
     const arr = new Uint8Array(size / 4 * 3);
-    
+
     const limit = size ^ size & 3;
     let i = 0, j = 0;
     while(i < limit) {

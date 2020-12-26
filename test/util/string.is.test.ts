@@ -1,10 +1,8 @@
 
-const {
+import {
     isString,
     isChar,
-} = require("../../dist/emnorst.cjs.js");
-
-const azAZ09 = "azAZ09";
+} from "../emnorst.import";
 
 describe("is/string", () => {
     /** @test {isString} */

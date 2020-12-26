@@ -1,30 +1,64 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "plugins": [
-        "jsdoc"
-    ],
+    "plugins": ["@typescript-eslint", "jest"],
     "extends": [
         "eslint:recommended",
-        "plugin:jsdoc/recommended"
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 2018,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
-    "settings": {
-        "jsdoc": {
-            "tagNamePreference": {
-                "returns": "return"
-            }
-        }
+    "env": {
+        // "node": true,
+        // "browser": true,
+        "es6": true,
+        "jest/globals": true
+    },
+    "globals": {
+        "assert": false,
+        "Callable": false,
+        "TypedArray": false,
+        "Primitive": false
     },
     "rules": {
         // JSDoc
-        "jsdoc/check-syntax": 1,
-        "jsdoc/check-examples": 1,
+        // "jsdoc/check-syntax": 1,
+        // "jsdoc/check-examples": 1,
+        // "jsdoc/no-undefined-types": [1, {
+        //     "definedTypes": ["ArrayLike"]
+        // }],
+        // "jsdoc/require-jsdoc": ["error", { "publicOnly": true }],
+
+        // typescript
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-namespace": 0,
+        "@typescript-eslint/naming-convention": ["warn",
+            {
+                "selector": "default",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow",
+                "trailingUnderscore": "allow"
+            },
+            {
+                "selector": "variable",
+                "format": ["camelCase", "UPPER_CASE"],
+                "leadingUnderscore": "allow",
+                "trailingUnderscore": "allow"
+            },
+            {
+                "selector": "typeLike",
+                "format": ["PascalCase"]
+            },
+            {
+                "format": ["camelCase"],
+                "selector": "memberLike",
+                "modifiers": ["private"],
+                "leadingUnderscore": "require"
+            }
+        ],
 
         // Possible Errors
         "for-direction"               : "error",
@@ -80,7 +114,7 @@
         "no-caller"                    : 2,
         "no-case-declarations"         : "warn",
         "no-div-regex"                 : "error",
-        "no-else-return"               : ["error", {"allowElseIf": false }],
+        "no-else-return"               : [0, {"allowElseIf": false }],
         "no-empty-function"            : ["warn"],
         "no-empty-pattern"             : "error",
         // "no-eq-null"                   : "error",
@@ -109,7 +143,6 @@
         "no-proto"                     : "error",
         "no-redeclare"                 : 2,
         "no-restricted-properties"     : "off",
-        "no-return-assign"             : "error",
         "no-return-await"              : "warn",
         "no-script-url"                : "error",
         "no-self-assign"               : 2,
@@ -132,7 +165,7 @@
         "yoda"                         : [2, "never", {"exceptRange": true }],
 
         // Strict Mode
-        "strict" : ["off"], // 保留
+        // "strict" : ["off"], // 保留
 
         // Variables
         "no-catch-shadow"            : "error",
@@ -145,11 +178,11 @@
         "no-undef-init"              : "error",
         "no-undefined"               : "error",
         "no-unused-vars"             : ["off"],
-        "no-use-before-define"       : ["error"],
+        // "no-use-before-define"       : ["error"],
 
         // Node.js and CommonJS
-        "callback-return"       : ["error"],
-        "global-require"        : "error",
+        // "callback-return"       : ["error"],
+        // "global-require"        : "error",
         "handle-callback-err"   : ["warn"],
         "no-buffer-constructor" : "warn",
         "no-mixed-requires"     : ["warn"],
@@ -182,9 +215,9 @@
         "id-length"                   : ["off"],
         "id-match"                    : ["off"],
         "implicit-arrow-linebreak"    : ["error", "beside"],
-        "indent"                      : [2, 4, {
-            "flatTernaryExpressions": true
-        }],
+        // "indent"                      : [2, 4, {
+        //     "flatTernaryExpressions": true
+        // }],
         "jsx-quotes"                  : ["error"],
         "line-comment-position"            : ["off"],
         "lines-around-comment"             : ["off"],
@@ -196,13 +229,13 @@
         "max-statements"                   : ["warn", {"max": 40}, {"ignoreTopLevelFunctions": true}],
         "max-statements-per-line"          : ["warn", {"max": 8}],
         "new-cap"                          : ["error"],
-        "new-parens"                       : ["error"],
+        // "new-parens"                       : ["error"],
         "no-array-constructor"             : ["error"],
         "no-continue"                      : "off",
         "no-inline-comments"               : "off",
         "no-lonely-if"                     : "error",
         "no-mixed-spaces-and-tabs"         : ["error"],
-        "no-multiple-empty-lines"          : ["error"],
+        "no-multiple-empty-lines"          : ["error", { "max": 1, "maxEOF": 0 }],
         "no-new-object"                    : "error",
         "no-plusplus"                      : ["off"],
         "no-restricted-syntax"             : ["off"],
@@ -246,7 +279,7 @@
 
         // ECMAScript 6
         "arrow-body-style"        : ["error", "as-needed"],
-        "arrow-parens"            : ["error"],
+        "arrow-parens"            : ["error", "as-needed"],
         "constructor-super"       : "error",
         "generator-star-spacing"  : ["error", {
             "before" : false,
@@ -255,13 +288,12 @@
         "no-class-assign"         : "error",
         "no-confusing-arrow"      : ["off"], // 簡単な三項演算子は使いたいかもしれないので、保留
         "no-const-assign"         : "error",
-        "no-dupe-class-members"   : "error",
+        // "no-dupe-class-members"   : "error",
         "no-duplicate-imports"    : ["error"],
         "no-new-symbol"           : "error",
         "no-restricted-imports"   : ["warn"],
         "no-this-before-super"    : "error",
         "no-useless-computed-key" : "error",
-        "no-useless-constructor"  : "error",
         "no-useless-rename"       : ["error"],
         "no-var"                  : "error",
         "object-shorthand"        : ["error"],
@@ -271,7 +303,7 @@
         "prefer-template"         : "warn",
         "require-yield"           : "error",
         "rest-spread-spacing"     : ["error", "never"],
-        "sort-imports" : ["off"],
+        // "sort-imports" : ["warn"],
         "symbol-description" : "error",
         "template-curly-spacing" : ["error", "never"],
         "yield-star-spacing" : ["error", {

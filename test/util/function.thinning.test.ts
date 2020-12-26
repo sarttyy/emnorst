@@ -1,5 +1,8 @@
 
-const { memoize, throttle, debounce } = require("../../dist/emnorst.cjs.js");
+// import { memoize, throttle, debounce } from "../emnorst.import";
+declare function memoize(fn: Function): Function;
+declare function throttle(fn: Function): Function;
+declare function debounce(fn: Function): Function;
 
 /** @test {object} */
 describe.skip("thinning", () => {

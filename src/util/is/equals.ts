@@ -1,6 +1,4 @@
 
-/* eslint-disable no-self-compare */
-
 /**
  * Validate that the values are all equal using the SameValueZero algorithm.
  *
@@ -9,10 +7,18 @@
  * @return
  */
 export const equals = (first: unknown, ...values: unknown[]): boolean => {
-    let i = 0;
     const size = values.length;
-    if(first === first)
+    let i = 0;
+
+    /* eslint-disable no-self-compare */
+    if(first === first) {
+        // check all values are same first
         while(first === values[i] && ++i < size);
-    else while(values[i] !== values[i] && ++i < size);
+    } else {
+        // check all values are NaN
+        while(values[i] !== values[i] && ++i < size);
+    }
+    /* eslint-enable no-self-compare */
+
     return i === size;
 };

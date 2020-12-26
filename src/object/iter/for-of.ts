@@ -8,7 +8,7 @@ export const forOf = <T>(
     const iterator = getIterator(iterable);
     let iterResult: IteratorResult<T>;
     let i = 0;
-    while((iterResult = iterator.next()).done) {
+    while(!(iterResult = iterator.next()).done) {
         const result = fn(iterResult.value, i++, iterator);
         if(result != null) return result;
     }

@@ -1,21 +1,17 @@
 
-const {
+import {
     equals,
     isBoolean,
     isPrimitive,
     isFunction,
-    isNullLike,
-    isNull,
-    isDefined,
-    isUndefined,
-} = require("../../dist/emnorst.cjs.js");
+} from "../emnorst.import";
 
 describe("util/is", () => {
     /** @test {equals} */
     test("equals", () => {
         expect(equals(NaN, NaN)).toBeTruthy();
         expect(equals(0, -0)).toBeTruthy();
-        expect(equals(0, 0, 1)).toBeFalsy();
+        expect(equals(0, 0, void 0)).toBeFalsy();
     });
     test("isBoolean", () => {
         expect(isBoolean(true)).toBeTruthy();
@@ -42,33 +38,9 @@ describe("util/is", () => {
         expect(isPrimitive({})).toBeFalsy();
     });
     /** @test {isFunction} */
-    test.skip("isFunction", () => {
-        expect(isFunction(() => {})).toBeTruthy();
-        expect(isFunction(function*() {})).toBeTruthy();
+    test("isFunction", () => {
+        expect(isFunction(() => { /* noop */ })).toBeTruthy();
+        expect(isFunction(function* () { /* noop */ })).toBeTruthy();
         expect(isFunction("1")).toBeFalsy();
-    });
-    describe.skip("null-like", () => {
-        /** @test {isNullLike} */
-        test("isNullLike", () => {
-            expect(isNullLike(null)).toBeTruthy();
-            expect(isNullLike(void 0)).toBeTruthy();
-            expect(isNullLike([])).toBeFalsy();
-        });
-        /** @test {isNull} */
-        test("isNull", () => {
-            expect(isNull(null)).toBeTruthy();
-            expect(isNull(void 0)).toBeFalsy();
-            expect(isNull([])).toBeFalsy();
-        });
-        /** @test {isDefined} */
-        test("isDefined", () => {
-            expect(isDefined(null)).toBeTruthy();
-            expect(isDefined(void 0)).toBeFalsy();
-        });
-        /** @test {isUndefined} */
-        test("isUndefined", () => {
-            expect(isUndefined(void 0)).toBeTruthy();
-            expect(isUndefined(null)).toBeFalsy();
-        });
     });
 });

@@ -1,5 +1,5 @@
 
-const {
+import {
     isNumber,
     isEven,
     isOdd,
@@ -10,7 +10,7 @@ const {
     isPrime,
     uptrend,
     downtrend,
-} = require("../../dist/emnorst.cjs.js");
+} from "../emnorst.import";
 
 describe("is/number", () => {
     /** @test {isNumber} */
@@ -50,7 +50,7 @@ describe("is/number", () => {
         expect(isPositive(0)).toBeTruthy();
         expect(isPositive(-0)).toBeFalsy();
         expect(isPositive(-10)).toBeFalsy();
-        expect(isPositive("")).toBeFalsy();
+        expect(isPositive("" as unknown as number)).toBeFalsy();
     });
     /** @test {isNegative} */
     test("isNegative", () => {
@@ -58,7 +58,7 @@ describe("is/number", () => {
         expect(isNegative(0)).toBeFalsy();
         expect(isNegative(-0)).toBeTruthy();
         expect(isNegative(-10)).toBeTruthy();
-        expect(isNegative("")).toBeFalsy();
+        expect(isNegative("" as unknown as number)).toBeFalsy();
     });
     /** @test {isPrime} */
     test("isPrime", () => {
@@ -68,7 +68,7 @@ describe("is/number", () => {
         expect(isPrime(123456789)).toBeFalsy();
         expect(isPrime(NaN)).toBeFalsy();
         expect(isPrime(-100)).toBeFalsy();
-        expect(isPrime("")).toBeFalsy();
+        expect(isPrime("" as unknown as number)).toBeFalsy();
     });
     test("trend", () => {
         expect(uptrend(1, 2, 2, 3)).toBeTruthy();

@@ -12,7 +12,7 @@ const MASK = 0x3f;
 export const base64Encode = (data: ArrayLike<number> | ArrayBufferLike): string => {
     const arr = new Uint8Array(data);
     const rest = arr.byteLength % 3;
-    
+
     const limit = arr.byteLength - rest;
     let base64String = "", i = 0;
     while(i < limit) {

@@ -13,16 +13,16 @@ interface WritableArrayLike<T> {
  * IDEA: 個別エクスポートのため関数宣言して`static name = f;`する?
  */
 export class Heap<T> {
-    get size(): number { return this.heap.length; }
+    get size(): number { return this._heap.length; }
     [Symbol.toStringTag]: "Heap";
-    private readonly heap: T[] = [];
+    private readonly _heap: T[] = [];
     constructor(
         items?: ArrayLike<T> | Heap<T> | null,
-        private readonly comparator: Comparator<T>=lessThan,
+        private readonly _comparator: Comparator<T>=lessThan,
     ) {
         let i = 0;
-        if(items instanceof Heap) while(i < items.heap.length)
-            this.heap.push(items.heap[i++]);
+        if(items instanceof Heap) while(i < items._heap.length)
+            this._heap.push(items._heap[i++]);
         else if(items) while(i < items.length)
             this.add(items[i++]);
     }
@@ -31,18 +31,18 @@ export class Heap<T> {
      * @param item elements to add
      */
     add(item: T): void {
-        Heap.insert(this.heap, item, this.comparator);
+        Heap.insert(this._heap, item, this._comparator);
     }
     /**
      * @return minimum or maximum value in heap
      */
-    peek(): T { return this.heap[0]; }
+    peek(): T { return this._heap[0]; }
     /**
      * Remove element from heap.
      * @return removed elements
      */
     remove(): T {
-        return Heap.remove(this.heap, this.comparator);
+        return Heap.remove(this._heap, this._comparator);
     }
     /**
      * ヒープ配列に要素を追加します。

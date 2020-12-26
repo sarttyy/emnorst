@@ -1,8 +1,8 @@
 
-const { explore } = require("../../dist/emnorst.cjs.js");
+import { explore } from "../emnorst.import";
 // const { describe, test, expect } = require("@jest/globals");
 
-describe("explore", () => {
+describe.skip("explore", () => {
     test("report", () => {
         const report = explore({ hoge: null });
         expect(report).toEqual({
@@ -16,7 +16,7 @@ describe("explore", () => {
     test("", () => {
         explore({}, {
             property({ path, route }) {
-                expect(path).toMatch();
+                expect(path).toMatchObject([]);
                 expect(route);
             }
         });

@@ -4,6 +4,10 @@ declare namespace assert {
     export function interface<T extends new(...args: any) => unknown>(v: unknown, t: T): asserts v is InstanceType<T>;
 }
 
+type Flatten<T> = {
+    [K in keyof T]: T[K];
+};
+
 type Callable = (...args: any) => any;
 
 type TypedArray

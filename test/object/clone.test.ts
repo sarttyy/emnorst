@@ -1,10 +1,10 @@
 
-const { clone } = require("../../dist/emnorst.cjs.js");
+import { clone } from "../emnorst.import";
 
 describe.skip("clone", () => {
     test("primitives", () => {
         const target = {
-            fn() {},
+            fn() { /* noop */ },
             undefined: void 0,
             null: null,
             number: 0xff,
@@ -16,37 +16,34 @@ describe.skip("clone", () => {
         expect(cloned).not.toBe(target);
         expect(cloned).toEqual(target);
     });
-    describe("object", () => {
-        const target = {
-            object: {},
-            array: [],
-            myClass: new class Myclass {},
-            Number: new Number(0xff),
-            String: new String("hello deepCopy!"),
-            Boolean: new Boolean(true),
-            regexp: /./,
-            date: new Date(),
-            Bigint: Object(BigInt("9007199254740993")),
-            arguments: (function() { return arguments; })(),
-        };
+    test.each(Object.entries({
+        object: {},
+        array: [],
+        myClass: new class Myclass {},
+        number: new Number(0xff),
+        string: new String("hello deepCopy!"),
+        boolean: new Boolean(true),
+        regexp: /./,
+        date: new Date(),
+        bigint: Object(BigInt("9007199254740993")),
+        arguments: (function() { return arguments; })(),
+    }))("object(%s)", (type, target) => {
         const cloned = clone(target);
-        const entries = Object.keys(cloned).map((key) => [cloned[key], target[key]]);
-        test.each(entries)("%o", (cloned, origin) => {
-            expect(cloned).not.toBe(origin);
-            expect(cloned).toEqual(origin);
-        });
+
+        expect(cloned).not.toBe(target);
+        expect(cloned).toEqual(target);
     });
     test("getter/setter", () => {
         const target = {
             value: 0,
             get getter() { return this.value; },
-            set setter(value) { this.value = value; },
+            set setter(value: number) { this.value = value; },
         };
         const cloned = clone(target);
         expect(cloned).toEqual(target);
     });
     test("recursive reference", () => {
-        const target = {};
+        const target: { value?: object } = {};
         target.value = target;
         const cloned = clone(target);
         expect(cloned).toBe(cloned.value);

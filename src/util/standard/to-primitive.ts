@@ -16,9 +16,9 @@ export const toPrimitive = (input: unknown, preferredType?: Hint): Primitive => 
     assert.type<{ [Symbol.toPrimitive](hint: Hint): Primitive }>(input);
 
     const hint
-        = preferredType === "string" ? 0
-        : preferredType === "number" ? 1
-        : 2;
+        = preferredType === "string" ? 1
+        : preferredType === "number" ? 0
+        : /* preferredType  default */ 2;
 
     if(isFunction(input[Symbol.toPrimitive])) {
         const result = input[Symbol.toPrimitive]((
@@ -29,7 +29,7 @@ export const toPrimitive = (input: unknown, preferredType?: Hint): Primitive => 
         // if(hint === "default") hint = "number";
 
         for(let i = 0;i < 2;i++) {
-            const fn = (hint & 1) === i ? input.toString : input.valueOf;
+            const fn = (hint & 1) === i ? input.valueOf : input.toString;
             if(isFunction(fn)) {
                 const result = fn.call(input);
                 if(isPrimitive(result)) return result;
