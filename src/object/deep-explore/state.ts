@@ -61,7 +61,7 @@ export class DeepState {
             const useDescriptor = !!this.options.useDescriptor;
 
             const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(value, key) : null;
-            let child = useDescriptor ? value[key] : descriptor!.value;
+            const child = useDescriptor ? value[key as string] : descriptor!.value;
 
             this.path.push(key);
 
@@ -69,14 +69,13 @@ export class DeepState {
             const isExisting = this.existings.has(child); // Again
             const isRecursiveReference = isExisting && this.route.includes(child);
             if(isRecursiveReference) this.report.hasCyclic = true;
-            let isDive = !(isDeepest || isRecursiveReference || isAccessor);
+            const isDive = !(isDeepest || isRecursiveReference || isAccessor);
             // const isExplore = isDive && this.shouldExplore(target);
 
             const propertyProfile: PropertyProfile = {
                 path: this.path,
                 route: this.route,
                 existings: this.existings,
-                ...descriptor,
                 descriptor: descriptor!,
                 key,
                 // value: child,
@@ -92,7 +91,7 @@ export class DeepState {
                 //     child = value;
                 // }
             };
-            const didDive = this.options.property(propertyProfile);
+            const didDive = this.options.property!(propertyProfile);
             if(isDive) {
                 // if(isExplore) {
                 this.exploreSingle(child);
