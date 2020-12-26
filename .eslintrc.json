@@ -54,7 +54,7 @@
             },
             {
                 "format": ["camelCase"],
-                "selector": "property",
+                "selector": "memberLike",
                 "modifiers": ["private"],
                 "leadingUnderscore": "require"
             }
