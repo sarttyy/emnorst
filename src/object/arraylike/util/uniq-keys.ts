@@ -7,7 +7,7 @@ const EXISTING = null;
  *
  * @param keys
  */
-export const uniqKeys = <T extends PropertyKey>(keys: T[], mapToKey=false): T[] => {
+export const uniqKeys = <T extends PropertyKey>(keys: ArrayLike<T>, mapToKey=false): T[] => {
     const existings: { [P in T]?: typeof EXISTING } = {};
     const result: T[] = [];
 
