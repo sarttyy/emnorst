@@ -20,20 +20,20 @@ export class DeepState {
         exit: false,
         hasCyclic: false,
     };
-    constructor(public options: Options) {
-        const { keys } = options;
+    constructor(private _options: Options={}) {
+        const { keys } = _options;
         this._keys = isFunction(keys)
             ? keys : getKeys;
 
-        const { shouldExplore } = options;
+        const { shouldExplore } = _options;
         this._shouldExplore = isFunction(shouldExplore)
             ? shouldExplore : isObject;
 
-        const depthLimit = options.depthLimit!;
+        const depthLimit = _options.depthLimit!;
         this._depthLimit = depthLimit < MAX_BIT_NUMBER
             ? depthLimit | 0 : MAX_BIT_NUMBER;
 
-        this._existings = options.useMap ? new Map : new Set;
+        this._existings = _options.useMap ? new Map : new Set;
     }
     private _depth(): number { return this._route.length; }
     // keys(obj: unknown): void {
@@ -48,7 +48,7 @@ export class DeepState {
     exploreSingle(value: unknown): void {
         const isExplore = this._shouldExplore(value);
 
-        const ref = this.options.every!();
+        const ref = this._options.every!();
 
         if(!isExplore) return;
         assert.type<Record<PropertyKey, unknown>>(value);
@@ -67,7 +67,7 @@ export class DeepState {
                 this.report.hasCyclic = true;
             }
 
-            const didDive = this.options.property!(propertyProfile);
+            const didDive = this._options.property!(propertyProfile);
             if(propertyProfile.isDive) {
                 // if(isExplore) {
                 this.exploreSingle(propertyProfile.value);
@@ -79,7 +79,7 @@ export class DeepState {
         this._route.pop();
     }
     private _addToExistings(value: Record<PropertyKey, unknown>, ref: unknown): void {
-        if(this.options.useMap) {
+        if(this._options.useMap) {
             assert.type<Map<object, unknown>>(this._existings);
             this._existings.set(value, ref);
         } else {
@@ -90,7 +90,7 @@ export class DeepState {
     getPropertyProfile(parent: Record<PropertyKey, unknown>, key: PropertyKey): PropertyProfile {
         const depth = this._depth();
         const isDeepest = depth > this._depthLimit;
-        const useDescriptor = !!this.options.useDescriptor;
+        const useDescriptor = !!this._options.useDescriptor;
 
         const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(parent, key) : null;
         const child = useDescriptor ? descriptor!.value : parent[key as string];
