@@ -1,10 +1,10 @@
 
 export interface PropertyProfile {
-    // parent: any;
+    parent: unknown;
     descriptor: PropertyDescriptor;
     key: PropertyKey | null; // for root
-    value?: unknown;
-    // child?: unknown;
+    value: unknown;
+    // child: unknown;
     /** ルートからのプロパティーの配列です。 */
     path: PropertyKey[];
     /** ルートからの参照オブジェクトです。 */

@@ -106,6 +106,7 @@ export class DeepState {
             route: this._route,
             existings: this._existings,
             descriptor: descriptor!,
+            parent,
             key,
             value: child,
             depth,
