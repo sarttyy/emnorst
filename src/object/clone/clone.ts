@@ -78,7 +78,8 @@ export const clone = <T>(target: T, options: CloneOptions={}): T => {
                     configurable: descriptor.configurable,
                     enumerable: descriptor.enumerable,
                     writable: descriptor.writable,
-                    value: existings.has(value) ? existings.get(value) : value,
+                    value: existings.has(value as object)
+                        ? existings.get(value) : value,
                 });
             };
         }
