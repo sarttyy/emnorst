@@ -1,7 +1,5 @@
 
-import { explore } from "../deep-explore";
-// import { has } from "../property/has";
-import { property } from "../property/property";
+import { DeepState } from "../deep-explore";
 import { copyBase } from "./copy-base";
 
 /*
@@ -55,40 +53,28 @@ interface CloneOptions {
  * target !== cloned // => true
  */
 export const clone = <T>(target: T, options: CloneOptions={}): T => {
-    const root = copyBase(target);
-    const clonedMap = new Map;
-    clonedMap.set(target, root);
-    explore(target, {
+    const deepState = new DeepState({
+        useMap: true,
         depthLimit: options.depth,
         // existings: new Map,
-        // every({ isExplore, existings, value }) {
-        //     if(isExplore) existings.set(value, copyBase(value));
-        // },
-        property({ propDesc, path: [...path], deepest }) {
-            if(!deepest && "value" in propDesc) {
-                const { value: oldValue } = propDesc;
-                propDesc = {
-                    configurable: propDesc.configurable,
-                    enumerable: propDesc.enumerable,
-                    writable: propDesc.writable,
-                    value: copyBase(oldValue),
-                };
-                clonedMap.set(oldValue, propDesc.value);
-            }
-            const last = path.pop();
-            const context = property(root, path);
-            Object.defineProperty(context, last, propDesc);
+        every({ existings, isExplore, value }) {
+            // if(isExplore) {
+            //     existings.set(value, copyBase(value));
+            // }
+            return copyBase(value);
         },
-        recursive({ propDesc, path: [...path] }) {
-            const last = path.pop();
-            const context = property(root, path);
-            Object.defineProperty(context, last, {
-                configurable: propDesc.configurable,
-                enumerable: propDesc.enumerable,
-                writable: propDesc.writable,
-                value: clonedMap.get(propDesc.value)
-            });
-        },
+        property({ existings, parent, descriptor, value, key }) {
+            return () => {
+                const context = existings.get(parent);
+                Object.defineProperty(context, key!, {
+                    configurable: descriptor.configurable,
+                    enumerable: descriptor.enumerable,
+                    writable: descriptor.writable,
+                    value: existings.has(value) ? existings.get(value) : value,
+                });
+            };
+        }
     });
-    return root;
+    deepState.exploreSingle(target);
+    return deepState._existings.get(target);
 };
