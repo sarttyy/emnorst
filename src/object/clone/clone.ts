@@ -33,7 +33,7 @@ interface CloneOptions {
  * @param options Specify the depth to copy. 0 is a shallow copy.
  * @return cloned object
  * @example
- * const hoge = {
+ * const target = {
  *     array: [1, 1, 2, 3, 5, 8],
  *     null: null,
  *     number: new Number(0xff),
