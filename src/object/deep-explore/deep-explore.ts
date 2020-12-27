@@ -20,13 +20,11 @@ export interface PropertyProfile extends DeepProfile {
     key: PropertyKey | null; // for root
     value: unknown;
     descriptor: PropertyDescriptor;
-    // child: unknown;
-
+    // isXXX
     isDive: boolean;
     isDeepest: boolean;
     isAccessor: boolean;
     isExisting: boolean;
-    /** 再帰参照 */
     isRecursiveReference: boolean;
 
     // /**
@@ -47,7 +45,6 @@ export interface Options {
     shouldExplore?(o: unknown): boolean;
     // hooks
     every?(value: EveryProfile): unknown;
-    // every?(s: InternalState, s2: InternalState): boolean;
     property?(profile: PropertyProfile): void | Function;
 }
 
