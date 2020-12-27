@@ -38,7 +38,7 @@ export interface Options {
     depthLimit?: number;
     useMap?: boolean;
     // report?: boolean;
-    // useDescriptor?: boolean;
+    useDescriptor?: boolean;
     // exclude?: PropertyKey[][];
     // methods
     keys?(o: object): PropertyKey[];
