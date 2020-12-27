@@ -97,7 +97,7 @@ export class DeepState {
     getPropertyProfile(parent: Record<PropertyKey, unknown>, key: PropertyKey): PropertyProfile {
         const depth = this._depth();
         const isDeepest = depth > this._depthLimit;
-        const useDescriptor = !!this._options.useDescriptor;
+        const useDescriptor = !!this._options.useDescriptor ?? true;
 
         const descriptor = useDescriptor ? Object.getOwnPropertyDescriptor(parent, key) : null;
         const child = useDescriptor ? descriptor!.value : parent[key as string];
