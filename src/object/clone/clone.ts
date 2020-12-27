@@ -64,16 +64,10 @@ export const clone = <T>(target: T, options: CloneOptions={}): T => {
             return copyBase(value);
         },
         property({ existings, parent, descriptor, value, key, isAccessor }) {
+            const context = existings.get(parent);
             if(isAccessor) {
-                const context = existings.get(parent);
-                Object.defineProperty(context, key!, {
-                    configurable: descriptor.configurable,
-                    enumerable: descriptor.enumerable,
-                    get: descriptor.get,
-                    set: descriptor.set,
-                });
+                Object.defineProperty(context, key!, descriptor);
             } else return () => {
-                const context = existings.get(parent);
                 Object.defineProperty(context, key!, {
                     configurable: descriptor.configurable,
                     enumerable: descriptor.enumerable,
