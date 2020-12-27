@@ -79,8 +79,8 @@ export class DeepState {
                 // if(isExplore) {
                 this.exploreSingle(propertyProfile.value);
                 // } else ;
-                if(didDive) didDive();
             }
+            if(didDive) didDive();
             this._path.pop();
         }
         this._route.pop();
