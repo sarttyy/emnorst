@@ -5,7 +5,7 @@ import { toPropertyKey } from "../../property/to-property-key";
  *
  * @param keys
  */
-export const uniqKeys = <T extends PropertyKey>(keys: T[], mapToKey=true): T[] => {
+export const uniqKeys = <T extends PropertyKey>(keys: T[], mapToKey=false): T[] => {
     const existings: { [P in T]?: null } = {};
     const result: T[] = [];
     for(let i = 0;i < keys.length;i++) {
