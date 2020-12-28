@@ -36,13 +36,6 @@ export class DeepState {
         this._existings = _options.useMap ? new Map : new Set;
     }
     private _depth(): number { return this._route.length; }
-    // keys(obj: unknown): void {
-    //     if(this._shouldExplore(obj)) {
-    //         this._keys(obj);
-    //     } else {
-    //         // options.all();
-    //     }
-    // }
     // TODO: Map, Set等の対応。
     // IDEA: ユーザーが任意に拡張できるようする?
     exploreSingle(value: unknown): void {
@@ -106,7 +99,6 @@ export class DeepState {
         const isExisting = this._existings.has(child); // Again
         const isRecursiveReference = isExisting && this._route.includes(child);
         const isDive = !(isDeepest || isRecursiveReference || isAccessor);
-        // const isExplore = isDive && this.shouldExplore(target);
 
         return {
             path: this._path,
@@ -119,7 +111,6 @@ export class DeepState {
             depth,
             isDive,
             isDeepest,
-            // isExplore,
             isAccessor,
             isExisting,
             isRecursiveReference,
