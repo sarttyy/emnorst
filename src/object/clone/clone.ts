@@ -54,12 +54,9 @@ interface CloneOptions {
  */
 export const clone = <T>(target: T, options: CloneOptions={}): T => {
     const deepState = new DeepState({
-        useMap: true,
         depthLimit: options.depth,
-        // existings: new Map,
-        every({ existings, isExplore, value }) {
+        every({ isExplore, value }) {
             if(isExplore) {
-                // existings.set(value, copyBase(value));
                 return copyBase(value);
             }
         },
