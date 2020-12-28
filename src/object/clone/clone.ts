@@ -70,7 +70,7 @@ export const clone = <T>(target: T, options: CloneOptions={}): T => {
                     enumerable: descriptor.enumerable,
                     writable: descriptor.writable,
                     value: existings.has(value as object)
-                        ? existings.get(value) : value,
+                        ? existings.get(value as object) : value,
                 });
             };
         }
