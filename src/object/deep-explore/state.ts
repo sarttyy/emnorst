@@ -41,19 +41,23 @@ export class DeepState {
     exploreSingle(value: unknown): void {
         const isExplore = this._shouldExplore(value);
 
-        const ref = this._options.every!({
-            path: this._path,
-            route: this._route,
-            existings: this._existings,
-            value,
-            depth: this._depth(),
-            isExplore,
-        });
+        if(isFunction(this._options.every)) {
+            const ref = this._options.every({
+                path: this._path,
+                route: this._route,
+                existings: this._existings,
+                value,
+                depth: this._depth(),
+                isExplore,
+            });
+            if(isExplore) {
+                this._existings.set(value as object, ref);
+            }
+        }
 
         if(!isExplore) return;
         assert.type<Record<PropertyKey, unknown>>(value);
 
-        this._addToExistings(value, ref);
         this._route.push(value);
 
         const keys = this._keys(value);
@@ -67,7 +71,8 @@ export class DeepState {
                 this.report.hasCyclic = true;
             }
 
-            const didDive = this._options.property!(propertyProfile);
+            const didDive = isFunction(this._options.property)
+                && this._options.property(propertyProfile);
             if(propertyProfile.isDive) {
                 // if(isExplore) {
                 this.exploreSingle(propertyProfile.value);
@@ -77,9 +82,6 @@ export class DeepState {
             this._path.pop();
         }
         this._route.pop();
-    }
-    private _addToExistings(value: Record<PropertyKey, unknown>, ref: unknown): void {
-        this._existings.set(value, ref);
     }
     getPropertyProfile(parent: Record<PropertyKey, unknown>, key: PropertyKey): PropertyProfile {
         const depth = this._depth();
