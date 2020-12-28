@@ -16,7 +16,7 @@ export interface EveryProfile extends DeepProfile {
 }
 
 export interface PropertyProfile extends DeepProfile {
-    parent: unknown;
+    parent: object;
     key: PropertyKey | null; // for root
     value: unknown;
     descriptor: PropertyDescriptor;
