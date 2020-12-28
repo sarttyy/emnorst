@@ -58,10 +58,10 @@ export const clone = <T>(target: T, options: CloneOptions={}): T => {
         depthLimit: options.depth,
         // existings: new Map,
         every({ existings, isExplore, value }) {
-            // if(isExplore) {
-            //     existings.set(value, copyBase(value));
-            // }
-            return copyBase(value);
+            if(isExplore) {
+                // existings.set(value, copyBase(value));
+                return copyBase(value);
+            }
         },
         property({ existings, parent, descriptor, value, key, isAccessor }) {
             const context = existings.get(parent);
