@@ -10,7 +10,7 @@ export class DeepState {
     private _keys: (o: object) => PropertyKey[];
     private _shouldExplore: (o: unknown) => boolean;
     private _depthLimit: number;
-    private _existings: Set<object> | Map<object, unknown>;
+    private _existings: Map<object, unknown>;
     private _path: PropertyKey[] = [];
     private _route: object[] = [];
     report: Report = {
@@ -33,7 +33,7 @@ export class DeepState {
         this._depthLimit = depthLimit < MAX_BIT_NUMBER
             ? depthLimit | 0 : MAX_BIT_NUMBER;
 
-        this._existings = _options.useMap ? new Map : new Set;
+        this._existings = new Map;
     }
     private _depth(): number { return this._route.length; }
     // TODO: Map, Set等の対応。
@@ -79,13 +79,7 @@ export class DeepState {
         this._route.pop();
     }
     private _addToExistings(value: Record<PropertyKey, unknown>, ref: unknown): void {
-        if(this._options.useMap) {
-            assert.type<Map<object, unknown>>(this._existings);
-            this._existings.set(value, ref);
-        } else {
-            assert.type<Set<object>>(this._existings);
-            this._existings.add(value);
-        }
+        this._existings.set(value, ref);
     }
     getPropertyProfile(parent: Record<PropertyKey, unknown>, key: PropertyKey): PropertyProfile {
         const depth = this._depth();

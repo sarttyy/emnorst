@@ -4,7 +4,7 @@ interface DeepProfile {
     path: PropertyKey[];
     /** ルートからの参照オブジェクトです。 */
     route: object[];
-    existings: Set<object> | Map<object, unknown>;
+    existings: ReadonlyMap<object, unknown>;
     /** ルートを0とした参照の深さ */
     depth: number;
 }
@@ -36,7 +36,7 @@ export interface PropertyProfile extends DeepProfile {
 
 export interface Options {
     depthLimit?: number;
-    useMap?: boolean;
+    // existings?: Map<object, unknown>;
     // report?: boolean;
     useDescriptor?: boolean;
     // exclude?: PropertyKey[][];
