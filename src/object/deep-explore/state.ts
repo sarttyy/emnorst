@@ -30,7 +30,7 @@ export class DeepState {
             ? shouldExplore : isObject;
 
         const depthLimit = _options.depthLimit!;
-        this._depthLimit = depthLimit < MAX_BIT_NUMBER
+        this._depthLimit = (0 < depthLimit && depthLimit < MAX_BIT_NUMBER)
             ? depthLimit | 0 : MAX_BIT_NUMBER;
 
         this._existings = new Map;
