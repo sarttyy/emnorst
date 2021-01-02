@@ -10,27 +10,31 @@
 
 ## usage
 
-詳しくは[ドキュメント](https://reiyayakko.github.io/emnorst)を参照してください。
-
-### Browser
+### UMD(Browser)
 
 ```html
-<script src="https://unpkg.com/emnorst@0.0.1/dist/emnorst.umd.js"></script>
+<script src="https://unpkg.com/emnorst@0.0.2"></script>
 ```
 
-### NodeJS
+### CommonJS / ESModule(Browser/NodeJS/Deno)
 
-install
-`npm i emnorst`
+Install is required to use emnorst with NodeJS.
+
+```bash
+npm i emnorst
+```
 
 ```javascript
 // CommonJS
-const emnorst = requie("emnorst");
+const { isPrime } = requie("emnorst");
 
 // ES2015 Module
-import * as emnorst from "emnorst";
+import { isPrime } from "emnorst";
 
-emnorst.isNumber(1);
+// Deno
+import { isPrime } from "https://unpkg.com/emnorst@0.0.2?module";
+
+isPrime(2147483647);
 // > true
 ```
 
