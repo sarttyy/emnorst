@@ -75,6 +75,10 @@ export const clone = <T>(target: T, options: CloneOptions={}): T => {
             };
         }
     });
+
     deepState.exploreSingle(target);
-    return deepState._existings.get(target);
+
+    assert.type<object>(target);
+    const copyMap = deepState._existings;
+    return copyMap.has(target) ? target : copyMap.get(target) as T;
 };
