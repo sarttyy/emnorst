@@ -1,5 +1,5 @@
 
-import { DeepState } from "../deep-explore";
+import { DeepExplorer } from "../deep-explore";
 import { copyBase } from "./copy-base";
 
 /*
@@ -53,7 +53,7 @@ interface CloneOptions {
  * target !== cloned // => true
  */
 export const clone = <T>(target: T, options: CloneOptions={}): T => {
-    const deepState = new DeepState({
+    const deepState = new DeepExplorer({
         depthLimit: options.depth,
         every({ isExplore, value }) {
             if(isExplore) {

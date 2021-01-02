@@ -1,6 +1,6 @@
 
 import { Options, Report } from "./deep-explore";
-import { DeepState } from "./state";
+import { DeepExplorer } from "./single";
 
 /**
  *
@@ -10,7 +10,7 @@ import { DeepState } from "./state";
  * const report = deepExplore(target);
  */
 export const explore = (target: unknown, options: Options={}): Report => {
-    const state = new DeepState(options);
+    const state = new DeepExplorer(options);
     state.exploreSingle(target);
     return state.report;
 };

@@ -6,7 +6,7 @@ import { has } from "../property/has";
 import { getKeys } from "../standard/keys";
 import { Options, PropertyProfile, Report } from "./deep-explore";
 
-export class DeepState {
+export class DeepExplorer {
     private _keys: (o: object) => PropertyKey[];
     private _shouldExplore: (o: unknown) => boolean;
     private _depthLimit: number;
