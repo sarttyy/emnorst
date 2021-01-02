@@ -32,6 +32,7 @@ const { isPrime } = requie("emnorst");
 import { isPrime } from "emnorst";
 
 // Deno
+// @deno-types="https://unpkg.com/emnorst@0.0.2/dist/emnorst.esm.d.ts"
 import { isPrime } from "https://unpkg.com/emnorst@0.0.2?module";
 
 isPrime(2147483647);
