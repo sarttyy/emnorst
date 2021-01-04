@@ -1,5 +1,5 @@
 
-import primitiveTable from "./primitive-type-table.json";
+import { table as primitiveTable } from "./primitive";
 
 const { toString } = Object.prototype;
 
