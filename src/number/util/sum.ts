@@ -27,7 +27,7 @@ export const sum: {
     } else {
         assert.type<ArrayLike<number>>(arr);
         let accum = (init ?? arr[i++]) as number;
-        while(i < len) accum += arr[i++] as number;
+        while(i < len) accum += arr[i++];
         return accum;
     }
 };
