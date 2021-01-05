@@ -1,9 +1,10 @@
 
+import type { Opaque } from "../../util/standard/opaque";
 import { isEven } from "./even-odd";
 import { isInfinity } from "./infinity";
 import { isInteger } from "./integer";
 
-export const isPrime = (number: number): boolean => {
+export const isPrime = (number: number): number is Opaque<number, {int:true;prime:true}> => {
     if(number === 2) return true;
 
     if(number < 2
