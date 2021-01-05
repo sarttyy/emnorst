@@ -66,7 +66,7 @@ export class DeepExplorer {
             if(!has(value, key)) continue;
             this._path.push(key);
 
-            const propertyProfile = this.getPropertyProfile(value, key);
+            const propertyProfile = this._getPropertyProfile(value, key);
             if(propertyProfile.isRecursiveReference) {
                 this.report.hasCyclic = true;
             }
@@ -83,7 +83,7 @@ export class DeepExplorer {
         }
         this._route.pop();
     }
-    getPropertyProfile(parent: Record<PropertyKey, unknown>, key: PropertyKey): PropertyProfile {
+    private _getPropertyProfile(parent: Record<PropertyKey, unknown>, key: PropertyKey): PropertyProfile {
         const depth = this._depth();
         const isDeepest = depth > this._depthLimit;
         const useDescriptor = this._options.useDescriptor ?? true;
