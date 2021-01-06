@@ -2,7 +2,6 @@
 import buble from "@rollup/plugin-buble";
 import commonjs from "@rollup/plugin-commonjs";
 import inject from "@rollup/plugin-inject";
-import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import strip from "@rollup/plugin-strip";
@@ -47,7 +46,6 @@ const ProdPlugins = [
 
 // alias, virtual
 const Plugins = [
-    json({ indent: "    ", namedExports: false }),
     ts({
         transpileOnly: true,
         tsconfig: {
