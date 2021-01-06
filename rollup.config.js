@@ -22,30 +22,8 @@ const banner = `/**
  * License MIT
  */`;
 
-const DevPlugins = [];
-const ProdPlugins = [
-    terser({
-        mangle: {
-            properties: {
-                reserved: ["__esModule"],
-                regex: /^_/
-            }
-        }
-    }),
-    visualizer({
-        filename: `./dist/stats.${pkg.name}.html`,
-        template: "sunburst",
-        // template: "network",
-    }),
-    analyze({
-        writeTo(analysisString) {
-            fs.writeFileSync(`./dist/analysis.${pkg.name}.txt`, analysisString);
-        }
-    }),
-];
-
-// alias, virtual
-const Plugins = [
+// json, alias, virtual
+const getPlugins = ({ use=[] }) => [
     ts({
         transpileOnly: true,
         tsconfig: {
@@ -76,6 +54,25 @@ const Plugins = [
             ENVIRONMENT: process.env.BUILD,
         }
     }),
+    ...use,
+    DEVELOPMENT ? null : terser({
+        mangle: {
+            properties: {
+                reserved: ["__esModule"],
+                regex: /^_/
+            }
+        }
+    }),
+    DEVELOPMENT ? null : visualizer({
+        filename: `./dist/stats.${pkg.name}.html`,
+        template: "sunburst",
+        // template: "network",
+    }),
+    DEVELOPMENT ? null : analyze({
+        writeTo(analysisString) {
+            fs.writeFileSync(`./dist/analysis.${pkg.name}.txt`, analysisString);
+        }
+    }),
 ];
 
 const UMDBuild = {
@@ -88,23 +85,25 @@ const UMDBuild = {
         sourcemap: DEVELOPMENT,
         banner,
     },
-    plugins: [
-        ...Plugins,
-        buble({
-            transforms: {
-                dangerousForOf: true,
-                dangerousTaggedTemplateString: true,
-                forOf: false,
-                generator: false,
-            },
-            objectAssign: true,
-        }),
-        // inject({
-        //     "Object.assign": ["./src/", "assign"]
-        // }),
-        ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
-    ],
-}, ESBuild = {
+    plugins: getPlugins({
+        umd: true,
+        use: [
+            buble({
+                transforms: {
+                    dangerousForOf: true,
+                    dangerousTaggedTemplateString: true,
+                    forOf: false,
+                    generator: false,
+                },
+                objectAssign: true,
+            }),
+            // inject({
+            //     "Object.assign": ["./src/", "assign"]
+            // }),
+        ],
+    }),
+};
+const ESBuild = {
     input: entry,
     output: [{
         file: pkg.module,
@@ -117,10 +116,7 @@ const UMDBuild = {
         sourcemap: DEVELOPMENT,
         banner,
     }],
-    plugins: [
-        ...Plugins,
-        ...(DEVELOPMENT ? DevPlugins : ProdPlugins),
-    ],
+    plugins: getPlugins({}),
 };
 
 export default [UMDBuild, ESBuild].map((config) => {
