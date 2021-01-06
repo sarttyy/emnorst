@@ -1,5 +1,5 @@
 
-import { isFunction } from "../../util/is/function";
+import { isFunction } from "util/is/function";
 
 type mapfn<T, U> = (value: T, index: number, origin: ArrayLike<T>) => U;
 
