@@ -27,7 +27,10 @@ const DevPlugins = [];
 const ProdPlugins = [
     terser({
         mangle: {
-            properties: { regex: /^_/ }
+            properties: {
+                reserved: ["__esModule"],
+                regex: /^_/
+            }
         }
     }),
     visualizer({
