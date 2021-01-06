@@ -50,6 +50,7 @@ const Plugins = [
         tsconfig: {
             declaration: DEVELOPMENT,
             target: "ES2019",
+            baseUrl: "./src",
         }
     }),
     strip({
@@ -59,10 +60,10 @@ const Plugins = [
     inject({
         // import key from value;
         // import { value[1] as key } from value[0];
-        "Array.prototype": ["src/object/standard/prototype", "ArrayPrototype"],
-        "Array.prototype.slice": ["src/object/standard/prototype", "slice"],
-        "Object.prototype": ["src/object/standard/prototype", "ObjectPrototype"],
-        "Object.keys": ["src/object/standard/keys", "keys"],
+        "Array.prototype": ["object/standard/prototype", "ArrayPrototype"],
+        "Array.prototype.slice": ["object/standard/prototype", "slice"],
+        "Object.prototype": ["object/standard/prototype", "ObjectPrototype"],
+        "Object.keys": ["object/standard/keys", "keys"],
     }),
     commonjs(),
     nodeResolve(),
