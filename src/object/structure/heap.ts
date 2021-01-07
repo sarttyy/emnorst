@@ -36,12 +36,12 @@ export class Heap<T> {
     /**
      * @return minimum or maximum value in heap
      */
-    peek(): T { return this._heap[0]; }
+    peek(): T | undefined { return this._heap[0]; }
     /**
      * Remove element from heap.
      * @return removed elements
      */
-    remove(): T {
+    remove(): T | undefined {
         return Heap.remove(this._heap, this._comparator);
     }
     /**
@@ -60,7 +60,7 @@ export class Heap<T> {
      * @param comparator 比較関数
      * @return removed elements
      */
-    static remove<U>(list: WritableArrayLike<U>, comparator?: Comparator<U>): U {
+    static remove<U>(list: WritableArrayLike<U>, comparator?: Comparator<U>): U | undefined {
         const result = list[0];
         const last: U = pop.call(list);
         if(result !== last) list[0] = last;
