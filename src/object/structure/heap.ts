@@ -61,10 +61,13 @@ export class Heap<T> {
      * @return removed elements
      */
     static remove<U>(list: WritableArrayLike<U>, comparator?: Comparator<U>): U | undefined {
+        if(list.length === 0) return;
+
         const result = list[0];
-        const last: U = pop.call(list);
-        if(result !== last) list[0] = last;
+
+        list[0] = pop.call(list);
         Heap.downHeap(list, 0, void 0, comparator);
+
         return result;
     }
     static upHeap<U>(
