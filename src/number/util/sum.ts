@@ -1,5 +1,6 @@
 
 import { isFunction } from "util/is/function";
+import { assert } from "util/standard/assert";
 
 type mapfn<T, U> = (value: T, index: number, origin: ArrayLike<T>) => U;
 

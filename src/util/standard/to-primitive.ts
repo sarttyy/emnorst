@@ -1,6 +1,7 @@
 
 import { isFunction } from "../is/function";
 import { isPrimitive } from "../is/primitive";
+import { assert } from "./assert";
 import { Primitive } from "./primitive";
 
 type Hint = "string" | "number" | "default";
