@@ -26,7 +26,7 @@ npm i emnorst
 
 ```javascript
 // CommonJS
-const { isPrime } = requie("emnorst");
+const { isPrime } = require("emnorst");
 
 // ES2015 Module
 import { isPrime } from "emnorst";
