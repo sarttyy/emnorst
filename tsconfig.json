@@ -4,6 +4,5 @@
         "module": "CommonJS",
         "strict": true,
         "baseUrl": "./src",
-        "typeRoots": ["node_modules/@types", "src/@types"]
     }
 }

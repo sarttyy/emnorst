@@ -39,9 +39,9 @@ const getPlugins = ({ use=[] }) => [
     inject({
         // import key from value;
         // import { value[1] as key } from value[0];
-        "Array.prototype": ["object/standard/prototype", "ArrayPrototype"],
+        "Array.prototype": ["object/standard/prototype", "arrayPrototype"],
         "Array.prototype.slice": ["object/standard/prototype", "slice"],
-        "Object.prototype": ["object/standard/prototype", "ObjectPrototype"],
+        "Object.prototype": ["object/standard/prototype", "objectPrototype"],
         "Object.keys": ["object/standard/keys", "keys"],
     }),
     commonjs(),

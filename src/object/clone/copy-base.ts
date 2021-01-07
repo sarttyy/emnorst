@@ -1,6 +1,7 @@
 
-import { isObject } from "../is/object";
+import { assert } from "util/standard/assert";
 import { typeOf } from "util/standard/type-of";
+import { isObject } from "../is/object";
 import { isTypedArray } from "../is/typed-array";
 // import { Arguments as $Arguments } from "util/function/simple/arguments";
 
