@@ -6,6 +6,10 @@ import { Primitive } from "./primitive";
 
 type Hint = "string" | "number" | "default";
 
+interface HasToPrimitive {
+    [Symbol.toPrimitive](hint: Hint): Primitive;
+}
+
 /**
  * Implementation of ToPrimitive.
  *
@@ -15,7 +19,7 @@ type Hint = "string" | "number" | "default";
  */
 export const toPrimitive = (input: unknown, preferredType?: Hint): Primitive => {
     if(isPrimitive(input)) return input;
-    assert.type<{ [Symbol.toPrimitive](hint: Hint): Primitive }>(input);
+    assert.type<HasToPrimitive>(input);
 
     const hint
         = preferredType === "string" ? 1
