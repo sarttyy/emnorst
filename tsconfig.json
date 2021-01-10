@@ -1,8 +1,19 @@
 {
     "compilerOptions": {
-        "target": "ESNEXT",
-        "module": "CommonJS",
-        "strict": true,
+        // module
+        "moduleResolution": "node",
+        "esModuleInterop": true,
         "baseUrl": "./src",
+        // types
+        "lib": ["ES2018"],
+        "typeRoots": [],
+        "strict": true,
+        // "noUncheckedIndexedAccess": true,
+        // lint
+        "allowUnreachableCode": false,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
     }
 }
