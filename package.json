@@ -14,7 +14,7 @@
     "build:dev": "rollup -c rollup.config.js --environment BUILD:development",
     "build": "rollup -c rollup.config.js --environment BUILD:production",
     "test": "jest --coverage",
-    "typedoc": "typedoc --options typedoc.json",
+    "docs": "typedoc --options typedoc.json",
     "madge": "node script/madge.js"
   },
   "repository": {
