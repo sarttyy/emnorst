@@ -1,0 +1,7 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["dist"],
+    "compilerOptions": {
+        "target": "ES2018",
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "tsconfig": "tsconfig.docs.json",
+    "entryPoints": "dist/emnorst.esm.d.ts",
+    "out": "docs",
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "includeVersion": true
+}
