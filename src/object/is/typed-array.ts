@@ -1,9 +1,13 @@
 
-import { typeOf } from "util/standard/type-of";
-import { TypedArray } from "../standard/typed-array";
+import type { TypedArray } from "../standard/typed-array";
 
-const regexp = /^(?:Uin|In|Floa)t(?:8|16|32|64)(?:Clamped)?Array$/;
+/**
+ * is %TypedArray%
+ *
+ * https://tc39.es/ecma262/#sec-properties-of-the-typedarray-constructors
+ */
+const $TypedArray$ = Object.getPrototypeOf(Int8Array);
 
 export const isTypedArray = (value: unknown): value is TypedArray => (
-    regexp.test(typeOf(value))
+    value instanceof $TypedArray$
 );
