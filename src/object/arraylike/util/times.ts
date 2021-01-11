@@ -5,9 +5,10 @@ import { isFunction } from "util/is/function";
 type ReturnTypeOrElse<T> = T extends (...args: any) => infer R ? R : T;
 
 /**
+ * Create array with specified length and filled with elements.
  *
- * @param count
- * @param value
+ * @param count length of array to generate.
+ * @param value array element or function that returns array element.
  * @example
  * const arr = times<number>(4, (i, p=0) => i + p);
  * // => [0, 1, 3, 6]
