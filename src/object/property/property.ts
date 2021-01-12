@@ -9,5 +9,5 @@ import { isArray } from "../is/array";
  */
 export const property = (obj: object, path: Path): any => {
     if(typeof path === "string") path = parseStringPath(path);
-    return isArray(path) ? get(obj, path, 0) : obj[path];
+    return isArray(path) ? get(obj, path, 0) : obj[path as never];
 };
