@@ -26,11 +26,10 @@ const banner = `/**
 const getPlugins = ({ use=[] }) => [
     ts({
         transpileOnly: DEVELOPMENT,
-        tsconfig: {
+        tsconfig: resolvedConfig => ({
+            ...resolvedConfig,
             declaration: DEVELOPMENT,
-            target: "ES2019",
-            baseUrl: "./src",
-        }
+        }),
     }),
     strip({
         include: ["**/*.(js|ts)"],
