@@ -27,7 +27,7 @@ describe.skip("clone", () => {
         date: new Date(),
         bigint: Object(BigInt("9007199254740993")),
         arguments: (function() { return arguments; })(),
-    }))("object(%s)", (type, target) => {
+    }))("object(%s)", (_type, target) => {
         const cloned = clone(target);
 
         expect(cloned).not.toBe(target);
