@@ -5,6 +5,7 @@
         "esModuleInterop": true,
         "baseUrl": "./src",
         // types
+        "target": "ES2018",
         "lib": ["ES2018"],
         "typeRoots": [],
         "strict": true,
