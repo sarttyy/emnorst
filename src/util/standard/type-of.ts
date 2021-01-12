@@ -25,6 +25,22 @@ export const typeOf = (value: unknown): string => {
 };
 
 /**
+ * if typeOf(value) same "Object" and `value.constructor.name` isn't empty, return `value.constructor.name`.
+ * else, same as typeOf.
+ *
+ * @see {@link typeOf}
+ * @param value Value to get the type
+ * @return String of type
+ */
+export const getType = (value: unknown): string => {
+    const ctor = (
+        typeOf(value) === "Object"
+        && (value as object).constructor
+    );
+    return (ctor && ctor.name) || prevResult;
+};
+
+/**
  * if null, returns "null".
  * if primitive, use typeof operator to get the type.
  * else, same as typeOf.
