@@ -4,9 +4,8 @@
 [![CI](https://github.com/reiyayakko/emnorst/workflows/CI/badge.svg)](https://github.com/reiyayakko/emnorst/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/reiyayakko/emnorst/branch/master/graph/badge.svg)](https://codecov.io/gh/reiyayakko/emnorst)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![npm version](https://badge.fury.io/js/emnorst.svg)](https://badge.fury.io/js/emnorst)
-<!-- [![document](https://reiyayakko.github.io/emnorst/badge.svg)](https://reiyayakko.github.io/emnorst) -->
-<!-- [![_](https://img.shields.io/badge/test-hoge-informational)]() -->
+[![npm version](https://img.shields.io/npm/v/emnorst/latest.svg?logo=npm)](https://www.npmjs.com/package/emnorst)
+[![TypeDoc](https://img.shields.io/badge/document-TypeDoc-green.svg)](https://typedoc.org)
 
 ## usage
 
