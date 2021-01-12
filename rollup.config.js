@@ -25,7 +25,7 @@ const banner = `/**
 // json, alias, virtual
 const getPlugins = ({ use=[] }) => [
     ts({
-        transpileOnly: true,
+        transpileOnly: DEVELOPMENT,
         tsconfig: {
             declaration: DEVELOPMENT,
             target: "ES2019",
