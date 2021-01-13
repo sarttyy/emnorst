@@ -78,7 +78,7 @@ export class Heap<T> {
         while(i > 0) {
             const parentI = (i - 1) / 2 | 0;
             const parent = list[parentI];
-            if(comparator(parent, temp)) break;
+            if(comparator(temp, parent)) break;
             list[i] = parent;
             i = parentI;
         }
@@ -95,10 +95,10 @@ export class Heap<T> {
         while(true as boolean) {
             let childI = 2 * i + 1;
             if(childI > limit) break;
-            if(childI < limit && comparator(list[childI+1], list[childI]))
+            if(childI < limit && comparator(list[childI], list[childI+1]))
                 childI++;
             const child = list[childI];
-            if(!comparator(child, temp)) break;
+            if(!comparator(temp, child)) break;
             list[i] = child;
             i = childI;
         }
