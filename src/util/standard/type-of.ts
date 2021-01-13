@@ -3,7 +3,7 @@ import { table as primitiveTable } from "./primitive";
 
 const { toString } = Object.prototype;
 
-let prev: unknown = NaN, result: string;
+let prevInput: unknown = NaN, prevResult: string;
 
 /**
  * Use `Object.prototype.toString` to get the value type.
@@ -12,16 +12,32 @@ let prev: unknown = NaN, result: string;
  * @return String of type
  */
 export const typeOf = (value: unknown): string => {
-    const type = typeof value;
-    if(type in primitiveTable) {
-        return primitiveTable[type as keyof typeof primitiveTable];
+    const inputType = typeof value;
+    if(inputType in primitiveTable) {
+        return primitiveTable[inputType as keyof typeof primitiveTable];
     }
 
-    if(prev === value) return result;
+    if(prevInput === value) return prevResult;
 
-    prev = value;
-    result = toString.call(value).slice(8, -1);
-    return result;
+    prevInput = value;
+    prevResult = toString.call(value).slice(8, -1);
+    return prevResult;
+};
+
+/**
+ * if typeOf(value) same "Object" and `value.constructor.name` isn't empty, return `value.constructor.name`.
+ * else, same as typeOf.
+ *
+ * @see {@link typeOf}
+ * @param value Value to get the type
+ * @return String of type
+ */
+export const getType = (value: unknown): string => {
+    const ctor = (
+        typeOf(value) === "Object"
+        && (value as object).constructor
+    );
+    return (ctor && ctor.name) || prevResult;
 };
 
 /**
@@ -36,8 +52,8 @@ export const typeOf = (value: unknown): string => {
 export const getTypeOf = (value: unknown): string => {
     if(value === null) return "null";
 
-    const type = typeof value;
-    return (type in primitiveTable
-        ? type : typeOf(value)
+    const inputType = typeof value;
+    return (inputType in primitiveTable
+        ? inputType : typeOf(value)
     );
 };
