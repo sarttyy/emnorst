@@ -1,7 +1,7 @@
 
 import { isNumber } from "number/is/number";
 import { isFunction } from "util/is/function";
-import type { Comparator } from "./types";
+import type { CompareOrder } from "./types";
 
 /**
  * Compare values with comparator and returns boolean value.
@@ -13,7 +13,7 @@ import type { Comparator } from "./types";
 export const compare = <T>(
     left: T,
     right: T,
-    comparator: Comparator<T, number | boolean | null> | boolean = true,
+    comparator: CompareOrder<T> = true,
 ): boolean => {
     const dir = (isFunction(comparator)
         ? comparator(left, right)
