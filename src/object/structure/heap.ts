@@ -1,6 +1,6 @@
 
 import { swap } from "../property/swap";
-import { lessThan, Comparator } from "util/data/comparator/comparator";
+import { compare, Comparator } from "util/compare";
 
 interface WritableArrayLike<T> {
     length: number;
@@ -16,7 +16,7 @@ export class Heap<T> {
     private readonly _heap: T[] = [];
     constructor(
         items?: ArrayLike<T> | Heap<T> | null,
-        private readonly _comparator: Comparator<T>=lessThan,
+        private readonly _comparator: Comparator<T, number | boolean | null> | boolean = true,
     ) {
         let i = 0;
         if(items instanceof Heap) while(i < items._heap.length)
@@ -48,7 +48,7 @@ export class Heap<T> {
      * @param item elements to add
      * @param comparator 比較関数
      */
-    static insert<U>(list: WritableArrayLike<U>, item: U, comparator?: Comparator<U>): void {
+    static insert<U>(list: WritableArrayLike<U>, item: U, comparator?: Comparator<U, number | boolean | null> | boolean): void {
         Array.prototype.push.call(list, item);
         Heap.upHeap(list, void 0, comparator);
     }
@@ -58,7 +58,7 @@ export class Heap<T> {
      * @param comparator 比較関数
      * @return removed elements
      */
-    static remove<U>(list: WritableArrayLike<U>, comparator?: Comparator<U>): U | undefined {
+    static remove<U>(list: WritableArrayLike<U>, comparator?: Comparator<U, number | boolean | null> | boolean): U | undefined {
         if(list.length === 0) return;
 
         const result = list[0];
@@ -71,14 +71,14 @@ export class Heap<T> {
     static upHeap<U>(
         list: WritableArrayLike<U>,
         start = list.length - 1,
-        comparator: Comparator<U> = lessThan,
+        comparator?: Comparator<U, number | boolean | null> | boolean,
     ): void {
         const temp = list[start];
         let i = start;
         while(i > 0) {
             const parentI = (i - 1) / 2 | 0;
             const parent = list[parentI];
-            if(comparator(temp, parent)) break;
+            if(compare(temp, parent, comparator)) break;
             list[i] = parent;
             i = parentI;
         }
@@ -88,17 +88,17 @@ export class Heap<T> {
         list: WritableArrayLike<U>,
         start = 0,
         limit = list.length - 1,
-        comparator: Comparator<U> = lessThan,
+        comparator?: Comparator<U, number | boolean | null> | boolean,
     ): void {
         const temp = list[start];
         let i = start;
         while(true as boolean) {
             let childI = 2 * i + 1;
             if(childI > limit) break;
-            if(childI < limit && comparator(list[childI], list[childI+1]))
+            if(childI < limit && compare(list[childI], list[childI+1], comparator))
                 childI++;
             const child = list[childI];
-            if(!comparator(temp, child)) break;
+            if(!compare(temp, child, comparator)) break;
             list[i] = child;
             i = childI;
         }
@@ -109,7 +109,7 @@ export class Heap<T> {
      * @param list ArrayLike object to heapify
      * @param comparator 比較関数
      */
-    static heapify<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number]>): U {
+    static heapify<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number], number | boolean | null> | boolean): U {
         for(let i = 0;i < list.length;)
             Heap.upHeap(list, i++, comparator);
         return list;
@@ -119,7 +119,7 @@ export class Heap<T> {
      * @param list ArrayLike object for heap sorting.
      * @param comparator 比較関数
      */
-    static sort<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number]>): U {
+    static sort<U extends WritableArrayLike<unknown>>(list: U, comparator?: Comparator<U[number], number | boolean | null> | boolean): U {
         Heap.heapify(list, comparator);
 
         let i = list.length - 1;
