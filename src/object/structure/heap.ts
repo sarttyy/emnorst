@@ -2,8 +2,6 @@
 import { swap } from "../property/swap";
 import { lessThan, Comparator } from "util/data/comparator/comparator";
 
-const { push, pop } = Array.prototype;
-
 interface WritableArrayLike<T> {
     length: number;
     [n: number]: T;
@@ -51,7 +49,7 @@ export class Heap<T> {
      * @param comparator 比較関数
      */
     static insert<U>(list: WritableArrayLike<U>, item: U, comparator?: Comparator<U>): void {
-        push.call(list, item);
+        Array.prototype.push.call(list, item);
         Heap.upHeap(list, void 0, comparator);
     }
     /**
@@ -65,7 +63,7 @@ export class Heap<T> {
 
         const result = list[0];
 
-        list[0] = pop.call(list);
+        list[0] = Array.prototype.pop.call(list);
         Heap.downHeap(list, 0, void 0, comparator);
 
         return result;
