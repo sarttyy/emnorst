@@ -1,29 +1,58 @@
 
-import { Heap } from "../emnorst.import";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Heap, CompareOrder } from "../emnorst.import";
 
 describe("Heap", () => {
-    test("class", () => {
-        const heap = new Heap<{ val: number }>(null, (l, r) => l.val < r.val);
+    const _case = <T>(
+        mapper: (n: number) => T,
+        getter: (v: T) => number,
+        online: number,
+        compareOrder: CompareOrder<T>,
+        gt: boolean = false,
+    ): [(n: number) => T, (v: T) => number, number, CompareOrder<T>, boolean] => (
+        [mapper, getter, online, compareOrder, gt]
+    );
+    test.each([
+        _case(v => ({ val: v }), /* */ v => v.val, /* */ 0, (l, r) => l.val > r.val),
+        _case(v => new Number(v), v => v.valueOf(), 0, false),
+        _case(v => new Number(v), v => v.valueOf(), 10, true, true),
+    ])("Correct take-out order (case-%#)", (mapper, getter, online, compareOrder, gt) => {
+        const originalData = [5, 1, 4, 3, 0, 6, 8, 9, 2, 7];
+        const initData = originalData.map(mapper as any);
+        const heap = new Heap<any>(initData, compareOrder);
 
-        heap.add({ val: 1 });
-        heap.add({ val: 4 });
-        heap.add({ val: 3 });
-        heap.add({ val: 1 });
-        heap.add({ val: 2 });
+        originalData.sort((l, r) => (gt ? l > r : l < r) ? +1 : -1);
 
-        expect(heap.remove().val).toBe(1);
-        expect(heap.remove().val).toBe(1);
-        expect(heap.remove().val).toBe(2);
+        expect(getter(heap.remove()!)).toBe(originalData.pop());
+        expect(getter(heap.remove()!)).toBe(originalData.pop());
+        expect(getter(heap.remove()!)).toBe(originalData.pop());
 
-        heap.add({ val: 1 });
+        heap.add(mapper(online));
 
-        expect(heap.remove().val).toBe(1);
-        expect(heap.remove().val).toBe(3);
-        expect(heap.remove().val).toBe(4);
+        expect(getter(heap.remove()!)).toBe(online);
+        expect(getter(heap.remove()!)).toBe(originalData.pop());
+        expect(getter(heap.remove()!)).toBe(originalData.pop());
     });
     test("sort", () => {
-        const array = [2, 7, 3, 0, 5, 1, 8, 4, 6];
-        const sortedArray = Heap.sort(array, (l, r) => l < r);
-        expect(sortedArray).toEqual([8, 7, 6, 5, 4, 3, 2, 1, 0]);
+        const sortedArray1 = Heap.sort([2, 7, 3, 0, 5, 1, 8, 4, 6], (l, r) => l < r);
+        expect(sortedArray1).toEqual([...Array(9).keys()]);
+        const sortedArray2 = Heap.sort([5, 1, 4, 3, 0, 6, 8, 9, 2, 7]);
+        expect(sortedArray2).toEqual([...Array(10).keys()]);
+    });
+    test("heapify", () => {
+        const data = Heap.heapify([5, 1, 4, 3, 0, 6, 8, 9, 2, 7]);
+
+        const heapTest = (idx: number) => {
+            let cIdx = idx * 2 + 1;
+            if(cIdx < data.length) {
+                expect(data[idx]).toBeGreaterThan(data[cIdx]);
+                heapTest(cIdx);
+            }
+            if(++cIdx < data.length) {
+                expect(data[idx]).toBeGreaterThan(data[cIdx]);
+                heapTest(cIdx);
+            }
+        };
+        heapTest(0);
     });
 });
