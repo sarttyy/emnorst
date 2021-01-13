@@ -1,7 +1,5 @@
 
-import primitiveTypeTable from "../standard/primitive-type-table.json";
-
-type Primitive = string | number | bigint | boolean | symbol | null | undefined;
+import { table as primitiveTypeTable, Primitive } from "../standard/primitive";
 
 /**
  * Determine if the value type is string, number, bigint, boolean, symbol, null, undefined.

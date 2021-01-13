@@ -1,4 +1,6 @@
 
+import { assert } from "util/standard/assert";
+
 /*
 オブジェクトの指定したプロパティを入れ替えます。
 
@@ -12,10 +14,16 @@
  * @param edit Assign to this object. If not specified, `origin` is specified.
  */
 export const swap = (origin: object, m: PropertyKey, n: PropertyKey, edit=origin): object => {
+    assert.type<Record<PropertyKey, unknown>>(origin);
+    assert.type<Record<PropertyKey, unknown>>(edit);
+    assert.type<string>(m);
+    assert.type<string>(n);
+
     if(m === n) {
         if(origin !== edit) edit[m] = origin[m];
         return edit;
     }
+
     const temp = origin[m];
     edit[m] = origin[n];
     edit[n] = temp;

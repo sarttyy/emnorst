@@ -19,7 +19,7 @@ export const get = (obj: object, path: PropertyKey[], flags=0): any => {
         const key = path[depth++];
         const hasProp = flags & 1 ? hasOwnProperty.call(obj, key) : key in obj;
         if(!hasProp) return void 0;
-        obj = obj[key];
+        obj = obj[key as never];
     }
     return obj;
 };

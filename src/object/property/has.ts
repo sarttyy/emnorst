@@ -18,7 +18,7 @@ export const HAS = (obj: object, path: Path): boolean => {
 
 export const IN = (obj: object, path: Path): boolean => {
     if(typeof path === "string") path = parseStringPath(path);
-    if(!isArray(path)) return path in obj;
+    if(!isArray(path)) return (path as number) in obj;
     const last = path.pop();
     obj = get(obj, path, 0);
     return obj != null && last! in obj;

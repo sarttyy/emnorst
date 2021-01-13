@@ -8,7 +8,7 @@ import {
 
 describe("util/is", () => {
     /** @test {equals} */
-    test("equals", () => {
+    test("equals with SameValueZero", () => {
         expect(equals(NaN, NaN)).toBeTruthy();
         expect(equals(0, -0)).toBeTruthy();
         expect(equals(0, 0, void 0)).toBeFalsy();
