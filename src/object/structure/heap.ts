@@ -78,7 +78,7 @@ export class Heap<T> {
         while(i > 0) {
             const parentI = (i - 1) / 2 | 0;
             const parent = list[parentI];
-            if(compare(temp, parent, comparator)) break;
+            if(!compare(parent, temp, comparator)) break;
             list[i] = parent;
             i = parentI;
         }
