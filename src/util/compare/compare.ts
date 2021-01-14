@@ -19,5 +19,5 @@ export const compare = <T>(
         ? comparator(left, right)
         : comparator ? left < right : left > right
     );
-    return isNumber(dir) ? dir > 0 : Boolean(dir);
+    return isNumber(dir) ? dir < 0 : Boolean(dir);
 };
