@@ -6,27 +6,27 @@ describe("Heap", () => {
     const _case = <T>(
         mapper: (n: number) => T,
         getter: (v: T) => number,
-        online: number,
         compareOrder: CompareOrder<T>,
-        gt: boolean = false,
-    ): [(n: number) => T, (v: T) => number, number, CompareOrder<T>, boolean] => (
-        [mapper, getter, online, compareOrder, gt]
+    ): [(n: number) => T, (v: T) => number, CompareOrder<T>, boolean] => (
+        [mapper, getter, compareOrder, compareOrder !== true]
     );
     test.each([
-        _case(v => ({ val: v }), /* */ v => v.val, /* */ 0, (l, r) => l.val > r.val),
-        _case(v => new Number(v), v => v.valueOf(), 0, false),
-        _case(v => new Number(v), v => v.valueOf(), 10, true, true),
-    ])("Correct take-out order (case-%#)", (mapper, getter, online, compareOrder, gt) => {
+        _case(v => ({ val: v }), v => v.val, (l, r) => l.val > r.val),
+        _case(v => new Number(v), v => v.valueOf(), false),
+        _case(v => new Number(v), v => v.valueOf(), true),
+    ])("Correct take-out order (case-%#)", (mapper, getter, compareOrder, gt) => {
         const originalData = [5, 1, 4, 3, 0, 6, 8, 9, 2, 7];
         const initData = originalData.map(mapper as any);
         const heap = new Heap<any>(initData, compareOrder);
 
-        originalData.sort((l, r) => (gt ? l > r : l < r) ? +1 : -1);
+        const sign = gt ? -1 : +1;
+        originalData.sort((l, r) => (l - r) * sign);
 
         expect(getter(heap.remove()!)).toBe(originalData.pop());
         expect(getter(heap.remove()!)).toBe(originalData.pop());
         expect(getter(heap.remove()!)).toBe(originalData.pop());
 
+        const online = gt ? 0 : 10;
         heap.add(mapper(online));
 
         expect(getter(heap.remove()!)).toBe(online);
