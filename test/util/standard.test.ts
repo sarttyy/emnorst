@@ -17,11 +17,12 @@ describe("type-of", () => {
 });
 
 describe("toPrimitive", () => {
-    const toStringSymbol = Symbol("toString");
-    const valueOfSymbol = Symbol("valueOf");
+    const objObject = "[object Object]";
+    const toStringSym = Symbol("toString");
+    const valueOfSym = Symbol("valueOf");
     const OBJ_1 = {
-        toString: () => toStringSymbol,
-        valueOf: () => valueOfSymbol,
+        toString: () => toStringSym,
+        valueOf: () => valueOfSym,
     };
     const OBJ_2 = {
         ...OBJ_1,
@@ -29,15 +30,15 @@ describe("toPrimitive", () => {
     };
 
     test.each`
-        object   | string               | number               | $default             | $undefined
-        ${{}}    | ${"[object Object]"} | ${"[object Object]"} | ${"[object Object]"} | ${"[object Object]"}
-        ${OBJ_1} | ${toStringSymbol}    | ${valueOfSymbol}     | ${valueOfSymbol}     | ${valueOfSymbol}
-        ${OBJ_2} | ${"string"}          | ${"number"}          | ${"default"}         | ${"default"}
-    `("convert to primitive.", ({ object, string, number, $default, $undefined }) => {
+        object   | string         | number        | $default
+        ${{}}    | ${objObject}   | ${objObject}  | ${objObject}
+        ${OBJ_1} | ${toStringSym} | ${valueOfSym} | ${valueOfSym}
+        ${OBJ_2} | ${"string"}    | ${"number"}   | ${"default"}
+    `("convert to primitive.", ({ object, string, number, $default }) => {
         expect(toPrimitive(object, "string")).toBe(string);
         expect(toPrimitive(object, "number")).toBe(number);
         expect(toPrimitive(object, "default")).toBe($default);
-        expect(toPrimitive(object)).toBe($undefined);
+        expect(toPrimitive(object)).toBe($default);
     });
 
     test("throw error if unable to convert object.", () => {
