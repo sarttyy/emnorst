@@ -41,14 +41,12 @@ describe("toPrimitive", () => {
     });
 
     test("throw error if unable to convert object.", () => {
-        const stubReturnObject = () => ({});
-
         expect(() => {
-            toPrimitive({ [Symbol.toPrimitive]: stubReturnObject });
+            toPrimitive({ [Symbol.toPrimitive]: Object });
         }).toThrow(TypeError);
 
         expect(() => {
-            toPrimitive({ toString: stubReturnObject, valueOf: stubReturnObject });
+            toPrimitive({ toString: Object, valueOf: Object });
         }).toThrow(TypeError);
 
         expect(() => {
