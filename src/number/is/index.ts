@@ -5,4 +5,3 @@ export * from "./integer";
 export * from "./infinity";
 export * from "./nega-posi";
 export * from "./prime";
-export * from "./trend";
