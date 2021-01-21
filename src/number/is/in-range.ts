@@ -1,4 +1,4 @@
 
-export const inRange = (stard: number, value: number, end: number): boolean => (
-    stard <= value ? value <= end : stard >= value && value >= end
+export const inRange = (start: number, value: number, end: number): boolean => (
+    start <= value ? value <= end : start >= value && value >= end
 );
