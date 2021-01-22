@@ -1,2 +1,2 @@
 
-export * from "./prime-factorization";
+export * from "./prime-factorize";

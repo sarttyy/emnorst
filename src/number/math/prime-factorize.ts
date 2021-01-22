@@ -14,7 +14,7 @@ type Factor = [number, number];
  * primeFactorization(number);
  * // > [[2, 4], [3, 2], [5, 3], [7, 1]]
  */
-export const primeFactorization = (number: number): Factor[] => {
+export const primeFactorize = (number: number): Factor[] => {
     if(!isInteger(number)
     || isInfinity(number)
     || number <= 0
