@@ -15,7 +15,7 @@ export const sum: {
     <T>(arr: ArrayLike<T>, init: number | null, mapFn: Mapfn<T, number>): number;
     (arr: ArrayLike<string>, init?: string | null): string;
     <T>(arr: ArrayLike<T>, init: string | null, mapFn: Mapfn<T, string>): string;
-} = <T>(arr: ArrayLike<T>, init?: number | string | null, mapFn?: Mapfn<T, number | string>): any => {
+} = (<T>(arr: ArrayLike<T>, init?: number | string | null, mapFn?: Mapfn<T, number | string>): string | number => {
     const len = arr.length;
 
     if(len === 0) return init ?? 0;
@@ -31,4 +31,4 @@ export const sum: {
         while(i < len) accum += arr[i++];
         return accum;
     }
-};
+}) as () => never;
