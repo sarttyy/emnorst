@@ -4,24 +4,23 @@ import { isInfinity } from "../is/infinity";
 
 // 素因数分解。
 
-interface Factors { [n: number]: number }
+type Factor = [number, number];
 
 /**
- *
  * @param number Number to be factored.
- * @return Array of prime factor of `number`
+ * @return Array of prime factor of `number`.
  * @example
  * const number = (2**4)*(3**2)*(5**3)*(7**1);
  * primeFactorization(number);
- * // => { 2: 4, 3: 2, 5: 3, 7: 1 }
+ * // > [[2, 4], [3, 2], [5, 3], [7, 1]]
  */
-export const primeFactorization = (number: number): Factors => {
+export const primeFactorization = (number: number): Factor[] => {
     if(!isInteger(number)
     || isInfinity(number)
     || number <= 0
-    ) return {};
+    ) return [];
 
-    const factors: Factors = {};
+    const factors: Factor[] = [];
 
     const divide = (n: number) => {
         let count = 0;
@@ -29,7 +28,7 @@ export const primeFactorization = (number: number): Factors => {
             count++;
             number /= n;
         }
-        if(count > 0) factors[n] = count;
+        if(count > 0) factors.push([n, count]);
     };
 
     divide(2);
@@ -39,7 +38,7 @@ export const primeFactorization = (number: number): Factors => {
     for(let i = 3;i <= sqrt && number !== 1;i += 2)
         divide(i);
 
-    if(number > 1) factors[number] = 1;
+    if(number > 1) factors.push([number, 1]);
 
     return factors;
 };
