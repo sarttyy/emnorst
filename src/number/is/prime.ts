@@ -1,5 +1,5 @@
 
-import type { Opaque } from "../../util/standard/opaque";
+import type { Opaque } from "util/standard/opaque";
 import { isEven } from "./even-odd";
 import { isInfinity } from "./infinity";
 import { isInteger } from "./integer";

@@ -1,5 +1,5 @@
 
-import { Opaque } from "../../util/standard/opaque";
+import type { Opaque } from "util/standard/opaque";
 import { isNumber } from "./number";
 
 export const isPositive = (number: number): number is Opaque<number, {sign:true}> => (

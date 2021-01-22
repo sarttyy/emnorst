@@ -1,5 +1,5 @@
 
-import type { Opaque } from "../../util/standard/opaque";
+import type { Opaque } from "util/standard/opaque";
 
 export const isEven = (number: number): number is Opaque<number, {int:true;even:true}> => (
     number % 2 === 0
