@@ -8,8 +8,7 @@ import {
     isPositive,
     isNegative,
     isPrime,
-    uptrend,
-    downtrend,
+    inRange,
 } from "../emnorst.import";
 
 describe("is/number", () => {
@@ -70,8 +69,11 @@ describe("is/number", () => {
         expect(isPrime(-100)).toBeFalsy();
         expect(isPrime("" as unknown as number)).toBeFalsy();
     });
-    test("trend", () => {
-        expect(uptrend(1, 2, 2, 3)).toBeTruthy();
-        expect(downtrend(3, 2, 2, 1)).toBeTruthy();
+    test("inRange", () => {
+        expect(inRange(1, 2, 3)).toBeTruthy();
+        expect(inRange(1, 1, 1)).toBeTruthy();
+        expect(inRange(3, 2, 1)).toBeTruthy();
+        expect(inRange(1, 2, 1)).toBeFalsy();
+        expect(inRange(3, 2, 3)).toBeFalsy();
     });
 });
