@@ -19,3 +19,18 @@ export const toBaseN = (num: number, radix?: number): string => {
     }
     return baseNStr || "0";
 };
+
+export const parseBaseN = (baseNStr: string, radix?: number): number => {
+    assert.type<number>(radix);
+    radix = (0 < radix && radix < 63) ? radix | 0 : 10;
+    baseNStr += "";
+
+    let resultNum = 0;
+    for(let i = 0;i < baseNStr.length;i++) {
+        resultNum *= radix;
+        const num = baseTable.indexOf(baseNStr[i]);
+        if(num > radix || num === -1) break;
+        resultNum += num;
+    }
+    return resultNum;
+};
