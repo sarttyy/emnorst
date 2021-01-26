@@ -6,7 +6,7 @@ const baseTable = decimal + lowerAlphabet + upperAlphabet;
 
 export const toBaseN = (num: number, radix?: number): string => {
     assert.type<number>(radix);
-    radix = (0 < radix && radix < 63) ? radix | 0 : 10;
+    radix = (2 <= radix && radix < 63) ? radix | 0 : 10;
     num |= 0;
     if(num < 0) return "-" + toBaseN(-num, radix);
 
@@ -22,7 +22,7 @@ export const toBaseN = (num: number, radix?: number): string => {
 
 export const parseBaseN = (baseNStr: string, radix?: number): number => {
     assert.type<number>(radix);
-    radix = (0 < radix && radix < 63) ? radix | 0 : 10;
+    radix = (2 <= radix && radix < 63) ? radix | 0 : 10;
     baseNStr += "";
 
     let resultNum = 0;
