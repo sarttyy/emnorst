@@ -7,7 +7,7 @@ const next = xorShift128();
 /**
  *
  */
-export const random = (min=0, max=1): number => {
+export const random = (min=1, max=0): number => {
     /** Random number of 0 through 1 */
     const rand = next() / MAX_BIT_NUMBER;
     return min + rand * (max - min);
