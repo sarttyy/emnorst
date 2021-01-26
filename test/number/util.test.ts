@@ -1,7 +1,7 @@
 
 import { primeFactorize /* , Factors */ } from "../emnorst.import";
 
-describe("primeFactorization", () => {
+describe("primeFactorize", () => {
     const factorToNumber = (factors: ReturnType<typeof primeFactorize>) => (
         factors.reduce((accum, [mantissa, exp]) => (
             accum * (mantissa ** exp)
