@@ -1,5 +1,5 @@
 
-import { xorshift, random } from "../emnorst.import";
+import { random } from "../emnorst.import";
 
 declare global {
     namespace jest {
@@ -23,19 +23,6 @@ expect.extend({
 });
 
 describe("random", () => {
-    /** @test {xorshift} */
-    test.skip("xorshift", () => {
-        xorshift(0, Infinity, 0xf0f0f0f0);
-        const _ = [];
-        for(let i = 10;i--;)
-            _.push(xorshift());
-        expect(_).toEqual([
-            23689578, 111038900, 1465436192, 969043763, 1900776159,
-            897313495, 549278009, 1331655798, 1402936162, 243335963,
-        ]);
-        expect(xorshift(10, 1)).toBe(2);
-        expect(xorshift(1, 1)).toBe(1);
-    });
     /** @test {random} */
     test("random", () => {
         let prev = random();
