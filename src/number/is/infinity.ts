@@ -1,6 +1,6 @@
 
-import type { Opaque } from "util/standard/opaque";
+import type { Meta } from "util/standard/types";
 
-export const isInfinity = (number: unknown): number is Opaque<number, {inf:true}> => (
+export const isInfinity = (number: unknown): number is Meta<number, {inf:true}> => (
     number === Infinity || number === -Infinity
 );

@@ -1,14 +1,7 @@
 
-export type Flatten<T> = {
-    [P in keyof T]: T[P];
-};
-
 export type Callable = (...args: any) => any;
 
-declare const opaqueFeature: unique symbol;
+declare const meta: unique symbol;
+interface HasMeta<T> { [meta]?: T }
 
-interface FeatureMap {
-    [name: string]: unknown;
-}
-
-export type Opaque<T, U extends FeatureMap> = T & { [opaqueFeature]?: U };
+export type Meta<T, U> = T & HasMeta<U>;
