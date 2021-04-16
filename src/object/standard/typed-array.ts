@@ -9,6 +9,6 @@ export type TypedArray = (
     | Uint32Array
     | Float32Array
     | Float64Array
-    | BigInt64Array
-    | BigUint64Array
+    // | BigInt64Array
+    // | BigUint64Array
 );
