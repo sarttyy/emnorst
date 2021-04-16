@@ -1,4 +1,5 @@
 
+import { assert } from "util/standard/assert";
 import { MAX_BIT_NUMBER } from "../../number/util/constant";
 import { isFunction } from "../../util/is/function";
 import { isObject } from "../is/object";

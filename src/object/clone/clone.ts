@@ -1,4 +1,5 @@
 
+import { assert } from "util/standard/assert";
 import { DeepExplorer } from "../deep-explore";
 import { copyBase } from "./copy-base";
 
@@ -79,6 +80,7 @@ export const clone = <T>(target: T, options: CloneOptions={}): T => {
     deepState.exploreSingle(target);
 
     assert.type<object>(target);
+    // @ts-ignore
     const copyMap = deepState._existings;
     return copyMap.has(target) ? target : copyMap.get(target) as T;
 };
