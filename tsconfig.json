@@ -1,10 +1,19 @@
 {
     "compilerOptions": {
-        "target": "ESNEXT",
-        "module": "CommonJS",
-        "resolveJsonModule": true,
+        // module
+        "moduleResolution": "node",
         "esModuleInterop": true,
+        "baseUrl": "./src",
+        // types
+        "target": "ES2018",
+        "lib": ["ES2018"],
+        "typeRoots": [],
         "strict": true,
-        "typeRoots": ["node_modules/@types", "src/@types"]
+        // "noUncheckedIndexedAccess": true,
+        // lint
+        "allowUnreachableCode": false,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
     }
 }

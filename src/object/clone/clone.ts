@@ -1,7 +1,6 @@
 
-import { explore } from "../deep-explore";
-// import { has } from "../property/has";
-import { property } from "../property/property";
+import { assert } from "util/standard/assert";
+import { DeepExplorer } from "../deep-explore";
 import { copyBase } from "./copy-base";
 
 /*
@@ -35,7 +34,7 @@ interface CloneOptions {
  * @param options Specify the depth to copy. 0 is a shallow copy.
  * @return cloned object
  * @example
- * const hoge = {
+ * const target = {
  *     array: [1, 1, 2, 3, 5, 8],
  *     null: null,
  *     number: new Number(0xff),
@@ -55,40 +54,33 @@ interface CloneOptions {
  * target !== cloned // => true
  */
 export const clone = <T>(target: T, options: CloneOptions={}): T => {
-    const root = copyBase(target);
-    const clonedMap = new Map;
-    clonedMap.set(target, root);
-    explore(target, {
+    const deepState = new DeepExplorer({
         depthLimit: options.depth,
-        // existings: new Map,
-        // every({ isExplore, existings, value }) {
-        //     if(isExplore) existings.set(value, copyBase(value));
-        // },
-        property({ propDesc, path: [...path], deepest }) {
-            if(!deepest && "value" in propDesc) {
-                const { value: oldValue } = propDesc;
-                propDesc = {
-                    configurable: propDesc.configurable,
-                    enumerable: propDesc.enumerable,
-                    writable: propDesc.writable,
-                    value: copyBase(oldValue),
-                };
-                clonedMap.set(oldValue, propDesc.value);
+        every({ isExplore, value }) {
+            if(isExplore) {
+                return copyBase(value);
             }
-            const last = path.pop();
-            const context = property(root, path);
-            Object.defineProperty(context, last, propDesc);
         },
-        recursive({ propDesc, path: [...path] }) {
-            const last = path.pop();
-            const context = property(root, path);
-            Object.defineProperty(context, last, {
-                configurable: propDesc.configurable,
-                enumerable: propDesc.enumerable,
-                writable: propDesc.writable,
-                value: clonedMap.get(propDesc.value)
-            });
-        },
+        property({ existings, parent, descriptor, value, key, isAccessor }) {
+            const context = existings.get(parent);
+            if(isAccessor) {
+                Object.defineProperty(context, key!, descriptor);
+            } else return () => {
+                Object.defineProperty(context, key!, {
+                    configurable: descriptor.configurable,
+                    enumerable: descriptor.enumerable,
+                    writable: descriptor.writable,
+                    value: existings.has(value as object)
+                        ? existings.get(value as object) : value,
+                });
+            };
+        }
     });
-    return root;
+
+    deepState.exploreSingle(target);
+
+    assert.type<object>(target);
+    // @ts-ignore
+    const copyMap = deepState._existings;
+    return copyMap.has(target) ? target : copyMap.get(target) as T;
 };

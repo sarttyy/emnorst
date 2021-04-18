@@ -1,7 +1,6 @@
 
-type PositiveInfinity = 999e999;
-type NegativeInfinity = -999e999;
+import type { Meta } from "util/standard/types";
 
-export const isInfinity = (number: unknown): number is PositiveInfinity | NegativeInfinity => (
+export const isInfinity = (number: unknown): number is Meta<number, {inf:true}> => (
     number === Infinity || number === -Infinity
 );

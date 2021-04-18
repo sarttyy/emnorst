@@ -16,10 +16,8 @@
         "jest/globals": true
     },
     "globals": {
-        "assert": false,
-        "Callable": false,
-        "TypedArray": false,
-        "Primitive": false
+        "BigInt64Array": false,
+        "BigUint64Array": false
     },
     "rules": {
         // JSDoc
@@ -32,6 +30,7 @@
 
         // typescript
         "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/ban-ts-comment": 0,
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
         "@typescript-eslint/no-namespace": 0,

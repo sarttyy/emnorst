@@ -58,6 +58,21 @@ describe("is/object", () => {
     });
     /** @test {isTypedArray} */
     test("isTypedArray", () => {
+        expect(isTypedArray(new Int8Array)).toBeTruthy();
+        expect(isTypedArray(new Uint8Array)).toBeTruthy();
+        expect(isTypedArray(new Uint8ClampedArray)).toBeTruthy();
+
+        expect(isTypedArray(new Int16Array)).toBeTruthy();
+        expect(isTypedArray(new Uint16Array)).toBeTruthy();
+
+        expect(isTypedArray(new Int32Array)).toBeTruthy();
+        expect(isTypedArray(new Uint32Array)).toBeTruthy();
+        expect(isTypedArray(new Float32Array)).toBeTruthy();
+
+        expect(isTypedArray(new Float64Array)).toBeTruthy();
+        expect(isTypedArray(new BigInt64Array)).toBeTruthy();
+        expect(isTypedArray(new BigUint64Array)).toBeTruthy();
+
         expect(isTypedArray([])).toBeFalsy();
     });
     /** @test {isArrayLike} */

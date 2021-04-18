@@ -67,7 +67,7 @@ export const xorShift64 = (seed?: number): random => {
  *
  * rand();
  */
-export const xorShift128 = (seed?: number): random => {
+export const xorShift128 = (_seed?: number): random => {
     let x = 123456789,
         y = 362436069,
         z = 521288629,

@@ -1,7 +1,8 @@
 
-import { isFunction } from "../../util/is/function";
+import { isFunction } from "util/is/function";
+import { assert } from "util/standard/assert";
 
-type mapfn<T, U> = (value: T, index: number, origin: ArrayLike<T>) => U;
+type Mapfn<T, U> = (value: T, index: number, origin: ArrayLike<T>) => U;
 
 /**
  *
@@ -11,10 +12,10 @@ type mapfn<T, U> = (value: T, index: number, origin: ArrayLike<T>) => U;
  */
 export const sum: {
     (arr: ArrayLike<number>, init?: number | null): number;
-    <T>(arr: ArrayLike<T>, init: number | null, mapFn: mapfn<T, number>): number;
+    <T>(arr: ArrayLike<T>, init: number | null, mapFn: Mapfn<T, number>): number;
     (arr: ArrayLike<string>, init?: string | null): string;
-    <T>(arr: ArrayLike<T>, init: string | null, mapFn: mapfn<T, string>): string;
-} = <T>(arr: ArrayLike<T>, init?: number | string | null, mapFn?: mapfn<T, number | string>): any => {
+    <T>(arr: ArrayLike<T>, init: string | null, mapFn: Mapfn<T, string>): string;
+} = (<T>(arr: ArrayLike<T>, init?: number | string | null, mapFn?: Mapfn<T, number | string>): string | number => {
     const len = arr.length;
 
     if(len === 0) return init ?? 0;
@@ -27,7 +28,7 @@ export const sum: {
     } else {
         assert.type<ArrayLike<number>>(arr);
         let accum = (init ?? arr[i++]) as number;
-        while(i < len) accum += arr[i++] as number;
+        while(i < len) accum += arr[i++];
         return accum;
     }
-};
+}) as () => never;
