@@ -1,9 +1,7 @@
 
 export * from "./chunk";
 export * from "./split";
-// export * from "./splice.js";
-// export * from "./nth.js";
+// export * from "./nth";
 export * from "./reverse";
 export * from "./shuffle";
-export * from "./uniq-keys";
 export * from "./times";
