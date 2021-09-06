@@ -1,4 +1,4 @@
-import { assert } from "../standard/assert";
+import { assert } from "../assert";
 import type { Primitive } from "./base";
 import { isPrimitive } from "./is-primitive";
 

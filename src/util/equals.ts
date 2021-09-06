@@ -1,10 +1,5 @@
-
 /**
  * Validate that the values are all equal using the SameValueZero algorithm.
- *
- * @param first
- * @param values
- * @return
  */
 export const equals = (first: unknown, ...values: unknown[]): boolean => {
     const size = values.length;
