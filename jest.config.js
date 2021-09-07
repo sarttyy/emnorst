@@ -13,8 +13,9 @@ const config = {
     moduleNameMapper: {
         "^~/(.+)": "<rootDir>/src/$1",
     },
-    setupFilesAfterEnv: ["./tests/setup.ts"],
-    transform: { "\\.ts$": ["esbuild-jest", { sourcemap: true }] },
+    transform: {
+        "\\.ts$": ["esbuild-jest", { sourcemap: true }],
+    },
 };
 
 module.exports = config;
