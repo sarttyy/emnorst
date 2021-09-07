@@ -1,19 +1,14 @@
 {
     "compilerOptions": {
-        // module
+        "declaration": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
         "baseUrl": "./src",
-        // types
+        "paths": { "~/*": ["./*"] },
         "target": "ES2018",
         "lib": ["ES2018"],
-        "typeRoots": [],
+        // "typeRoots": [],
         "strict": true,
-        // "noUncheckedIndexedAccess": true,
-        // lint
-        "allowUnreachableCode": false,
-        "noFallthroughCasesInSwitch": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
+        "importsNotUsedAsValues": "error",
     }
 }
