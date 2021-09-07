@@ -1,18 +1,18 @@
+import { isPrimitive } from "../primitive/is-primitive";
+import { toPrimitive } from "../primitive/to-primitive";
 
-import { typeOf, getTypeOf, toPrimitive } from "../emnorst.import";
+const primitives = ["string", 0, BigInt(0), true, Symbol(), null, void 0];
 
-describe("type-of", () => {
-    test("typeOf", () => {
-        expect(typeOf(null)).toBe("Null");
-        expect(typeOf(void 0)).toBe("Undefined");
-        expect(typeOf(0)).toBe("Number");
-        expect(typeOf(new Number)).toBe("Number");
+describe("isPrimitive", () => {
+    test.each(primitives)("isPrimitive(%v) === true", v => {
+        expect(isPrimitive(v)).toBe(true);
     });
-    test("getTypeOf", () => {
-        expect(getTypeOf(null)).toBe("null");
-        expect(getTypeOf(void 0)).toBe("undefined");
-        expect(getTypeOf(0)).toBe("number");
-        expect(getTypeOf(new Number)).toBe("Number");
+    test.each([
+        {},
+        Object(0),
+        Object(Symbol()),
+    ])("isPrimitive(%v) === false", v => {
+        expect(isPrimitive(v)).toBe(false);
     });
 });
 
@@ -26,24 +26,28 @@ describe("toPrimitive", () => {
     };
     const OBJ_2 = {
         ...OBJ_1,
-        [Symbol.toPrimitive](hint: string) { return hint; }
+        [Symbol.toPrimitive](hint: string) {
+            return hint;
+        },
     };
 
     test.each`
-        object   | string         | number        | $default
+        object   | string         | number        | default
         ${{}}    | ${objObject}   | ${objObject}  | ${objObject}
         ${OBJ_1} | ${toStringSym} | ${valueOfSym} | ${valueOfSym}
         ${OBJ_2} | ${"string"}    | ${"number"}   | ${"default"}
-    `("convert to primitive.", ({ object, string, number, $default }) => {
+    `("convert to primitive.", ({ object, string, number, default: $default }) => {
         expect(toPrimitive(object, "string")).toBe(string);
         expect(toPrimitive(object, "number")).toBe(number);
         expect(toPrimitive(object, "default")).toBe($default);
         expect(toPrimitive(object)).toBe($default);
     });
-
+    test.each(primitives)("toPrimitive(%p)", v => {
+        expect(toPrimitive(v)).toBe(v);
+    });
     test("throw error if unable to convert object.", () => {
         expect(() => {
-            toPrimitive({ [Symbol.toPrimitive]: Object });
+            toPrimitive({ ...OBJ_1, [Symbol.toPrimitive]: Object });
         }).toThrow(TypeError);
 
         expect(() => {
