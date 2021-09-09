@@ -32,6 +32,7 @@ type ToStringTag<T> = object extends T ? StringTag // any | unknown
 /**
  * Use `Object.prototype.toString` to get the value type.
  *
+ * @see {@link typeOf}
  * @param value Value to get the type
  * @returns String of type of {@link value}
  */
@@ -58,7 +59,7 @@ type TypeOf<T> = object extends T ? StringTag // any | unknown
  * if primitive, use typeof operator to get the type.
  * if {@link toStringTag}(value) same "Object" and `value.constructor.name` isn't empty,
  * return `value.constructor.name`.
- * else, same as toStringTag.
+ * else, same as {@link toStringTag}.
  *
  * @see {@link toStringTag}
  * @param value Value to get the type
