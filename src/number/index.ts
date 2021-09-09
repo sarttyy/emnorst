@@ -1,4 +1,2 @@
-
-export * from "./is";
-export * from "./random";
-export * from "./util";
+export * from "./clamp";
+export * from "./const";
