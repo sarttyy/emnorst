@@ -12,7 +12,7 @@ type WithMeta<Base, M> = Base & HasMeta<Base, M>;
 export type Meta<Base, M> =
     Base extends WithMeta<infer PureBase, infer B>
         ? WithMeta<PureBase, Meta<B, M>>
-    : Base extends WithWeekMeta<infer PureBase, infer B>
+    : Base extends HasWeekMeta<infer PureBase, infer B>
         ? WithMeta<PureBase, WeekMeta<B, M>>
     : WithMeta<Base, M>;
 
@@ -30,6 +30,6 @@ type WithWeekMeta<Base, M> = Base & HasWeekMeta<Base, M>;
 export type WeekMeta<Base, M> =
     Base extends WithMeta<infer PureBase, infer B>
         ? WithWeekMeta<PureBase, Meta<B, M>>
-    : Base extends WithWeekMeta<infer PureBase, infer B>
+    : Base extends HasWeekMeta<infer PureBase, infer B>
         ? WithWeekMeta<PureBase, WeekMeta<B, M>>
     : WithWeekMeta<Base, M>;
