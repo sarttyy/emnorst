@@ -1,5 +1,4 @@
-
-import { toPrimitive } from "util/standard/to-primitive";
+import { toPrimitive } from "~/util/primitive";
 
 export const toPropertyKey = (value: unknown): PropertyKey => {
     const key = toPrimitive(value, "string");
