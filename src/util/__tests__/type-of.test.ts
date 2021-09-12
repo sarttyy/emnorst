@@ -19,7 +19,7 @@ describe("toStringTag", () => {
         expect(toStringTag(/./)).toBe("RegExp");
         expect(toStringTag({ [Symbol.toStringTag]: "StringTag" })).toBe("StringTag");
         expect(toStringTag({})).toBe("Object");
-        expect(typeOf(new class Class {})).toBe("Object");
+        expect(toStringTag(new class Class {})).toBe("Object");
     });
 });
 
