@@ -1,10 +1,8 @@
+import type { WeekMeta } from "~/util/meta-type";
+import { typeOf } from "~/util/type-of";
 
-import { Meta } from "util/standard/types";
-import { typeOf } from "util/standard/type-of";
+type PureObject = WeekMeta<object, { pure: true }>;
 
-/**
- * @param value
- */
-export const isPureObject = (value: unknown): value is Meta<object, {pure:true}> => (
-    typeOf(value) === "Object" && (value as object).constructor === Object
-);
+export const isPureObject = (value: unknown): value is PureObject =>
+    typeOf(value) === "Object"
+    && (value as object).constructor === Object;

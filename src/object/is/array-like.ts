@@ -1,10 +1,9 @@
-
-import { isInteger } from "number/is/integer";
+import { isUint32 } from "~/number/int32";
 
 export const isArrayLike = (value: unknown): value is ArrayLike<unknown> => {
-    if(value == null || typeof value == "function")
+    if(value == null || typeof value === "function") {
         return false;
-
-    const { length } = value as ArrayLike<unknown>;
-    return length >= 0 && isInteger(length);
+    }
+    const len = (value as ArrayLike<unknown>).length;
+    return isUint32(len);
 };
