@@ -75,7 +75,7 @@ export const typeOf = <T>(value: T): TypeOf<T> => {
         return inputType as TypeOf<T>;
     }
 
-    if(typeOf(value) === "Object") {
+    if(toStringTag(value) === "Object") {
         const ctor = (value as unknown as object).constructor;
         if(ctor?.name) return ctor.name as TypeOf<T>;
     }
