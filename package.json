@@ -1,6 +1,6 @@
 {
   "name": "emnorst",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "javascript utility operation library",
   "main": "dist/emnorst.cjs.js",
   "module": "dist/emnorst.esm.js",
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reiyayakko/emnorst.git"
+    "url": "git+https://github.com/rizzzse/emnorst.git"
   },
-  "author": "reiyayakko <reiyayakko@gmail.com> (https://github.com/reiyayakko)",
+  "author": "rizzzse <rizzzse@gmail.com> (https://github.com/rizzzse)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reiyayakko/emnorst/issues"
+    "url": "https://github.com/rizzzse/emnorst/issues"
   },
-  "homepage": "https://reiyayakko.github.io/emnorst",
+  "homepage": "https://rizzzse.github.io/emnorst",
   "devDependencies": {
     "@types/jest": "^27.0.1",
     "@wessberg/rollup-plugin-ts": "^1.3.14",
