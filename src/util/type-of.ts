@@ -25,7 +25,7 @@ const objectPrototypeToString: (this: unknown) => string = Object.prototype.toSt
 let prevInput: unknown = NaN; // 最初の`===`の比較でfalseになるように。
 let prevResult: string;
 
-type ToStringTag<T> = object extends T ? StringTag // any | unknown
+export type ToStringTag<T> = object extends T ? StringTag // any | unknown
     : T extends object ? ObjectToStringTag<T>
     : PrimitiveToStringTag<T>;
 
@@ -50,7 +50,7 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
     return prevResult as ToStringTag<T>;
 };
 
-type TypeOf<T> = object extends T ? StringTag // any | unknown
+export type TypeOf<T> = object extends T ? StringTag // any | unknown
     : T extends object ? ObjectToStringTag<T>
     : Lowercase<PrimitiveToStringTag<T>>;
 
