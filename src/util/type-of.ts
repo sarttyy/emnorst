@@ -22,7 +22,9 @@ type ObjectToStringTag<T extends object> = (
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const objectPrototypeToString: (this: unknown) => string = Object.prototype.toString;
-let prevInput: unknown = NaN; // 最初の`===`の比較でfalseになるように。
+
+// プリミティブ型はキャッシュしないため空の状態でマッチすることはない。
+let prevInput: unknown;
 let prevResult: string;
 
 export type ToStringTag<T> = object extends T ? StringTag // any | unknown
