@@ -1,19 +1,14 @@
 /**
- * Validate that the values are all equal using the SameValueZero algorithm.
+ * Use the SameValueZero algorithm to verify that the values are equal.
  */
-export const equals = (first: unknown, ...values: unknown[]): boolean => {
-    const size = values.length;
-    let i = 0;
-
-    /* eslint-disable no-self-compare */
-    if(first === first) {
-        // check all values are same first
-        while(first === values[i] && ++i < size);
+export const equals = <T>(left: T, right: T): boolean => {
+    // eslint-disable-next-line no-self-compare
+    if(left === left) {
+        // `left` is not NaN
+        return left === right;
     } else {
-        // check all values are NaN
-        while(values[i] !== values[i] && ++i < size);
+        // `left` is NaN
+        // eslint-disable-next-line no-self-compare
+        return right !== right;
     }
-    /* eslint-enable no-self-compare */
-
-    return i === size;
 };

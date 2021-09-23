@@ -1,5 +1,13 @@
 import type { WeekMeta } from "./meta-type";
-import { table as primitiveTable } from "./primitive/base";
+
+const PRIMITIVE_STRING_TAG_TABLE = {
+    string: "String",
+    number: "Number",
+    bigint: "BigInt",
+    boolean: "Boolean",
+    symbol: "Symbol",
+    undefined: "Undefined",
+} as const;
 
 type StringTag = WeekMeta<string, "stringTag">;
 
@@ -22,10 +30,12 @@ type ObjectToStringTag<T extends object> = (
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const objectPrototypeToString: (this: unknown) => string = Object.prototype.toString;
-let prevInput: unknown = NaN; // 最初の`===`の比較でfalseになるように。
+
+// プリミティブ型はキャッシュしないため空の状態でマッチすることはない。
+let prevInput: unknown;
 let prevResult: string;
 
-type ToStringTag<T> = object extends T ? StringTag // any | unknown
+export type ToStringTag<T> = object extends T ? StringTag // any | unknown
     : T extends object ? ObjectToStringTag<T>
     : PrimitiveToStringTag<T>;
 
@@ -38,9 +48,11 @@ type ToStringTag<T> = object extends T ? StringTag // any | unknown
  */
 export const toStringTag = <T>(value: T): ToStringTag<T> => {
     const inputType = typeof value;
-    if(inputType in primitiveTable) {
+    if(inputType in PRIMITIVE_STRING_TAG_TABLE) {
         // プリミティブ型ならテーブルを使用
-        return primitiveTable[inputType as keyof typeof primitiveTable] as ToStringTag<T>;
+        return PRIMITIVE_STRING_TAG_TABLE[
+            inputType as keyof typeof PRIMITIVE_STRING_TAG_TABLE
+        ] as ToStringTag<T>;
     }
 
     if(prevInput === value) return prevResult as ToStringTag<T>;
@@ -50,7 +62,7 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
     return prevResult as ToStringTag<T>;
 };
 
-type TypeOf<T> = object extends T ? StringTag // any | unknown
+export type TypeOf<T> = object extends T ? StringTag // any | unknown
     : T extends object ? ObjectToStringTag<T>
     : Lowercase<PrimitiveToStringTag<T>>;
 
@@ -71,7 +83,7 @@ export const typeOf = <T>(value: T): TypeOf<T> => {
     }
 
     const inputType = typeof value;
-    if(inputType in primitiveTable) {
+    if(inputType in PRIMITIVE_STRING_TAG_TABLE) {
         return inputType as TypeOf<T>;
     }
 
