@@ -1,21 +1,18 @@
 {
   "name": "emnorst",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "javascript utility operation library",
   "main": "dist/emnorst.cjs.js",
   "module": "dist/emnorst.esm.js",
-  "unpkg": "dist/emnorst.umd.js",
   "types": "dist/emnorst.esm.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
-    "build:dev": "rollup -c rollup.config.js --environment BUILD:development",
     "build": "rollup -c rollup.config.js --environment BUILD:production",
     "test": "jest --coverage",
-    "docs": "typedoc --options typedoc.json",
-    "madge": "node script/madge.js"
+    "docs": "typedoc --options typedoc.json"
   },
   "repository": {
     "type": "git",
