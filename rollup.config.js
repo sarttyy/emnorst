@@ -24,7 +24,7 @@ const config = {
     ],
     plugins: [
         ts({ transpileOnly: DEV }),
-        strip(),
+        strip({ include: "**/*.ts" }),
         terser({
             mangle: {
                 properties: { regex: /^_[^_]/ },
