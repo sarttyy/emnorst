@@ -33,6 +33,7 @@ describe("is", () => {
         expect(isObject({})).toBeTruthy();
         expect(isObject([])).toBeTruthy();
         expect(isObject(Object(""))).toBeTruthy();
+        expect(isObject(() => { /* noop */ })).toBeFalsy();
         expect(isObject(null)).toBeFalsy();
     });
     test("isPureObject", () => {
