@@ -1,10 +1,13 @@
-
-import { isFunction } from "util/is/function";
+import { assert } from "~/util/assert";
 
 /**
  * @param value The value to be compared
  * @return Whether the value is iterable
  */
-export const isIterable = (value: unknown): value is Iterable<unknown> => (
-    value != null && isFunction((value as Iterable<unknown>)[Symbol.iterator])
-);
+export const isIterable = (value: unknown): value is Iterable<unknown> => {
+    if(value == null) {
+        return false;
+    }
+    assert.type<Iterable<unknown>>(value);
+    return typeof value[Symbol.iterator] === "function";
+};
