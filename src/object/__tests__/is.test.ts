@@ -1,5 +1,5 @@
 
-import { isEmpty, isArrayLike, isObject, isPureObject } from "../is";
+import { isEmpty, isArrayLike, isIterable, isObject, isPureObject } from "../is";
 
 describe("is", () => {
     test("isArrayLike", () => {
@@ -20,6 +20,14 @@ describe("is", () => {
         expect(isEmpty({ prop: "not empty" })).toBeFalsy();
         expect(isEmpty(true)).toBeFalsy();
         expect(isEmpty(0)).toBeFalsy();
+    });
+    test("isIterable", () => {
+        expect(isIterable("")).toBeTruthy();
+        expect(isIterable([])).toBeTruthy();
+        expect(isIterable({ [Symbol.iterator]() {} })).toBeTruthy();
+        expect(isIterable({ [Symbol.iterator]: null })).toBeFalsy();
+        expect(isIterable(0)).toBeFalsy();
+        expect(isIterable(null)).toBeFalsy();
     });
     test("isObject", () => {
         expect(isObject({})).toBeTruthy();
