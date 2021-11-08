@@ -25,3 +25,7 @@ export const MAX_UINT32 = 0xffffffff;
  * Returns true if the value passed is an unsigned int 32.
  */
 export const isUint32 = (n: unknown): boolean => n === (n as number >>> 0);
+
+export const rotL32 = (x: number, n: number) => (x << n) | (x >>> (32 - n));
+
+export const rotR32 = (x: number, n: number) => (x >>> n) | (x << (32 - n));
