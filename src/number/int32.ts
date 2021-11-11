@@ -1,3 +1,5 @@
+import type { Range } from "./type";
+
 /**
  * The largest number that can be represented by signed int 32.
  * The value of MAX_INT32 is equal to `2**31-1`.
@@ -26,6 +28,6 @@ export const MAX_UINT32 = 0xffffffff;
  */
 export const isUint32 = (n: unknown): boolean => n === (n as number >>> 0);
 
-export const rotL32 = (x: number, n: number) => (x << n) | (x >>> (32 - n));
+export const rotL32 = (x: number, n: Range<1, 31>) => (x << n) | (x >>> (32 - n));
 
-export const rotR32 = (x: number, n: number) => (x >>> n) | (x << (32 - n));
+export const rotR32 = (x: number, n: Range<1, 31>) => (x >>> n) | (x << (32 - n));
