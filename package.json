@@ -9,9 +9,9 @@
     "dist"
   ],
   "scripts": {
-    "watch": "rollup -c rollup.config.js --environment BUILD:development -w",
-    "build": "rollup -c rollup.config.js --environment BUILD:production",
-    "test": "jest --coverage",
+    "watch": "rollup -c -w",
+    "build": "rollup -c",
+    "test": "jest",
     "docs": "typedoc --options typedoc.json"
   },
   "repository": {

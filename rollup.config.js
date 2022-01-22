@@ -1,11 +1,12 @@
 // @ts-check
 
+import { defineConfig } from "rollup";
 import ts from "@wessberg/rollup-plugin-ts";
 import strip from "@rollup/plugin-strip";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 
-const DEV = process.env.BUILD === "development";
+const DEV = !!process.env.ROLLUP_WATCH;
 const banner = `
 /**
  * @license
@@ -15,8 +16,7 @@ const banner = `
  */
 `;
 
-/** @type {import("rollup").RollupOptions} */
-const config = {
+export default defineConfig({
     input: "./src/index.ts",
     output: [
         { file: "dist/emnorst.esm.js", format: "esm", banner },
@@ -31,6 +31,4 @@ const config = {
             },
         }),
     ],
-};
-
-export default config;
+});
