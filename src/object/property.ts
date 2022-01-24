@@ -1,8 +1,17 @@
+import { toPrimitive } from "~/util/primitive";
+
+export const toPropertyKey = (value: unknown): string | symbol => {
+    const key = toPrimitive(value, "string");
+    return typeof key === "symbol" ? key : String(key);
+};
+
+const prototypeHasOwnProperty = Object.prototype.hasOwnProperty;
+const prototypePropertyIsEnumerable = Object.prototype.propertyIsEnumerable;
 const getPropNames = Object.getOwnPropertyNames;
 const getPropSymbols = Object.getOwnPropertySymbols;
-const objectPrototypePropertyIsEnumerable: (this: Object, v: PropertyKey) => boolean =
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    Object.prototype.propertyIsEnumerable;
+
+export const has = (obj: object, key: PropertyKey) =>
+    obj != null && prototypeHasOwnProperty.call(obj, key);
 
 /**
  * Returns enumerable properties of an object.
@@ -16,7 +25,7 @@ export const getEnumerableKeys = (obj: object): (string | symbol)[] => {
     for(let i = 0; i < symbols.length; i++) {
         const symbol = symbols[i];
 
-        if(objectPrototypePropertyIsEnumerable.call(obj, symbol)) {
+        if(prototypePropertyIsEnumerable.call(obj, symbol)) {
             keys.push(symbol);
         }
     }
