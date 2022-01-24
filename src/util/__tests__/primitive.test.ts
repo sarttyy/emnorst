@@ -1,5 +1,4 @@
-import { isPrimitive } from "../primitive/is-primitive";
-import { toPrimitive } from "../primitive/to-primitive";
+import { isPrimitive, toPrimitive } from "../primitive";
 
 const primitives = ["string", 0, BigInt(0), true, Symbol(), null, void 0];
 
