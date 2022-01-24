@@ -1,3 +1,4 @@
+import { isPrimitive } from "./primitive/is-primitive";
 import type { WeekMeta } from "./meta-type";
 
 const PRIMITIVE_STRING_TAG_TABLE = {
@@ -82,9 +83,8 @@ export const typeOf = <T>(value: T): TypeOf<T> => {
         return "null" as TypeOf<T>;
     }
 
-    const inputType = typeof value;
-    if(inputType in PRIMITIVE_STRING_TAG_TABLE) {
-        return inputType as TypeOf<T>;
+    if(isPrimitive(value)) {
+        return typeof value as TypeOf<T>;
     }
 
     if(toStringTag(value) === "Object") {
