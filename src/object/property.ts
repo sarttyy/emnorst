@@ -5,6 +5,13 @@ export const toPropertyKey = (value: unknown): string | symbol => {
     return typeof key === "symbol" ? key : String(key);
 };
 
+export const isKey = (value: unknown): value is PropertyKey => {
+    const type = typeof value;
+    return type === "string"
+        || type === "number"
+        || type === "symbol";
+};
+
 const prototypeHasOwnProperty = Object.prototype.hasOwnProperty;
 const prototypePropertyIsEnumerable = Object.prototype.propertyIsEnumerable;
 const getPropNames = Object.getOwnPropertyNames;
