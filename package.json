@@ -18,6 +18,9 @@
     "type": "git",
     "url": "git+https://github.com/rizzzse/emnorst.git"
   },
+  "keywords": [
+    "util"
+  ],
   "author": "rizzzse <rizzzse@gmail.com> (https://github.com/rizzzse)",
   "license": "MIT",
   "bugs": {
