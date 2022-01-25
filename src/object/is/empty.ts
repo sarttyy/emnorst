@@ -1,5 +1,5 @@
 import { toStringTag } from "~/util/type-of";
-import { getEnumerableKeys } from "../property/keys";
+import { getEnumerableKeys } from "../property";
 import { isArrayLike } from "./array-like";
 
 interface EmptyObject {
