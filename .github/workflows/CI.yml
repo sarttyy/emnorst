@@ -20,9 +20,7 @@ jobs:
         with:
           node-version: 14
 
-      - run: npm ci
-
-      - run: npm test
+      - run: npm cit
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
