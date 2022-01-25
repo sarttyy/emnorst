@@ -1,7 +1,7 @@
 // @ts-check
 
 import { defineConfig } from "rollup";
-import ts from "@wessberg/rollup-plugin-ts";
+import ts from "rollup-plugin-ts";
 import strip from "@rollup/plugin-strip";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
