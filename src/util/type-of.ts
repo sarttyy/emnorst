@@ -1,4 +1,4 @@
-import { isPrimitive } from "./primitive/is-primitive";
+import { isPrimitive } from "./primitive";
 import type { WeekMeta } from "./meta-type";
 
 const PRIMITIVE_STRING_TAG_TABLE = {

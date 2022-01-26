@@ -1,6 +1,13 @@
-import { assert } from "../assert";
-import type { Primitive } from "./base";
-import { isPrimitive } from "./is-primitive";
+import { assert } from "./assert";
+
+// NOTE: 型の制限ではなく保証として使うことを想定するため、`void`は含まない。
+export type Primitive = string | number | bigint | boolean | symbol | null | undefined;
+
+/**
+ * Determine if the value type is string, number, bigint, boolean, symbol, null, undefined.
+ */
+export const isPrimitive = (value: unknown): value is Primitive =>
+    value == null || (typeof value !== "object" && typeof value !== "function");
 
 export type ToPrimitiveHint = "string" | "number" | "default";
 
