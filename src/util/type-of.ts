@@ -52,7 +52,7 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
     if(inputType in PRIMITIVE_STRING_TAG_TABLE) {
         // プリミティブ型ならテーブルを使用
         return PRIMITIVE_STRING_TAG_TABLE[
-            inputType as keyof typeof PRIMITIVE_STRING_TAG_TABLE
+            inputType as Exclude<typeof inputType, "object" | "function">
         ] as ToStringTag<T>;
     }
 
