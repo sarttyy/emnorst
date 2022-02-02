@@ -25,3 +25,23 @@ export type NonUnion<T> = { x: T } extends { x: infer U }
         ? [U] extends [T] ? T : never
         : never
     : never;
+
+/**
+ * @example
+ * declare const x: Intersection<A | B | C>;
+ * // x: A & B & C
+ * @example
+ * interface Emittable<T> {
+ *     emit<U extends keyof T>(type: U, x: Intersection<T[U]>): void;
+ * }
+ * declare const emittable: Emittable<{
+ *     foo: { foo: string };
+ *     bar: { bar: number };
+ * }>;
+ *
+ * declare const fooOrBar: "foo" | "bar";
+ * emittable.emit(fooOrBar, { foo: "hello", bar: 1234 });
+ */
+export type Intersection<T> = [T] extends [never] ? never :
+    [T extends unknown ? (x: T) => void : never] extends [(x: infer U) => void]
+        ? U : never;
