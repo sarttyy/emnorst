@@ -1,5 +1,5 @@
 import { isPrimitive } from "./primitive";
-import type { WeekMeta } from "./meta-type";
+import type { WeekMeta } from "./types";
 
 const PRIMITIVE_STRING_TAG_TABLE = {
     string: "String",

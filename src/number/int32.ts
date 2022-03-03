@@ -1,4 +1,4 @@
-import type { Range } from "./type";
+import type { Range } from "./types";
 
 /**
  * The largest number that can be represented by signed int 32.

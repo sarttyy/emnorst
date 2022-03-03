@@ -1,4 +1,4 @@
-import type { Recurse, Repeat } from "~/util/type";
+import type { Recurse, Repeat } from "~/util/types";
 
 type PaddingIndexRec<Length extends number, State extends unknown[]> = (
     State["length"] extends Length

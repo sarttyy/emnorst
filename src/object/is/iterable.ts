@@ -1,4 +1,4 @@
-import { assert } from "~/util/assert";
+import { assert } from "~/util/types";
 
 /**
  * @param value The value to be compared

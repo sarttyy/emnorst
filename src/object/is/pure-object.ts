@@ -1,4 +1,4 @@
-import type { WeekMeta } from "~/util/meta-type";
+import type { WeekMeta } from "~/util/types";
 import { typeOf } from "~/util/type-of";
 
 type PureObject = WeekMeta<object, { pure: true }>;
