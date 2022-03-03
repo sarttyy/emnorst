@@ -46,4 +46,11 @@ export type Intersection<T> = [T] extends [never] ? never :
     [T extends unknown ? (x: T) => void : never] extends [(x: infer U) => void]
         ? U : never;
 
+/**
+ * Make all properties in T writable
+ */
+export type Writable<T> = {
+    -readonly [P in keyof T]: T[P];
+};
+
 export type Callable = (...args: any) => unknown;
