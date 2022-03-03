@@ -45,3 +45,5 @@ export type NonUnion<T> = { x: T } extends { x: infer U }
 export type Intersection<T> = [T] extends [never] ? never :
     [T extends unknown ? (x: T) => void : never] extends [(x: infer U) => void]
         ? U : never;
+
+export type Callable = (...args: any) => unknown;
