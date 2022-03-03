@@ -62,13 +62,13 @@ export type HasMeta<B, M> = { "__?META": [B, M] };
 export type Meta<Base, M> = Base & HasMeta<Base, M>;
 export type WeakMeta<Base, M> = Base & Partial<HasMeta<Base, M>>;
 
-interface Asserts {
-    type<T>(v: unknown): asserts v is T;
-    nonNullable<T>(v: T): asserts v is NonNullable<T>;
+interface Assert {
+    as<T>(value: unknown): asserts value is T;
+    nonNullable<T>(value: T): asserts value is NonNullable<T>;
 }
 
-export const assert: Asserts = {
-    type() {},
+export const assert: Assert = {
+    as() {},
     nonNullable(v) {
         // eslint-disable-next-line no-console
         console.assert(v != null, "%o", v);

@@ -8,6 +8,6 @@ export const isIterable = (value: unknown): value is Iterable<unknown> => {
     if(value == null) {
         return false;
     }
-    assert.type<Iterable<unknown>>(value);
+    assert.as<Iterable<unknown>>(value);
     return typeof value[Symbol.iterator] === "function";
 };

@@ -25,7 +25,7 @@ export interface HasToPrimitive {
  */
 export const toPrimitive = (input: unknown, preferredType?: ToPrimitiveHint): Primitive => {
     if(isPrimitive(input)) return input;
-    assert.type<HasToPrimitive>(input);
+    assert.as<HasToPrimitive>(input);
 
     // dprint-ignore
     const hintFlag
