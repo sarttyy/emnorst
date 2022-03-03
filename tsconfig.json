@@ -3,11 +3,9 @@
         "declaration": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "baseUrl": "./src",
-        "paths": { "~/*": ["./*"] },
+        "paths": { "~/*": ["./src/*"] },
         "target": "ES2018",
         "lib": ["ES2020"],
-        // "typeRoots": [],
         "strict": true,
         "importsNotUsedAsValues": "error",
     }
