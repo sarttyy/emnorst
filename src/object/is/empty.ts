@@ -1,6 +1,6 @@
 import { toStringTag } from "~/util/type-of";
 import { getEnumerableKeys } from "../property";
-import { isArrayLike } from "./array-like";
+import { isArrayLike } from "../array-like";
 
 interface EmptyObject {
     [key: string]: never;
