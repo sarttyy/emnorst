@@ -1,16 +1,7 @@
 
-import { isEmpty, isArrayLike, isIterable, isObject, isPureObject } from "../is";
+import { isEmpty, isIterable, isObject, isPureObject } from "../is";
 
 describe("is", () => {
-    test("isArrayLike", () => {
-        expect(isArrayLike([])).toBeTruthy();
-        expect(isArrayLike("isArrayLike")).toBeTruthy();
-        expect(isArrayLike({ length: 0 })).toBeTruthy();
-        expect(isArrayLike({ length: -1 })).toBeFalsy();
-        expect(isArrayLike({})).toBeFalsy();
-        expect(isArrayLike(() => { /* noop */ })).toBeFalsy();
-        expect(isArrayLike(null)).toBeFalsy();
-    });
     test("isEmpty", () => {
         expect(isEmpty("")).toBeTruthy();
         expect(isEmpty("c")).toBeFalsy();
