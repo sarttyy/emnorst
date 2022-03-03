@@ -68,9 +68,14 @@ interface Assert {
 }
 
 export const assert: Assert = {
-    as() {},
-    nonNullable(v) {
-        // eslint-disable-next-line no-console
-        console.assert(v != null, "%o", v);
+    as() {
+        if(arguments.length === 0) {
+            throw new TypeError("1 argument required, but only 0 present.");
+        }
+    },
+    nonNullable(value) {
+        if(value == null) {
+            throw new TypeError(`nonNullable assertion failed. Must not be ${value}.`);
+        }
     },
 };
