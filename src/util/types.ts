@@ -60,7 +60,7 @@ export type JsonValue = JsonPrimitive | { [key: string]: JsonValue } | JsonValue
 
 export type HasMeta<B, M> = { "__?META": [B, M] };
 export type Meta<Base, M> = Base & HasMeta<Base, M>;
-export type WeekMeta<Base, M> = Base & Partial<HasMeta<Base, M>>;
+export type WeakMeta<Base, M> = Base & Partial<HasMeta<Base, M>>;
 
 interface Asserts {
     type<T>(v: unknown): asserts v is T;
