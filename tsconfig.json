@@ -1,4 +1,5 @@
 {
+    "exclude": ["dist"],
     "compilerOptions": {
         "declaration": true,
         "moduleResolution": "node",
