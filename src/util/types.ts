@@ -13,7 +13,7 @@ export type Repeat<T, U extends number, V extends unknown[] = []> =
 /**
  * @example
  * interface Emittable<T> {
- *     emit<U extends keyof T>(type: NonUnion<U>, x: T[NonUnion<U>]): void;
+ *     emit<U extends keyof T>(type: NonUnion<U>, payload: T[NonUnion<U>]): void;
  * }
  * declare const emittable: Emittable<{ foo: string, bar: number }>;
  *
@@ -32,7 +32,7 @@ export type NonUnion<T> = { x: T } extends { x: infer U }
  * // x: A & B & C
  * @example
  * interface Emittable<T> {
- *     emit<U extends keyof T>(type: U, x: Intersection<T[U]>): void;
+ *     emit<U extends keyof T>(type: U, payload: Intersection<T[U]>): void;
  * }
  * declare const emittable: Emittable<{
  *     foo: { foo: string };
