@@ -1,4 +1,4 @@
-import { clamp } from "~/number/clamp";
+import { clamp } from "~/number/util";
 import { MAX_INT32 } from "~/number/int32";
 
 export const randString = (length: number): string => {
