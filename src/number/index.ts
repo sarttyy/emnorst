@@ -1,3 +1,3 @@
 export * from "./clamp";
 export * from "./int32";
-export * from "./type";
+export * from "./types";

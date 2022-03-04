@@ -13,7 +13,7 @@ export type Repeat<T, U extends number, V extends unknown[] = []> =
 /**
  * @example
  * interface Emittable<T> {
- *     emit<U extends keyof T>(type: NonUnion<U>, x: T[NonUnion<U>]): void;
+ *     emit<U extends keyof T>(type: NonUnion<U>, payload: T[NonUnion<U>]): void;
  * }
  * declare const emittable: Emittable<{ foo: string, bar: number }>;
  *
@@ -32,7 +32,7 @@ export type NonUnion<T> = { x: T } extends { x: infer U }
  * // x: A & B & C
  * @example
  * interface Emittable<T> {
- *     emit<U extends keyof T>(type: U, x: Intersection<T[U]>): void;
+ *     emit<U extends keyof T>(type: U, payload: Intersection<T[U]>): void;
  * }
  * declare const emittable: Emittable<{
  *     foo: { foo: string };
@@ -45,3 +45,37 @@ export type NonUnion<T> = { x: T } extends { x: infer U }
 export type Intersection<T> = [T] extends [never] ? never :
     [T extends unknown ? (x: T) => void : never] extends [(x: infer U) => void]
         ? U : never;
+
+/**
+ * Make all properties in T writable
+ */
+export type Writable<T> = {
+    -readonly [P in keyof T]: T[P];
+};
+
+export type Callable = (...args: any) => unknown;
+
+export type JsonPrimitive = string | number | boolean | null;
+export type JsonValue = JsonPrimitive | { [key: string]: JsonValue } | JsonValue[];
+
+export type HasMeta<B, M> = { "__?META": [B, M] };
+export type Meta<Base, M> = Base & HasMeta<Base, M>;
+export type WeakMeta<Base, M> = Base & Partial<HasMeta<Base, M>>;
+
+interface Assert {
+    as<T>(value: unknown): asserts value is T;
+    nonNullable<T>(value: T): asserts value is NonNullable<T>;
+}
+
+export const assert: Assert = {
+    as() {
+        if(arguments.length === 0) {
+            throw new TypeError("1 argument required, but only 0 present.");
+        }
+    },
+    nonNullable(value) {
+        if(value == null) {
+            throw new TypeError(`nonNullable assertion failed. Must not be ${value}.`);
+        }
+    },
+};

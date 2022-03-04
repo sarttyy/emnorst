@@ -1,5 +1,5 @@
 import { isPrimitive } from "./primitive";
-import type { WeekMeta } from "./meta-type";
+import type { WeakMeta } from "./types";
 
 const PRIMITIVE_STRING_TAG_TABLE = {
     string: "String",
@@ -10,7 +10,7 @@ const PRIMITIVE_STRING_TAG_TABLE = {
     undefined: "Undefined",
 } as const;
 
-type StringTag = WeekMeta<string, "stringTag">;
+type StringTag = WeakMeta<string, "stringTag">;
 
 type PrimitiveToStringTag<T> = (
     T extends string ? "String"

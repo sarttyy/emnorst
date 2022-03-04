@@ -1,4 +1,4 @@
-import { assert } from "./assert";
+import { assert } from "./types";
 
 // NOTE: 型の制限ではなく保証として使うことを想定するため、`void`は含まない。
 export type Primitive = string | number | bigint | boolean | symbol | null | undefined;
@@ -25,7 +25,7 @@ export interface HasToPrimitive {
  */
 export const toPrimitive = (input: unknown, preferredType?: ToPrimitiveHint): Primitive => {
     if(isPrimitive(input)) return input;
-    assert.type<HasToPrimitive>(input);
+    assert.as<HasToPrimitive>(input);
 
     // dprint-ignore
     const hintFlag

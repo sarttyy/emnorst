@@ -1,7 +1,7 @@
-import type { WeekMeta } from "~/util/meta-type";
+import type { WeakMeta } from "~/util/types";
 import { typeOf } from "~/util/type-of";
 
-type PureObject = WeekMeta<object, { pure: true }>;
+type PureObject = WeakMeta<object, { pure: true }>;
 
 export const isPureObject = (value: unknown): value is PureObject =>
     typeOf(value) === "Object"

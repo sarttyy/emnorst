@@ -1,4 +1,4 @@
-import { assert } from "~/util/assert";
+import { assert } from "~/util/types";
 
 /**
  * @param value The value to be compared
@@ -8,6 +8,6 @@ export const isIterable = (value: unknown): value is Iterable<unknown> => {
     if(value == null) {
         return false;
     }
-    assert.type<Iterable<unknown>>(value);
+    assert.as<Iterable<unknown>>(value);
     return typeof value[Symbol.iterator] === "function";
 };
