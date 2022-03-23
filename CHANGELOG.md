@@ -2,6 +2,7 @@
 # Change Log
 
 ## [Unreleased]
+- rename `isEnumerable` to `isEnumerableProp`
 
 ## [0.5.0] - 2022-03-04
 ### Added

@@ -21,7 +21,7 @@ export const has = <T extends PropertyKey>(obj: unknown, key: T):
     obj is T extends unknown ? { [P in T]: unknown } : never =>
     obj != null && prototypeHasOwnProperty.call(obj, key);
 
-export const isEnumerable = <T extends PropertyKey>(obj: unknown, key: T):
+export const isEnumerableProp = <T extends PropertyKey>(obj: unknown, key: T):
     obj is T extends unknown ? { [P in T]: unknown } : never =>
     obj != null && prototypePropertyIsEnumerable.call(obj, key);
 
