@@ -32,10 +32,6 @@ type ObjectToStringTag<T extends object> = (
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const objectPrototypeToString: (this: unknown) => string = Object.prototype.toString;
 
-// プリミティブ型はキャッシュしないため空の状態でマッチすることはない。
-let prevInput: unknown;
-let prevResult: string;
-
 export type ToStringTag<T> = object extends T ? StringTag // any | unknown
     : T extends object ? ObjectToStringTag<T>
     : PrimitiveToStringTag<T>;
@@ -56,11 +52,8 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
         ] as ToStringTag<T>;
     }
 
-    if(prevInput === value) return prevResult as ToStringTag<T>;
-
-    prevInput = value;
-    prevResult = objectPrototypeToString.call(value).slice(8, -1);
-    return prevResult as ToStringTag<T>;
+    return objectPrototypeToString.call(value)
+        .slice(8, -1) as ToStringTag<T>;
 };
 
 export type TypeOf<T> = object extends T ? StringTag // any | unknown
@@ -87,12 +80,13 @@ export const typeOf = <T>(value: T): TypeOf<T> => {
         return typeof value as TypeOf<T>;
     }
 
-    if(toStringTag(value) === "Object") {
+    const stringTag = toStringTag(value);
+    if(stringTag === "Object") {
         const ctorName: unknown = (value as unknown as object).constructor?.name;
         if(typeof ctorName === "string" && ctorName) {
             return ctorName as TypeOf<T>;
         }
     }
 
-    return prevResult as TypeOf<T>;
+    return stringTag as StringTag as TypeOf<T>;
 };
