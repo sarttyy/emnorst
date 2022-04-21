@@ -56,10 +56,6 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
         .slice(8, -1) as ToStringTag<T>;
 };
 
-export type TypeOf<T> = object extends T ? StringTag // any | unknown
-    : T extends object ? ObjectToStringTag<T>
-    : Lowercase<PrimitiveToStringTag<T>>;
-
 /**
  * if null, returns "null".
  * if primitive, use typeof operator to get the type.
@@ -71,22 +67,22 @@ export type TypeOf<T> = object extends T ? StringTag // any | unknown
  * @param value Value to get the type
  * @returns String of type of {@link value}
  */
-export const typeOf = <T>(value: T): TypeOf<T> => {
+export const typeOf = (value: unknown): string => {
     if(value === null) {
-        return "null" as TypeOf<T>;
+        return "null";
     }
 
     if(isPrimitive(value)) {
-        return typeof value as TypeOf<T>;
+        return typeof value;
     }
 
     const stringTag = toStringTag(value);
     if(stringTag === "Object") {
         const ctorName: unknown = (value as unknown as object).constructor?.name;
         if(typeof ctorName === "string" && ctorName) {
-            return ctorName as TypeOf<T>;
+            return ctorName;
         }
     }
 
-    return stringTag as StringTag as TypeOf<T>;
+    return stringTag;
 };
