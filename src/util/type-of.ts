@@ -38,10 +38,6 @@ export type ToStringTag<T> = object extends T ? StringTag // any | unknown
 
 /**
  * Use `Object.prototype.toString` to get the value type.
- *
- * @see {@link typeOf}
- * @param value Value to get the type
- * @returns String of type of {@link value}
  */
 export const toStringTag = <T>(value: T): ToStringTag<T> => {
     const inputType = typeof value;
@@ -57,15 +53,13 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
 };
 
 /**
- * if null, returns "null".
- * if primitive, use typeof operator to get the type.
- * if {@link toStringTag}(value) same "Object" and `value.constructor.name` isn't empty,
- * return `value.constructor.name`.
- * else, same as {@link toStringTag}.
+ * if null, return "null".
+ * if primitive, use the `typeof` operator to get the type.
+ * if {@link toStringTag}(value) is "Object" and `value.constructor.name` isn't empty,
+ * return it.
+ * otherwise, same as {@link toStringTag}.
  *
  * @see {@link toStringTag}
- * @param value Value to get the type
- * @returns String of type of {@link value}
  */
 export const typeOf = (value: unknown): string => {
     if(value === null) {
