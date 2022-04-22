@@ -32,20 +32,12 @@ type ObjectToStringTag<T extends object> = (
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const objectPrototypeToString: (this: unknown) => string = Object.prototype.toString;
 
-// プリミティブ型はキャッシュしないため空の状態でマッチすることはない。
-let prevInput: unknown;
-let prevResult: string;
-
 export type ToStringTag<T> = object extends T ? StringTag // any | unknown
     : T extends object ? ObjectToStringTag<T>
     : PrimitiveToStringTag<T>;
 
 /**
  * Use `Object.prototype.toString` to get the value type.
- *
- * @see {@link typeOf}
- * @param value Value to get the type
- * @returns String of type of {@link value}
  */
 export const toStringTag = <T>(value: T): ToStringTag<T> => {
     const inputType = typeof value;
@@ -56,43 +48,35 @@ export const toStringTag = <T>(value: T): ToStringTag<T> => {
         ] as ToStringTag<T>;
     }
 
-    if(prevInput === value) return prevResult as ToStringTag<T>;
-
-    prevInput = value;
-    prevResult = objectPrototypeToString.call(value).slice(8, -1);
-    return prevResult as ToStringTag<T>;
+    return objectPrototypeToString.call(value)
+        .slice(8, -1) as ToStringTag<T>;
 };
 
-export type TypeOf<T> = object extends T ? StringTag // any | unknown
-    : T extends object ? ObjectToStringTag<T>
-    : Lowercase<PrimitiveToStringTag<T>>;
-
 /**
- * if null, returns "null".
- * if primitive, use typeof operator to get the type.
- * if {@link toStringTag}(value) same "Object" and `value.constructor.name` isn't empty,
- * return `value.constructor.name`.
- * else, same as {@link toStringTag}.
+ * if null, return "null".
+ * if primitive, use the `typeof` operator to get the type.
+ * if {@link toStringTag}(value) is "Object" and `value.constructor.name` isn't empty,
+ * return it.
+ * otherwise, same as {@link toStringTag}.
  *
  * @see {@link toStringTag}
- * @param value Value to get the type
- * @returns String of type of {@link value}
  */
-export const typeOf = <T>(value: T): TypeOf<T> => {
+export const typeOf = (value: unknown): string => {
     if(value === null) {
-        return "null" as TypeOf<T>;
+        return "null";
     }
 
     if(isPrimitive(value)) {
-        return typeof value as TypeOf<T>;
+        return typeof value;
     }
 
-    if(toStringTag(value) === "Object") {
+    const stringTag = toStringTag(value);
+    if(stringTag === "Object") {
         const ctorName: unknown = (value as unknown as object).constructor?.name;
         if(typeof ctorName === "string" && ctorName) {
-            return ctorName as TypeOf<T>;
+            return ctorName;
         }
     }
 
-    return prevResult as TypeOf<T>;
+    return stringTag;
 };

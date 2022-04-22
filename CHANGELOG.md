@@ -2,6 +2,8 @@
 # Change Log
 
 ## [Unreleased]
+### Removed
+- `TypeOf` type
 
 ## [0.5.0] - 2022-03-04
 ### Added
