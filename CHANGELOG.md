@@ -2,6 +2,9 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- `NonAny` type
+
 ### Removed
 - `TypeOf` type
 

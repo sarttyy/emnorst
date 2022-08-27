@@ -12,6 +12,19 @@ export type Repeat<T, U extends number, V extends unknown[] = []> =
 
 /**
  * @example
+ * type Foo = NonAny<any>;
+ * // Foo: never
+ * type Bar = NonAny<any, AlternativeType>;
+ * // Bar: AlternativeType
+ *
+ * type NonAnyType = // e.g. unknown, string, etc...
+ * type Baz = NonAny<NonAnyType, AlternativeType>;
+ * // Baz: NonAnyType
+ */
+export type NonAny<T, U = never> = [T extends never ? "any" : never] extends [never] ? T : U;
+
+/**
+ * @example
  * interface Emittable<T> {
  *     emit<U extends keyof T>(type: NonUnion<U>, payload: T[NonUnion<U>]): void;
  * }
