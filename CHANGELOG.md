@@ -4,6 +4,7 @@
 ## [Unreleased]
 ### Added
 - `NonAny` type
+- `NonNever` type
 
 ### Removed
 - `TypeOf` type

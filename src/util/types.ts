@@ -25,6 +25,19 @@ export type NonAny<T, U = never> = [T extends never ? "any" : never] extends [ne
 
 /**
  * @example
+ * type Foo = NonNever<never>;
+ * // Foo: unknown
+ * type Bar = NonNever<never, AlternativeType>;
+ * // Bar: AlternativeType
+ *
+ * type NonNeverType = // Any types except `never`.
+ * type Baz = NonNever<NonNeverType, AlternativeType>;
+ * // Baz: NonNeverType
+ */
+export type NonNever<T, U = unknown> = [T] extends [never] ? U : T;
+
+/**
+ * @example
  * interface Emittable<T> {
  *     emit<U extends keyof T>(type: NonUnion<U>, payload: T[NonUnion<U>]): void;
  * }
