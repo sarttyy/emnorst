@@ -5,6 +5,7 @@
 ### Added
 - `NonAny` type
 - `NonNever` type
+- `assert.unreachable`
 
 ### Removed
 - `TypeOf` type

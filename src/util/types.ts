@@ -91,6 +91,15 @@ export type WeakMeta<Base, M> = Base & Partial<HasMeta<Base, M>>;
 interface Assert {
     as<T>(value: unknown): asserts value is T;
     nonNullable<T>(value: T): asserts value is NonNullable<T>;
+    /**
+     * @example
+     * switch (action.type) {
+     *   // ...
+     *   default:
+     *     assert.unreachable<typeof action>();
+     * }
+     */
+    unreachable<_ extends never>(message?: string): never;
 }
 
 export const assert: Assert = {
@@ -103,5 +112,12 @@ export const assert: Assert = {
         if(value == null) {
             throw new TypeError(`nonNullable assertion failed. Must not be ${value}.`);
         }
+    },
+    unreachable(message) {
+        throw new Error(
+            message == null
+                ? "Unreachable code was reached."
+                : "Unreachable: " + message
+        );
     },
 };
