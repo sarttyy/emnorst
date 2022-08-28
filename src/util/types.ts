@@ -110,7 +110,7 @@ export const assert: Assert = {
     },
     nonNullable(value) {
         if(value == null) {
-            throw new TypeError(`nonNullable assertion failed. Must not be ${value}.`);
+            throw new TypeError(`non-nullable assertion failed. Must not be ${value}.`);
         }
     },
     unreachable(message) {
