@@ -79,6 +79,20 @@ export type Writable<T> = {
     -readonly [P in keyof T]: T[P];
 };
 
+/**
+ * @example
+ * type Foo = Nomalize<{ hoge: string } & { fuga: number }>;
+ * // Foo: { hoge: string; fuga: number }
+ */
+export type Nomalize<T> = T extends unknown ? { [P in keyof T]: T[P] } : never;
+
+/**
+ * @example
+ * type Foo = Nomalize<{ foo: { hoge: string } } & { foo: { fuga: number } }>;
+ * // Foo: { foo: { hoge: string; fuga: number } }
+ */
+export type NomalizeDeep<T> = T extends unknown ? { [P in keyof T]: NomalizeDeep<T[P]> } : never;
+
 export type Callable = (...args: any) => unknown;
 
 export type JsonPrimitive = string | number | boolean | null;

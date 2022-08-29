@@ -6,6 +6,8 @@
 - `NonAny` type
 - `NonNever` type
 - `assert.unreachable`
+- `Nomalize` type
+- `NomalizeDeep` type
 
 ### Removed
 - `TypeOf` type
