@@ -98,9 +98,13 @@ export type Callable = (...args: any) => unknown;
 export type JsonPrimitive = string | number | boolean | null;
 export type JsonValue = JsonPrimitive | { [key: string]: JsonValue } | JsonValue[];
 
-export type HasMeta<B, M> = { "__?META": [B, M] };
-export type Meta<Base, M> = Base & HasMeta<Base, M>;
-export type WeakMeta<Base, M> = Base & Partial<HasMeta<Base, M>>;
+interface HasMeta<T> {
+    /** @deprecated */
+    "__?META": T;
+}
+
+export type Meta<T, M> = T & HasMeta<M>;
+export type WeakMeta<T, M> = T & (HasMeta<M> | {});
 
 interface Assert {
     as<T>(value: unknown): asserts value is T;

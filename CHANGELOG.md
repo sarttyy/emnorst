@@ -9,8 +9,12 @@
 - `Nomalize` type
 - `NomalizeDeep` type
 
+### Changed
+- `WeakMeta` type
+
 ### Removed
 - `TypeOf` type
+- `HasMeta` type
 
 ## [0.5.0] - 2022-03-04
 ### Added
