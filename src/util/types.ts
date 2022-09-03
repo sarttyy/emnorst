@@ -46,9 +46,12 @@ export type NonNever<T, U = unknown> = [T] extends [never] ? U : T;
  * emittable.emit<"foo">("foo", "hello"); // ok
  * emittable.emit<"foo" | "bar">("foo", 1234); // error!!!
  */
-export type NonUnion<T> = { x: T } extends { x: infer U }
+export type NonUnion<T> = IfUnion<T, never, T>;
+export type Union<T> = IfUnion<T, T, never>;
+
+export type IfUnion<T, Then, Else> = { x: T } extends { x: infer U }
     ? T extends unknown
-        ? [U] extends [T] ? T : never
+        ? [U] extends [T] ? Else : Then
         : never
     : never;
 

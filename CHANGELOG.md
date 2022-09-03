@@ -8,6 +8,8 @@
 - `assert.unreachable`
 - `Nomalize` type
 - `NomalizeDeep` type
+- `Union` type
+- `IfUnion` type
 
 ### Changed
 - `WeakMeta` type
