@@ -1,11 +1,9 @@
-import type { Recurse, Repeat } from "~/util/types";
+import type { Repeat } from "~/util/types";
 
 type PaddingIndexRec<Length extends number, State extends unknown[]> = (
     State["length"] extends Length
         ? State
-        : {
-            __rec: PaddingIndexRec<Length, [...State, State["length"]]>;
-        }
+        : PaddingIndexRec<Length, [...State, State["length"]]>
 );
 
 /**
@@ -16,4 +14,4 @@ type PaddingIndexRec<Length extends number, State extends unknown[]> = (
  * NOTE: Do not use large numbers as it takes time to calculate the type.
  */
 export type Range<T extends number, U extends number> =
-    Recurse<PaddingIndexRec<U, Repeat<never, T>>> extends (infer V)[] ? V | U : never;
+    PaddingIndexRec<U, Repeat<never, T>> extends (infer V)[] ? V | U : never;
