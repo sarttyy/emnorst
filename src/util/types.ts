@@ -7,9 +7,9 @@ type RecurseSub<T, K extends string> =
 export type Recurse<T, K extends string = "__rec"> =
     T extends { [P in K]: unknown } ? Recurse<RecurseSub<T, K>> : T;
 
-type Range09 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type DecimalDigitNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-type DecimalDigitTimes<T, U extends Range09> = {
+type DecimalDigitTimes<T, U extends DecimalDigitNumber> = {
     0: [];
     1: [T];
     2: [T, T];
@@ -25,7 +25,7 @@ type DecimalDigitTimes<T, U extends Range09> = {
 type Repeat10<T extends unknown[]> = [...T, ...T, ...T, ...T, ...T, ...T, ...T, ...T, ...T, ...T];
 
 type RepeatInternal<T, U extends string, V extends T[]> = (
-    U extends `${infer X extends Range09}${infer Rest}`
+    U extends `${infer X extends DecimalDigitNumber}${infer Rest}`
         ? { x: [...Repeat10<V>, ...DecimalDigitTimes<T, X>] } extends { x: infer W extends T[] }
             ? Rest extends "" ? W : RepeatInternal<T, Rest, W>
             : never
