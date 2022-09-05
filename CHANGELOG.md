@@ -10,6 +10,7 @@
 - `NomalizeDeep` type
 - `Union` type
 - `IfUnion` type
+- `swap`
 
 ### Changed
 - rename `isEnumerable` to `isEnumerableProp`

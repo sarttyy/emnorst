@@ -1,4 +1,5 @@
 import { toPrimitive } from "~/util/primitive";
+import type { Intersection, Nomalize, Union } from "~/util/types";
 
 export const toPropertyKey = (value: unknown): string | symbol => {
     const key = toPrimitive(value, "string");
@@ -24,6 +25,29 @@ export const has = <T extends PropertyKey>(obj: unknown, key: T):
 export const isEnumerableProp = <T extends PropertyKey>(obj: unknown, key: T):
     obj is T extends unknown ? { [P in T]: unknown } : never =>
     obj != null && prototypePropertyIsEnumerable.call(obj, key);
+
+type Swapable<T, K extends keyof T> =
+    {
+        [_ in K]: Intersection<
+            K extends unknown ? { x: T[K] } : never
+        > extends { x: infer U } ? U : never;
+    };
+
+/**
+ * @example
+ * const obj = { a: 0, b: 1 };
+ * swap(obj, "a", "b");
+ * obj === { a: 1, b: 0 };
+ */
+export const swap = <T, K extends keyof T>(
+    object: Nomalize<T & Swapable<T, K>>,
+    key1: Union<K>,
+    key2: Union<K>,
+) => {
+    const temp = object[key1];
+    object[key1] = object[key2];
+    object[key2] = temp;
+};
 
 /**
  * Returns enumerable properties of an object.
