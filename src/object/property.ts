@@ -18,12 +18,14 @@ const prototypePropertyIsEnumerable = Object.prototype.propertyIsEnumerable;
 const getPropNames = Object.getOwnPropertyNames;
 const getPropSymbols = Object.getOwnPropertySymbols;
 
-export const has = <T extends PropertyKey>(obj: unknown, key: T):
-    obj is T extends unknown ? { [P in T]: unknown } : never =>
+export type KeyOf<T> = (T extends unknown ? keyof T : never) | (string & {}) | (number & {}) | symbol;
+
+export const has = <T, U extends KeyOf<T>>(obj: T, key: U):
+    obj is Nomalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>
     obj != null && prototypeHasOwnProperty.call(obj, key);
 
-export const isEnumerableProp = <T extends PropertyKey>(obj: unknown, key: T):
-    obj is T extends unknown ? { [P in T]: unknown } : never =>
+export const isEnumerableProp = <T, U extends KeyOf<T>>(obj: T, key: U):
+    obj is Nomalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>
     obj != null && prototypePropertyIsEnumerable.call(obj, key);
 
 type Swapable<T, K extends keyof T> =

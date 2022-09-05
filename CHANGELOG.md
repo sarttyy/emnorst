@@ -11,10 +11,12 @@
 - `Union` type
 - `IfUnion` type
 - `swap`
+- `KeyOf` type
 
 ### Changed
 - rename `isEnumerable` to `isEnumerableProp`
 - `WeakMeta` type
+- Improve `has` and `isEnumerableProp` types.
 
 ### Removed
 - `TypeOf` type
