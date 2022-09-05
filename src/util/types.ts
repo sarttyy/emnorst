@@ -122,7 +122,7 @@ interface HasMeta<T> {
 }
 
 export type Meta<T, M> = T & HasMeta<M>;
-export type WeakMeta<T, M> = T & (HasMeta<M> | {});
+export type WeakMeta<T, M> = T & (HasMeta<M> | { "__?WEAK_META"?: never });
 
 interface Assert {
     as<T>(value: unknown): asserts value is T;
