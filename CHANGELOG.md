@@ -2,7 +2,23 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- `NonAny` type
+- `NonNever` type
+- `assert.unreachable`
+- `Nomalize` type
+- `NomalizeDeep` type
+- `Union` type
+- `IfUnion` type
+
+### Changed
 - rename `isEnumerable` to `isEnumerableProp`
+- `WeakMeta` type
+
+### Removed
+- `TypeOf` type
+- `HasMeta` type
+- `Recurse` type
 
 ## [0.5.0] - 2022-03-04
 ### Added
