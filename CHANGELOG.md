@@ -10,9 +10,19 @@
 - `NomalizeDeep` type
 - `Union` type
 - `IfUnion` type
+- `swap`
+- `KeyOf` type
+- `At` type
 
 ### Changed
+- rename `isEnumerable` to `isEnumerableProp`
 - `WeakMeta` type
+- Improve `has` and `isEnumerableProp` types.
+- Improve `at` and `updateAt` types.
+
+### Deprecated
+- `Empty` type
+- `isEmpty`
 
 ### Removed
 - `TypeOf` type
