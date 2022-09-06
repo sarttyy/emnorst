@@ -10,8 +10,10 @@ interface EmptyArrayLike {
     length: 0;
 }
 
+/** @deprecated */
 export type Empty = "" | [] | EmptyArrayLike | EmptyObject;
 
+/** @deprecated */
 export const isEmpty = (value: unknown): value is Empty => {
     if(isArrayLike(value)) {
         return value.length === 0;

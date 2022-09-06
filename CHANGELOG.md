@@ -20,6 +20,10 @@
 - Improve `has` and `isEnumerableProp` types.
 - Improve `at` and `updateAt` types.
 
+### Deprecated
+- `Empty` type
+- `isEmpty`
+
 ### Removed
 - `TypeOf` type
 - `HasMeta` type
