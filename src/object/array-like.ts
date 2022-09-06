@@ -1,4 +1,5 @@
 import { isUint32 } from "~/number/int32";
+import type { Repeat } from "../util/types";
 
 export interface WritableArrayLike<T> {
     readonly length: number;
@@ -12,14 +13,46 @@ export const isArrayLike = (value: unknown): value is ArrayLike<unknown> => {
     return isUint32((value as ArrayLike<unknown>).length);
 };
 
-export const at = <T>(arrlike: ArrayLike<T>, index: number): T | undefined => {
+type ToAbsIndex<T extends ArrayLike<unknown>, I extends number> = (
+    I extends unknown
+        ? `${I}` extends `-${infer IRight extends number}`
+            ? number extends T["length"] | IRight
+                ? number
+                // T - RelIndex (-になる場合はundefined)
+                : (T extends readonly unknown[]
+                    ? T
+                    : Repeat<unknown, T["length"]>
+                ) extends [...Repeat<unknown, IRight>, ...infer V]
+                    ? V["length"]
+                    : undefined
+            : I
+        : never
+);
+
+type Lookup<T extends ArrayLike<unknown>, I> = (
+    number extends T["length"] | I ? (I extends keyof T ? T[I] | undefined : never) // array
+    : I extends keyof T ? T[I] // tuple
+    : undefined
+);
+
+export type At<T extends ArrayLike<unknown>, I extends number> = Lookup<T, ToAbsIndex<T, I>>;
+
+export const at = <T extends ArrayLike<unknown>, I extends number>(
+    arrlike: T,
+    index: I,
+): At<T, I> => {
     const i = toAbsIndex(arrlike, index);
     if(i !== void 0) {
-        return arrlike[i];
+        return arrlike[i] as At<T, I>;
     }
+    return void 0 as At<T, I>;
 };
 
-export const updateAt = <T>(arrlike: WritableArrayLike<T>, index: number, val: T): void => {
+export const updateAt = <T extends WritableArrayLike<unknown>, I extends number>(
+    arrlike: T,
+    index: I,
+    val: At<T, I>,
+): void => {
     const i = toAbsIndex(arrlike, index);
     if(i !== void 0) {
         arrlike[i] = val;
