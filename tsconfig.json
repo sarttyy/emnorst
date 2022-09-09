@@ -6,7 +6,7 @@
         "esModuleInterop": true,
         "paths": { "~/*": ["./src/*"] },
         "target": "ES2018",
-        "lib": ["ES2020"],
+        "lib": ["ES2020", "DOM"],
         "strict": true,
         "importsNotUsedAsValues": "error",
     }
