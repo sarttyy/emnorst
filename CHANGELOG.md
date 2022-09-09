@@ -2,6 +2,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [0.6.0] - 2022-09-09
 ### Added
 - `NonAny` type
 - `NonNever` type
