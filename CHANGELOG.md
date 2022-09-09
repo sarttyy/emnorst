@@ -13,6 +13,7 @@
 - `swap`
 - `KeyOf` type
 - `At` type
+- `timeout`
 
 ### Changed
 - rename `isEnumerable` to `isEnumerableProp`
