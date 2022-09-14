@@ -106,7 +106,7 @@ export type Nomalize<T> = T extends unknown ? { [P in keyof T]: T[P] } : never;
 
 /**
  * @example
- * type Foo = Nomalize<{ foo: { hoge: string } } & { foo: { fuga: number } }>;
+ * type Foo = NomalizeDeep<{ foo: { hoge: string } } & { foo: { fuga: number } }>;
  * // Foo: { foo: { hoge: string; fuga: number } }
  */
 export type NomalizeDeep<T> = T extends unknown ? { [P in keyof T]: NomalizeDeep<T[P]> } : never;
