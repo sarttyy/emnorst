@@ -18,10 +18,7 @@ export interface HasToPrimitive {
 /**
  * Implementation of `ToPrimitive`.
  *
- * @param input -
- * @param preferredType -
- * @throws TypeError
- * @see https://www.ecma-international.org/ecma-262/8.0/index.html#sec-toprimitive
+ * @see https://tc39.es/ecma262/#sec-toprimitive
  */
 export const toPrimitive = (input: unknown, preferredType?: ToPrimitiveHint): Primitive => {
     if(isPrimitive(input)) return input;
