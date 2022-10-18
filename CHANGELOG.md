@@ -4,6 +4,7 @@
 ## [Unreleased]
 ### Added
 - `TAU`
+- `returnValue` option in TimerOptions
 
 ## [0.6.0] - 2022-09-09
 ### Added
