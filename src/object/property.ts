@@ -19,6 +19,7 @@ const getPropNames = Object.getOwnPropertyNames;
 const getPropSymbols = Object.getOwnPropertySymbols;
 
 export type KeyOf<T> = (T extends unknown ? keyof T : never) | (string & {}) | (number & {}) | symbol;
+export type ValueOf<T> = T[keyof T];
 
 export const has = <T, U extends KeyOf<T>>(obj: T, key: U):
     obj is Normalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>

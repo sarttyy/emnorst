@@ -5,6 +5,7 @@
 ### Added
 - `TAU`
 - `returnValue` option in TimerOptions
+- `ValueOf` type
 
 ### Fixed
 - fix typo `Normalize`.
