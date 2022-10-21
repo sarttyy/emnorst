@@ -6,6 +6,8 @@
 - `TAU`
 - `returnValue` option in TimerOptions
 - `ValueOf` type
+- `noop`
+- `identify`
 
 ### Fixed
 - fix typo `Normalize`.
