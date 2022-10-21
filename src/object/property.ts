@@ -1,5 +1,5 @@
 import { toPrimitive } from "~/util/primitive";
-import type { Intersection, Nomalize, Union } from "~/util/types";
+import type { Intersection, Normalize, Union } from "~/util/types";
 
 export const toPropertyKey = (value: unknown): string | symbol => {
     const key = toPrimitive(value, "string");
@@ -21,11 +21,11 @@ const getPropSymbols = Object.getOwnPropertySymbols;
 export type KeyOf<T> = (T extends unknown ? keyof T : never) | (string & {}) | (number & {}) | symbol;
 
 export const has = <T, U extends KeyOf<T>>(obj: T, key: U):
-    obj is Nomalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>
+    obj is Normalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>
     obj != null && prototypeHasOwnProperty.call(obj, key);
 
 export const isEnumerableProp = <T, U extends KeyOf<T>>(obj: T, key: U):
-    obj is Nomalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>
+    obj is Normalize<U extends unknown ? T & { [_ in U]: unknown } : never> =>
     obj != null && prototypePropertyIsEnumerable.call(obj, key);
 
 type Swapable<T, K extends keyof T> =
@@ -42,7 +42,7 @@ type Swapable<T, K extends keyof T> =
  * obj === { a: 1, b: 0 };
  */
 export const swap = <T, K extends keyof T>(
-    object: Nomalize<T & Swapable<T, K>>,
+    object: Normalize<T & Swapable<T, K>>,
     key1: Union<K>,
     key2: Union<K>,
 ) => {

@@ -6,6 +6,9 @@
 - `TAU`
 - `returnValue` option in TimerOptions
 
+### Fixed
+- fix typo `Normalize`.
+
 ## [0.6.0] - 2022-09-09
 ### Added
 - `NonAny` type
@@ -47,7 +50,7 @@
 - `toAbsIndex`
 - `Intersection` type
 
-### Changed
+### Fixed
 - Rename `WeekMeta` to `WeakMeta`.
 
 ### Deprecated
