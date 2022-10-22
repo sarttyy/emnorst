@@ -8,6 +8,7 @@
 - `ValueOf` type
 - `noop`
 - `identify`
+- `nonNullable`
 
 ### Fixed
 - fix typo `Normalize`.
