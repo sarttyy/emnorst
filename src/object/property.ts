@@ -52,6 +52,8 @@ export const swap = <T, K extends keyof T>(
     object[key2] = temp;
 };
 
+export const keys: <T extends object>(object: T) => KeyOf<T>[] = Object.keys;
+
 /**
  * Returns enumerable properties of an object.
  *
