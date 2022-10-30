@@ -60,8 +60,8 @@ export const getKeys: <T extends object>(object: T) => Extract<KeyOf<T>, string>
  *
  * @returns An array of enumerable properties containing symbols.
  */
-export const getEnumerableKeys = (object: object): (string | symbol)[] => {
-    const keys: (string | symbol)[] = getKeys(object);
+export const getEnumerableKeys = <T extends object>(object: T): KeyOf<T>[] => {
+    const keys: KeyOf<T>[] = getKeys(object);
     const symbols = getPropSymbols(object);
     for(let i = 0; i < symbols.length; i++) {
         const symbol = symbols[i];
@@ -78,7 +78,7 @@ export const getEnumerableKeys = (object: object): (string | symbol)[] => {
  *
  * @returns An array of all properties, including symbols and non-enumerable.
  */
-export const getAllKeys = (object: object): (string | symbol)[] => {
-    const propNames: (string | symbol)[] = getPropNames(object);
+export const getAllKeys = <T extends object>(object: T): KeyOf<T>[] => {
+    const propNames: KeyOf<T>[] = getPropNames(object);
     return propNames.concat(getPropSymbols(object));
 };
