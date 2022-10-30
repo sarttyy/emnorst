@@ -53,7 +53,7 @@ export const swap = <T, K extends keyof T>(
     object[key2] = temp;
 };
 
-export const getKeys: <T extends object>(object: T) => KeyOf<T>[] = Object.keys;
+export const getKeys: <T extends object>(object: T) => Extract<KeyOf<T>, string>[] = Object.keys;
 
 /**
  * Returns enumerable properties of an object.
@@ -61,7 +61,7 @@ export const getKeys: <T extends object>(object: T) => KeyOf<T>[] = Object.keys;
  * @returns An array of enumerable properties containing symbols.
  */
 export const getEnumerableKeys = (object: object): (string | symbol)[] => {
-    const keys: (string | symbol)[] = Object.keys(object);
+    const keys: (string | symbol)[] = getKeys(object);
     const symbols = getPropSymbols(object);
     for(let i = 0; i < symbols.length; i++) {
         const symbol = symbols[i];
