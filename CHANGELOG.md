@@ -10,6 +10,7 @@
 - `identify`
 - `nonNullable`
 - `getKeys`
+- `TemplateLiteralConstraint`
 
 ### Fixed
 - fix typo `Normalize`.
