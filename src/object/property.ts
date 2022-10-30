@@ -18,15 +18,15 @@ const prototypePropertyIsEnumerable = Object.prototype.propertyIsEnumerable;
 const getPropNames = Object.getOwnPropertyNames;
 const getPropSymbols = Object.getOwnPropertySymbols;
 
-export type KeyOf<T> = (T extends unknown ? keyof T : never) | (string & {}) | (number & {}) | symbol;
+export type KeyOf<T> = (T extends unknown ? keyof T : never) | (string & {}) | symbol;
 export type ValueOf<T> = T[keyof T];
 
-export const has = <T, U extends KeyOf<T>>(object: T, key: U):
+export const has = <T, U extends KeyOf<T> | (number & {})>(object: T, key: U):
     object is Normalize<U extends unknown ? T & { [_ in U]: unknown } : never> => {
     return object != null && prototypeHasOwnProperty.call(object, key);
 };
 
-export const isEnumerableProp = <T, U extends KeyOf<T>>(object: T, key: U):
+export const isEnumerableProp = <T, U extends KeyOf<T> | (number & {})>(object: T, key: U):
     object is Normalize<U extends unknown ? T & { [_ in U]: unknown } : never> => {
     return object != null && prototypePropertyIsEnumerable.call(object, key);
 };
