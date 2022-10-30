@@ -121,8 +121,13 @@ interface HasMeta<T> {
     "__?META": T;
 }
 
+interface WeakMetaNone {
+    /** @deprecated */
+    "__?WEAK_META"?: never;
+}
+
 export type Meta<T, M> = T & HasMeta<M>;
-export type WeakMeta<T, M> = T & (HasMeta<M> | { "__?WEAK_META"?: never });
+export type WeakMeta<T, M> = T & (HasMeta<M> | WeakMetaNone);
 
 interface Assert {
     as<T>(value: unknown): asserts value is T;
