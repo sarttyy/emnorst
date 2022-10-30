@@ -9,7 +9,7 @@
 - `noop`
 - `identify`
 - `nonNullable`
-- `keys`
+- `getKeys`
 
 ### Fixed
 - fix typo `Normalize`.
