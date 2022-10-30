@@ -1,6 +1,11 @@
 import { toPrimitive } from "~/util/primitive";
 import type { Intersection, Normalize, Union } from "~/util/types";
 
+/**
+ * Implementation of `ToPropertyKey`.
+ *
+ * @see https://tc39.es/ecma262/#sec-topropertykey
+ */
 export const toPropertyKey = (value: unknown): string | symbol => {
     const key = toPrimitive(value, "string");
     return typeof key === "symbol" ? key : String(key);
