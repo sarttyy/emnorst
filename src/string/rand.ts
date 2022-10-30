@@ -1,8 +1,8 @@
 import { clamp } from "~/number/util";
 import { MAX_INT32 } from "~/number/int32";
 
-export const randString = (length: number): string => {
-    const len = clamp(length, 0, MAX_INT32) | 0 || 8;
+export const randString = (length?: number): string => {
+    const len = clamp(length!, 0, MAX_INT32) | 0 || 8;
 
     let randStr = "";
     do {
