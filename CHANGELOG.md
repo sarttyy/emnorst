@@ -11,6 +11,7 @@
 - `nonNullable`
 - `getKeys`
 - `TemplateLiteralConstraint`
+- `isArray`
 
 ### Fixed
 - fix typo `Normalize`.
