@@ -2,6 +2,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [v1.0.0-next.0] - 2022-11-08
 ### Added
 - `TAU`
 - `returnValue` option in TimerOptions
