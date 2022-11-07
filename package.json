@@ -1,7 +1,8 @@
 {
   "name": "emnorst",
-  "version": "0.6.0",
+  "version": "1.0.0-next.0",
   "description": "javascript utility operation library",
+  "sideEffects": false,
   "main": "dist/emnorst.cjs.js",
   "module": "dist/emnorst.esm.js",
   "types": "dist/emnorst.esm.d.ts",

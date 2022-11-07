@@ -3,6 +3,21 @@
 
 ## [Unreleased]
 
+## [v1.0.0-next.0] - 2022-11-08
+### Added
+- `TAU`
+- `returnValue` option in TimerOptions
+- `ValueOf` type
+- `noop`
+- `identify`
+- `nonNullable`
+- `getKeys`
+- `TemplateLiteralConstraint`
+- `isArray`
+
+### Fixed
+- fix typo `Normalize`.
+
 ## [0.6.0] - 2022-09-09
 ### Added
 - `NonAny` type
@@ -44,7 +59,7 @@
 - `toAbsIndex`
 - `Intersection` type
 
-### Changed
+### Fixed
 - Rename `WeekMeta` to `WeakMeta`.
 
 ### Deprecated

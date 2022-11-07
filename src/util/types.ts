@@ -99,17 +99,17 @@ export type Writable<T> = {
 
 /**
  * @example
- * type Foo = Nomalize<{ hoge: string } & { fuga: number }>;
+ * type Foo = Normalize<{ hoge: string } & { fuga: number }>;
  * // Foo: { hoge: string; fuga: number }
  */
-export type Nomalize<T> = T extends unknown ? { [P in keyof T]: T[P] } : never;
+export type Normalize<T> = T extends unknown ? { [P in keyof T]: T[P] } : never;
 
 /**
  * @example
- * type Foo = Nomalize<{ foo: { hoge: string } } & { foo: { fuga: number } }>;
+ * type Foo = NormalizeDeep<{ foo: { hoge: string } } & { foo: { fuga: number } }>;
  * // Foo: { foo: { hoge: string; fuga: number } }
  */
-export type NomalizeDeep<T> = T extends unknown ? { [P in keyof T]: NomalizeDeep<T[P]> } : never;
+export type NormalizeDeep<T> = T extends unknown ? { [P in keyof T]: NormalizeDeep<T[P]> } : never;
 
 export type Callable = (...args: any) => unknown;
 
@@ -121,8 +121,13 @@ interface HasMeta<T> {
     "__?META": T;
 }
 
+interface WeakMetaNone {
+    /** @deprecated */
+    "__?WEAK_META"?: never;
+}
+
 export type Meta<T, M> = T & HasMeta<M>;
-export type WeakMeta<T, M> = T & (HasMeta<M> | { "__?WEAK_META"?: never });
+export type WeakMeta<T, M> = T & (HasMeta<M> | WeakMetaNone);
 
 interface Assert {
     as<T>(value: unknown): asserts value is T;
