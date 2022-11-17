@@ -1,4 +1,3 @@
-export * from "./equals";
 export * from "./fn";
 export * from "./primitive";
 export * from "./timer";
