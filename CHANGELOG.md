@@ -5,6 +5,9 @@
 ### Added
 - `PartiallyPartial` type
 
+### Fixed
+- remove `/// <reference types="node" />` in .d.ts
+
 ## [v1.0.0-next.0] - 2022-11-08
 ### Added
 - `TAU`
