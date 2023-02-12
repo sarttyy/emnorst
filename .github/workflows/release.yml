@@ -20,6 +20,14 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - run: npm publish
+      - id: prepare_tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_NAME=$(echo "${GITHUB_REF##refs/tags/v}" | sed -E 's/[0-9.-]+//g')
+          if [ -n "$TAG_NAME" ]; then
+            echo "tag=--tag ${TAG_NAME}" >> $GITHUB_OUTPUT
+          fi
+
+      - run: npm publish ${{ steps.prepare_tag.outputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
