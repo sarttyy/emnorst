@@ -14,8 +14,8 @@ import { typeOf } from "emnorst";
 typeOf([1, 1, 2, 3, 5, 8, 13]); // === "Array"
 ```
 
-## Licence
+## License
 
 Copyright (c) 2020 rizzzse
 
-[MIT Licence](https://github.com/rizzzse/emnorst/blob/main/LICENSE)
+[MIT License](https://github.com/rizzzse/emnorst/blob/main/LICENSE)

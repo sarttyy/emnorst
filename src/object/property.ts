@@ -36,7 +36,7 @@ export const isEnumerableProp = <T, U extends KeyOf<T> | (number & {})>(object: 
     return object != null && prototypePropertyIsEnumerable.call(object, key);
 };
 
-type Swapable<T, K extends keyof T> = {
+type Swappable<T, K extends keyof T> = {
     [_ in K]: Intersection<
         K extends unknown ? { x: T[K] } : never
     > extends { x: infer U } ? U : never;
@@ -49,7 +49,7 @@ type Swapable<T, K extends keyof T> = {
  * obj === { a: 1, b: 0 };
  */
 export const swap = <T, K extends keyof T>(
-    object: Normalize<T & Swapable<T, K>>,
+    object: Normalize<T & Swappable<T, K>>,
     key1: Union<K>,
     key2: Union<K>,
 ) => {

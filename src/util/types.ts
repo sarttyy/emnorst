@@ -97,6 +97,8 @@ export type Writable<T> = {
     -readonly [P in keyof T]: T[P];
 };
 
+export type PartiallyPartial<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
 /**
  * @example
  * type Foo = Normalize<{ hoge: string } & { fuga: number }>;
