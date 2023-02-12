@@ -6,7 +6,7 @@
 // @ts-check
 
 /** @type {import("@jest/types").Config.InitialOptions} */
-const config = {
+export default {
     collectCoverage: true,
     coverageDirectory: "coverage",
     coverageProvider: "v8",
@@ -17,5 +17,3 @@ const config = {
         "\\.ts$": ["esbuild-jest", { sourcemap: true }],
     },
 };
-
-module.exports = config;
