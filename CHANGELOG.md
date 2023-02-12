@@ -2,6 +2,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [v1.0.0-next.1] - 2023-02-12
 ### Added
 - `PartiallyPartial` type
 
