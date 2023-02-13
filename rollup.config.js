@@ -10,8 +10,8 @@ const DEV = !!process.env.ROLLUP_WATCH;
 export default defineConfig({
     input: "./src/index.ts",
     output: [
-        { file: "dist/emnorst.esm.js", format: "esm" },
-        { file: "dist/emnorst.cjs.js", format: "cjs" },
+        { file: "dist/emnorst.js", format: "esm" },
+        { file: "dist/emnorst.cjs", format: "cjs" },
     ],
     plugins: [
         ts({ transpileOnly: DEV }),
