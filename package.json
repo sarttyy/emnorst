@@ -4,9 +4,9 @@
   "description": "javascript utility operation library",
   "sideEffects": false,
   "type": "module",
-  "main": "dist/emnorst.cjs.js",
-  "module": "dist/emnorst.esm.js",
-  "types": "dist/emnorst.esm.d.ts",
+  "main": "dist/emnorst.cjs",
+  "module": "dist/emnorst.js",
+  "types": "dist/emnorst.d.ts",
   "files": [
     "dist"
   ],

@@ -2,10 +2,15 @@
 # Change Log
 
 ## [Unreleased]
+### Fix
+- Change the "main" extension to .cjs.
 
 ## [v1.0.0-next.1] - 2023-02-12
 ### Added
 - `PartiallyPartial` type
+
+### Changed
+- Set "type" in package.json to "module".
 
 ### Fixed
 - remove `/// <reference types="node" />` in .d.ts
