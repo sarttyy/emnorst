@@ -2,6 +2,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [v1.0.0-next.2] - 2023-02-13
 ### Fix
 - Change the "main" extension to .cjs.
 
